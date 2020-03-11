@@ -14,6 +14,8 @@ import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 import StepConnector from '@material-ui/core/StepConnector';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
 import NavForApp from './components/NavForApp';
 
@@ -160,10 +162,18 @@ ColorlibStepIcon.propTypes = {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
+    height: '100vh',
   },
   button: {
     marginRight: theme.spacing(1),
+  },
+  image: {
+    backgroundImage: 'url(https://img.favpng.com/2/14/7/accelerated-mobile-pages-one-call-away-responsive-web-design-non-governmental-organisation-png-favpng-kpXLYqN4PqkrrtxZxiZa8FLCW.jpg)',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor:
+      theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
   },
   instructions: {
     marginTop: theme.spacing(1),
@@ -208,6 +218,9 @@ export default function Hall() {
   return (
     <>
     <NavForApp nav_title='HALL' />
+    <Grid container component="main" className={classes.root}>
+    <Grid item xs={false} sm={8} md={5} className={classes.image} />
+      <Grid item xs={12} sm={4} md={7} component={Paper} elevation={6} square>
     <div className={classes.root}>
       <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
         {steps.map(label => (
@@ -246,6 +259,8 @@ export default function Hall() {
         )}
       </div>
     </div>
+    </ Grid>
+    </Grid>
     </>
   );
 }
