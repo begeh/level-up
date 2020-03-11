@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import Hall from './Hall';
-import Legacy from "./Legacy";
+import Legacy from "./Legacy";  
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Lobby from './Lobby';
