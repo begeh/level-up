@@ -9,7 +9,7 @@ export default function NavForApp(props){
     <Typography>
     <Navbar bg="light" expand="lg">
       <Navbar.Brand href="/hall">LEVEL-UP</Navbar.Brand>
-      <Navbar.Brand href="/hall">{props.nav_title}</Navbar.Brand>
+      <Navbar.Brand >{props.nav_title}</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
