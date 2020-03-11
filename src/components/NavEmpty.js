@@ -8,7 +8,7 @@ export default function NavEmpty(){
   return(
     <Typography>
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#">LEVEL-UP</Navbar.Brand>
+      <Navbar.Brand>LEVEL-UP</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
