@@ -179,6 +179,11 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
+  title:{
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  }
 }));
 
 function getSteps() {
@@ -221,11 +226,11 @@ export default function Hall() {
     <Grid container component="main" className={classes.root}>
     <Grid item xs={false} sm={8} md={5} className={classes.image} />
       <Grid item xs={12} sm={4} md={7} component={Paper} elevation={6} square>
-
-    <div className={classes.root}>
-      <Typography component="h1" variant="h4">
+      <Typography className={classes.title} component="h1" variant="h4">
           Party Quests
         </Typography>
+    <div className={classes.root}>
+
       <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
         {steps.map(label => (
           <Step key={label}>
