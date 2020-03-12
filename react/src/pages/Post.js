@@ -5,6 +5,21 @@ import NavForApp from '../components/NavForApp';
 
 export default function Post() {
 
+  const nodes = [
+    {
+      title: 'start',
+      isComplete: true
+    },
+    {
+      title: 'middle',
+      isComplete: true
+    },
+    {
+      title: 'end',
+      isComplete: false
+    }
+  ]
+
   const post = {
     title: 'quest',
     date: Date(Date.now()).toString(),
@@ -31,6 +46,18 @@ export default function Post() {
         text: "Capybaras are awesome"
       }
     ]
+  }
+
+  const NodeBar = ({nodes}) => {
+    return (
+      <div>
+        {nodes.map((node, index) => (
+          <div>
+          Node {node.isComplete ? 'done' : 'not done'}
+          </div>
+        ))}
+      </div>
+    )
   }
 
   const PostView = ({post}) => {
@@ -81,6 +108,7 @@ export default function Post() {
       </Grid>
 
       <Grid item xs >
+        <NodeBar nodes={nodes} />
         <PostView post={post} />
         <CommentList post={post} />
       </Grid>

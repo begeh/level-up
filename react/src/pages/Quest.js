@@ -5,6 +5,21 @@ import NavForApp from '../components/NavForApp';
 
 export default function Quest() {
 
+  const nodes = [
+    {
+      title: 'start',
+      isComplete: true
+    },
+    {
+      title: 'middle',
+      isComplete: true
+    },
+    {
+      title: 'end',
+      isComplete: false
+    }
+  ]
+
   const posts = [
     {
       title: "post 1",
@@ -25,6 +40,18 @@ export default function Quest() {
       comment_count: 5,
     }
   ] 
+
+  const NodeBar = ({nodes}) => {
+    return (
+      <div>
+        {nodes.map((node, index) => (
+          <div>
+          Node {node.isComplete ? 'done' : 'not done'}
+          </div>
+        ))}
+      </div>
+    )
+  }
   
   const QuestList = ({posts}) => {
     return (
@@ -60,6 +87,7 @@ export default function Quest() {
       </Grid>
 
       <Grid item xs >
+        <NodeBar nodes={nodes} />
         <QuestList posts={posts}/>
         
       </Grid>
