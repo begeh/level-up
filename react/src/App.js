@@ -6,11 +6,14 @@ import {
   Link
 } from "react-router-dom";
 
-import Hall from './Hall';
-import Legacy from "./Legacy";  
-import SignIn from './SignIn';
-import SignUp from './SignUp';
-import Lobby from './Lobby';
+import Hall from './pages/Hall';
+import Legacy from "./pages/Legacy";  
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import Lobby from './pages/Lobby';
+import Quest from "./pages/Quest";
+import Post from "./pages/Post";
+
 
 
 export default function App() {
@@ -34,6 +37,12 @@ export default function App() {
           </Route>
           <Route path="/signup">
             <SignUp />
+          </Route>
+          <Route path="/quest">
+            <Quest />
+          </Route>
+          <Route path="/post">
+            <Post />
           </Route>
         </Switch>
       </div>
