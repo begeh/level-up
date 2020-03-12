@@ -34,9 +34,6 @@ export default function Lobby() {
   const classes = useStyles();
   let history = useHistory();
 
-  function handleClick() {
-    history.push('/hall');
-  }
   return (
     <>
     <NavEmpty />
@@ -65,8 +62,7 @@ export default function Lobby() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={handleClick}
-            // href='/hall'      
+            onClick={()=>history.push("/hall")}      
           >
             Join Lobby
           </Button>
@@ -89,8 +85,7 @@ export default function Lobby() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={handleClick}
-            // href='/hall'
+            onClick={()=>history.push("/hall")}
           >
             Create New Lobby
           </Button>

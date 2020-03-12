@@ -45,9 +45,6 @@ export default function SignUp() {
   const classes = useStyles();
   let history = useHistory();
 
-  function handleClick() {
-    history.push('/');
-  }
   return (
     <Grid container component="main" className={classes.root}>
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -128,13 +125,13 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={handleClick}
+            onClick={()=>history.push("/")}
           >
             Sign Up
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link onClick={handleClick} href="" variant="body2">
+              <Link onClick={()=>history.push("/")} href="" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
