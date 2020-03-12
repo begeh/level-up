@@ -46,14 +46,6 @@ const useStyles = makeStyles(theme => ({
 export default function SignIn() {
   const classes = useStyles();
   let history = useHistory();
-
-  function handleClick_signIn() {
-    history.push("/lobby");
-  }
-
-  function handleClick_signUp() {
-    history.push("/signup");
-  }
   
   return (
     <Grid container component="main" className={classes.root}>
@@ -103,13 +95,13 @@ export default function SignIn() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={handleClick_signIn}
+              onClick={()=>history.push("/lobby")}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item>
-                <Link onClick={handleClick_signUp} href="" variant="body2">
+                <Link onClick={()=>history.push("/signup")}href="" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
