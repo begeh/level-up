@@ -64,6 +64,8 @@ export default function Lobby() {
           >
             Join Lobby
           </Button>
+          </form>
+          <form className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
