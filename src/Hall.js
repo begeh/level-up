@@ -221,7 +221,38 @@ export default function Hall() {
     <Grid container component="main" className={classes.root}>
     <Grid item xs={false} sm={8} md={5} className={classes.image} />
       <Grid item xs={12} sm={4} md={7} component={Paper} elevation={6} square>
+      <Typography component="h1" variant="h4">
+          Party Quests
+        </Typography>
     <div className={classes.root}>
+      <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
+        {steps.map(label => (
+          <Step key={label}>
+            <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
+        {steps.map(label => (
+          <Step key={label}>
+            <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
+        {steps.map(label => (
+          <Step key={label}>
+            <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
+        {steps.map(label => (
+          <Step key={label}>
+            <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
       <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
         {steps.map(label => (
           <Step key={label}>
