@@ -3,6 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import {Typography} from '@material-ui/core';
 import Nav from 'react-bootstrap/Nav';
 import PartyBtn from './PartyBtn';
+import QuestInfoBtn from './QuestInfoBtn';
 import { useHistory } from "react-router-dom";
 
 export default function NavForApp(props){
@@ -13,6 +14,7 @@ export default function NavForApp(props){
     <Navbar bg="light" expand="lg">
       <Navbar.Brand onClick={()=>history.push("/hall")}>LEVEL-UP</Navbar.Brand>
       <PartyBtn />
+      <QuestInfoBtn />
       <Navbar.Brand >{props.nav_title}</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
