@@ -6,6 +6,7 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useHistory } from "react-router-dom";
 
 import NavEmpty from './components/NavEmpty';
 
@@ -31,7 +32,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function Lobby() {
   const classes = useStyles();
+  let history = useHistory();
 
+  function handleClick() {
+    history.push('/hall');
+  }
   return (
     <>
     <NavEmpty />
@@ -60,7 +65,8 @@ export default function Lobby() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            href='/hall'
+            onClick={handleClick}
+            // href='/hall'      
           >
             Join Lobby
           </Button>
@@ -83,7 +89,8 @@ export default function Lobby() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            href='/hall'
+            onClick={handleClick}
+            // href='/hall'
           >
             Create New Lobby
           </Button>

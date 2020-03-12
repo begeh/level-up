@@ -8,6 +8,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,7 +43,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  let history = useHistory();
 
+  function handleClick() {
+    history.push('/');
+  }
   return (
     <Grid container component="main" className={classes.root}>
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -123,13 +128,13 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            href="/"
+            onClick={handleClick}
           >
             Sign Up
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="/" variant="body2">
+              <Link onClick={handleClick} href="" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

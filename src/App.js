@@ -17,7 +17,7 @@ export default function App() {
   return (
     <Router>
       
-      <body>
+      <div>
         
         <Switch>
           <Route exact path="/">
@@ -36,7 +36,7 @@ export default function App() {
             <SignUp />
           </Route>
         </Switch>
-      </body>
+      </div>
     </Router>
   );
 }
