@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
+
 import NavForApp from "../components/NavForApp";
 
 const useStyles = makeStyles(theme => ({
@@ -22,42 +23,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const achievements = [
-  {
-    title: 'The Great Novigrad Heist',
-    start_date: '10 June',
-    end_date: '11 June',
-    status: 'success'
-  },
-  {
-    title: 'The Great Novigrad Heist',
-    start_date: '10 June',
-    end_date: '11 June',
-    status: 'fail'
-  },
-  {
-    title: 'The Great Novigrad Heist',
-    start_date: '10 June',
-    end_date: '11 June',
-    status: 'in-progress'
-  }
-]
-
-const History = () => {
-  return (
-  <div>
-    <button>Go Back</button>
-    <p>Success</p>
-    <p>Your Story</p>
-
-  </div>
-  )
-}
-
-export default function SignIn() {
+export default function (){
   const classes = useStyles();
-  let history=useHistory();
-  return (
+  let history = useHistory();
+  return(
     <>
     <NavForApp nav_title="LEGACY" />
     <Grid container component="main" className={classes.root}>
@@ -73,16 +42,13 @@ export default function SignIn() {
       </div>
    </Grid>
    <Grid item xs={false} sm={6} md={6}>
-      <button onClick={()=>history.push("/legacy/history")}>Go Back</button>
-      {achievements.map((achievement, index) => (
-      <div>
-        <p>{achievement.title}</p>
-        <p>{achievement.start_date}-{achievement.end_date}</p>
-        <p>{achievement.status}</p>
-      </div>
-    ))}
+    <div>
+    <button onClick={()=>history.push("/legacy")}>Go Back</button>
+    <p>Mock Success</p>
+    <p>Your Story</p>
+    </div>
     </Grid>
-   </Grid>
-   </>
-  );
+    </Grid>
+  </>
+  )
 }

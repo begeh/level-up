@@ -13,6 +13,7 @@ import SignUp from './pages/SignUp';
 import Lobby from './pages/Lobby';
 import Quest from "./pages/Quest";
 import Post from "./pages/Post";
+import HistoryMock from "./pages/HistoryMock";
 
 
 
@@ -25,6 +26,9 @@ export default function App() {
         <Switch>
           <Route exact path="/">
             <SignIn />
+          </Route>
+          <Route path='/legacy/history'>
+            <HistoryMock />
           </Route>
           <Route path="/legacy">
             <Legacy />
