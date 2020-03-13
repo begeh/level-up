@@ -5,6 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import PartyBtn from './PartyBtn';
 import QuestInfoBtn from './QuestInfoBtn';
 import { useHistory } from "react-router-dom";
+import './NavForApp.css'
 
 export default function NavForApp(props){
   let history = useHistory();
