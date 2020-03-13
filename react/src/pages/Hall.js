@@ -1,8 +1,8 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import React, { useState } from 'react';
+import {Grid, Stepper, Step, StepLabel} from '@material-ui/core';
 import QuestInfoBtn from '../components/CreateQuestBtn'
-
 import NavForApp from '../components/NavForApp';
+import './Hall.css'
 
 
 
@@ -14,17 +14,31 @@ const HallList = ({quests}) => {
           <HallListItem title={quest.title} nodes={quest.nodes} index={index} />
         ))
       }
-
-
     </div>
   )
 }
 
+
+
+
+
+
 const HallListItem = ({title, nodes}) => {
+
   return (
     <div>
       <h1>{title}</h1>
       <p>{nodes.length}</p>
+      <Stepper >
+        {nodes.map((node, index) => {
+  
+          return (
+            <Step key={index} >
+              <StepLabel className={node.isComplete ? 'completed-node' : 'uncompleted-node'} />
+            </Step>
+          );
+        })}
+      </Stepper>
     </div>
   )
 }
@@ -90,6 +104,14 @@ const quests = [
         title: 'end',
         isComplete: false
       },
+      {
+        title: 'end',
+        isComplete: false
+      },
+      {
+        title: 'end',
+        isComplete: false
+      }
     ]
   },
   {
