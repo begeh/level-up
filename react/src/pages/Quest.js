@@ -1,7 +1,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-
 import NavForApp from '../components/NavForApp';
+import CreatePostBtn from '../components/CreatePostBtn'
+
 
 export default function Quest() {
 
@@ -65,8 +66,8 @@ export default function Quest() {
           ))
         }
   
-        <button>New Post</button>
-  
+        <CreatePostBtn />
+
       </div>
     )
   }

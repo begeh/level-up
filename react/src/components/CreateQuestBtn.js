@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import {List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@material-ui/core'
+import {TextField} from '@material-ui/core'
 
 export default function QuestInfoBtn() {
   const [show, setShow] = useState(false);
@@ -60,7 +60,29 @@ export default function QuestInfoBtn() {
               fullWidth
               multiline
               name="node1"
+              label="Node 1 Description"
+              id="node1"
+              autoComplete="Node 1"
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              multiline
+              name="node1"
               label="Node 1"
+              id="node1"
+              autoComplete="Node 1"
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              multiline
+              name="node1"
+              label="Node 2 Description"
               id="node1"
               autoComplete="Node 1"
             />
@@ -82,7 +104,7 @@ export default function QuestInfoBtn() {
               fullWidth
               multiline
               name="node1"
-              label="Node 1"
+              label="Node 1 Description"
               id="node1"
               autoComplete="Node 1"
             />
@@ -94,6 +116,39 @@ export default function QuestInfoBtn() {
               multiline
               name="node1"
               label="Node 1"
+              id="node1"
+              autoComplete="Node 1"
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              multiline
+              name="node1"
+              label="Node 1 Description"
+              id="node1"
+              autoComplete="Node 1"
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              multiline
+              name="node1"
+              label="Node 1"
+              id="node1"
+              autoComplete="Node 1"
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              multiline
+              name="node1"
+              label="Node 1 Description"
               id="node1"
               autoComplete="Node 1"
             />

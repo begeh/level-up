@@ -1,5 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import QuestInfoBtn from '../components/CreateQuestBtn'
 
 import NavForApp from '../components/NavForApp';
 
@@ -14,7 +15,6 @@ const HallList = ({quests}) => {
         ))
       }
 
-      <button>New Quest</button>
 
     </div>
   )
@@ -44,6 +44,7 @@ export default function Hall() {
 
       <Grid item xs={12} sm={6} md={6} >
         <HallList quests={quests} />
+        <QuestInfoBtn />
       </Grid>
     </Grid>
 
