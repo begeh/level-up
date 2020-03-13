@@ -43,7 +43,7 @@ const achievements = [
   }
 ]
 
-const History = () => {
+const HistoryMock = () => {
   return (
   <div>
     <button>Go Back</button>
@@ -74,7 +74,9 @@ export default function SignIn() {
    </Grid>
    <Grid item xs={false} sm={6} md={6}>
       <button onClick={()=>history.push("/legacy/history")}>Go Back</button>
-      {achievements.map((achievement, index) => (
+      {/* <HistoryMock /> */}
+      {
+      achievements.map((achievement, index) => (
       <div>
         <p>{achievement.title}</p>
         <p>{achievement.start_date}-{achievement.end_date}</p>
