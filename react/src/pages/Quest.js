@@ -8,15 +8,18 @@ export default function Quest() {
   const nodes = [
     {
       title: 'start',
-      isComplete: true
+      isComplete: true,
+      date: Date(Date.now()).toString()
     },
     {
       title: 'middle',
-      isComplete: true
+      isComplete: true,
+      date: Date(Date.now()).toString()
     },
     {
       title: 'end',
-      isComplete: false
+      isComplete: false,
+      date: Date(Date.now()).toString()
     }
   ]
 
