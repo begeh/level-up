@@ -24,18 +24,21 @@ const useStyles = makeStyles(theme => ({
 
 const achievements = [
   {
+    id:1,
     title: 'The Great Novigrad Heist',
     start_date: '10 June',
     end_date: '11 June',
     status: 'success'
   },
   {
+    id:2,
     title: 'The Great Novigrad Heist',
     start_date: '10 June',
     end_date: '11 June',
     status: 'fail'
   },
   {
+    id:3,
     title: 'The Great Novigrad Heist',
     start_date: '10 June',
     end_date: '11 June',
@@ -54,7 +57,7 @@ const HistoryMock = () => {
   )
 }
 
-export default function SignIn() {
+export default function Legacy() {
   const classes = useStyles();
   let history=useHistory();
   return (
@@ -73,15 +76,14 @@ export default function SignIn() {
       </div>
    </Grid>
    <Grid item xs={false} sm={6} md={6}>
-      <button onClick={()=>history.push("/legacy/history")}>Go Back</button>
       {/* <HistoryMock /> */}
       {
       achievements.map((achievement, index) => (
-      <div>
+      <button onClick={()=>history.push(`/legacy/history/${achievement.id}`)}>
         <p>{achievement.title}</p>
         <p>{achievement.start_date}-{achievement.end_date}</p>
         <p>{achievement.status}</p>
-      </div>
+      </button>
     ))}
     </Grid>
    </Grid>

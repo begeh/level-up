@@ -3,7 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import NavForApp from "../components/NavForApp";
 
@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
 export default function (){
   const classes = useStyles();
   let history = useHistory();
+  let {id} = useParams();
   return(
     <>
     <NavForApp nav_title="LEGACY" />
@@ -46,6 +47,7 @@ export default function (){
     <button onClick={()=>history.push("/legacy")}>Go Back</button>
     <p>Mock Success</p>
     <p>Your Story</p>
+    <p>{id}</p>
     </div>
     </Grid>
     </Grid>

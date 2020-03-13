@@ -27,7 +27,7 @@ export default function App() {
           <Route exact path="/">
             <SignIn />
           </Route>
-          <Route path='/legacy/history'>
+          <Route path='/legacy/history/:id'>
             <HistoryMock />
           </Route>
           <Route path="/legacy">
