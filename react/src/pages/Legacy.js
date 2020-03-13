@@ -1,59 +1,14 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import { makeStyles } from '@material-ui/core/styles';
 
 import NavForApp from "../components/NavForApp";
-
-
-const StyledTableCell = withStyles(theme => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
-
-
-const StyledTableRow = withStyles(theme => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default,
-    },
-  },
-}))(TableRow);
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159),
-  createData('Ice cream sandwich', 237),
-  createData('Eclair', 262),
-  createData('Cupcake', 305),
-  createData('Gingerbread', 356),
-];
 
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh',
-  },
-  table: {
-    minWidth: 300,
   },
   paper: {
     margin: theme.spacing(8, 4),
@@ -64,15 +19,40 @@ const useStyles = makeStyles(theme => ({
   avatar: {
     width: theme.spacing(50),
     height: theme.spacing(50),
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
+  }
 }));
+
+const achievements = [
+  {
+    title: 'The Great Novigrad Heist',
+    start_date: '10 June',
+    end_date: '11 June',
+    status: 'success'
+  },
+  {
+    title: 'The Great Novigrad Heist',
+    start_date: '10 June',
+    end_date: '11 June',
+    status: 'fail'
+  },
+  {
+    title: 'The Great Novigrad Heist',
+    start_date: '10 June',
+    end_date: '11 June',
+    status: 'in-progress'
+  }
+]
+
+const History = () => {
+  return (
+  <div>
+    <button>Go Back</button>
+    <p>Success</p>
+    <p>Your Story</p>
+
+  </div>
+  )
+}
 
 export default function SignIn() {
   const classes = useStyles();
@@ -80,7 +60,8 @@ export default function SignIn() {
   return (
     <>
     <NavForApp nav_title="LEGACY" />
-    <Container component="main" maxWidth="xs">
+    <Grid container component="main" className={classes.root}>
+      <Grid item xs={12} sm={6} md={6}>
       <div className={classes.paper}>
         <Avatar className={classes.avatar} src="https://img.favpng.com/2/14/7/accelerated-mobile-pages-one-call-away-responsive-web-design-non-governmental-organisation-png-favpng-kpXLYqN4PqkrrtxZxiZa8FLCW.jpg"/>
         <Typography component="h1" variant="h4">
@@ -89,28 +70,19 @@ export default function SignIn() {
         <Typography component="h1" variant="h6">
          TITLE: Paladin
         </Typography>
-        <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Stat Name</StyledTableCell>
-            <StyledTableCell >Stat Value</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell >{row.calories}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
       </div>
-    </Container>
+   </Grid>
+   <Grid item xs={false} sm={6} md={6}>
+     <History />
+    {/* {achievements.map((achievement, index) => (
+      <div>
+        <p>{achievement.title}</p>
+        <p>{achievement.start_date}-{achievement.end_date}</p>
+        <p>{achievement.status}</p>
+      </div>
+    ))} */}
+    </Grid>
+   </Grid>
     </>
   );
 }
