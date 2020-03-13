@@ -69,6 +69,9 @@ export default function QuestInfoBtn() {
           </List>
         </Modal.Body>
         <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            Level-Up!
+          </Button>
           <Button variant="secondary" onClick={handleClose}>
             Abandon Quest
           </Button>
