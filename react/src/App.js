@@ -33,9 +33,7 @@ export default function App() {
           <Route path="/legacy">
             <Legacy />
           </Route>
-          <Route path="/hall">
-            <Hall />
-          </Route>
+          <Route path="/hall" component={(props)=> <Hall {...props}/>} />
           <Route path="/lobby"
             component={(props)=> <Lobby {...props}/>} />
           <Route path="/signup">
