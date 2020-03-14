@@ -36,9 +36,8 @@ export default function App() {
           <Route path="/hall">
             <Hall />
           </Route>
-          <Route path="/lobby">
-            <Lobby />
-          </Route>
+          <Route path="/lobby"
+            component={(props)=> <Lobby {...props}/>} />
           <Route path="/signup">
             <SignUp />
           </Route>
