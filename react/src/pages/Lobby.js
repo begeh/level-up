@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {useState, Fragment} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -30,9 +30,31 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Lobby(props) {
+
+  if(props.location.data){
+    console.log(`Received email: ${props.location.data.email} and password: ${props.location.data.password}`);
+  }
+
   const classes = useStyles();
   let history = useHistory();
-  console.log(`Received ${Object.values(props.location.data)}`);
+  const [lobbyName, setLobbyName] = useState(null);
+  const [lobbyCode, setLobbyCode] = useState(null);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(`lobbyname is ${lobbyName}`);
+    console.log(`lobbycode is ${lobbyCode}`);
+    const auth = {}
+    if(lobbyName && !lobbyCode){
+      auth.lobbyName = lobbyName
+    } else if(lobbyCode && !lobbyName){
+      auth.lobbyCode = lobbyCode
+    } 
+    history.push({
+      pathname: "/hall",
+      data: auth
+    });
+  }
   return (
     <>
     <NavEmpty />
@@ -43,7 +65,7 @@ export default function Lobby(props) {
         <Typography component="h1" variant="h5">
           Join a Lobby
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -51,7 +73,9 @@ export default function Lobby(props) {
             fullWidth
             id="join-lobby"
             label="Lobby Code"
-            name="join-lobby"
+            name="lobbyCode"
+            value={lobbyCode}
+            onChange={(e)=>setLobbyCode(e.target.value)}
             autoComplete="123"
             autoFocus
           />
@@ -61,18 +85,20 @@ export default function Lobby(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={()=>history.push("/hall")}      
+            // onClick={()=>history.push("/hall")}      
           >
             Join Lobby
           </Button>
           </form>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={handleSubmit}  noValidate>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            name="create-lobby"
+            name="lobbyName"
+            value={lobbyName}
+            onChange={(e)=>setLobbyName(e.target.value)}
             label="Lobby Name"
             type="create-lobby"
             id="create-lobby"
@@ -84,7 +110,7 @@ export default function Lobby(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={()=>history.push("/hall")}
+            // onClick={()=>history.push("/hall")}
           >
             Create New Lobby
           </Button>
