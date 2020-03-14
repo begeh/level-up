@@ -2,7 +2,6 @@ import React, {Fragment} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -30,10 +29,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Lobby() {
+export default function Lobby(props) {
   const classes = useStyles();
   let history = useHistory();
-
+  console.log(`Received ${Object.values(props.location.data)}`);
   return (
     <>
     <NavEmpty />
