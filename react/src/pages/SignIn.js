@@ -57,7 +57,6 @@ export default function SignIn() {
       email:email,
       password:password
     }
-    console.log(`This is ${auth.email} and ${auth.password} `);
     history.push({
       pathname: "/lobby",
       data: auth
