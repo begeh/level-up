@@ -44,10 +44,9 @@ const HallListItem = ({title, nodes}) => {
 }
 
 export default function Hall(props) {
-  
-  if(props.location.data){
-    console.log(`Received ${Object.keys(props.location.data)}: ${Object.values(props.location.data)} `);
-  }
+  console.log(props)
+  const state = props.location.state
+  console.log(`Hall State is ${state}`);
 
   return (
     <>

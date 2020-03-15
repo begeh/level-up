@@ -30,10 +30,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Lobby(props) {
-
-  if(props.location.data){
-    console.log(`Received email: ${props.location.data.email} and password: ${props.location.data.password}`);
-  }
+  const state = props.location.data;
+  console.log(`New State: ${state}`)
+  console.log(`Received email: ${props.location.data.email} and password: ${props.location.data.password}`);
 
   const classes = useStyles();
   let history = useHistory();
@@ -44,15 +43,14 @@ export default function Lobby(props) {
     event.preventDefault();
     console.log(`lobbyname is ${lobbyName}`);
     console.log(`lobbycode is ${lobbyCode}`);
-    const auth = {}
     if(lobbyName && !lobbyCode){
-      auth.lobbyName = lobbyName
+      state.lobbyName = lobbyName
     } else if(lobbyCode && !lobbyName){
-      auth.lobbyCode = lobbyCode
+      state.lobbyCode = lobbyCode
     } 
     history.push({
       pathname: "/hall",
-      data: auth
+      state: state
     });
   }
   return (
@@ -84,8 +82,7 @@ export default function Lobby(props) {
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
-            // onClick={()=>history.push("/hall")}      
+            className={classes.submit}     
           >
             Join Lobby
           </Button>
@@ -110,7 +107,6 @@ export default function Lobby(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            // onClick={()=>history.push("/hall")}
           >
             Create New Lobby
           </Button>
