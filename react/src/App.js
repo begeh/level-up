@@ -16,7 +16,7 @@ import Post from "./pages/Post";
 import History from "./pages/History";
 import StateContext from './Context';
 
-const newState = {
+const globalState = {
   user_id: null,
   firstName: "BlueMoon",
   lastName: null,
@@ -40,7 +40,7 @@ export default function App() {
   }
   return (
     <Router>
-      <StateContext.Provider value={newState}>
+      <StateContext.Provider value={globalState}>
       <div>
         
         <Switch>
