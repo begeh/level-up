@@ -30,10 +30,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Lobby(props) {
-  const state = props.location.data;
+  const state = props.location.state;
   
   console.log(`New State: ${state}`)
-  console.log(`Received email: ${props.location.data.email} and password: ${props.location.data.password}`);
+  console.log(`Received email: ${props.location.state.email} and password: ${props.location.state.password}`);
 
   const classes = useStyles();
   let history = useHistory();

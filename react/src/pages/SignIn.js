@@ -57,7 +57,7 @@ export default function SignIn(props) {
     state.password = password;
     history.push({
       pathname: "/lobby",
-      data: state
+      state: state
     });
   }
 

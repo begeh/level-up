@@ -70,7 +70,7 @@ export default function SignUp(props) {
     console.log(`lastname is ${state.lastName}`)
     history.push({
       pathname: "/lobby",
-      data: state
+      state: state
     });
   }
 
