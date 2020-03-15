@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {Grid, Stepper, Step, StepLabel} from '@material-ui/core';
 import QuestInfoBtn from '../components/CreateQuestBtn'
 import NavForApp from '../components/NavForApp';
 import './Hall.css'
-
+import StateContext from "../Context";
+import {useHistory} from "react-router-dom"
 
 
 const HallList = ({quests}) => {
@@ -44,8 +45,17 @@ const HallListItem = ({title, nodes}) => {
 }
 
 export default function Hall(props) {
-  const state = props.location.state
-  
+  let history=useHistory();
+  let state = useContext(StateContext);
+  if(!props.location.state){
+    history.push('/');
+  }
+  if(props.location.state)
+  {
+    state = props.location.state;
+    console.log(props);
+  }
+
   console.log(props)
   console.log(`Hall State is ${state}`);
 
