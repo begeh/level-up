@@ -57,12 +57,17 @@ const HistoryMock = () => {
   )
 }
 
-export default function Legacy() {
+export default function Legacy(props) {
+  const state = props.location.state
+  
+  console.log(`Legacy state ${state.firstName} ${state.lastName}`);
+  
   const classes = useStyles();
   let history=useHistory();
+
   return (
     <>
-    <NavForApp nav_title="LEGACY" />
+    <NavForApp nav_title="LEGACY" state={state}/>
     <Grid container component="main" className={classes.root}>
       <Grid item xs={12} sm={6} md={6}>
       <div className={classes.paper}>
@@ -71,7 +76,10 @@ export default function Legacy() {
           Your Legacy
         </Typography>
         <Typography component="h1" variant="h6">
-         TITLE: Paladin
+          Your Name: {state.firstName} {state.lastName}
+        </Typography>
+        <Typography component="h1" variant="h6">
+         TITLE: {state.title}
         </Typography>
       </div>
    </Grid>

@@ -44,13 +44,14 @@ const HallListItem = ({title, nodes}) => {
 }
 
 export default function Hall(props) {
-  console.log(props)
   const state = props.location.state
+  
+  console.log(props)
   console.log(`Hall State is ${state}`);
 
   return (
     <>
-    <NavForApp nav_title='HALL' />
+    <NavForApp nav_title='HALL' state={state}/>
     <Grid container >
       <Grid item xs={false} sm={6} md={6} >
         <p>Hello</p>
