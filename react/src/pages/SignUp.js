@@ -41,9 +41,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
   const classes = useStyles();
   let history = useHistory();
+  const state = props.location.state;
+  console.log(state);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [title, setTitle] = useState("");
@@ -52,21 +54,21 @@ export default function SignUp() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const user={
-      email:email,
-      password:password,
-      title: title,
-      firstname: firstName,
-      lastname: lastName
-    }
-    console.log(`email is ${user.email}`);
-    console.log(`password is ${user.password}`);
-    console.log(`title is ${user.title}`)
-    console.log(`firstname is ${user.firstname}`)
-    console.log(`lastname is ${user.lastname}`)
+    
+    state.email = email;
+    state.password = password;
+    state.title = title;
+    state.firstName = firstName;
+    state.lastName = lastName;
+    
+    console.log(`email is ${state.email}`);
+    console.log(`password is ${state.password}`);
+    console.log(`title is ${state.title}`)
+    console.log(`firstname is ${state.firstName}`)
+    console.log(`lastname is ${state.lastName}`)
     history.push({
       pathname: "/lobby",
-      data: user
+      data: state
     });
   }
 
@@ -160,7 +162,6 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            // onClick={()=>history.push("/")}
           >
             Sign Up
           </Button>

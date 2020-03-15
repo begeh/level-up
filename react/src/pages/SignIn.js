@@ -43,23 +43,21 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const state = props.value;
   function handleSubmit(event) {
     event.preventDefault();
     console.log(`email is ${email}`);
     console.log(`password is ${password}`);
-    const auth={
-      email:email,
-      password:password
-    }
+    state.email = email;
+    state.password = password;
     history.push({
       pathname: "/lobby",
-      data: auth
+      data: state
     });
   }
 
@@ -116,13 +114,12 @@ export default function SignIn() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              // onClick={()=>history.push("/lobby")}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item>
-                <Link onClick={()=>history.push("/signup")}href="" variant="body2">
+                <Link onClick={()=>history.push({pathname: "/signup", state: state})} href="" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

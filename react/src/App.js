@@ -18,6 +18,16 @@ import HistoryMock from "./pages/History";
 
 
 export default function App() {
+  const state = {
+    user_id: null,
+    firstName: null,
+    lastName: null,
+    email: null,
+    password: null,
+    lobbyName:null,
+    lobbyCode:null,
+    party_id:null
+  }
   return (
     <Router>
       
@@ -25,26 +35,28 @@ export default function App() {
         
         <Switch>
           <Route exact path="/">
-            <SignIn />
+            <SignIn value={state} />
           </Route>
           <Route path='/legacy/history/:id'>
             <HistoryMock />
           </Route>
-          <Route path="/legacy">
-            <Legacy />
-          </Route>
-          <Route path="/hall" component={(props)=> <Hall {...props}/>} />
+          <Route path="/legacy" 
+          component={(props)=><Legacy {...props}/>} 
+          />
+          <Route path="/hall" 
+          component={(props)=> <Hall {...props}/>} 
+          />
           <Route path="/lobby"
             component={(props)=> <Lobby {...props}/>} />
-          <Route path="/signup">
-            <SignUp />
-          </Route>
-          <Route path="/quest">
-            <Quest />
-          </Route>
-          <Route path="/post">
-            <Post />
-          </Route>
+          <Route path="/signup" 
+          component={(props)=> <SignUp {...props}/>}
+          />
+          <Route path="/quest"
+          component={(props)=><Quest {...props}/>}
+          />
+          <Route path="/post"
+          component={(props)=><Post {...props}/>}
+          />
         </Switch>
       </div>
     </Router>
