@@ -58,7 +58,8 @@ const HistoryMock = () => {
 }
 
 export default function Legacy(props) {
-  const state = props.location.state
+  console.log(props);
+  const state = props.location.state;
   
   console.log(`Legacy state ${state.firstName} ${state.lastName}`);
   
@@ -87,7 +88,7 @@ export default function Legacy(props) {
       {/* <HistoryMock /> */}
       {
       achievements.map((achievement, index) => (
-      <button onClick={()=>history.push(`/legacy/history/${achievement.id}`)}>
+      <button onClick={()=>history.push({pathname:`/legacy/history/${achievement.id}`,state:state})}>
         <p>{achievement.title}</p>
         <p>{achievement.start_date}-{achievement.end_date}</p>
         <p>{achievement.status}</p>

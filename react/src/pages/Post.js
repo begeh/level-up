@@ -3,7 +3,11 @@ import Grid from '@material-ui/core/Grid';
 import NavForApp from '../components/NavForApp';
 
 
-export default function Post() {
+export default function Post(props) {
+  const state = props.location.state;
+
+  console.log(props);
+  console.log(`Post state is ${state}`);
 
   const nodes = [
     {
@@ -101,7 +105,7 @@ export default function Post() {
 
   return (
     <>
-    <NavForApp nav_title='POST' />
+    <NavForApp nav_title='POST' state={state}/>
     <Grid container >
       <Grid item xs>
         <p>Hello</p>
