@@ -47,13 +47,12 @@ const HallListItem = ({title, nodes}) => {
 export default function Hall(props) {
   let history=useHistory();
   let state = useContext(StateContext);
-  if(!props.location.state){
-    history.push('/');
-  }
   if(props.location.state)
   {
     state = props.location.state;
     console.log(props);
+  } else{
+    history.push('/');
   }
 
   console.log(props)

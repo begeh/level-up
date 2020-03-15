@@ -62,13 +62,12 @@ export default function Legacy(props) {
   const classes = useStyles();
   let history=useHistory();
   let state = useContext(StateContext);
-  if(!props.location.state){
-    history.push('/');
-  }
   if(props.location.state)
   {
     state = props.location.state;
     console.log(props);
+  } else{
+    history.push('/');
   }
   
   console.log(`Legacy state ${state.firstName} ${state.lastName}`);
