@@ -14,8 +14,18 @@ import Lobby from './pages/Lobby';
 import Quest from "./pages/Quest";
 import Post from "./pages/Post";
 import History from "./pages/History";
+import StateContext from './Context';
 
-
+const globalState = {
+  user_id: null,
+  firstName: "BlueMoon",
+  lastName: null,
+  email: null,
+  password: null,
+  lobbyName:null,
+  lobbyCode:null,
+  party_id:null
+}
 
 export default function App() {
   const state = {
@@ -30,7 +40,7 @@ export default function App() {
   }
   return (
     <Router>
-      
+      <StateContext.Provider value={globalState}>
       <div>
         
         <Switch>
@@ -41,7 +51,11 @@ export default function App() {
           component={(props)=><History {...props}/>}
           />
           <Route path="/legacy" 
-          component={(props)=><Legacy {...props}/>} 
+          component={(props)=>
+          
+            <Legacy {...props}/>
+          
+        } 
           />
           <Route path="/hall" 
           component={(props)=> <Hall {...props}/>} 
@@ -59,6 +73,7 @@ export default function App() {
           />
         </Switch>
       </div>
+      </StateContext.Provider>
     </Router>
   );
 }

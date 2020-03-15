@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
 import NavForApp from "../components/NavForApp";
+import StateContext from '../Context';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -58,13 +59,19 @@ const HistoryMock = () => {
 }
 
 export default function Legacy(props) {
-  console.log(props);
-  const state = props.location.state;
-  
-  console.log(`Legacy state ${state.firstName} ${state.lastName}`);
-  
   const classes = useStyles();
   let history=useHistory();
+  let state = useContext(StateContext);
+  if(!props.location.state){
+    history.push('/');
+  }
+  if(props.location.state)
+  {
+    state = props.location.state;
+    console.log(props);
+  }
+  
+  console.log(`Legacy state ${state.firstName} ${state.lastName}`);
 
   return (
     <>
