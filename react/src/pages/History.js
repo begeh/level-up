@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory, useParams } from "react-router-dom";
+import StateContext from "../Context";
 
 import NavForApp from "../components/NavForApp";
 
@@ -25,10 +26,19 @@ const useStyles = makeStyles(theme => ({
 
 export default function History(props){
   console.log(props);
-  const state = props.location.state;
+  // const state = props.location.state;
   const classes = useStyles();
   let history = useHistory();
   let {id} = useParams();
+
+  let state = useContext(StateContext);
+  if(props.location.state)
+  {
+    state = props.location.state;
+    console.log(props);
+  } else{
+    history.push('/');
+  }
   return(
     <>
     <NavForApp nav_title="LEGACY" state={state}/>
