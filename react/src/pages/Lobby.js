@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Lobby(props) {
   const state = props.location.data;
+  
   console.log(`New State: ${state}`)
   console.log(`Received email: ${props.location.data.email} and password: ${props.location.data.password}`);
 

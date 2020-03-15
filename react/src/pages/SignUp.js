@@ -45,7 +45,9 @@ export default function SignUp(props) {
   const classes = useStyles();
   let history = useHistory();
   const state = props.location.state;
+  
   console.log(state);
+  
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [title, setTitle] = useState("");
