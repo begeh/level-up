@@ -4,7 +4,11 @@ import NavForApp from '../components/NavForApp';
 import CreatePostBtn from '../components/CreatePostBtn'
 
 
-export default function Quest() {
+export default function Quest(props) {
+  const state = props.location.state;
+
+  console.log(props);
+  console.log(`Quest State is ${state}`);
 
   const nodes = [
     {
@@ -84,7 +88,7 @@ export default function Quest() {
   }
   return (
     <>
-    <NavForApp nav_title='QUEST' />
+    <NavForApp nav_title='QUEST' state={state}/>
     <Grid container >
       <Grid item xs>
         <p>Hello</p>
