@@ -83,7 +83,7 @@ export default function Legacy(props) {
           Your Legacy
         </Typography>
         <Typography component="h1" variant="h6">
-          Your Name: {state.firstName} {state.lastName}
+          Your Name: {state.name}
         </Typography>
         <Typography component="h1" variant="h6">
          TITLE: {state.title}

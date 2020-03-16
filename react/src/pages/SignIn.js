@@ -12,6 +12,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
 
+import axios from 'axios';
+
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh',
@@ -48,19 +50,25 @@ export default function SignIn(props) {
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const state = props.value;
-  function handleSubmit(event) {
+  let state = props.value;
+
+  async function handleSubmit(event) {
     event.preventDefault();
     console.log(`email is ${email}`);
     console.log(`password is ${password}`);
-    state.email = email;
-    state.password = password;
-    history.push({
-      pathname: "/lobby",
-      state: state
-    });
+    let users = await axios.get("/users").then((res)=> res.data);
+    let user = users.filter(item=> item.email === email);
+    console.log(`Axios response is ${JSON.stringify(users)}`)
+    if(user.length > 0){
+      state = user[0];
+      history.push({
+        pathname: "/lobby",
+        state: state
+      });
+    } else{
+      history.push('/');
+    }
   }
-
 
   return (
     <Grid container component="main" className={classes.root}>
