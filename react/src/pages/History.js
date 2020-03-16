@@ -26,15 +26,17 @@ const useStyles = makeStyles(theme => ({
 
 export default function History(props){
   console.log(props);
-  // const state = props.location.state;
   const classes = useStyles();
   let history = useHistory();
   let {id} = useParams();
-
+  
+  let quests = {}
   let state = useContext(StateContext);
+  
   if(props.location.state)
   {
-    state = props.location.state;
+    state = props.location.state.global;
+    quests = props.location.state.quests;
     console.log(props);
   } else{
     history.push('/');
@@ -59,7 +61,7 @@ export default function History(props){
    </Grid>
    <Grid item xs={false} sm={6} md={6}>
     <div>
-    <button onClick={()=>history.push({pathname:"/legacy", state: state})}>Go Back</button>
+    <button onClick={()=>history.push({pathname:"/legacy", state: {global:state, quests:quests}})}>Go Back</button>
     <p>Mock Success</p>
     <p>Your Story</p>
     <p>{id}</p>

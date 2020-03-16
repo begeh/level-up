@@ -51,11 +51,7 @@ export default function App() {
           component={(props)=><History {...props}/>}
           />
           <Route path="/legacy" 
-          component={(props)=>
-          
-            <Legacy {...props}/>
-          
-        } 
+          component={(props)=><Legacy {...props}/>} 
           />
           <Route path="/hall" 
           component={(props)=> <Hall {...props}/>} 
