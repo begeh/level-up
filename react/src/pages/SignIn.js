@@ -56,16 +56,21 @@ export default function SignIn(props) {
     event.preventDefault();
     console.log(`email is ${email}`);
     console.log(`password is ${password}`);
-    let users = await axios.get("/users").then((res)=> res.data);
-    let user = users.filter(item=> item.email === email);
-    console.log(`Axios response is ${JSON.stringify(users)}`)
-    if(user.length > 0){
-      state = user[0];
+    //Makes a post request to /user, with email and password sent in the body
+    //The rails server will grab all the users with that email and return them (there should only be 1 if I set it up right)
+    let users = await axios.post(`/user`, {email, password}).then((res)=> res.data);
+    //If the email is not found, this line sets user to a falsey value, otherwise user is true
+    let user = users[0]
+    console.log(user)
+    if(user){
+      state = user;
       history.push({
         pathname: "/lobby",
         state: state
       });
     } else{
+      //Added this line for the UX
+      alert("Email was not found or password is incorrect, please try again.")
       history.push('/');
     }
   }

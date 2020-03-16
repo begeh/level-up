@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+  require "json"
   include Response
   include ExceptionHandler
 
@@ -32,11 +33,21 @@ class UsersController < ApplicationController
     head :no_content
   end
 
+  # GET /user/:email
+  def return_user
+    
+    email = params[:email]
+    password = params[:password]
+    
+    @user = User.where(email: params[:email])
+    json_response(@user)
+  end
+
   private
 
   def user_params
     # whitelist params
-    params.permit(:email, :name, :party_id, :title, :profile_pic_ref)
+    params.permit(:email, :name, :party_id, :title, :profile_pic_ref, :password)
   end
 
   def set_user
