@@ -50,21 +50,22 @@ export default function SignIn(props) {
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const state = props.value;
+  let state = props.value;
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    axios.get("/users")
-    .then((response)=>{
-      console.log(`Axios response is ${JSON.stringify(response.data[0])}`)
-      console.log(`email is ${email}`);
-      console.log(`password is ${password}`);
-      state.email = email;
-      state.password = password;
-      history.push({
-        pathname: "/lobby",
-        state: state
-      });
+    console.log(`email is ${email}`);
+    console.log(`password is ${password}`);
+    state.email = email;
+    state.password = password;
+    let users = await axios.get("/users").then((res)=> res.data);
+    let user = users.filter(item=> item.email === state.email);
+    console.log(`Axios response is ${JSON.stringify(users)}`)
+    console.log(`These are the users ${JSON.stringify(user[0].email)}`)
+    state = user[0];
+    history.push({
+      pathname: "/lobby",
+      state: state
     });
   }
 
