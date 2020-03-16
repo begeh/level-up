@@ -4,16 +4,33 @@ Rails.application.routes.draw do
   end
 
   resources :users
+
+  post "/user", to: "users#return_user"
+
   resources :parties
   
-  
-  resources :quests do
-    resources :nodes do
-      resources :posts do
-        resources :comments
-      end
-    end
-  end
+  # Old way of routing, lots of nested routes
+  # resources :quests do
+  #   resources :nodes do
+  #     resources :posts do
+  #       resources :comments
+  #     end
+  #   end
+  # end
+
+# New way of routing, routes are only nested 1 level
+# Should make each table more accesscible without changing functionality
+resources :quests do
+  resources :nodes
+end
+
+resources :nodes do
+  resources :posts
+end
+
+resources :posts do
+  resources :comments
+end
 
   resources :quest_object, controller: "quests", only: [:object]
 
