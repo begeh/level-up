@@ -59,12 +59,15 @@ export default function SignIn(props) {
     let users = await axios.get("/users").then((res)=> res.data);
     let user = users.filter(item=> item.email === email);
     console.log(`Axios response is ${JSON.stringify(users)}`)
-    console.log(`These are the users ${JSON.stringify(user[0].email)}`)
-    state = user[0];
-    history.push({
-      pathname: "/lobby",
-      state: state
-    });
+    if(user.length > 0){
+      state = user[0];
+      history.push({
+        pathname: "/lobby",
+        state: state
+      });
+    } else{
+      history.push('/');
+    }
   }
 
   return (
