@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   end
 
   resources :users
+
+  resources :user, controller: "users", only: [:return_user]
+
+  post "/user/:email", to: "users#return_user"
+
   resources :parties
   
   

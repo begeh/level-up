@@ -32,6 +32,13 @@ class UsersController < ApplicationController
     head :no_content
   end
 
+  # GET /user/:email
+  def return_user
+    @user = User.where(email: user_params.email)
+    json_response(@user)
+    # json_response("test")
+  end
+
   private
 
   def user_params
