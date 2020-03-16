@@ -16,7 +16,6 @@ export default function NavForApp(props){
       <Hidden smDown>
         <Navbar.Brand onClick={()=>history.push({pathname: "/hall", state: state})}>
         <img src={logo} width="30" height="30"  />
-        LEVEL UP
         </Navbar.Brand>
       </Hidden>
       {props.nav_title === 'HALL' ? <PartyBtn /> : <></>}
