@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import {Grid, Stepper, Step, StepLabel} from '@material-ui/core';
 import QuestInfoBtn from '../components/CreateQuestBtn'
 import NavForApp from '../components/NavForApp';
-import './Hall.css'
+import './Hall.scss'
 import StateContext from "../Context";
 import {useHistory} from "react-router-dom"
 

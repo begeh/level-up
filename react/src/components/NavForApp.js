@@ -5,14 +5,13 @@ import Nav from 'react-bootstrap/Nav';
 import PartyBtn from './PartyBtn';
 import QuestInfoBtn from './QuestInfoBtn';
 import { useHistory } from "react-router-dom";
-import './NavForApp.css'
+import './NavForApp.scss'
 
 export default function NavForApp(props){
   let history = useHistory();
   const state = props.state
   return(
-    <Typography>
-    <Navbar bg="light" expand="lg">
+    <Navbar expand="lg">
       <Navbar.Brand onClick={()=>history.push({pathname: "/hall", state: state})}>LEVEL-UP</Navbar.Brand>
       <PartyBtn />
       <QuestInfoBtn />
@@ -27,7 +26,5 @@ export default function NavForApp(props){
           </Nav>
         </Navbar.Collapse>
     </Navbar>
-    <hr />
-  </Typography>
   )
   }
