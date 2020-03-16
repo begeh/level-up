@@ -13,7 +13,9 @@ export default function NavForApp(props){
   return(
     <Navbar expand="lg">
       <Hidden smDown>
-        <Navbar.Brand onClick={()=>history.push({pathname: "/hall", state: state})}>LEVEL-UP</Navbar.Brand>
+        <Navbar.Brand onClick={()=>history.push({pathname: "/hall", state: state})}>
+        LEVEL UP
+        </Navbar.Brand>
       </Hidden>
       {props.nav_title === 'HALL' ? <PartyBtn /> : <></>}
       {props.nav_title === 'QUEST' ? <QuestInfoBtn /> : <></>}
