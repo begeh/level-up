@@ -1,11 +1,12 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar';
-import {Typography} from '@material-ui/core';
 import Nav from 'react-bootstrap/Nav';
 import PartyBtn from './PartyBtn';
 import QuestInfoBtn from './QuestInfoBtn';
 import { useHistory } from "react-router-dom";
-import './NavForApp.css'
+import { Hidden } from '@material-ui/core';
+import './NavForApp.scss'
+import logo from "./nav-logo.png"
 import axios from 'axios';
 
 export default function NavForApp(props){
@@ -25,11 +26,14 @@ export default function NavForApp(props){
   }
 
   return(
-    <Typography>
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand onClick={()=>history.push({pathname: "/hall", state: state})}>LEVEL-UP</Navbar.Brand>
-      <PartyBtn />
-      <QuestInfoBtn />
+    <Navbar expand="lg">
+      <Hidden smDown>
+        <Navbar.Brand onClick={()=>history.push({pathname: "/hall", state: state})}>
+        <img src={logo} width="30" height="30"  />
+        </Navbar.Brand>
+      </Hidden>
+      {props.nav_title === 'HALL' ? <PartyBtn /> : <></>}
+      {props.nav_title === 'QUEST' ? <QuestInfoBtn /> : <></>}
       <Navbar.Brand >{props.nav_title}</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -41,7 +45,5 @@ export default function NavForApp(props){
           </Nav>
         </Navbar.Collapse>
     </Navbar>
-    <hr />
-  </Typography>
   )
   }

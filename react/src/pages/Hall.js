@@ -1,8 +1,8 @@
-import React, { useState, useContext } from 'react';
-import {Grid, Stepper, Step, StepLabel} from '@material-ui/core';
+import React, { useContext } from 'react';
+import {Grid, Stepper, Step, StepLabel, Hidden} from '@material-ui/core';
 import QuestInfoBtn from '../components/CreateQuestBtn'
 import NavForApp from '../components/NavForApp';
-import './Hall.css'
+import './Hall.scss'
 import StateContext from "../Context";
 import {useHistory} from "react-router-dom"
 
@@ -28,7 +28,7 @@ const HallListItem = ({title, nodes}) => {
 
   return (
     <div>
-      <h1>{title}</h1>
+      <h3>{title}</h3>
       <p>{nodes.length}</p>
       <Stepper >
         {nodes.map((node, index) => {
@@ -62,11 +62,13 @@ export default function Hall(props) {
     <>
     <NavForApp nav_title='HALL' state={state}/>
     <Grid container >
-      <Grid item xs={false} sm={6} md={6} >
+      <Hidden xsDown>
+      <Grid className='container-left' item sm={5} >
         <p>Hello</p>
       </Grid>
+      </Hidden>
 
-      <Grid item xs={12} sm={6} md={6} >
+      <Grid className='container-right' item xs={12} sm={7} >
         <HallList quests={quests} />
         <QuestInfoBtn />
       </Grid>

@@ -90,11 +90,11 @@ export default function Quest(props) {
     <>
     <NavForApp nav_title='QUEST' state={state}/>
     <Grid container >
-      <Grid item xs>
+      <Grid className='container-left' item sm={5}>
         <p>Hello</p>
       </Grid>
 
-      <Grid item xs >
+      <Grid className='container-right' item xs={12} sm={7} >
         <NodeBar nodes={nodes} />
         <QuestList posts={posts}/>
         
