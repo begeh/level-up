@@ -86,10 +86,11 @@ ActiveRecord::Schema.define(version: 2020_03_15_214244) do
 
   create_table "users", force: :cascade do |t|
     t.text "email"
-    t.string "name", limit: 32
+    t.string "name", limit: 128
     t.text "party_id"
-    t.string "title", limit: 32
+    t.string "title", limit: 128
     t.text "profile_pic_ref"
+    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
