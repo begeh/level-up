@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import {List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@material-ui/core'
+import {Hidden, List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@material-ui/core'
 
 export default function QuestInfoBtn() {
   const [show, setShow] = useState(false);
@@ -36,7 +36,7 @@ export default function QuestInfoBtn() {
   };
 
   return (
-    <>
+    <Hidden smUp>
       <Button variant="primary" onClick={handleShow}>
         Quest Info
       </Button>
@@ -80,6 +80,6 @@ export default function QuestInfoBtn() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </Hidden>
   );
 }

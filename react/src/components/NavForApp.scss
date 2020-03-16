@@ -1,0 +1,22 @@
+.navbar {
+  background-color: #74411E;
+  color: #F4E39F !important;
+  text-shadow: 1.5px 1.5px rgb(78, 41, 16);
+}
+
+.navbar-brand {
+  color: #F4E39F !important;
+}
+
+.nav-link {
+  color: #F4E39F !important;
+  font-family: 'Alfa Slab One', cursive;
+  text-shadow: 1.5px 1.5px rgb(78, 41, 16);
+  &:hover {
+    color: rgb(211, 195, 131) !important;
+  }
+}
+
+span {
+  font-family: 'Alfa Slab One', cursive;
+}

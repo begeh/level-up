@@ -107,11 +107,11 @@ export default function Post(props) {
     <>
     <NavForApp nav_title='POST' state={state}/>
     <Grid container >
-      <Grid item xs>
+      <Grid className='container-left' item sm={5}>
         <p>Hello</p>
       </Grid>
 
-      <Grid item xs >
+      <Grid className='container-right' item xs={12} sm={7} >
         <NodeBar nodes={nodes} />
         <PostView post={post} />
         <CommentList post={post} />

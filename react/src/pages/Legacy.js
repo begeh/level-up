@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
 import NavForApp from "../components/NavForApp";
 import StateContext from '../Context';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -47,30 +48,22 @@ const achievements = [
   }
 ]
 
-const HistoryMock = () => {
-  return (
-  <div>
-    <button>Go Back</button>
-    <p>Success</p>
-    <p>Your Story</p>
-
-  </div>
-  )
-}
-
 export default function Legacy(props) {
   const classes = useStyles();
   let history=useHistory();
   let state = useContext(StateContext);
+  let quests={};
   if(props.location.state)
   {
-    state = props.location.state;
+    state = props.location.state.global;
+    quests = props.location.state.quests;
     console.log(props);
   } else{
     history.push('/');
   }
   
-  console.log(`Legacy state ${state.firstName} ${state.lastName}`);
+  console.log(`Legacy state ${state.name}`);
+  console.log(`Quests are ${JSON.stringify(quests)}`)
 
   return (
     <>
@@ -91,12 +84,11 @@ export default function Legacy(props) {
       </div>
    </Grid>
    <Grid item xs={false} sm={6} md={6}>
-      {/* <HistoryMock /> */}
       {
-      achievements.map((achievement, index) => (
-      <button onClick={()=>history.push({pathname:`/legacy/history/${achievement.id}`,state:state})}>
+      quests.map((achievement, index) => (
+      <button onClick={()=>history.push({pathname:`/legacy/history/${achievement.id}`,state:{global: state, quests: quests}})}>
         <p>{achievement.title}</p>
-        <p>{achievement.start_date}-{achievement.end_date}</p>
+        <p>{achievement.created_at.toString()}-{achievement.updated_at}</p>
         <p>{achievement.status}</p>
       </button>
     ))}

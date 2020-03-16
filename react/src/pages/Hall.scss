@@ -1,0 +1,22 @@
+.completed-node {
+  svg {
+    color: green !important
+  }
+}
+
+.incompleted-node svg {
+  color: black;
+}
+
+.MuiPaper-root {
+  background-color: transparent !important;
+  padding: 0 24px 24px 24px !important;
+}
+
+.MuiGrid-container {
+  height: 100vh;
+}
+
+.MuiStepConnector-line {
+  border-color: #59301A !important;
+}

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import {List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@material-ui/core'
+import {Hidden,List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@material-ui/core'
 
 export default function NavModal() {
   const [show, setShow] = useState(false);
@@ -27,8 +27,8 @@ export default function NavModal() {
 };
 
   return (
-    <>
-      <Button variant="primary" onClick={handleShow}>
+    <Hidden smUp >
+      <Button  variant="primary" onClick={handleShow}>
         Party
       </Button>
 
@@ -58,7 +58,7 @@ export default function NavModal() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </Hidden>
   );
 }
 
