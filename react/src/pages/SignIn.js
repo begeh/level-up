@@ -56,10 +56,8 @@ export default function SignIn(props) {
     event.preventDefault();
     console.log(`email is ${email}`);
     console.log(`password is ${password}`);
-    state.email = email;
-    state.password = password;
     let users = await axios.get("/users").then((res)=> res.data);
-    let user = users.filter(item=> item.email === state.email);
+    let user = users.filter(item=> item.email === email);
     console.log(`Axios response is ${JSON.stringify(users)}`)
     console.log(`These are the users ${JSON.stringify(user[0].email)}`)
     state = user[0];
@@ -68,7 +66,6 @@ export default function SignIn(props) {
       state: state
     });
   }
-
 
   return (
     <Grid container component="main" className={classes.root}>
