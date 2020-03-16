@@ -1,6 +1,5 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar';
-import {Typography} from '@material-ui/core';
 import Nav from 'react-bootstrap/Nav';
 import PartyBtn from './PartyBtn';
 import QuestInfoBtn from './QuestInfoBtn';
