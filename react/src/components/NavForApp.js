@@ -6,6 +6,7 @@ import QuestInfoBtn from './QuestInfoBtn';
 import { useHistory } from "react-router-dom";
 import { Hidden } from '@material-ui/core';
 import './NavForApp.scss'
+import logo from "./nav-logo.png"
 
 export default function NavForApp(props){
   let history = useHistory();
@@ -14,6 +15,7 @@ export default function NavForApp(props){
     <Navbar expand="lg">
       <Hidden smDown>
         <Navbar.Brand onClick={()=>history.push({pathname: "/hall", state: state})}>
+        <img src={logo} />
         LEVEL UP
         </Navbar.Brand>
       </Hidden>
