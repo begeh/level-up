@@ -12,6 +12,9 @@
   color: #F4E39F !important;
   font-family: 'Alfa Slab One', cursive;
   text-shadow: 1.5px 1.5px rgb(78, 41, 16);
+  &:hover {
+    color: rgb(211, 195, 131) !important;
+  }
 }
 
 span {

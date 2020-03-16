@@ -28,7 +28,7 @@ const HallListItem = ({title, nodes}) => {
 
   return (
     <div>
-      <h1>{title}</h1>
+      <h3>{title}</h3>
       <p>{nodes.length}</p>
       <Stepper >
         {nodes.map((node, index) => {
