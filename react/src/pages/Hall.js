@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import {Grid, Stepper, Step, StepLabel} from '@material-ui/core';
+import {Grid, Stepper, Step, StepLabel, Hidden} from '@material-ui/core';
 import QuestInfoBtn from '../components/CreateQuestBtn'
 import NavForApp from '../components/NavForApp';
 import './Hall.scss'
@@ -62,11 +62,13 @@ export default function Hall(props) {
     <>
     <NavForApp nav_title='HALL' state={state}/>
     <Grid container >
-      <Grid className='party-info' item xs={false} sm={5} >
+      <Hidden xsDown>
+      <Grid className='container-left' item sm={5} >
         <p>Hello</p>
       </Grid>
+      </Hidden>
 
-      <Grid className='quest-list' item xs={12} sm={7} >
+      <Grid className='container-right' item xs={12} sm={7} >
         <HallList quests={quests} />
         <QuestInfoBtn />
       </Grid>

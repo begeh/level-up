@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import PartyBtn from './PartyBtn';
 import QuestInfoBtn from './QuestInfoBtn';
 import { useHistory } from "react-router-dom";
+import { Hidden } from '@material-ui/core';
 import './NavForApp.scss'
 
 export default function NavForApp(props){
@@ -11,7 +12,9 @@ export default function NavForApp(props){
   const state = props.state
   return(
     <Navbar expand="lg">
-      <Navbar.Brand onClick={()=>history.push({pathname: "/hall", state: state})}>LEVEL-UP</Navbar.Brand>
+      <Hidden smDown>
+        <Navbar.Brand onClick={()=>history.push({pathname: "/hall", state: state})}>LEVEL-UP</Navbar.Brand>
+      </Hidden>
       {props.nav_title === 'HALL' ? <PartyBtn /> : <></>}
       {props.nav_title === 'QUEST' ? <QuestInfoBtn /> : <></>}
       <Navbar.Brand >{props.nav_title}</Navbar.Brand>
