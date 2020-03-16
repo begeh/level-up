@@ -15,7 +15,7 @@ export default function NavForApp(props){
     <Navbar expand="lg">
       <Hidden smDown>
         <Navbar.Brand onClick={()=>history.push({pathname: "/hall", state: state})}>
-        <img src={logo} />
+        <img src={logo} width="30" height="30"  />
         LEVEL UP
         </Navbar.Brand>
       </Hidden>
