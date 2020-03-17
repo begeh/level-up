@@ -24,30 +24,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const achievements = [
-  {
-    id:1,
-    title: 'The Great Novigrad Heist',
-    start_date: '10 June',
-    end_date: '11 June',
-    status: 'success'
-  },
-  {
-    id:2,
-    title: 'The Great Novigrad Heist',
-    start_date: '10 June',
-    end_date: '11 June',
-    status: 'fail'
-  },
-  {
-    id:3,
-    title: 'The Great Novigrad Heist',
-    start_date: '10 June',
-    end_date: '11 June',
-    status: 'in-progress'
-  }
-]
-
 export default function Legacy(props) {
   const classes = useStyles();
   let history=useHistory();
@@ -61,9 +37,6 @@ export default function Legacy(props) {
   } else{
     history.push('/');
   }
-  
-  console.log(`Legacy state ${state.name}`);
-  console.log(`Quests are ${JSON.stringify(quests)}`)
 
   function loadQuest(id){
     return axios.get(`/quest_object/${id}`)

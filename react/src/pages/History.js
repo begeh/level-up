@@ -45,8 +45,6 @@ export default function History(props){
   } else{
     history.push('/');
   }
-  console.log(`The quest is ${nodes}`);
-  console.log(`Quests are ${JSON.stringify(quests)}`)
 
   return(
     <>
