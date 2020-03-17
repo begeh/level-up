@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, TextField, Avatar } from '@material-ui/core';
 import NavForApp from '../components/NavForApp';
 import { useHistory } from "react-router-dom";
+import ReactPlayer from 'react-player'
 import './Post.scss'
 
 export default function Post(props) {
@@ -69,7 +70,7 @@ export default function Post(props) {
     return (
       <Grid className='post-view' container>
         <Grid className='back-button' item xs={12}>
-          <button className='btn btn-primary'>Back</button>
+          <button className='btn btn-primary' onClick={()=>history.push({pathname:"/quest", state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>
         </Grid>
         <Grid item xs={4} sm={4} md={3} lg={2} >
           <img src={post.symbol} alt={post.title} width="120" height="120"/>
@@ -80,6 +81,7 @@ export default function Post(props) {
         </Grid>
         <Grid item xs={12}>
           <img src={post.attachment} alt={post.title} />
+          <ReactPlayer className='player' url='https://www.youtube.com/watch?v=6FAaOwNnHTA' />
           <p>{post.description}</p>
           <form className='comment-form'>
             <TextField
@@ -107,7 +109,7 @@ export default function Post(props) {
 
   const CommentListItem = ({ username, avatar, date, text }) => {
     return (
-      <Grid container className='comment-container' >
+      <Grid container className='comment-post' >
         <Grid item xs={4} sm={4} md={3} lg={2} >
           <Avatar src={avatar} alt='User Avatar' />
         </Grid>
@@ -131,8 +133,6 @@ export default function Post(props) {
       </Grid>
 
       <Grid className='container-right' item xs={12} sm={7} >
-        <NodeBar nodes={nodes} />
-        <button onClick={()=>history.push({pathname:"/quest", state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>
         <PostView post={post} />
         <CommentList post={post} />
       </Grid>

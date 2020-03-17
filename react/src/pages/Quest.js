@@ -103,7 +103,9 @@ export default function Quest(props) {
       </Hidden>
 
       <Grid className='container-right' item xs={12} sm={7} >
-      <button onClick={()=>history.push({pathname:"/hall", state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>
+        <Grid className='back-button' item xs={12}>
+        <button className='btn btn-primary' onClick={()=>history.push({pathname:"/hall", state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>
+        </Grid>
         <NodeBar nodes={nodes} />
         <QuestList posts={posts} handleClick={handleClick}/>
         
