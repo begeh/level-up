@@ -10,19 +10,38 @@ import logo from "./nav-logo.png"
 import axios from 'axios';
 
 export default function NavForApp(props){
-  let history = useHistory();
-  const state = props.state
+  // let history = useHistory();
+  // const state = props.location.state
 
-  function loadQuests(){
-    return axios.get("/quests")
-    .then((res)=>{
-      const yourQuests = res.data.filter(quest => quest.user_id === state.id);
-      console.log(`Your quests ${JSON.stringify(yourQuests)}`)
-      return yourQuests;
-    })
-    .then((res)=>{
-      history.push({pathname:"/legacy",state:{global: state, quests: res}});
-    });
+  let history=useHistory();
+  let state = {};
+  let quests = {};
+  let party_quests = {};
+
+  if(props.state)
+  {
+    state = props.state;
+    quests = props.quests;
+    party_quests = props.party_quests;
+    console.log(`This is hall quests ${JSON.stringify(quests)}`)
+  } else{
+    history.push('/');
+  }
+
+  // function loadQuests(path){
+  //   return axios.get("/quests")
+  //   .then((res)=>{
+  //     const yourQuests = res.data.filter(quest => quest.user_id === state.id);
+  //     console.log(`Your quests ${JSON.stringify(yourQuests)}`)
+  //     return yourQuests;
+  //   })
+  //   .then((res)=>{
+  //     history.push({pathname:`/${path}`,state:{global: state, quests: res}});
+  //   });
+  // }
+
+  function loadPage(path){
+    history.push({pathname:`/${path}`,state:{global: state, quests: quests, party_quests:party_quests}});
   }
 
   return(
@@ -38,8 +57,8 @@ export default function NavForApp(props){
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Nav.Link onClick={loadQuests}>Legacy</Nav.Link>
-            <Nav.Link onClick={()=>history.push({pathname: "/hall", state: state})}>Hall</Nav.Link>
+            <Nav.Link onClick={()=>loadPage('legacy')}>Legacy</Nav.Link>
+            <Nav.Link onClick={()=>loadPage('hall')}>Hall</Nav.Link>
             <Nav.Link onClick={()=>history.push("/")}
             >Logout</Nav.Link>
           </Nav>
