@@ -120,21 +120,13 @@ export default function Quest(props) {
   }
   return (
     <>
-<<<<<<< HEAD
-    <NavForApp nav_title='QUEST' state={state}/>
+    <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests}/>
     <Grid container className='full'>
       <Hidden xsDown>
         <Grid className='container-left' item sm={5}>
           <p>Hello</p>
         </Grid>
       </Hidden>
-=======
-    <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests}/>
-    <Grid container >
-      <Grid className='container-left' item sm={5}>
-        <p>Hello</p>
-      </Grid>
->>>>>>> master
 
       <Grid className='container-right' item xs={12} sm={7} >
       <button onClick={()=>history.push({pathname:"/hall", state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>
