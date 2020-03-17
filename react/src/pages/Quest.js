@@ -1,8 +1,14 @@
 import React from 'react';
+import { Grid, Stepper, Step, StepLabel, Hidden } from '@material-ui/core';
 import {useHistory} from "react-router-dom"
-import Grid from '@material-ui/core/Grid';
 import NavForApp from '../components/NavForApp';
 import CreatePostBtn from '../components/CreatePostBtn'
+import './Quest.scss'
+import sword from '../images/sword.png'
+import book from '../images/book.png'
+import question from '../images/question.png'
+import comment from '../images/comment.png'
+
 
 
 export default function Quest(props) {
@@ -44,34 +50,39 @@ export default function Quest(props) {
 
   const posts = [
     {
-      title: "post 1",
-      date: Date(Date.now()).toString(),
-      symbol: "https://cdn4.iconfinder.com/data/icons/must-have-outline/100/objects-29-512.png",
+      title: "post One",
+      date: 'March 12, 2020',
+      symbol: sword,
       comment_count: 5,
     },
     {
       title: "post 1",
-      date: Date(Date.now()).toString(),
-      symbol: "https://cdn4.iconfinder.com/data/icons/must-have-outline/100/objects-29-512.png",
+      date: 'March 12, 2020',
+      symbol: book,
       comment_count: 5,
     },
     {
       title: "post 1",
-      date: Date(Date.now()).toString(),
-      symbol: "https://cdn4.iconfinder.com/data/icons/must-have-outline/100/objects-29-512.png",
+      date: 'March 12, 2020',
+      symbol: question,
       comment_count: 5,
     }
   ] 
 
   const NodeBar = ({nodes}) => {
     return (
-      <div>
-        {nodes.map((node, index) => (
-          <div>
-          Node {node.isComplete ? 'done' : 'not done'}
-          </div>
-        ))}
-      </div>
+      <Grid item xs={12}>
+        <Stepper >
+          {nodes.map((node, index) => {
+    
+            return (
+              <Step key={index} >
+                <StepLabel className={node.isComplete ? 'completed-node' : 'uncompleted-node'} />
+              </Step>
+            );
+          })}
+        </Stepper>
+      </Grid>
     )
   }
   
@@ -92,21 +103,30 @@ export default function Quest(props) {
   
   const QuestListItem = ({title, date, symbol, comment_count}) => {
     return (
-      <div>
-        <h1>{title}</h1>
+      <Grid className='post-container' container>
+        <Grid item xs={4} sm={4} md={3} lg={2} >
+        <img src={symbol} alt={title} width="120" height="120"/>
+        </Grid>
+        <Grid item className='post-detail' xs={8} sm={8} md={9} lg={10}>
+        <h3>{title}</h3>
         <p>{date}</p>
-        <img src={symbol}/>
-        <p>{comment_count}</p>
-      </div>
+          <Grid item className='comment-container'>
+            <p>{comment_count}</p>
+            <img src={comment} alt='comment symbol' width='20px' height='20px' />
+          </Grid>
+        </Grid>
+      </Grid>
     )
   }
   return (
     <>
     <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests}/>
-    <Grid container >
-      <Grid className='container-left' item sm={5}>
-        <p>Hello</p>
-      </Grid>
+    <Grid container className='full'>
+      <Hidden xsDown>
+        <Grid className='container-left' item sm={5}>
+          <p>Hello</p>
+        </Grid>
+      </Hidden>
 
       <Grid className='container-right' item xs={12} sm={7} >
       <button onClick={()=>history.push({pathname:"/hall", state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>

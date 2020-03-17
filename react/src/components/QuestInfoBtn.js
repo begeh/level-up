@@ -55,7 +55,7 @@ export default function QuestInfoBtn() {
                 <ListItem>
                   <ListItemAvatar>
                     <Avatar>
-                      <img src="https://www.pinclipart.com/picdir/middle/379-3797946_software-developer-computer-servers-web-others-web-developer.png" alt="party-image" />
+                      <img src="https://www.pinclipart.com/picdir/middle/379-3797946_software-developer-computer-servers-web-others-web-developer.png" alt="Quest Button" />
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText primary={node.title} secondary={node.date} />

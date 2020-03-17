@@ -1,0 +1,23 @@
+.post-container {
+  background-color: #ceb57f;
+  border: 4px solid #59301A;
+  border-radius: 15px;
+  margin-bottom: 5px;
+  &:hover {
+    background-color: #b9a271;
+  }
+}
+
+.post-detail {
+  padding-top: 17px;
+}
+
+.comment-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+
+  p {
+    margin-right: 5px;
+  }
+}
