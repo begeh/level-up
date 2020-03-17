@@ -30,17 +30,24 @@ export default function History(props){
   let history = useHistory();
   let {id} = useParams();
   
-  let quests = {}
+  let quest = {};
+  let quests = {};
+  let nodes = [];
   let state = useContext(StateContext);
   
   if(props.location.state)
   {
     state = props.location.state.global;
+    quest = props.location.state.quest.quest;
     quests = props.location.state.quests;
+    nodes = props.location.state.quest.nodes;
     console.log(props);
   } else{
     history.push('/');
   }
+  console.log(`The quest is ${nodes}`);
+  console.log(`Quests are ${JSON.stringify(quests)}`)
+
   return(
     <>
     <NavForApp nav_title="LEGACY" state={state}/>
@@ -62,9 +69,17 @@ export default function History(props){
    <Grid item xs={false} sm={6} md={6}>
     <div>
     <button onClick={()=>history.push({pathname:"/legacy", state: {global:state, quests:quests}})}>Go Back</button>
-    <p>Mock Success</p>
-    <p>Your Story</p>
-    <p>{id}</p>
+    <h1>Quest Title: {quest.title}</h1>
+    <h3>Status: {quest.status}</h3>
+    {
+      nodes.map(node =>(
+      <div>
+        <h4>Node Title: {node.title}</h4>
+        <p>Node Description: {node.description}</p>
+        <p>Date Finished: {Date(node.date_finished)}</p>
+      </div>
+      ))
+    }
     </div>
     </Grid>
     </Grid>

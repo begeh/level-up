@@ -65,6 +65,16 @@ export default function Legacy(props) {
   console.log(`Legacy state ${state.name}`);
   console.log(`Quests are ${JSON.stringify(quests)}`)
 
+  function loadQuest(id){
+    return axios.get(`/quest_object/${id}`)
+    .then((res)=>
+      res.data
+    )
+    .then((res)=>{
+      history.push({pathname:`/legacy/history/${id}`,state:{global: state, quests: quests, quest: res}})
+    });
+  }
+
   return (
     <>
     <NavForApp nav_title="LEGACY" state={state}/>
@@ -86,9 +96,9 @@ export default function Legacy(props) {
    <Grid item xs={false} sm={6} md={6}>
       {
       quests.map((achievement, index) => (
-      <button onClick={()=>history.push({pathname:`/legacy/history/${achievement.id}`,state:{global: state, quests: quests}})}>
+      <button onClick={()=>loadQuest(achievement.id)}>
         <p>{achievement.title}</p>
-        <p>{achievement.created_at.toString()}-{achievement.updated_at}</p>
+        <p>{(new Date(achievement.created_at)).toLocaleDateString()}-{(new Date(achievement.updated_at)).toLocaleDateString()}</p>
         <p>{achievement.status}</p>
       </button>
     ))}
