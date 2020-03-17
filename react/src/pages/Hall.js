@@ -17,7 +17,7 @@ export default function Hall(props) {
     state = props.location.state.global;
     quests = props.location.state.quests;
     party_quests = props.location.state.party_quests;
-    console.log(`This is party_quests ${JSON.stringify(party_quests)}`)
+    console.log(`This is party_quests ${party_quests}`)
   } else{
     history.push('/');
   }

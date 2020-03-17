@@ -32,8 +32,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Lobby(props) {
-  const state = props.location.state;
-  let quests = {};
+  const state = props.location.state; 
   console.log(`New State: ${state}`)
   console.log(`Received email: ${props.location.state.email} and password: ${props.location.state.password}`);
 
@@ -75,11 +74,13 @@ export default function Lobby(props) {
 
     await Promise.all(promises);
 
+    console.log(`Full quests ${JSON.stringify(full_quests)}`);
+
     let party_quests = await axios.get("/quests")
-      .then((res) => {
-        const partyQuests = res.data.filter(quest => quest.party_id === state.party_id && quest.status === "underway");
-        return partyQuests;
-      })
+    .then((res)=>{
+      const partyQuests = res.data.filter(quest => quest.party_id === state.party_id);
+      return partyQuests;
+    })
 
     let party_full_quests = [];
     let party_promises = [];
