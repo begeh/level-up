@@ -10,11 +10,13 @@ export default function Post(props) {
   let state = {};
   let quests = {};
   let party_quests = {};
+  let quest_id = null;
   if(props.location.state)
   {
     state = props.location.state.global;
     quests = props.location.state.quests;
     party_quests = props.location.state.party_quests;
+    quest_id = props.location.state.quest_id;
     console.log(`This is party_quests ${JSON.stringify(party_quests)}`)
   } else{
     history.push('/');
@@ -70,7 +72,7 @@ export default function Post(props) {
     return (
       <Grid className='post-view' container>
         <Grid className='back-button' item xs={12}>
-          <button className='btn btn-primary' onClick={()=>history.push({pathname:"/quest", state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>
+          <button className='btn btn-primary' onClick={()=>history.push({pathname:`/quest/${quest_id}`, state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>
         </Grid>
         <Grid item xs={4} sm={4} md={3} lg={2} >
           <img src={post.symbol} alt={post.title} width="120" height="120"/>

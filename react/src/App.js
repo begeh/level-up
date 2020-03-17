@@ -61,7 +61,7 @@ export default function App() {
           <Route path="/signup" 
           component={(props)=> <SignUp {...props}/>}
           />
-          <Route path="/quest"
+          <Route path="/quest/:id"
           component={(props)=><Quest {...props}/>}
           />
           <Route path="/post"
