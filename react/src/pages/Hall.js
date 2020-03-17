@@ -30,7 +30,7 @@ export default function Hall(props) {
   return (
     <>
     <NavForApp nav_title='HALL' state={state} quests={quests} party_quests={party_quests}/>
-    <Grid container >
+    <Grid container className='full' >
       <Hidden xsDown>
       <Grid className='container-left' item sm={5} >
         <p>Hello</p>
