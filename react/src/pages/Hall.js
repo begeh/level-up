@@ -7,12 +7,13 @@ import StateContext from "../Context";
 import {useHistory} from "react-router-dom"
 
 
-const HallList = ({quests}) => {
+const HallList = (props) => {
+  console.log(`Hall List props ${JSON.stringify(props.quests)}`)
   return (
     <div>
       {
-        quests.map((quest, index) => (
-          <HallListItem title={quest.title} nodes={quest.nodes} index={index} />
+        props.quests.map((quest, index) => (
+          <HallListItem title={quest.quest.title} nodes={quest.nodes} index={index} />
         ))
       }
     </div>
@@ -35,7 +36,7 @@ const HallListItem = ({title, nodes}) => {
   
           return (
             <Step key={index} >
-              <StepLabel className={node.isComplete ? 'completed-node' : 'uncompleted-node'} />
+              <StepLabel className={node['is_complete?'] ? 'completed-node' : 'uncompleted-node'} />
             </Step>
           );
         })}
@@ -46,21 +47,24 @@ const HallListItem = ({title, nodes}) => {
 
 export default function Hall(props) {
   let history=useHistory();
-  let state = useContext(StateContext);
+  let state = {};
+  let quests = {};
+  let party_quests = {};
   if(props.location.state)
   {
-    state = props.location.state;
-    console.log(props);
+    state = props.location.state.global;
+    quests = props.location.state.quests;
+    party_quests = props.location.state.party_quests;
+    console.log(`This is party_quests ${JSON.stringify(party_quests)}`)
   } else{
     history.push('/');
   }
-
-  console.log(props)
-  console.log(`Hall State is ${state}`);
+  
+  console.log(`Hall State is ${JSON.stringify(state)}`);
 
   return (
     <>
-    <NavForApp nav_title='HALL' state={state}/>
+    <NavForApp nav_title='HALL' state={state} quests={quests} party_quests={party_quests}/>
     <Grid container >
       <Hidden xsDown>
       <Grid className='container-left' item sm={5} >
@@ -69,7 +73,7 @@ export default function Hall(props) {
       </Hidden>
 
       <Grid className='container-right' item xs={12} sm={7} >
-        <HallList quests={quests} />
+        <HallList quests={party_quests} />
         <QuestInfoBtn />
       </Grid>
     </Grid>
@@ -83,7 +87,7 @@ export default function Hall(props) {
 
 
 
-const quests = [
+const questsDummy = [
   {
     title: 'quest1',
     nodes: [
