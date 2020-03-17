@@ -53,7 +53,7 @@ export default function NavForApp(props){
       </Hidden>
       {props.nav_title === 'HALL' ? <PartyBtn /> : <></>}
       {props.nav_title === 'QUEST' ? <QuestInfoBtn /> : <></>}
-      <Navbar.Brand >{props.nav_title}</Navbar.Brand>
+      <Navbar.Brand >{props.nav_title }</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">

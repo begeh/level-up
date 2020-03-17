@@ -32,8 +32,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Lobby(props) {
-  const state = props.location.state;
-  let quests ={};
+  const state = props.location.state; 
   console.log(`New State: ${state}`)
   console.log(`Received email: ${props.location.state.email} and password: ${props.location.state.password}`);
 
