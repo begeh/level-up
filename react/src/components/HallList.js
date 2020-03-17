@@ -7,7 +7,7 @@ export default function HallList(props){
     <div>
       {
         props.quests.map((quest, index) => (
-          <HallListItem title={quest.quest.title} nodes={quest.nodes} index={index} handleClick={props.handleClick}/>
+          <HallListItem title={quest.quest.title} nodes={quest.nodes} posts={quest.posts} index={index} handleClick={props.handleClick}/>
         ))
       }
     </div>

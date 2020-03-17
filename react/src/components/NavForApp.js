@@ -47,7 +47,7 @@ export default function NavForApp(props){
   return(
     <Navbar expand="lg">
       <Hidden smDown>
-        <Navbar.Brand onClick={()=>history.push({pathname: "/hall", state: state})}>
+        <Navbar.Brand onClick={()=>loadPage('hall')}>
         <img src={logo} width="30" height="30"  />
         </Navbar.Brand>
       </Hidden>
