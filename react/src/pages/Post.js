@@ -122,7 +122,7 @@ export default function Post(props) {
 
   return (
     <>
-    <NavForApp nav_title='POST' state={state}/>
+    <NavForApp nav_title='POST' state={state} quests={quests} party_quests={party_quests}/>
     <Grid container >
       <Grid className='container-left' item sm={5}>
         <p>Hello</p>
