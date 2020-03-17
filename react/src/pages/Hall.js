@@ -17,7 +17,7 @@ export default function Hall(props) {
     state = props.location.state.global;
     quests = props.location.state.quests;
     party_quests = props.location.state.party_quests;
-    console.log(`This is party_quests ${JSON.stringify(party_quests)}`)
+    console.log(`This is party_quests ${party_quests}`)
   } else{
     history.push('/');
   }
@@ -38,6 +38,7 @@ export default function Hall(props) {
       </Hidden>
 
       <Grid className='container-right' item xs={12} sm={7} >
+      <button onClick={()=>history.push({pathname:"/post", state: {global:state, quests:quests, party_quests: party_quests}})}>Go to Post Page</button>
         <HallList quests={party_quests} handleClick={handleClick} />
         <QuestInfoBtn />
       </Grid>
