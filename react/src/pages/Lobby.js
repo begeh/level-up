@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Lobby(props) {
-  const state = props.location.state; 
+  const state = props.location.state;
   console.log(`New State: ${state}`)
   console.log(`Received email: ${props.location.state.email} and password: ${props.location.state.password}`);
 
@@ -41,25 +41,26 @@ export default function Lobby(props) {
   const [lobbyName, setLobbyName] = useState(null); //Create lobby
   const [lobbyCode, setLobbyCode] = useState(null); //Join Lobby
 
+  // This can be split later on if we get our MVP done but it works fine for now
   async function handleSubmit(event) {
     event.preventDefault();
     console.log(`lobbyname is ${lobbyName}`); //Create lobby
     console.log(`lobbycode is ${lobbyCode}`); //Join Lobby
-    
+
     // If making Lobby
     if (lobbyName && !lobbyCode) {
       state.lobbyName = lobbyName
-    // If joining lobby
+      // If joining Lobby
     } else if (lobbyCode && !lobbyName) {
       state.lobbyCode = lobbyCode
     }
 
-    let quests = await axios.get("/quests")
+    let quests = await axios.get(`/user_quests/${state.id}`)
       .then((res) => {
-        const yourQuests = res.data.filter(quest => quest.user_id === state.id);
-        console.log(`Your quests ${JSON.stringify(yourQuests)}`)
-        return yourQuests;
+        return res.data;
       })
+
+    console.log(JSON.stringify(quests))
 
     let full_quests = [];
     let promises = [];
@@ -77,10 +78,10 @@ export default function Lobby(props) {
     console.log(`Full quests ${JSON.stringify(full_quests)}`);
 
     let party_quests = await axios.get("/quests")
-    .then((res)=>{
-      const partyQuests = res.data.filter(quest => quest.party_id === state.party_id);
-      return partyQuests;
-    })
+      .then((res) => {
+        const partyQuests = res.data.filter(quest => quest.party_id === state.party_id);
+        return partyQuests;
+      })
 
     let party_full_quests = [];
     let party_promises = [];

@@ -32,6 +32,8 @@ resources :posts do
   resources :comments
 end
 
+  get "/user_quests/:user_id", to: "quests#user_quests"
+
   resources :quest_object, controller: "quests", only: [:object]
 
   get "/quest_object/:id", to: "quests#object"
