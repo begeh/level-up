@@ -33,6 +33,7 @@ export default function History(props){
   let quest = {};
   let quests = {};
   let nodes = [];
+  let party_quests={};
   let state = useContext(StateContext);
   
   if(props.location.state)
@@ -41,6 +42,7 @@ export default function History(props){
     quest = props.location.state.quest.quest;
     quests = props.location.state.quests;
     nodes = props.location.state.quest.nodes;
+    party_quests = props.location.state.party_quests;
     console.log(props);
   } else{
     history.push('/');
@@ -48,7 +50,7 @@ export default function History(props){
 
   return(
     <>
-    <NavForApp nav_title="LEGACY" state={state}/>
+    <NavForApp nav_title="LEGACY" state={state} quests={quests} party_quests={party_quests}/>
     <Grid container component="main" className={classes.root}>
       <Grid item xs={12} sm={6} md={6}>
       <div className={classes.paper}>
@@ -66,7 +68,7 @@ export default function History(props){
    </Grid>
    <Grid item xs={false} sm={6} md={6}>
     <div>
-    <button onClick={()=>history.push({pathname:"/legacy", state: {global:state, quests:quests}})}>Go Back</button>
+    <button onClick={()=>history.push({pathname:"/legacy", state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>
     <h1>Quest Title: {quest.title}</h1>
     <h3>Status: {quest.status}</h3>
     {

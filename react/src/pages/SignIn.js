@@ -61,7 +61,8 @@ export default function SignIn(props) {
     let users = await axios.post(`/user`, {email, password}).then((res)=> res.data);
     //If the email is not found, this line sets user to a falsey value, otherwise user is true
     let user = users[0]
-    console.log(user)
+    console.log(`This is user ${user}`)
+    
     if(user){
       state = user;
       history.push({
