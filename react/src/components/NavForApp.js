@@ -47,6 +47,10 @@ export default function NavForApp(props){
   return(
     <Navbar expand="lg">
       <Hidden smDown>
+<<<<<<< HEAD
+=======
+
+>>>>>>> c2382ff8e16a61504557035e1b6765cf4fc11641
         <Navbar.Brand onClick={()=>loadPage('hall')}>
         <img src={logo} alt='Level Up Logo' width="30" height="30"  />
         </Navbar.Brand>
