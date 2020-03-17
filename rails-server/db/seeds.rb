@@ -102,13 +102,15 @@ puts "Generating Parties ..."
 Party.destroy_all
 
 party1 = Party.find_or_create_by!({
-  number_of_members: 1,
+  id: party_uuids[0],
+  number_of_members: 3,
   mentor_id: user1.id,
   party_name: Faker::Cannabis.strain
 })
 
 party2 = Party.find_or_create_by!({
-  number_of_members: 1,
+  id: party_uuids[1],
+  number_of_members: 3,
   mentor_id: user2.id,
   party_name: Faker::Cannabis.strain
 })
