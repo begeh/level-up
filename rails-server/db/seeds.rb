@@ -48,7 +48,6 @@ puts "Creating Users ..."
 User.destroy_all
 
 user1 = User.find_or_create_by!({
-  id: 1,
   name: user_names[0],
   email: Faker::Internet.email(name: user_names[0].strip),
   title: Faker::Job.title,
@@ -57,7 +56,6 @@ user1 = User.find_or_create_by!({
 })
 
 user2 = User.find_or_create_by!({
-  id: 2,
   name: user_names[1],
   email: Faker::Internet.email(name: user_names[1].strip),
   title: Faker::Job.title,
@@ -66,7 +64,6 @@ user2 = User.find_or_create_by!({
 })
 
 user3 = User.find_or_create_by!({
-  id: 3,
   name: user_names[2],
   email: Faker::Internet.email(name: user_names[1].strip),
   title: Faker::Job.title,
@@ -75,7 +72,6 @@ user3 = User.find_or_create_by!({
 })
 
 user4 = User.find_or_create_by!({
-  id: 4,
   name: user_names[3],
   email: Faker::Internet.email(name: user_names[1].strip),
   title: Faker::Job.title,
@@ -84,7 +80,6 @@ user4 = User.find_or_create_by!({
 })
 
 user5 = User.find_or_create_by!({
-  id: 5,
   name: user_names[4],
   email: Faker::Internet.email(name: user_names[1].strip),
   title: Faker::Job.title,
@@ -93,7 +88,6 @@ user5 = User.find_or_create_by!({
 })
 
 user6 = User.find_or_create_by!({
-  id: 6,
   name: user_names[5],
   email: Faker::Internet.email(name: user_names[1].strip),
   title: Faker::Job.title,
@@ -108,14 +102,12 @@ puts "Generating Parties ..."
 Party.destroy_all
 
 party1 = Party.find_or_create_by!({
-  id: party_uuids[0],
   number_of_members: 1,
   mentor_id: user1.id,
   party_name: Faker::Cannabis.strain
 })
 
 party2 = Party.find_or_create_by!({
-  id: party_uuids[1],
   number_of_members: 1,
   mentor_id: user2.id,
   party_name: Faker::Cannabis.strain
@@ -128,7 +120,6 @@ puts "Creating Quests ..."
 Quest.destroy_all
 
 quest1 = Quest.find_or_create_by!({
-  id: 1,
   party_id: party1.id,
   user_id: user1.id,
   mentor_id: user1.id,
@@ -139,7 +130,6 @@ quest1 = Quest.find_or_create_by!({
 })
 
 quest2 = Quest.find_or_create_by!({
-  id: 2,
   party_id: party2.id,
   user_id: user2.id,
   mentor_id: user2.id,
@@ -156,7 +146,6 @@ puts "Creating Nodes ..."
 Node.destroy_all
 
 node1 = Node.find_or_create_by!({
-  id: 1,
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
   is_complete?: Faker::Boolean.boolean,
@@ -165,7 +154,6 @@ node1 = Node.find_or_create_by!({
 })
 
 node2 = Node.find_or_create_by!({
-  id: 2,
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
   is_complete?: Faker::Boolean.boolean,
@@ -174,7 +162,6 @@ node2 = Node.find_or_create_by!({
 })
 
 node3 = Node.find_or_create_by!({
-  id: 3,
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
   is_complete?: Faker::Boolean.boolean,
@@ -183,7 +170,6 @@ node3 = Node.find_or_create_by!({
 })
 
 node4 = Node.find_or_create_by!({
-  id: 4,
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
   is_complete?: Faker::Boolean.boolean,
@@ -192,7 +178,6 @@ node4 = Node.find_or_create_by!({
 })
 
 node5 = Node.find_or_create_by!({
-  id: 5,
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
   is_complete?: Faker::Boolean.boolean,
@@ -201,7 +186,6 @@ node5 = Node.find_or_create_by!({
 })
 
 node6 = Node.find_or_create_by!({
-  id: 6,
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
   is_complete?: Faker::Boolean.boolean,
@@ -210,7 +194,6 @@ node6 = Node.find_or_create_by!({
 })
 
 node7 = Node.find_or_create_by!({
-  id: 7,
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
   is_complete?: Faker::Boolean.boolean,
@@ -219,7 +202,6 @@ node7 = Node.find_or_create_by!({
 })
 
 node8 = Node.find_or_create_by!({
-  id: 8,
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
   is_complete?: Faker::Boolean.boolean,
@@ -228,7 +210,6 @@ node8 = Node.find_or_create_by!({
 })
 
 node9 = Node.find_or_create_by!({
-  id: 9,
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
   is_complete?: Faker::Boolean.boolean,
@@ -237,7 +218,6 @@ node9 = Node.find_or_create_by!({
 })
 
 node10 = Node.find_or_create_by!({
-  id: 10,
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
   is_complete?: Faker::Boolean.boolean,
