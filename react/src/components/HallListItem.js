@@ -2,13 +2,12 @@ import React from 'react';
 import {Grid, Stepper, Step, StepLabel, Hidden, Link} from '@material-ui/core';
 
 
-export default function HallListItem({title, nodes, posts, handleClick}){
+export default function HallListItem({title, id, nodes, handleClick}){
 
   return (
-    <Link onClick={handleClick} href="">
+    <Link onClick={()=> handleClick(id)} href="">
     <div>
       <h3>Quest Title: {title}</h3>
-      {/* <p>Number of Posts: {posts.flat().length}</p> */}
       <Stepper >
         {nodes.map((node, index) => {
   
