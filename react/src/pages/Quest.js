@@ -1,5 +1,5 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import { Grid, Stepper, Step, StepLabel } from '@material-ui/core';
 import NavForApp from '../components/NavForApp';
 import CreatePostBtn from '../components/CreatePostBtn'
 
@@ -51,13 +51,18 @@ export default function Quest(props) {
 
   const NodeBar = ({nodes}) => {
     return (
-      <div>
-        {nodes.map((node, index) => (
-          <div>
-          Node {node.isComplete ? 'done' : 'not done'}
-          </div>
-        ))}
-      </div>
+      <Grid item xs={12}>
+        <Stepper >
+          {nodes.map((node, index) => {
+    
+            return (
+              <Step key={index} >
+                <StepLabel className={node.isComplete ? 'completed-node' : 'uncompleted-node'} />
+              </Step>
+            );
+          })}
+        </Stepper>
+      </Grid>
     )
   }
   
@@ -81,7 +86,7 @@ export default function Quest(props) {
       <div>
         <h1>{title}</h1>
         <p>{date}</p>
-        <img src={symbol}/>
+        <img src={symbol} alt={title}/>
         <p>{comment_count}</p>
       </div>
     )

@@ -80,9 +80,6 @@ export default function Hall(props) {
 }
 
 
-
-
-
 const quests = [
   {
     title: 'quest1',

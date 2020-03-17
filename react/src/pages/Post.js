@@ -1,5 +1,5 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import { Grid, Stepper, Step, StepLabel } from '@material-ui/core';
 import NavForApp from '../components/NavForApp';
 
 
@@ -54,24 +54,29 @@ export default function Post(props) {
 
   const NodeBar = ({nodes}) => {
     return (
-      <div>
-        {nodes.map((node, index) => (
-          <div>
-          Node {node.isComplete ? 'done' : 'not done'}
-          </div>
-        ))}
-      </div>
+      <Grid item xs={12}>
+        <Stepper >
+          {nodes.map((node, index) => {
+    
+            return (
+              <Step key={index} >
+                <StepLabel className={node.isComplete ? 'completed-node' : 'uncompleted-node'} />
+              </Step>
+            );
+          })}
+        </Stepper>
+      </Grid>
     )
   }
 
   const PostView = ({post}) => {
     return (
       <div>
-        <img src={post.symbol} />
+        <img src={post.symbol} alt={post.title} />
         <h1>{post.title}</h1>
         <h2>{post.date}</h2>
         <p>{post.description}</p>
-        <img src={post.attachment} />
+        <img src={post.attachment} alt={post.title} />
         <form>
           <input placeholder="add comment" />
           <button>Submit</button>
@@ -94,7 +99,7 @@ export default function Post(props) {
     return (
       <div>
         <p>{username}</p>
-        <img src={avatar} />
+        <img src={avatar} alt='User Avatar' />
         <p>{date}</p>
         <p>{text}</p>
       </div>
