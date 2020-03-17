@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, TextField, Avatar } from '@material-ui/core';
 import NavForApp from '../components/NavForApp';
 import { useHistory } from "react-router-dom";
 import './Post.scss'
@@ -81,10 +81,16 @@ export default function Post(props) {
         <Grid item xs={12}>
           <img src={post.attachment} alt={post.title} />
           <p>{post.description}</p>
-          <form>
-          <input placeholder="add comment" />
-          <button>Submit</button>
-        </form>
+          <form className='comment-form'>
+            <TextField
+            className='text-field'
+            id="comment"
+            label='Type your comment here'
+            multiline
+            rowsMax="4"
+            />
+            <button className='btn btn-primary'>Submit</button>
+          </form>
         </Grid>
       </Grid>
     )
@@ -103,7 +109,7 @@ export default function Post(props) {
     return (
       <Grid container className='comment-container' >
         <Grid item xs={4} sm={4} md={3} lg={2} >
-          <img src={avatar} alt='User Avatar' />
+          <Avatar src={avatar} alt='User Avatar' />
         </Grid>
         <Grid item xs={8} sm={8} md={9} lg={10} className='comment-right'>
           <p>{username}</p>
