@@ -23,7 +23,9 @@ export default function Hall(props) {
   }
   
   console.log(`Hall State is ${JSON.stringify(state)}`);
-  function handleClick(){
+
+  function handleClick(event){
+    event.preventDefault();
     history.push({pathname:`/quest`,state:{global: state, quests: quests, party_quests:party_quests}})
   }
 
