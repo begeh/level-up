@@ -2,6 +2,10 @@ import React from 'react';
 import { Grid, Stepper, Step, StepLabel } from '@material-ui/core';
 import NavForApp from '../components/NavForApp';
 import CreatePostBtn from '../components/CreatePostBtn'
+import sword from '../images/sword.png'
+import book from '../images/book.png'
+import question from '../images/question.png'
+
 
 
 export default function Quest(props) {
@@ -30,21 +34,21 @@ export default function Quest(props) {
 
   const posts = [
     {
-      title: "post 1",
-      date: Date(Date.now()).toString(),
-      symbol: "https://cdn4.iconfinder.com/data/icons/must-have-outline/100/objects-29-512.png",
+      title: "post One",
+      date: 'March 12, 2020',
+      symbol: sword,
       comment_count: 5,
     },
     {
       title: "post 1",
-      date: Date(Date.now()).toString(),
-      symbol: "https://cdn4.iconfinder.com/data/icons/must-have-outline/100/objects-29-512.png",
+      date: 'March 12, 2020',
+      symbol: book,
       comment_count: 5,
     },
     {
       title: "post 1",
-      date: Date(Date.now()).toString(),
-      symbol: "https://cdn4.iconfinder.com/data/icons/must-have-outline/100/objects-29-512.png",
+      date: 'March 12, 2020',
+      symbol: question,
       comment_count: 5,
     }
   ] 
@@ -83,18 +87,22 @@ export default function Quest(props) {
   
   const QuestListItem = ({title, date, symbol, comment_count}) => {
     return (
-      <div>
-        <h1>{title}</h1>
+      <Grid container>
+        <Grid item xs={3}>
+        <img src={symbol} alt={title} width="120" height="120"/>
+        </Grid>
+        <Grid item xs={9}>
+        <h3>{title}</h3>
         <p>{date}</p>
-        <img src={symbol} alt={title}/>
         <p>{comment_count}</p>
-      </div>
+        </Grid>
+      </Grid>
     )
   }
   return (
     <>
     <NavForApp nav_title='QUEST' state={state}/>
-    <Grid container >
+    <Grid container className='full'>
       <Grid className='container-left' item sm={5}>
         <p>Hello</p>
       </Grid>
