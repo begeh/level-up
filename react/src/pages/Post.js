@@ -7,17 +7,17 @@ import './Post.scss'
 export default function Post(props) {
   let history=useHistory();
   let state = {};
-  // let quests = {};
-  // let party_quests = {};
-  // if(props.location.state)
-  // {
-  //   state = props.location.state.global;
-  //   quests = props.location.state.quests;
-  //   party_quests = props.location.state.party_quests;
-  //   console.log(`This is party_quests ${JSON.stringify(party_quests)}`)
-  // } else{
-  //   history.push('/');
-  // }
+  let quests = {};
+  let party_quests = {};
+  if(props.location.state)
+  {
+    state = props.location.state.global;
+    quests = props.location.state.quests;
+    party_quests = props.location.state.party_quests;
+    console.log(`This is party_quests ${JSON.stringify(party_quests)}`)
+  } else{
+    history.push('/');
+  }
 
   console.log(props);
   console.log(`Post state is ${state}`);
@@ -124,14 +124,15 @@ export default function Post(props) {
 
   return (
     <>
-    <NavForApp nav_title='POST' state={state}/>
+    <NavForApp nav_title='POST' state={state} quests={quests} party_quests={party_quests}/>
     <Grid container >
       <Grid className='container-left' item sm={5}>
         <p>Hello</p>
       </Grid>
 
       <Grid className='container-right' item xs={12} sm={7} >
-        {/* <button onClick={()=>history.push({pathname:"/quest", state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button> */}
+        <NodeBar nodes={nodes} />
+        <button onClick={()=>history.push({pathname:"/quest", state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>
         <PostView post={post} />
         <CommentList post={post} />
       </Grid>

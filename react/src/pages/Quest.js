@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Stepper, Step, StepLabel, Hidden } from '@material-ui/core';
-import {useHistory} from "react-router-dom"
+import {useHistory, Link} from "react-router-dom"
 import NavForApp from '../components/NavForApp';
 import CreatePostBtn from '../components/CreatePostBtn'
 import './Quest.scss'
@@ -8,7 +8,7 @@ import sword from '../images/sword.png'
 import book from '../images/book.png'
 import question from '../images/question.png'
 import comment from '../images/comment.png'
-
+import QuestList from "../components/QuestList";
 
 
 export default function Quest(props) {
@@ -86,38 +86,12 @@ export default function Quest(props) {
     )
   }
   
-  const QuestList = ({posts}) => {
-    return (
-      <div>
-        {
-          posts.map((post, index) => (
-            <QuestListItem title={post.title} date={post.date} symbol={post.symbol} comment_count={post.comment_count} index={index} />
-          ))
-        }
-  
-        <CreatePostBtn />
+  function handleClick(event){
+    event.preventDefault();
+    console.log(`These are the props before post ${JSON.stringify(props.location.data)}`);
+    history.push({pathname:"/post", state: {global:state, quests:quests, party_quests: party_quests}})
+  }
 
-      </div>
-    )
-  }
-  
-  const QuestListItem = ({title, date, symbol, comment_count}) => {
-    return (
-      <Grid className='post-container' container>
-        <Grid item xs={4} sm={4} md={3} lg={2} >
-        <img src={symbol} alt={title} width="120" height="120"/>
-        </Grid>
-        <Grid item className='post-detail' xs={8} sm={8} md={9} lg={10}>
-        <h3>{title}</h3>
-        <p>{date}</p>
-          <Grid item className='comment-container'>
-            <p>{comment_count}</p>
-            <img src={comment} alt='comment symbol' width='20px' height='20px' />
-          </Grid>
-        </Grid>
-      </Grid>
-    )
-  }
   return (
     <>
     <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests}/>
@@ -130,9 +104,8 @@ export default function Quest(props) {
 
       <Grid className='container-right' item xs={12} sm={7} >
       <button onClick={()=>history.push({pathname:"/hall", state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>
-      {/* <button onClick={()=>history.push({pathname:"/post", state: {global:state, quests:quests, party_quests: party_quests}})}>Go to Post Page</button> */}
         <NodeBar nodes={nodes} />
-        <QuestList posts={posts}/>
+        <QuestList posts={posts} handleClick={handleClick}/>
         
       </Grid>
     </Grid>
