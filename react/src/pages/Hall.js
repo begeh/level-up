@@ -38,7 +38,6 @@ export default function Hall(props) {
       </Hidden>
 
       <Grid className='container-right' item xs={12} sm={7} >
-      <button onClick={()=>history.push({pathname:"/post", state: {global:state, quests:quests, party_quests: party_quests}})}>Go to Post Page</button>
         <HallList quests={party_quests} handleClick={handleClick} />
         <QuestInfoBtn />
       </Grid>

@@ -71,9 +71,11 @@ export default function Lobby(props) {
 
     await Promise.all(promises);
 
+    console.log(`Full quests ${JSON.stringify(full_quests)}`);
+
     let party_quests = await axios.get("/quests")
     .then((res)=>{
-      const partyQuests = res.data.filter(quest => quest.party_id === state.party_id && quest.status === "underway");
+      const partyQuests = res.data.filter(quest => quest.party_id === state.party_id);
       return partyQuests;
     })
 
