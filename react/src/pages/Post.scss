@@ -1,0 +1,35 @@
+.post-view {
+  margin-bottom: 30px;
+
+  img {
+    margin: 15px 0;
+    max-width: 100%;
+  }
+
+}
+
+.back-button {
+  margin-bottom: 20px !important;
+}
+
+.comment-container {
+  border-top: solid 1.5px;
+  padding: 20px 0;
+
+
+  img {
+    max-width: 100%;
+  }
+
+  .comment-right {
+    padding-left: 10px;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    .comment-description {
+      margin-top: 15px;
+    }
+  }
+}

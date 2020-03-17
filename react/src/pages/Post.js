@@ -1,7 +1,8 @@
 import React from 'react';
-import { Grid, Stepper, Step, StepLabel } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import NavForApp from '../components/NavForApp';
 import { useHistory } from "react-router-dom";
+import './Post.scss'
 
 export default function Post(props) {
   let history=useHistory();
@@ -64,37 +65,28 @@ export default function Post(props) {
     ]
   }
 
-  const NodeBar = ({nodes}) => {
-    return (
-      <Grid item xs={12}>
-        <Stepper >
-          {nodes.map((node, index) => {
-    
-            return (
-              <Step key={index} >
-                <StepLabel className={node.isComplete ? 'completed-node' : 'uncompleted-node'} />
-              </Step>
-            );
-          })}
-        </Stepper>
-      </Grid>
-    )
-  }
-
   const PostView = ({post}) => {
     return (
-      <div>
-        <img src={post.symbol} alt={post.title} />
-        <h1>{post.title}</h1>
-        <h2>{post.date}</h2>
-        <p>{post.description}</p>
-        <img src={post.attachment} alt={post.title} />
-        <form>
+      <Grid className='post-view' container>
+        <Grid className='back-button' item xs={12}>
+          <button className='btn btn-primary'>Back</button>
+        </Grid>
+        <Grid item xs={4} sm={4} md={3} lg={2} >
+          <img src={post.symbol} alt={post.title} width="120" height="120"/>
+        </Grid>
+        <Grid item className='post-detail' xs={8} sm={8} md={9} lg={10}>
+          <h3>{post.title}</h3>
+          <p>{post.date}</p>
+        </Grid>
+        <Grid item xs={12}>
+          <img src={post.attachment} alt={post.title} />
+          <p>{post.description}</p>
+          <form>
           <input placeholder="add comment" />
           <button>Submit</button>
         </form>
-        
-      </div>
+        </Grid>
+      </Grid>
     )
   }
 
@@ -109,12 +101,16 @@ export default function Post(props) {
 
   const CommentListItem = ({ username, avatar, date, text }) => {
     return (
-      <div>
-        <p>{username}</p>
-        <img src={avatar} alt='User Avatar' />
-        <p>{date}</p>
-        <p>{text}</p>
-      </div>
+      <Grid container className='comment-container' >
+        <Grid item xs={4} sm={4} md={3} lg={2} >
+          <img src={avatar} alt='User Avatar' />
+        </Grid>
+        <Grid item xs={8} sm={8} md={9} lg={10} className='comment-right'>
+          <p>{username}</p>
+          <p>{date}</p>
+          <p className='comment-description'>{text}</p>
+        </Grid>
+      </Grid>
     )
   }
 
@@ -129,7 +125,6 @@ export default function Post(props) {
       </Grid>
 
       <Grid className='container-right' item xs={12} sm={7} >
-        <NodeBar nodes={nodes} />
         {/* <button onClick={()=>history.push({pathname:"/quest", state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button> */}
         <PostView post={post} />
         <CommentList post={post} />
