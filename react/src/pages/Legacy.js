@@ -27,12 +27,15 @@ const useStyles = makeStyles(theme => ({
 export default function Legacy(props) {
   const classes = useStyles();
   let history=useHistory();
-  let state = useContext(StateContext);
+  let state = {};
   let quests={};
+  let party_quests = {};
+
   if(props.location.state)
   {
     state = props.location.state.global;
     quests = props.location.state.quests;
+    party_quests = props.location.state.party_quests;
     console.log(props);
   } else{
     history.push('/');
@@ -44,13 +47,13 @@ export default function Legacy(props) {
       res.data
     )
     .then((res)=>{
-      history.push({pathname:`/legacy/history/${id}`,state:{global: state, quests: quests, quest: res}})
+      history.push({pathname:`/legacy/history/${id}`,state:{global: state, quests: quests, quest: res, party_quests: party_quests}})
     });
   }
 
   return (
     <>
-    <NavForApp nav_title="LEGACY" state={state}/>
+    <NavForApp nav_title="LEGACY" state={state} quests={quests} party_quests={party_quests}/>
     <Grid container component="main" className={classes.root}>
       <Grid item xs={12} sm={6} md={6}>
       <div className={classes.paper}>
@@ -69,10 +72,10 @@ export default function Legacy(props) {
    <Grid item xs={false} sm={6} md={6}>
       {
       quests.map((achievement, index) => (
-      <button onClick={()=>loadQuest(achievement.id)}>
-        <p>{achievement.title}</p>
-        <p>{(new Date(achievement.created_at)).toLocaleDateString()}-{(new Date(achievement.updated_at)).toLocaleDateString()}</p>
-        <p>{achievement.status}</p>
+      <button onClick={()=>loadQuest(achievement.quest.id)}>
+        <p>{achievement.quest.title}</p>
+        <p>{(new Date(achievement.quest.created_at)).toLocaleDateString()}-{(new Date(achievement.quest.updated_at)).toLocaleDateString()}</p>
+        <p>{achievement.quest.status}</p>
       </button>
     ))}
     </Grid>
