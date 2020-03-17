@@ -1,49 +1,11 @@
 import React, { useContext } from 'react';
-import {Grid, Stepper, Step, StepLabel, Hidden} from '@material-ui/core';
+import {Grid, Stepper, Step, StepLabel, Hidden, Link} from '@material-ui/core';
 import QuestInfoBtn from '../components/CreateQuestBtn'
 import NavForApp from '../components/NavForApp';
 import './Hall.scss'
 import StateContext from "../Context";
 import {useHistory} from "react-router-dom"
-
-
-const HallList = (props) => {
-  console.log(`Hall List props ${JSON.stringify(props.quests)}`)
-  return (
-    <div>
-      {
-        props.quests.map((quest, index) => (
-          <HallListItem title={quest.quest.title} nodes={quest.nodes} index={index} />
-        ))
-      }
-    </div>
-  )
-}
-
-
-
-
-
-
-const HallListItem = ({title, nodes}) => {
-
-  return (
-    <div>
-      <h3>{title}</h3>
-      <p>{nodes.length}</p>
-      <Stepper >
-        {nodes.map((node, index) => {
-  
-          return (
-            <Step key={index} >
-              <StepLabel className={node['is_complete?'] ? 'completed-node' : 'uncompleted-node'} />
-            </Step>
-          );
-        })}
-      </Stepper>
-    </div>
-  )
-}
+import HallList from "../components/HallList"
 
 export default function Hall(props) {
   let history=useHistory();
@@ -61,6 +23,9 @@ export default function Hall(props) {
   }
   
   console.log(`Hall State is ${JSON.stringify(state)}`);
+  function handleClick(){
+    history.push({pathname:`/quest`,state:{global: state, quests: quests, party_quests:party_quests}})
+  }
 
   return (
     <>
@@ -73,7 +38,7 @@ export default function Hall(props) {
       </Hidden>
 
       <Grid className='container-right' item xs={12} sm={7} >
-        <HallList quests={party_quests} />
+        <HallList quests={party_quests} handleClick={handleClick} />
         <QuestInfoBtn />
       </Grid>
     </Grid>
