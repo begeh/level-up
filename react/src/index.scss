@@ -1,8 +1,5 @@
 body {
   margin: 0;
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif; */
   font-family: 'Alfa Slab One', cursive !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -37,7 +34,7 @@ code {
 }
 
 .container-right {
-  padding: 20px;
+  padding: 30px 20px;
 }
 
 .full {
@@ -59,5 +56,30 @@ a {
   &:hover {
     color: #574731 !important;
     text-decoration: none !important;
+  }
+}
+
+.modal-content {
+  background-color: #EFD784 !important;
+  border: 1px solid #574731;
+
+  span {
+    font-family: 'Alfa Slab One', cursive;
+  }
+
+  p {
+    font-family: 'Lato', sans-serif;
+  }
+
+  .modal-header {
+    border-bottom: 1px solid #574731;
+  }
+
+  .modal-footer {
+    border-top: 1px solid #574731;
+  }
+
+  .modal-body {
+    text-align: center;
   }
 }

@@ -27,6 +27,7 @@
 }
 
 .party-container {
+  padding-top: 30px;
   text-align: center;
 
   img {
@@ -57,4 +58,15 @@
       font-family: 'Lato', sans-serif;
     }
   }
+}
+
+.modal-code {
+  background-color: #512A15;
+  border: solid 2px #512A15;
+  border-radius: 20px;
+  padding: 9px;
+  display: inline-block;
+  text-align: center;
+  margin: auto;
+  color: #EFD784;
 }

@@ -3,6 +3,7 @@ import { Grid, Stepper, Step, StepLabel, Hidden, Tooltip } from '@material-ui/co
 import {useHistory, Link} from "react-router-dom"
 import NavForApp from '../components/NavForApp';
 import CreatePostBtn from '../components/CreatePostBtn'
+import QuestInfoBtn from '../components/QuestInfoBtn'
 import './Quest.scss'
 import sword from '../images/sword.png'
 import book from '../images/book.png'
@@ -10,6 +11,7 @@ import question from '../images/question.png'
 import comment from '../images/comment.png'
 import QuestList from "../components/QuestList";
 import NodeBar from "../components/NodeBar";
+import scroll from '../images/scroll.png'
 import axios from 'axios';
 
 export default function Quest(props) {
@@ -56,11 +58,14 @@ export default function Quest(props) {
     <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests} party_info={party_info} quest={quest} mentor_name={mentor_name} user_name={user_name}/>
     <Grid container className='full'>
       <Hidden xsDown>
-        <Grid className='container-left' item sm={5}>
-          <p>Quest Name: {quest.quest.title}</p>
-          <p>Quester Name: {user_name}</p>
-          <p>Mentor Name: {mentor_name}</p>
+        <Grid className='container-left quest-info' item sm={5}>
+          <img src={scroll} alt='scroll' />
+          <h3>{quest.quest.title}</h3>
+          <p>Mentor: {mentor_name}</p>
+          <p>Apprentice: {user_name}</p>
           <p>Full Quest End Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
+          <div className='quest-button'>
+          </div>
         </Grid>
       </Hidden>
 
