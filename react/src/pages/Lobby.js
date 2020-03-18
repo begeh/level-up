@@ -54,8 +54,8 @@ export default function Lobby(props) {
     } else if (lobbyCode && !lobbyName) {
       state.lobbyCode = lobbyCode
     }
-
-    let quests = await axios.get(`/user_quests/${state.id}`)
+    // Returns all the quests that contain the relevant user id
+    let quests = await axios.post(`/user_quests`, {user_id: state.id})
       .then((res) => {
         return res.data;
       })
@@ -77,10 +77,9 @@ export default function Lobby(props) {
 
     console.log(`Full quests ${JSON.stringify(full_quests)}`);
 
-    let party_quests = await axios.get("/quests")
+    let party_quests = await axios.post("/party_quests", {party_id: state.party_id})
       .then((res) => {
-        const partyQuests = res.data.filter(quest => quest.party_id === state.party_id);
-        return partyQuests;
+        return res.data
       })
 
     let party_full_quests = [];

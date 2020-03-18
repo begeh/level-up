@@ -34,10 +34,17 @@ class QuestsController < ApplicationController
     json_response(@response)
     end
   
-    # GET /user_quests/:user_id
+    # POST /user_quests
     # will return all quests with the given users ID
     def user_quests
       @quests = Quest.where(user_id: params[:user_id])
+      json_response(@quests)
+    end
+
+    # POST /party_quests
+    # will return all quests with the given users ID
+    def party_quests
+      @quests = Quest.where(party_id: params[:party_id])
       json_response(@quests)
     end
 
