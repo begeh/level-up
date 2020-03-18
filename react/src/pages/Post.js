@@ -108,7 +108,7 @@ export default function Post(props) {
         </Grid>
         <Grid item xs={8} sm={8} md={9} lg={10} className='comment-right'>
           <p>UserName: {username}</p>
-          <p>Date Posted{(new Date(created_at)).toLocaleDateString()}</p>
+          <p>Date Posted: {(new Date(created_at)).toLocaleDateString()}</p>
           <p className='comment-description'>Comment: {text}</p>
         </Grid>
       </Grid>

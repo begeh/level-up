@@ -2,29 +2,12 @@ import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
 import {Hidden,List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@material-ui/core'
 
-export default function NavModal() {
+export default function PartyBtn(props) {
+  const party = props.party_info;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const party = {
-    title:"LHL Party",
-  members:[
-    {
-      name: "Bash",
-      title:"Alchemist"
-    },
-    {
-      name: "Chris",
-      title:"Rogue"
-    },
-    {
-      name:"Cliff",
-      title:"Paladin"
-    }
-  ]
-};
 
   return (
     <Hidden smUp >
@@ -34,7 +17,7 @@ export default function NavModal() {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{party.title}</Modal.Title>
+          <Modal.Title>{party.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <List>
