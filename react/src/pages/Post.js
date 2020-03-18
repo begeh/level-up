@@ -1,7 +1,9 @@
 import React from 'react';
-import { Grid, Stepper, Step, StepLabel } from '@material-ui/core';
+import { Grid, TextField, Avatar } from '@material-ui/core';
 import NavForApp from '../components/NavForApp';
 import { useHistory } from "react-router-dom";
+import ReactPlayer from 'react-player'
+import './Post.scss'
 
 export default function Post(props) {
   let history=useHistory();
@@ -70,37 +72,35 @@ export default function Post(props) {
     ]
   }
 
-  const NodeBar = ({nodes}) => {
-    return (
-      <Grid item xs={12}>
-        <Stepper >
-          {nodes.map((node, index) => {
-    
-            return (
-              <Step key={index} >
-                <StepLabel className={node.isComplete ? 'completed-node' : 'uncompleted-node'} />
-              </Step>
-            );
-          })}
-        </Stepper>
-      </Grid>
-    )
-  }
-
   const PostView = ({post}) => {
     return (
-      <div>
-        <img src={post.symbol} alt={post.title} />
-        <h1>{post.title}</h1>
-        <h2>{post.date}</h2>
-        <p>{post.description}</p>
-        <img src={post.attachment} alt={post.title} />
-        <form>
-          <input placeholder="add comment" />
-          <button>Submit</button>
-        </form>
-        
-      </div>
+      <Grid className='post-view' container>
+        <Grid className='back-button' item xs={12}>
+          <button className='btn btn-primary' onClick={()=>history.push({pathname:`/quest/${quest_id}`, state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>
+        </Grid>
+        <Grid item xs={4} sm={4} md={3} lg={2} >
+          <img src={post.symbol} alt={post.title} width="120" height="120"/>
+        </Grid>
+        <Grid item className='post-detail' xs={8} sm={8} md={9} lg={10}>
+          <h3>{post.title}</h3>
+          <p>{post.date}</p>
+        </Grid>
+        <Grid item xs={12}>
+          <img src={post.attachment} alt={post.title} />
+          <ReactPlayer className='player' url='https://www.youtube.com/watch?v=6FAaOwNnHTA' />
+          <p>{post.description}</p>
+          <form className='comment-form'>
+            <TextField
+            className='text-field'
+            id="comment"
+            label='Type your comment here'
+            multiline
+            rowsMax="4"
+            />
+            <button className='btn btn-primary'>Submit</button>
+          </form>
+        </Grid>
+      </Grid>
     )
   }
 
@@ -115,12 +115,16 @@ export default function Post(props) {
 
   const CommentListItem = ({ username, avatar, date, text }) => {
     return (
-      <div>
-        <p>{username}</p>
-        <img src={avatar} alt='User Avatar' />
-        <p>{date}</p>
-        <p>{text}</p>
-      </div>
+      <Grid container className='comment-post' >
+        <Grid item xs={4} sm={4} md={3} lg={2} >
+          <Avatar src={avatar} alt='User Avatar' />
+        </Grid>
+        <Grid item xs={8} sm={8} md={9} lg={10} className='comment-right'>
+          <p>{username}</p>
+          <p>{date}</p>
+          <p className='comment-description'>{text}</p>
+        </Grid>
+      </Grid>
     )
   }
 

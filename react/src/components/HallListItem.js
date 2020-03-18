@@ -11,7 +11,7 @@ export default function HallListItem({title, id, nodes, handleClick, mentor_id, 
       return handleClick(id, mentor_id, user_id)}} href=""
     >
     <div>
-      <h3>Quest Title: {title}</h3>
+      <h3 className='hall-title'>Quest Title: {title}</h3>
       <Stepper >
         {nodes.map((node, index) => {
   
