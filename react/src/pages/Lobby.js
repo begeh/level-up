@@ -42,7 +42,7 @@ export default function Lobby(props) {
   const [lobbyCode, setLobbyCode] = useState(null); //Join Lobby
 
   // This can be split later on if we get our MVP done but it works fine for now
-  async function handleSubmit(event) {
+  async function handleJoinSubmit(event) {
     event.preventDefault();
     console.log(`lobbyname is ${lobbyName}`); //Create lobby
     console.log(`lobbycode is ${lobbyCode}`); //Join Lobby
@@ -55,7 +55,7 @@ export default function Lobby(props) {
       state.lobbyCode = lobbyCode
     }
     // Returns all the quests that contain the relevant user id
-    let quests = await axios.post(`/user_quests`, {user_id: state.id})
+    let quests = await axios.post(`/user_quests`, { user_id: state.id })
       .then((res) => {
         return res.data;
       })
@@ -77,7 +77,7 @@ export default function Lobby(props) {
 
     console.log(`Full quests ${JSON.stringify(full_quests)}`);
 
-    let party_quests = await axios.post("/party_quests", {party_id: state.party_id})
+    let party_quests = await axios.post("/party_quests", { party_id: state.party_id })
       .then((res) => {
         return res.data
       })
@@ -126,6 +126,37 @@ export default function Lobby(props) {
 
 
   }
+
+  async function handleCreateSubmit(event) {
+    event.preventDefault();
+    console.log(`lobbyname is ${lobbyName}`); //Create lobby
+    console.log(`lobbycode is ${lobbyCode}`); //Join Lobby
+
+    // If making Lobby
+    state.lobbyName = lobbyName
+
+    // Returns all the quests that contain the relevant user id
+    let quests = await axios.post(`/parties`,
+      {
+        mentor_id: state.id,
+        number_of_members: 1,
+        party_name: lobbyName
+      })
+      .then((res) => {
+        return res.data;
+      })
+
+    let full_quests = [];
+    let promises = [];
+
+    let party_full_quests = [];
+    let party_promises = [];
+
+    await Promise.all(party_promises);
+    console.log(`Party full quests ${JSON.stringify(party_full_quests)}`);
+    history.push({ pathname: "/hall", state: { global: state, quests: full_quests, party_quests: party_full_quests } });
+  }
+
   return (
     <>
       <NavEmpty />
@@ -136,7 +167,7 @@ export default function Lobby(props) {
           <Typography component="h1" variant="h5">
             Join a Lobby
         </Typography>
-          <form className={classes.form} onSubmit={handleSubmit} noValidate>
+          <form className={classes.form} onSubmit={handleJoinSubmit} noValidate>
             <TextField
               variant="outlined"
               margin="normal"
@@ -160,7 +191,7 @@ export default function Lobby(props) {
               Join Lobby
           </Button>
           </form>
-          <form className={classes.form} onSubmit={handleSubmit} noValidate>
+          <form className={classes.form} onSubmit={handleCreateSubmit} noValidate>
             <TextField
               variant="outlined"
               margin="normal"
