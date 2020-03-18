@@ -1,11 +1,11 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
 import NavForApp from "../components/NavForApp";
-import StateContext from '../Context';
+
 import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
@@ -30,12 +30,14 @@ export default function Legacy(props) {
   let state = {};
   let quests={};
   let party_quests = {};
+  let party_info = {};
 
   if(props.location.state)
   {
     state = props.location.state.global;
     quests = props.location.state.quests;
     party_quests = props.location.state.party_quests;
+    party_info = props.location.state.party_info;
     console.log(props);
   } else{
     history.push('/');
@@ -47,13 +49,13 @@ export default function Legacy(props) {
       res.data
     )
     .then((res)=>{
-      history.push({pathname:`/legacy/history/${id}`,state:{global: state, quests: quests, quest: res, party_quests: party_quests}})
+      history.push({pathname:`/legacy/history/${id}`,state:{global: state, quests: quests, quest: res, party_quests: party_quests, party_info:party_info}})
     });
   }
 
   return (
     <>
-    <NavForApp nav_title="LEGACY" state={state} quests={quests} party_quests={party_quests}/>
+    <NavForApp nav_title="LEGACY" state={state} quests={quests} party_quests={party_quests} party_info={party_info}/>
     <Grid container component="main" className={classes.root}>
       <Grid item xs={12} sm={6} md={6}>
       <div className={classes.paper}>

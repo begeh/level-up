@@ -17,12 +17,14 @@ export default function NavForApp(props){
   let state = {};
   let quests = {};
   let party_quests = {};
+  let party_info ={}
 
   if(props.state)
   {
     state = props.state;
     quests = props.quests;
     party_quests = props.party_quests;
+    party_info = props.party_info;
     console.log(`This is hall quests ${JSON.stringify(quests)}`)
   } else{
     history.push('/');
@@ -41,7 +43,7 @@ export default function NavForApp(props){
   // }
 
   function loadPage(path){
-    history.push({pathname:`/${path}`,state:{global: state, quests: quests, party_quests:party_quests}});
+    history.push({pathname:`/${path}`,state:{global: state, quests: quests, party_quests:party_quests, party_info:party_info}});
   }
 
   return(

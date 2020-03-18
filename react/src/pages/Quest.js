@@ -19,6 +19,7 @@ export default function Quest(props) {
   let quest_id = null;
   let mentor_name = null;
   let user_name = null;
+  let party_info = {}
   if(props.location.state)
   {
     state = props.location.state.global;
@@ -27,6 +28,7 @@ export default function Quest(props) {
     quest_id = props.location.state.quest_id;
     mentor_name= props.location.state.mentor_name;
     user_name = props.location.state.user_name;
+    party_info = props.location.state.party_info;
     console.log(props);
   } else{
     history.push('/');
@@ -61,12 +63,12 @@ export default function Quest(props) {
   
   function handleClick(event){
     event.preventDefault();
-    history.push({pathname:"/post", state: {global:state, quest_id: quest_id, quests:quests, party_quests: party_quests, mentor_name:mentor_name, user_name:user_name}})
+    history.push({pathname:"/post", state: {global:state, quest_id: quest_id, quests:quests, party_quests: party_quests, mentor_name:mentor_name, user_name:user_name, party_info: party_info}})
   }
 
   return (
     <>
-    <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests}/>
+    <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests} party_info={party_info}/>
     <Grid container className='full'>
       <Hidden xsDown>
         <Grid className='container-left' item sm={5}>
@@ -77,9 +79,8 @@ export default function Quest(props) {
       </Hidden>
 
       <Grid className='container-right' item xs={12} sm={7} >
-      {/* <button onClick={()=>history.push({pathname:"/hall", state: {global:state, quests:quests, party_quests: party_quests, quest_id: quest_id}})}>Go Back</button> */}
         <Grid className='back-button' item xs={12}>
-        <button className='btn btn-primary' onClick={()=>history.push({pathname:"/hall", state: {global:state, quests:quests, party_quests: party_quests, quest_id: quest_id}})}>Go Back</button>
+        <button className='btn btn-primary' onClick={()=>history.push({pathname:"/hall", state: {global:state, quests:quests, party_quests: party_quests, quest_id: quest_id, party_info:party_info}})}>Go Back</button>
         </Grid>
         <NodeBar nodes={nodes} />
         <QuestList posts={posts} handleClick={handleClick}/>
