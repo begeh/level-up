@@ -12,6 +12,8 @@ class PartiesController < ApplicationController
   # POST /parties
   def create
     @party = Party.create!(party_params)
+    @user = User.where(id: params[:user_id])
+    @user[0].update(party_id: @party.id)
     json_response(@party, :created)
   end
 
@@ -37,6 +39,11 @@ class PartiesController < ApplicationController
   def party_params
     # whitelist params
     params.permit(:number_of_members, :mentor_id, :party_name)
+  end
+
+  def user_params
+    #whitelist params
+    params.permit(:user_id)
   end
 
   def set_party
