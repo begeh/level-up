@@ -30,18 +30,6 @@ export default function NavForApp(props){
     history.push('/');
   }
 
-  // function loadQuests(path){
-  //   return axios.get("/quests")
-  //   .then((res)=>{
-  //     const yourQuests = res.data.filter(quest => quest.user_id === state.id);
-  //     console.log(`Your quests ${JSON.stringify(yourQuests)}`)
-  //     return yourQuests;
-  //   })
-  //   .then((res)=>{
-  //     history.push({pathname:`/${path}`,state:{global: state, quests: res}});
-  //   });
-  // }
-
   function loadPage(path){
     history.push({pathname:`/${path}`,state:{global: state, quests: quests, party_quests:party_quests, party_info:party_info}});
   }
@@ -53,7 +41,7 @@ export default function NavForApp(props){
         <img src={logo} alt='Level Up Logo' width="30" height="30"  />
         </Navbar.Brand>
       </Hidden>
-      {props.nav_title === 'HALL' ? <PartyBtn /> : <></>}
+      {props.nav_title === 'HALL' ? <PartyBtn party_info={party_info}/> : <></>}
       {props.nav_title === 'QUEST' ? <QuestInfoBtn /> : <></>}
       <Navbar.Brand >{props.nav_title }</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
