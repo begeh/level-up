@@ -7,7 +7,7 @@ export default function HallListItem({title, id, nodes, handleClick}){
   return (
     <Link onClick={()=> handleClick(id)} href="">
     <div>
-      <h3>Quest Title: {title}</h3>
+      <h3 className='hall-title'>Quest Title: {title}</h3>
       <Stepper >
         {nodes.map((node, index) => {
   

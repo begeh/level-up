@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Stepper, Step, StepLabel, Hidden } from '@material-ui/core';
+import { Grid, Stepper, Step, StepLabel, Hidden, Tooltip } from '@material-ui/core';
 import {useHistory, Link} from "react-router-dom"
 import NavForApp from '../components/NavForApp';
 import CreatePostBtn from '../components/CreatePostBtn'
@@ -76,9 +76,11 @@ export default function Quest(props) {
           {nodes.map((node, index) => {
     
             return (
-              <Step key={index} >
-                <StepLabel className={node.isComplete ? 'completed-node' : 'uncompleted-node'} />
-              </Step>
+              <Tooltip title={node.title} arrow placement="bottom">
+                <Step key={index} >
+                  <StepLabel className={node.isComplete ? 'completed-node' : 'uncompleted-node'} />
+                </Step>
+              </Tooltip>
             );
           })}
         </Stepper>
