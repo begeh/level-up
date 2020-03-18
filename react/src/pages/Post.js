@@ -139,7 +139,6 @@ export default function Post(props) {
       </Grid>
 
       <Grid className='container-right' item xs={12} sm={7} >
-        {/* <NodeBar nodes={nodes} /> */}
         <PostView post={post} />
         <CommentList post={post} />
       </Grid>

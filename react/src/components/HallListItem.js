@@ -17,6 +17,7 @@ export default function HallListItem({title, id, nodes, handleClick, mentor_id, 
   
           return (
             <Step key={index} >
+              <p>{node.title}</p>
               <StepLabel className={node['is_complete?'] ? 'completed-node' : 'uncompleted-node'} />
             </Step>
           );
