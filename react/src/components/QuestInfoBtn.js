@@ -47,11 +47,11 @@ export default function QuestInfoBtn(props) {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{quest_info.title}</Modal.Title>
+          <Modal.Title>{quest.quest.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>{quest_info.title}</p>
-          <p>{quest_info.description}</p>
+          <p>Quest Title: {quest.quest.title}</p>
+          <p>Quest Desc: {quest.quest.description}</p>
           <p>Expected Quest Finish Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
           <List>
           {
