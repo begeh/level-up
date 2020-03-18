@@ -9,7 +9,7 @@ import book from '../images/book.png'
 import question from '../images/question.png'
 import comment from '../images/comment.png'
 import QuestList from "../components/QuestList";
-
+import NodeBar from "../components/NodeBar";
 
 export default function Quest(props) {
   let history=useHistory();
@@ -41,25 +41,6 @@ export default function Quest(props) {
 
   console.log(props);
   console.log(`Quest State is ${state}`);
-
-  const NodeBar = ({nodes}) => {
-    return (
-      <Grid item xs={12}>
-        <Stepper >
-          {nodes.map((node, index) => {
-    
-            return (
-              <Tooltip title={node.title} arrow placement="bottom">
-                <Step key={index} >
-                  <StepLabel className={node.isComplete ? 'completed-node' : 'uncompleted-node'} />
-                </Step>
-              </Tooltip>
-            );
-          })}
-        </Stepper>
-      </Grid>
-    )
-  }
   
   function handleClick(event){
     event.preventDefault();
