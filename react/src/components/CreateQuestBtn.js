@@ -26,6 +26,11 @@ export default function QuestInfoBtn() {
     setSelectedDate(date);
   };
 
+  //questTitle, questDesc, node1Title, node1Desc,
+  async function handleQuestSubmit(event) {
+
+  }
+
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
@@ -37,7 +42,7 @@ export default function QuestInfoBtn() {
           <Modal.Title>Create Quest</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <form noValidate>
+        <form noValidate onSubmit={handleQuestSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -106,10 +111,10 @@ export default function QuestInfoBtn() {
               required
               fullWidth
               multiline
-              name="node1"
-              label="Node 1"
+              name="node2"
+              label="Node 2"
               id="node1"
-              autoComplete="Node 1"
+              autoComplete="Node 2"
             />
             <TextField
               variant="outlined"
@@ -117,50 +122,10 @@ export default function QuestInfoBtn() {
               required
               fullWidth
               multiline
-              name="node1"
-              label="Node 1 Description"
+              name="node2"
+              label="Node 2 Description"
               id="node1"
-              autoComplete="Node 1"
-            />
-            
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container justify="space-around">
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-              </Grid>
-            </MuiPickersUtilsProvider>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="node1"
-              label="Node 1"
-              id="node1"
-              autoComplete="Node 1"
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="node1"
-              label="Node 1 Description"
-              id="node1"
-              autoComplete="Node 1"
+              autoComplete="Node 2"
             />
             
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -186,10 +151,10 @@ export default function QuestInfoBtn() {
               required
               fullWidth
               multiline
-              name="node1"
-              label="Node 1"
+              name="node3"
+              label="Node 3"
               id="node1"
-              autoComplete="Node 1"
+              autoComplete="Node 3"
             />
             <TextField
               variant="outlined"
@@ -197,10 +162,10 @@ export default function QuestInfoBtn() {
               required
               fullWidth
               multiline
-              name="node1"
-              label="Node 1 Description"
+              name="node3"
+              label="Node 3 Description"
               id="node1"
-              autoComplete="Node 1"
+              autoComplete="Node 3"
             />
             
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -226,10 +191,10 @@ export default function QuestInfoBtn() {
               required
               fullWidth
               multiline
-              name="node1"
-              label="Node 1"
+              name="node4"
+              label="Node 4"
               id="node1"
-              autoComplete="Node 1"
+              autoComplete="Node 4"
             />
             <TextField
               variant="outlined"
@@ -237,10 +202,50 @@ export default function QuestInfoBtn() {
               required
               fullWidth
               multiline
-              name="node1"
-              label="Node 1 Description"
+              name="node4"
+              label="Node 4 Description"
               id="node1"
-              autoComplete="Node 1"
+              autoComplete="Node 4"
+            />
+            
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Grid container justify="space-around">
+                <KeyboardDatePicker
+                  disableToolbar
+                  variant="inline"
+                  format="MM/dd/yyyy"
+                  margin="normal"
+                  id="date-picker-inline"
+                  label="Date picker inline"
+                  value={selectedDate}
+                  onChange={handleDateChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date',
+                  }}
+                />
+              </Grid>
+            </MuiPickersUtilsProvider>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              multiline
+              name="node5"
+              label="Node 5"
+              id="node1"
+              autoComplete="Node 5"
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              multiline
+              name="node5"
+              label="Node 5 Description"
+              id="node1"
+              autoComplete="Node 5"
             />
             
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
