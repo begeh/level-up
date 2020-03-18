@@ -49,7 +49,16 @@ export default function Hall(props) {
     <Grid container className='full' >
       <Hidden xsDown>
       <Grid className='container-left' item sm={5} >
-        <p>Hello</p>
+        <p>Party Name: </p>
+        <p>Party Code: </p>
+        <p>Party Name: </p>
+        <div>
+          <p>Party Members</p> 
+          <ul>
+            
+          </ul>
+        </div>
+
       </Grid>
       </Hidden>
 
