@@ -36,7 +36,7 @@ export default function QuestInfoBtn() {
   };
 
   return (
-    <Hidden smUp>
+    <div>
       <Button variant="primary" onClick={handleShow}>
         Quest Info
       </Button>
@@ -80,6 +80,6 @@ export default function QuestInfoBtn() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </Hidden>
+    </div>
   );
 }
