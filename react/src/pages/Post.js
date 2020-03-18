@@ -13,6 +13,7 @@ export default function Post(props) {
   let quest_id = null;
   let mentor_name = null;
   let user_name = null;
+  let party_info = {}
   if(props.location.state)
   {
     state = props.location.state.global;
@@ -21,6 +22,7 @@ export default function Post(props) {
     quest_id = props.location.state.quest_id;
     mentor_name = props.location.state.mentor_name;
     user_name = props.location.state.user_name;
+    party_info = props.location.state.party_info;
     console.log(`This is party_quests ${JSON.stringify(party_quests)}`)
   } else{
     history.push('/');
@@ -76,7 +78,7 @@ export default function Post(props) {
     return (
       <Grid className='post-view' container>
         <Grid className='back-button' item xs={12}>
-          <button className='btn btn-primary' onClick={()=>history.push({pathname:`/quest/${quest_id}`, state: {global:state, quest_id:quest_id, quests:quests, party_quests: party_quests, mentor_name:mentor_name, user_name:user_name}})}>Go Back</button>
+          <button className='btn btn-primary' onClick={()=>history.push({pathname:`/quest/${quest_id}`, state: {global:state, quest_id:quest_id, quests:quests, party_quests: party_quests, mentor_name:mentor_name, user_name:user_name, party_info:party_info}})}>Go Back</button>
         </Grid>
         <Grid item xs={4} sm={4} md={3} lg={2} >
           <img src={post.symbol} alt={post.title} width="120" height="120"/>
@@ -132,7 +134,7 @@ export default function Post(props) {
 
   return (
     <>
-    <NavForApp nav_title='POST' state={state} quests={quests} party_quests={party_quests}/>
+    <NavForApp nav_title='POST' state={state} quests={quests} party_quests={party_quests} party_info={party_info}/>
     <Grid container >
       <Grid className='container-left' item sm={5}>
         <p>Hello</p>
