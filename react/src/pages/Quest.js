@@ -34,49 +34,11 @@ export default function Quest(props) {
 
   let quest = party_quests.filter(quest => quest.quest.id === quest_id)[0];
   let posts = quest.posts.flat();
+  let nodes = quest.nodes;
   console.log(`Posts is ${JSON.stringify(quest)}`);
 
   console.log(props);
   console.log(`Quest State is ${state}`);
-
-  const nodes = [
-    {
-      title: 'start',
-      isComplete: true,
-      date: Date(Date.now()).toString()
-    },
-    {
-      title: 'middle',
-      isComplete: true,
-      date: Date(Date.now()).toString()
-    },
-    {
-      title: 'end',
-      isComplete: false,
-      date: Date(Date.now()).toString()
-    }
-  ]
-
-  const postsDummy = [
-    {
-      title: "post One",
-      date: 'March 12, 2020',
-      symbol: sword,
-      comment_count: 5,
-    },
-    {
-      title: "post 1",
-      date: 'March 12, 2020',
-      symbol: book,
-      comment_count: 5,
-    },
-    {
-      title: "post 1",
-      date: 'March 12, 2020',
-      symbol: question,
-      comment_count: 5,
-    }
-  ] 
 
   const NodeBar = ({nodes}) => {
     return (
