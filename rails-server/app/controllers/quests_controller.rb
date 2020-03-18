@@ -10,7 +10,7 @@ class QuestsController < ApplicationController
     end
 
     # GET /quest_object/:id
-    # Will return a Quest JSON object containing the quest,
+    # Will return a Response JSON object containing the quest,
     # and all relevant nodes, posts and comments
     def object
     @quest = Quest.find(params[:id])
@@ -25,17 +25,28 @@ class QuestsController < ApplicationController
       @comments.append(Comment.where(post_id: post2.id))
     end
   end
-    
   @response = {
     :quest => @quest,
     :nodes => @nodes,
     :posts => @posts,
     :comments => @comments
   }
-
     json_response(@response)
     end
   
+    # POST /user_quests
+    # will return all quests with the given users ID
+    def user_quests
+      @quests = Quest.where(user_id: params[:user_id])
+      json_response(@quests)
+    end
+
+    # POST /party_quests
+    # will return all quests with the given users ID
+    def party_quests
+      @quests = Quest.where(party_id: params[:party_id])
+      json_response(@quests)
+    end
 
     # POST /quests
     def create

@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     head :no_content
   end
 
-  # GET /user/:email
+  # POST /user/:email
   def return_user
     
     email = params[:email]

@@ -32,6 +32,9 @@ resources :posts do
   resources :comments
 end
 
+  post "/user_quests", to: "quests#user_quests"
+  post "/party_quests", to: "quests#party_quests"
+
   resources :quest_object, controller: "quests", only: [:object]
 
   get "/quest_object/:id", to: "quests#object"
