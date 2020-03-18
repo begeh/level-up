@@ -26,7 +26,12 @@ export default function QuestInfoBtn() {
     setSelectedDate(date);
   };
 
-  //questTitle, questDesc, node1Title, node1Desc,
+  let questTitle, questDesc, node1Title, node1Desc, node1CompletionDate,
+  node2Title, node2Desc, node2CompletionDate,
+  node3Title, node3Desc, node3CompletionDate,
+  node4Title, node4Desc, node4CompletionDate,
+  node5Title, node5Desc, node5CompletionDate = null
+  
   async function handleQuestSubmit(event) {
 
   }
@@ -52,6 +57,7 @@ export default function QuestInfoBtn() {
               label="Quest Title"
               name="quest-title"
               autoComplete="Quest Title"
+              value={questTitle}
               autoFocus
             />
             <TextField
@@ -64,6 +70,7 @@ export default function QuestInfoBtn() {
               label="Quest Description"
               id="description"
               autoComplete="Description"
+              value={questDesc}
             />
             <TextField
               variant="outlined"
@@ -75,6 +82,7 @@ export default function QuestInfoBtn() {
               label="Node 1"
               id="node1"
               autoComplete="Node 1"
+              value={node1Title}
             />
             <TextField
               variant="outlined"
@@ -86,6 +94,7 @@ export default function QuestInfoBtn() {
               label="Node 1 Description"
               id="node1"
               autoComplete="Node 1"
+              value={node1Desc}
             />
             
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -97,7 +106,7 @@ export default function QuestInfoBtn() {
                   margin="normal"
                   id="date-picker-inline"
                   label="Date picker inline"
-                  value={selectedDate}
+                  value={node1CompletionDate}
                   onChange={handleDateChange}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
@@ -115,6 +124,7 @@ export default function QuestInfoBtn() {
               label="Node 2"
               id="node1"
               autoComplete="Node 2"
+              value={node2Title}
             />
             <TextField
               variant="outlined"
@@ -126,6 +136,7 @@ export default function QuestInfoBtn() {
               label="Node 2 Description"
               id="node1"
               autoComplete="Node 2"
+              value={node2Desc}
             />
             
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -137,7 +148,7 @@ export default function QuestInfoBtn() {
                   margin="normal"
                   id="date-picker-inline"
                   label="Date picker inline"
-                  value={selectedDate}
+                  value={node2CompletionDate}
                   onChange={handleDateChange}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
@@ -155,6 +166,7 @@ export default function QuestInfoBtn() {
               label="Node 3"
               id="node1"
               autoComplete="Node 3"
+              value={node3Title}
             />
             <TextField
               variant="outlined"
@@ -166,6 +178,7 @@ export default function QuestInfoBtn() {
               label="Node 3 Description"
               id="node1"
               autoComplete="Node 3"
+              value={node3Desc}
             />
             
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -177,7 +190,7 @@ export default function QuestInfoBtn() {
                   margin="normal"
                   id="date-picker-inline"
                   label="Date picker inline"
-                  value={selectedDate}
+                  value={node3CompletionDate}
                   onChange={handleDateChange}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
@@ -195,6 +208,7 @@ export default function QuestInfoBtn() {
               label="Node 4"
               id="node1"
               autoComplete="Node 4"
+              value={node4Title}
             />
             <TextField
               variant="outlined"
@@ -206,6 +220,7 @@ export default function QuestInfoBtn() {
               label="Node 4 Description"
               id="node1"
               autoComplete="Node 4"
+              value={node4Desc}
             />
             
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -217,7 +232,7 @@ export default function QuestInfoBtn() {
                   margin="normal"
                   id="date-picker-inline"
                   label="Date picker inline"
-                  value={selectedDate}
+                  value={node4CompletionDate}
                   onChange={handleDateChange}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
@@ -235,6 +250,7 @@ export default function QuestInfoBtn() {
               label="Node 5"
               id="node1"
               autoComplete="Node 5"
+              value={node5Title}
             />
             <TextField
               variant="outlined"
@@ -246,6 +262,7 @@ export default function QuestInfoBtn() {
               label="Node 5 Description"
               id="node1"
               autoComplete="Node 5"
+              value={node5Desc}
             />
             
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -257,7 +274,7 @@ export default function QuestInfoBtn() {
                   margin="normal"
                   id="date-picker-inline"
                   label="Date picker inline"
-                  value={selectedDate}
+                  value={node5CompletionDate}
                   onChange={handleDateChange}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
