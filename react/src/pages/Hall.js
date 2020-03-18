@@ -7,6 +7,8 @@ import StateContext from "../Context";
 import {useHistory} from "react-router-dom"
 import HallList from "../components/HallList"
 
+import axios from 'axios';
+
 export default function Hall(props) {
   let history=useHistory();
   let state = {};
@@ -24,10 +26,21 @@ export default function Hall(props) {
   
   console.log(`Hall State is ${JSON.stringify(state)}`);
 
-  function handleClick(id){
+  async function handleClick(id, mentor_id, user_id){
     // event.preventDefault();
     console.log(`Event value ${id}`)
-    history.push({pathname:`/quest/${id}`,state:{global: state, quests: quests, party_quests:party_quests, quest_id:id}})
+    let users = await axios.get('users')
+                .then((response)=> {
+                  let users = {};
+                  let mentor = response.data.filter(user => user.id === mentor_id);
+                  let user = response.data.filter(user => user.id === user_id);
+                  users.user_name = user[0].name;
+                  users.mentor_name = mentor[0].name;
+                  return users;  
+                });
+    history.push({pathname:`/quest/${id}`,state:{global: state, quests: quests, party_quests:party_quests, quest_id: id, mentor_name:users.mentor_name, user_name:users.user_name}})
+   
+
   }
 
   return (
