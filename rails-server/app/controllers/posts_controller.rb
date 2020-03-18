@@ -19,6 +19,12 @@ class PostsController < ApplicationController
       def show
         json_response(@post)
       end
+
+      # GET /node/:node_id/posts
+      def node_posts
+        @posts = Post.where(node_id: params[:node_id])
+        json_response(@posts)
+      end
     
       # PUT /posts/:id
       def update

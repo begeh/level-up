@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
           json_response(@comment)
         end
 
-        # GET /post/post_id/comments
+        # GET /post/:post_id/comments
         # Returns all the comments with the specified post_id
         def post_comments
           @comments = Comment.where(post_id: params[:post_id])

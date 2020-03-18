@@ -16,6 +16,12 @@ class NodesController < ApplicationController
       def show
         json_response(@node)
       end
+
+      # GET /quest/:quest_id/nodes
+      def quest_nodes
+        @nodes = Node.where(quest_id: params[:quest_id])
+        json_response(@nodes) 
+      end
     
       # PUT /nodes/:id
       def update
