@@ -1,10 +1,11 @@
 import React from 'react';
-import {Grid, Stepper, Step, StepLabel, Hidden, Link} from '@material-ui/core';
+import {Grid, Hidden, Link} from '@material-ui/core';
 import QuestInfoBtn from '../components/CreateQuestBtn'
 import NavForApp from '../components/NavForApp';
 import './Hall.scss'
 import {useHistory} from "react-router-dom"
 import HallList from "../components/HallList"
+import shield from '../images/shield.png'
 
 import axios from 'axios';
 
@@ -48,22 +49,24 @@ export default function Hall(props) {
     <NavForApp nav_title='HALL' state={state} quests={quests} party_quests={party_quests} party_info={party_info}/>
     <Grid container className='full' >
       <Hidden xsDown>
-      <Grid className='container-left' item sm={5} >
-        <p>Party Name: {party_info.name}</p>
-        <p>Party Code: {party_info.id}</p>
+      <Grid className='container-left party-container' item sm={5} >
+        <h3>{party_info.name}</h3>
+        <img src={shield} alt='party-logo' />
+        <p className='party-code'>{party_info.id}</p>
         <div>
-          <p>Party Members</p> 
-          <ul>
+          <h5>Party Members</h5> 
             {
               party_info.members.map(member =>{
                 return( 
-                <li>Name: {member.name} <br/> Title: {member.title}</li>
+                  <div className='party-member'>
+                    <p>{member.name}</p>
+                    <p className='party-title'>~ {member.title} ~</p>
+                  </div>
                 )
               })
             }
-          </ul>
+          
         </div>
-
       </Grid>
       </Hidden>
 

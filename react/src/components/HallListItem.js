@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Stepper, Step, StepLabel, Hidden, Link} from '@material-ui/core';
+import { Stepper, Step, StepLabel, Tooltip, Link} from '@material-ui/core';
 
 
 export default function HallListItem({title, id, nodes, handleClick, mentor_id, user_id}){
@@ -16,10 +16,11 @@ export default function HallListItem({title, id, nodes, handleClick, mentor_id, 
         {nodes.map((node, index) => {
   
           return (
-            <Step key={index} >
-              <p>{node.title}</p>
-              <StepLabel className={node['is_complete?'] ? 'completed-node' : 'uncompleted-node'} />
-            </Step>
+            <Tooltip title={node.title} arrow placement="bottom">
+              <Step key={index} >
+                <StepLabel className={node['is_complete?'] ? 'completed-node' : 'uncompleted-node'} />
+              </Step>
+            </Tooltip>
           );
         })}
       </Stepper>

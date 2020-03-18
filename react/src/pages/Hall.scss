@@ -25,3 +25,36 @@
     text-shadow: 2px 2px rgb(175, 156, 87);
   }
 }
+
+.party-container {
+  text-align: center;
+
+  img {
+    max-width: 35%;
+    display: block;
+    margin: auto;
+  }
+
+  .party-code {
+    display: inline-block;
+    font-family: 'Lato', sans-serif;
+    background-color: #512A15;
+    border: solid 2px #512A15;
+    border-radius: 20px;
+    padding: 9px;
+    margin-bottom: 30px;
+  }
+
+  
+  .party-member {
+    margin-bottom: 15px;
+  
+    p {
+      margin-bottom: 0;
+    }
+  
+    .party-title {
+      font-family: 'Lato', sans-serif;
+    }
+  }
+}

@@ -3,7 +3,7 @@ import sword from '../images/sword.png'
 import book from '../images/book.png'
 import question from '../images/question.png'
 import comment from '../images/comment.png';
-import { Grid, Stepper, Step, StepLabel, Hidden } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import {useHistory, Link} from "react-router-dom";
 
 export default function QuestListItem({title, created_at, symbol, handleClick}) {
