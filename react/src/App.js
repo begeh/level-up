@@ -14,18 +14,6 @@ import Lobby from './pages/Lobby';
 import Quest from "./pages/Quest";
 import Post from "./pages/Post";
 import History from "./pages/History";
-import StateContext from './Context';
-
-const globalState = {
-  user_id: null,
-  firstName: "BlueMoon",
-  lastName: null,
-  email: null,
-  password: null,
-  lobbyName:null,
-  lobbyCode:null,
-  party_id:null
-}
 
 export default function App() {
   const state = {
@@ -40,7 +28,6 @@ export default function App() {
   }
   return (
     <Router>
-      <StateContext.Provider value={globalState}>
       <div>
         
         <Switch>
@@ -64,12 +51,12 @@ export default function App() {
           <Route path="/quest/:id"
           component={(props)=><Quest {...props}/>}
           />
-          <Route path="/post"
+          <Route path="/post/:id"
           component={(props)=><Post {...props}/>}
           />
         </Switch>
       </div>
-      </StateContext.Provider>
+
     </Router>
   );
 }

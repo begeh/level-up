@@ -1,10 +1,9 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory, useParams } from "react-router-dom";
-import StateContext from "../Context";
 
 import NavForApp from "../components/NavForApp";
 
@@ -34,7 +33,8 @@ export default function History(props){
   let quests = {};
   let nodes = [];
   let party_quests={};
-  let state = useContext(StateContext);
+  let state = {};
+  let party_info = {};
   
   if(props.location.state)
   {
@@ -43,6 +43,7 @@ export default function History(props){
     quests = props.location.state.quests;
     nodes = props.location.state.quest.nodes;
     party_quests = props.location.state.party_quests;
+    party_info = props.location.state.party_info;
     console.log(props);
   } else{
     history.push('/');
@@ -50,7 +51,7 @@ export default function History(props){
 
   return(
     <>
-    <NavForApp nav_title="LEGACY" state={state} quests={quests} party_quests={party_quests}/>
+    <NavForApp nav_title="LEGACY" state={state} quests={quests} party_quests={party_quests} party_info={party_info}/>
     <Grid container component="main" className={classes.root}>
       <Grid item xs={12} sm={6} md={6}>
       <div className={classes.paper}>
@@ -68,7 +69,7 @@ export default function History(props){
    </Grid>
    <Grid item xs={false} sm={6} md={6}>
     <div>
-    <button onClick={()=>history.push({pathname:"/legacy", state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>
+    <button onClick={()=>history.push({pathname:"/legacy", state: {global:state, quests:quests, party_quests: party_quests, party_info: party_info}})}>Go Back</button>
     <h1>Quest Title: {quest.title}</h1>
     <h3>Status: {quest.status}</h3>
     {
