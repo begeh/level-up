@@ -76,7 +76,7 @@ export default function Post(props) {
     return (
       <Grid className='post-view' container>
         <Grid className='back-button' item xs={12}>
-          <button className='btn btn-primary' onClick={()=>history.push({pathname:`/quest/${quest_id}`, state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>
+          <button className='btn btn-primary' onClick={()=>history.push({pathname:`/quest/${quest_id}`, state: {global:state, quest_id:quest_id, quests:quests, party_quests: party_quests, mentor_name:mentor_name, user_name:user_name}})}>Go Back</button>
         </Grid>
         <Grid item xs={4} sm={4} md={3} lg={2} >
           <img src={post.symbol} alt={post.title} width="120" height="120"/>
@@ -140,7 +140,6 @@ export default function Post(props) {
 
       <Grid className='container-right' item xs={12} sm={7} >
         {/* <NodeBar nodes={nodes} /> */}
-        <button onClick={()=>history.push({pathname:`/quest/${quest_id}`, state: {global:state, quest_id:quest_id, quests:quests, party_quests: party_quests, mentor_name:mentor_name, user_name:user_name}})}>Go Back</button>
         <PostView post={post} />
         <CommentList post={post} />
       </Grid>
