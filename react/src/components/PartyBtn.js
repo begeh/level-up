@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
 import {Hidden,List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@material-ui/core'
 
-export default function NavModal(props) {
+export default function PartyBtn(props) {
   const party = props.party_info;
   const [show, setShow] = useState(false);
 

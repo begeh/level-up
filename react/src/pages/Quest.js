@@ -56,7 +56,7 @@ export default function Quest(props) {
 
   return (
     <>
-    <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests} party_info={party_info}/>
+    <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests} party_info={party_info} quest={quest} mentor_name={mentor_name} user_name={user_name}/>
     <Grid container className='full'>
       <Hidden xsDown>
         <Grid className='container-left quest-info' item sm={5}>
@@ -66,7 +66,6 @@ export default function Quest(props) {
           <p>Apprentice: {user_name}</p>
           <p>Full Quest End Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
           <div className='quest-button'>
-          <QuestInfoBtn />
           </div>
         </Grid>
       </Hidden>
