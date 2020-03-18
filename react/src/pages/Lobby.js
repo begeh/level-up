@@ -42,7 +42,7 @@ export default function Lobby(props) {
   const [lobbyCode, setLobbyCode] = useState(null); //Join Lobby
 
   // This can be split later on if we get our MVP done but it works fine for now
-  async function handleSubmit(event) {
+  async function handleJoinSubmit(event) {
     event.preventDefault();
     console.log(`lobbyname is ${lobbyName}`); //Create lobby
     console.log(`lobbycode is ${lobbyCode}`); //Join Lobby
@@ -55,7 +55,7 @@ export default function Lobby(props) {
       state.lobbyCode = lobbyCode
     }
     // Returns all the quests that contain the relevant user id
-    let quests = await axios.post(`/user_quests`, {user_id: state.id})
+    let quests = await axios.post(`/user_quests`, { user_id: state.id })
       .then((res) => {
         return res.data;
       })
@@ -77,7 +77,7 @@ export default function Lobby(props) {
 
     console.log(`Full quests ${JSON.stringify(full_quests)}`);
 
-    let party_quests = await axios.post("/party_quests", {party_id: state.party_id})
+    let party_quests = await axios.post("/party_quests", { party_id: state.party_id })
       .then((res) => {
         return res.data
       })
@@ -99,33 +99,89 @@ export default function Lobby(props) {
 
     let party_id = full_quests[0].quest.party_id;
     let party_name = await axios.get('/parties')
-                            .then((response)=>{
-                              const party_name = response.data.filter(party=> party.id === party_id)[0].party_name
-                              return party_name
-                            });
+      .then((response) => {
+        const party_name = response.data.filter(party => party.id === party_id)[0].party_name
+        return party_name
+      });
 
-  let party_members = await axios.get("/users")
-                            .then((response)=>{
-                              let members = response.data.filter(user => user.party_id === party_id);
-                              let list =[];
-                              members.forEach(user=>{
-                                list.push({name: user.name, title: user.title});
-                              })
-                              return list;
-                            })
+    let party_members = await axios.get("/users")
+      .then((response) => {
+        let members = response.data.filter(user => user.party_id === party_id);
+        let list = [];
+        members.forEach(user => {
+          list.push({ name: user.name, title: user.title });
+        })
+        return list;
+      })
 
-  console.log(`Party Id: ${party_id}, Party Name: ${party_name}, Party Members: ${JSON.stringify(party_members)}`);
+    console.log(`Party Id: ${party_id}, Party Name: ${party_name}, Party Members: ${JSON.stringify(party_members)}`);
 
-  const party_info = {
-    id: party_id,
-    name: party_name,
-    members: party_members
+    const party_info = {
+      id: party_id,
+      name: party_name,
+      members: party_members
+    }
+
+    history.push({ pathname: "/hall", state: { global: state, quests: full_quests, party_quests: party_full_quests, party_info: party_info } });
+
+
   }
 
-  history.push({ pathname: "/hall", state: { global: state, quests: full_quests, party_quests: party_full_quests, party_info: party_info } });
+  async function handleCreateSubmit(event) {
+    event.preventDefault();
+    console.log(`lobbyname is ${lobbyName}`); //Create lobby
+    console.log(`lobbycode is ${lobbyCode}`); //Join Lobby
 
+    // If making Lobby
+    state.lobbyName = lobbyName
+
+    // Returns all the quests that contain the relevant user id
+    let party = await axios.post(`/parties`,
+      {
+        mentor_id: state.id,
+        number_of_members: 1,
+        party_name: lobbyName,
+        user_id: state.id
+      })
+      .then((res) => {
+        return res.data;
+      })
+
+    let full_quests = [];
+    let promises = [];
+
+    let party_full_quests = [];
+    let party_promises = [];
+
+    await Promise.all(party_promises);
+    console.log(`Party full quests ${JSON.stringify(party_full_quests)}`);
+
+
+
+    let party_id = party.id;
+    let party_name = party.party_name
+    let party_members = await axios.get("/users")
+      .then((response) => {
+        let members = response.data.filter(user => user.party_id === party_id);
+        let list = [];
+        members.forEach(user => {
+          list.push({ name: user.name, title: user.title });
+        })
+        return list;
+      })
+
+    console.log(`Party Id: ${party_id}, Party Name: ${party_name}, Party Members: ${JSON.stringify(party_members)}`);
+
+    const party_info = {
+      id: party_id,
+      name: party_name,
+      members: party_members
+    }
+
+    history.push({ pathname: "/hall", state: { global: state, quests: full_quests, party_quests: party_full_quests, party_info: party_info } });
 
   }
+
   return (
     <>
       <NavEmpty />
@@ -136,7 +192,7 @@ export default function Lobby(props) {
           <Typography component="h1" variant="h5">
             Join a Lobby
         </Typography>
-          <form className={classes.form} onSubmit={handleSubmit} noValidate>
+          <form className={classes.form} onSubmit={handleJoinSubmit} noValidate>
             <TextField
               variant="outlined"
               margin="normal"
@@ -160,7 +216,7 @@ export default function Lobby(props) {
               Join Lobby
           </Button>
           </form>
-          <form className={classes.form} onSubmit={handleSubmit} noValidate>
+          <form className={classes.form} onSubmit={handleCreateSubmit} noValidate>
             <TextField
               variant="outlined"
               margin="normal"

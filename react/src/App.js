@@ -51,7 +51,7 @@ export default function App() {
           <Route path="/quest/:id"
           component={(props)=><Quest {...props}/>}
           />
-          <Route path="/post"
+          <Route path="/post/:id"
           component={(props)=><Post {...props}/>}
           />
         </Switch>

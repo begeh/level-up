@@ -32,6 +32,8 @@ resources :posts do
   resources :comments
 end
 
+  get "/post/:post_id/comments", to: "comments#post_comments"
+
   post "/user_quests", to: "quests#user_quests"
   post "/party_quests", to: "quests#party_quests"
 

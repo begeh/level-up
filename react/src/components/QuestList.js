@@ -8,7 +8,7 @@ export default function QuestList({posts, handleClick}){
     <div>
       {
         posts.map((post, index) => (
-          <QuestListItem title={post.title} created_at={post.created_at} symbol={post.symbol} index={index} handleClick={handleClick} />
+          <QuestListItem title={post.title} created_at={post.created_at} symbol={post.symbol} index={index} id={post.id} handleClick={handleClick} post={post} />
         ))
       }
 
