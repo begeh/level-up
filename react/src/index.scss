@@ -43,3 +43,21 @@ code {
 .full {
   height: 100vh;
 }
+
+.MuiTypography-colorPrimary {
+  color: #574731;
+}
+
+.MuiLink-underlineHover:hover {
+  text-decoration: none !important;
+}
+
+a {
+  color: #574731 !important;
+
+
+  &:hover {
+    color: #574731 !important;
+    text-decoration: none !important;
+  }
+}
