@@ -38,6 +38,7 @@ export default function Quest(props) {
   let quest = party_quests.filter(quest => quest.quest.id === quest_id)[0];
   let posts = quest.posts.flat();
   let nodes = quest.nodes;
+  let comments = quest.comments.flat();
   console.log(`Posts is ${JSON.stringify(quest)}`);
 
   console.log(props);
@@ -45,7 +46,7 @@ export default function Quest(props) {
   
   async function handleClick(id, post){
 
-    let comments = await axios.get(`/posts/${id}/comments`).then((response)=> response.data);
+    let comments = await axios.get(`/post/${id}/comments`).then((response)=> response.data);
     console.log(`Comments are ${JSON.stringify(comments)}`);
 
     history.push({pathname:`/post/${id}`, state: {global:state, quest_id: quest_id, quests:quests, party_quests: party_quests, mentor_name:mentor_name, user_name:user_name, party_info: party_info, post:post, comments:comments}})
@@ -69,7 +70,7 @@ export default function Quest(props) {
         <button className='btn btn-primary' onClick={()=>history.push({pathname:"/hall", state: {global:state, quests:quests, party_quests: party_quests, quest_id: quest_id, party_info:party_info}})}>Go Back</button>
         </Grid>
         <NodeBar nodes={nodes} />
-        <QuestList posts={posts} handleClick={handleClick}/>
+        <QuestList posts={posts} comments={comments} handleClick={handleClick}/>
         
       </Grid>
     </Grid>

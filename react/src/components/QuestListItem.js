@@ -6,7 +6,10 @@ import comment from '../images/comment.png';
 import { Grid } from '@material-ui/core';
 import {useHistory, Link} from "react-router-dom";
 
-export default function QuestListItem({title, created_at, symbol, id, handleClick, post}) {
+export default function QuestListItem({title, created_at, symbol, id, handleClick, post, comments}) {
+
+  const comment_count= comments.flat().filter(comment=> post.id === comment.post_id).length
+
   return (
     <Link onClick={(event)=> {
       event.preventDefault();
@@ -19,7 +22,7 @@ export default function QuestListItem({title, created_at, symbol, id, handleClic
       <h3>{title}</h3>
       <p>Created at: {(new Date(created_at)).toLocaleDateString()}</p>
         <Grid item className='comment-container'>
-          <p>5</p>
+          <p>{comment_count}</p>
           <img src={comment} alt='comment symbol' width='20px' height='20px' />
         </Grid>
       </Grid>
