@@ -60,6 +60,7 @@ export default function Quest(props) {
           <p>Quest Name: {quest.quest.title}</p>
           <p>Quester Name: {user_name}</p>
           <p>Mentor Name: {mentor_name}</p>
+          <p>Full Quest End Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
         </Grid>
       </Hidden>
 

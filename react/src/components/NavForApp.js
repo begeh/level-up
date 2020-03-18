@@ -25,7 +25,7 @@ export default function NavForApp(props){
     quests = props.quests;
     party_quests = props.party_quests;
     party_info = props.party_info;
-    console.log(`This is hall quests ${JSON.stringify(quests)}`)
+    console.log(`This is party_quests ${JSON.stringify(party_quests)}`)
   } else{
     history.push('/');
   }
