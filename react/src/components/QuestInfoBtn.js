@@ -2,11 +2,13 @@ import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
 import {Hidden, List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@material-ui/core'
 
-export default function QuestInfoBtn() {
+export default function QuestInfoBtn(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  
 
   const quest_info = {
     title: 'The Great Novigrad Heist',
