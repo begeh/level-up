@@ -9,12 +9,16 @@ export default function Post(props) {
   let quests = {};
   let party_quests = {};
   let quest_id = null;
+  let mentor_name = null;
+  let user_name = null;
   if(props.location.state)
   {
     state = props.location.state.global;
     quests = props.location.state.quests;
     party_quests = props.location.state.party_quests;
     quest_id = props.location.state.quest_id;
+    mentor_name = props.location.state.mentor_name;
+    user_name = props.location.state.user_name;
     console.log(`This is party_quests ${JSON.stringify(party_quests)}`)
   } else{
     history.push('/');
@@ -132,7 +136,7 @@ export default function Post(props) {
 
       <Grid className='container-right' item xs={12} sm={7} >
         <NodeBar nodes={nodes} />
-        <button onClick={()=>history.push({pathname:`/quest/${quest_id}`, state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>
+        <button onClick={()=>history.push({pathname:`/quest/${quest_id}`, state: {global:state, quest_id:quest_id, quests:quests, party_quests: party_quests, mentor_name:mentor_name, user_name:user_name}})}>Go Back</button>
         <PostView post={post} />
         <CommentList post={post} />
       </Grid>

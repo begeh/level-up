@@ -16,16 +16,25 @@ export default function Quest(props) {
   let state = {};
   let quests={};
   let party_quests = {};
-
+  let quest_id = null;
+  let mentor_name = null;
+  let user_name = null;
   if(props.location.state)
   {
     state = props.location.state.global;
     quests = props.location.state.quests;
     party_quests = props.location.state.party_quests;
+    quest_id = props.location.state.quest_id;
+    mentor_name= props.location.state.mentor_name;
+    user_name = props.location.state.user_name;
     console.log(props);
   } else{
     history.push('/');
   }
+
+  let quest = party_quests.filter(quest => quest.quest.id === quest_id)[0];
+  let posts = quest.posts.flat();
+  console.log(`Posts is ${JSON.stringify(quest)}`);
 
   console.log(props);
   console.log(`Quest State is ${state}`);
@@ -48,7 +57,7 @@ export default function Quest(props) {
     }
   ]
 
-  const posts = [
+  const postsDummy = [
     {
       title: "post One",
       date: 'March 12, 2020',
@@ -88,8 +97,7 @@ export default function Quest(props) {
   
   function handleClick(event){
     event.preventDefault();
-    console.log(`These are the props before post ${JSON.stringify(props.location.data)}`);
-    history.push({pathname:"/post", state: {global:state, quests:quests, party_quests: party_quests}})
+    history.push({pathname:"/post", state: {global:state, quest_id: quest_id, quests:quests, party_quests: party_quests, mentor_name:mentor_name, user_name:user_name}})
   }
 
   return (
@@ -98,12 +106,14 @@ export default function Quest(props) {
     <Grid container className='full'>
       <Hidden xsDown>
         <Grid className='container-left' item sm={5}>
-          <p>Hello</p>
+          <p>Quest Name: {quest.quest.title}</p>
+          <p>Quester Name: {user_name}</p>
+          <p>Mentor Name: {mentor_name}</p>
         </Grid>
       </Hidden>
 
       <Grid className='container-right' item xs={12} sm={7} >
-      <button onClick={()=>history.push({pathname:"/hall", state: {global:state, quests:quests, party_quests: party_quests}})}>Go Back</button>
+      <button onClick={()=>history.push({pathname:"/hall", state: {global:state, quests:quests, party_quests: party_quests, quest_id: quest_id}})}>Go Back</button>
         <NodeBar nodes={nodes} />
         <QuestList posts={posts} handleClick={handleClick}/>
         
