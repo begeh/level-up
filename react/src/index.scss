@@ -58,3 +58,28 @@ a {
     text-decoration: none !important;
   }
 }
+
+.modal-content {
+  background-color: #EFD784 !important;
+  border: 1px solid #574731;
+
+  span {
+    font-family: 'Alfa Slab One', cursive;
+  }
+
+  p {
+    font-family: 'Lato', sans-serif;
+  }
+
+  .modal-header {
+    border-bottom: 1px solid #574731;
+  }
+
+  .modal-footer {
+    border-top: 1px solid #574731;
+  }
+
+  .modal-body {
+    text-align: center;
+  }
+}

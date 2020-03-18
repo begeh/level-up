@@ -9,6 +9,7 @@ export default function NavModal(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+
   return (
     <Hidden smUp >
       <Button  variant="primary" onClick={handleShow}>
@@ -20,6 +21,7 @@ export default function NavModal(props) {
           <Modal.Title>{party.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <p className='modal-code'>{party.id}</p>
           <List>
           {
             party.members.map((member, index)=>(
@@ -36,7 +38,7 @@ export default function NavModal(props) {
           </List>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button className='btn btn-primary' onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>
