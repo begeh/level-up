@@ -52,6 +52,7 @@ class QuestsController < ApplicationController
     # POST /quests
     def create
       @quest = Quest.create!(quest_params)
+      
       json_response(@quest, :created)
     end
   
@@ -77,6 +78,17 @@ class QuestsController < ApplicationController
     def quest_params
       # whitelist params
       params.permit(:party_key, :user_key, :title, :quest_description, :status, :mentor_id)
+    end
+
+    def node_params
+      # whitelist params
+      params.permit(
+  :node1Title, :node1Desc, :node1CompletionDate,
+  :node2Title, :node2Desc, :node2CompletionDate,
+  :node3Title, :node3Desc, :node3CompletionDate,
+  :node4Title, :node4Desc, :node4CompletionDate,
+  :node5Title, :node5Desc, :node5CompletionDate
+      )
     end
   
     def set_quest

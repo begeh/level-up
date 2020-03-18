@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {Button, Modal} from 'react-bootstrap';
-import {TextField, Grid} from '@material-ui/core';
+import React, { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import { TextField, Grid } from '@material-ui/core';
 
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
@@ -13,7 +13,7 @@ import {
 
 
 
-export default function QuestInfoBtn() {
+export default function QuestInfoBtn(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -27,12 +27,34 @@ export default function QuestInfoBtn() {
   };
 
   let questTitle, questDesc, node1Title, node1Desc, node1CompletionDate,
-  node2Title, node2Desc, node2CompletionDate,
-  node3Title, node3Desc, node3CompletionDate,
-  node4Title, node4Desc, node4CompletionDate,
-  node5Title, node5Desc, node5CompletionDate = null
-  
-  async function handleQuestSubmit(event) {
+    node2Title, node2Desc, node2CompletionDate,
+    node3Title, node3Desc, node3CompletionDate,
+    node4Title, node4Desc, node4CompletionDate,
+    node5Title, node5Desc, node5CompletionDate = null
+
+  console.log(props)
+  console.log(props.props.email)
+
+  function handleQuestSubmit(props) {
+
+    let quest_package = {
+      quest = {
+        title: questTitle,
+        quest_description: questDesc,
+        status: "underway",
+        party_id: props.props.party_id,
+        user_id: props.props.id
+      },
+      nodes = [
+        node1 = {
+          
+        }
+      ]
+    }
+
+    console.log(quest_package)
+
+
 
   }
 
@@ -47,7 +69,7 @@ export default function QuestInfoBtn() {
           <Modal.Title>Create Quest</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <form noValidate onSubmit={handleQuestSubmit}>
+          <form noValidate onSubmit={handleQuestSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -96,7 +118,7 @@ export default function QuestInfoBtn() {
               autoComplete="Node 1"
               value={node1Desc}
             />
-            
+
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify="space-around">
                 <KeyboardDatePicker
@@ -138,7 +160,7 @@ export default function QuestInfoBtn() {
               autoComplete="Node 2"
               value={node2Desc}
             />
-            
+
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify="space-around">
                 <KeyboardDatePicker
@@ -180,7 +202,7 @@ export default function QuestInfoBtn() {
               autoComplete="Node 3"
               value={node3Desc}
             />
-            
+
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify="space-around">
                 <KeyboardDatePicker
@@ -222,7 +244,7 @@ export default function QuestInfoBtn() {
               autoComplete="Node 4"
               value={node4Desc}
             />
-            
+
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify="space-around">
                 <KeyboardDatePicker
@@ -264,7 +286,7 @@ export default function QuestInfoBtn() {
               autoComplete="Node 5"
               value={node5Desc}
             />
-            
+
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify="space-around">
                 <KeyboardDatePicker
@@ -283,7 +305,7 @@ export default function QuestInfoBtn() {
               </Grid>
             </MuiPickersUtilsProvider>
 
-            
+
             <div class="form-group">
               <label for="Mentor">Mentor</label>
               <select class="form-control" id="exampleFormControlSelect1">
