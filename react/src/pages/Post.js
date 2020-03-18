@@ -139,7 +139,7 @@ export default function Post(props) {
       </Grid>
 
       <Grid className='container-right' item xs={12} sm={7} >
-        <NodeBar nodes={nodes} />
+        {/* <NodeBar nodes={nodes} /> */}
         <button onClick={()=>history.push({pathname:`/quest/${quest_id}`, state: {global:state, quest_id:quest_id, quests:quests, party_quests: party_quests, mentor_name:mentor_name, user_name:user_name}})}>Go Back</button>
         <PostView post={post} />
         <CommentList post={post} />
