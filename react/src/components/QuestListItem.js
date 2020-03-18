@@ -6,9 +6,11 @@ import comment from '../images/comment.png';
 import { Grid, Stepper, Step, StepLabel, Hidden } from '@material-ui/core';
 import {useHistory, Link} from "react-router-dom";
 
-export default function QuestListItem({title, created_at, symbol, handleClick}) {
+export default function QuestListItem({title, created_at, symbol, id, handleClick, post}) {
   return (
-    <Link onClick={handleClick} >
+    <Link onClick={(event)=> {
+      event.preventDefault();
+      return handleClick(id, post)}}>
     <Grid className='post-container' container>
       <Grid item xs={4} sm={4} md={3} lg={2} >
       <img src={sword} alt={title} width="120" height="120"/>
