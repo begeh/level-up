@@ -5,14 +5,14 @@ import { GridList, GridListTile } from '@material-ui/core';
 
 
 
-export default function QuestList({posts, handleClick}){
+export default function QuestList({posts, comments, handleClick}){
   return (
     <div>
       <GridList cellHeight={160} cols={3}>
       {
         posts.map((post, index) => (
           <GridListTile cols={3}>
-            <QuestListItem title={post.title} created_at={post.created_at} symbol={post.symbol} index={index} id={post.id} handleClick={handleClick} post={post} />
+            <QuestListItem title={post.title} created_at={post.created_at} symbol={post.symbol} index={index} id={post.id} handleClick={handleClick} post={post} comments={comments}/>
           </GridListTile>
         ))
       }

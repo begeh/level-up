@@ -43,6 +43,16 @@ party_uuids = [
   SecureRandom.uuid
 ]
 
+puts "Generating Post Symbol_Refs ..."
+
+symbol_refs = []
+
+symbol_refs = [
+  "sword",
+  "question",
+  "book"
+]
+
 puts "Creating Users ..."
 
 User.destroy_all
@@ -250,9 +260,21 @@ count = 1
 posts = []
 
 post_list.each do |node_id|
-  posts.append(Post.find_or_create_by!(id: count, title: Faker::Lorem.word, content: Faker::Lorem.sentence, node_id: node_id))
+  posts.append(Post.find_or_create_by!(
+    id: count,
+    title: Faker::Lorem.word,
+    content: Faker::Lorem.sentence,
+    node_id: node_id,
+    symbol_ref: symbol_refs.sample
+    ))
   count += 1
-  posts.append(Post.find_or_create_by!(id: count, title: Faker::Lorem.word, content: Faker::Lorem.sentence, node_id: node_id))
+  posts.append(Post.find_or_create_by!(
+    id: count,
+    title: Faker::Lorem.word,
+    content: Faker::Lorem.sentence,
+    node_id: node_id,
+    symbol_ref: symbol_refs.sample
+    ))
   count += 1
 end
 
