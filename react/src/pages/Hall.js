@@ -1,6 +1,6 @@
 import React from 'react';
 import {Grid, Hidden, Link} from '@material-ui/core';
-import QuestInfoBtn from '../components/CreateQuestBtn'
+import CreateQuestBtn from '../components/CreateQuestBtn'
 import NavForApp from '../components/NavForApp';
 import './Hall.scss'
 import {useHistory} from "react-router-dom"
@@ -72,7 +72,7 @@ export default function Hall(props) {
 
       <Grid className='container-right' item xs={12} sm={7} >
         <HallList quests={party_quests} handleClick={handleClick} />
-        <QuestInfoBtn />
+        <CreateQuestBtn />
       </Grid>
     </Grid>
 
