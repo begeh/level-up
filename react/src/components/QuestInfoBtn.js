@@ -1,43 +1,83 @@
 import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import {Hidden, List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@material-ui/core'
+import {Hidden, List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@material-ui/core';
+import {useHistory} from "react-router-dom";
+import axios from 'axios';
+import QuestFinish from "./QuestFinish";
 
 export default function QuestInfoBtn(props) {
+  let history = useHistory();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const state = props.state;
   const mentor_name = props.mentor_name;
   const user_name = props.user_name;
-  const quest = props.quest
-  
-  const quest_info = {
-    title: 'The Great Novigrad Heist',
-    description: 'Free the witches',
-    nodes: [
-      {
-        title: 'start',
-        description: 'start it',
-        date: Date(Date.now()).toString(),
-        isComplete: true
-      },
-      {
-        title: 'middle',
-        description: 'middle part',
-        date: Date(Date.now()).toString(),
-        isComplete: true
-      },
-      {
-        title: 'end',
-        description: 'The last part',
-        date: Date(Date.now()).toString(),
-        isComplete: false
+  const quest = props.quest;
+  const nodes = props.quest.nodes;
+  const party_info = props.party_info;
+  const quest_id = props.quest_id;
+  let quest_completed = props.quest_completed;
+
+
+  async function handleLevel(nodes) {
+    let node = nodes.find(node=> node["is_complete?"] === false);
+    if(node){
+      console.log(`Node not completed is ${node.id}`);
+      await axios.put(`/nodes/${node.id}`, {"is_complete?": true}).catch(err => alert(err));
+      if(node.id === nodes[nodes.length-1].id){
+        quest_completed = true;
       }
-    ],
-    mentor: "John",
-    date_finish: Date(Date.now()).toString()
-  };
+    } else{
+      quest_completed = true;
+    }
+
+    let quests = await axios.post(`/user_quests`, { user_id: state.id })
+    .then((res) => {
+      return res.data;
+    })
+    
+    let full_quests = [];
+    let promises = [];
+    quests.forEach((quest) => {
+      promises.push(axios.get(`/quest_object/${quest_id}`)
+        .then((response) => {
+          full_quests.push(response.data);
+        })
+        .catch((err)=> alert(err))
+      )
+    }
+    );
+
+    await Promise.all(promises);
+
+    console.log(`Full Quests is ${JSON.stringify(full_quests)}`);
+
+    let party_quests = await axios.post("/party_quests", { party_id: state.party_id })
+      .then((res) => {
+        return res.data
+      })
+
+    let party_full_quests = [];
+    let party_promises = [];
+    party_quests.forEach((quest) => {
+      party_promises.push(axios.get(`/quest_object/${quest.id}`)
+        .then((response) => {
+          party_full_quests.push(response.data);
+        })
+      )
+    }
+    );
+
+    await Promise.all(party_promises);
+
+    handleClose();
+
+    history.push({pathname:`/quest/${quest_id}`,state:{global: state, quests: full_quests, party_quests:party_full_quests, quest_id: quest_id, mentor_name:mentor_name, user_name:user_name, party_info: party_info, quest_completed: quest_completed}})
+
+  }
 
   return (
     <div>
@@ -73,7 +113,11 @@ export default function QuestInfoBtn(props) {
           </List>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={(event)=>{
+            event.preventDefault();
+            return handleLevel(nodes);
+          }
+            }>
             Level-Up!
           </Button>
           <Button variant="secondary" onClick={handleClose}>

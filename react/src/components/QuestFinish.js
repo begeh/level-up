@@ -6,7 +6,7 @@ import shield from '../images/shield.png'
 export default function PartyBtn(props) {
   const [show, setShow] = useState(true);
 
-  const handleClose = () => setShow(true);
+  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
 
