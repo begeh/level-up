@@ -1,5 +1,7 @@
 class QuestsController < ApplicationController
 
+
+
   include Response
   include ExceptionHandler
 
@@ -57,17 +59,15 @@ class QuestsController < ApplicationController
 
     # POST /create_quest/:package
     def create_quest
-      quest_data = params[:quest_package][:quest]
-      node_data = params[:quest_package][:nodes]
+      quest_data = params[:quest]
+      node_data = params[:nodes]
       puts quest_data
       puts "Space"
       puts node_data
       @quest = Quest.create!(
-        party_id: quest_data.party_id,
-        user_id: quest_data.user_id,
-        mentor_id: quest_data.user_id,
-        
-
+        party_id: quest_data[:party_id],
+        user_id: quest_data[:user_id].to_i,
+        mentor_id: quest_data[:user_id].to_i
       )
       json_response(@quest, :created)
     end
@@ -93,7 +93,7 @@ class QuestsController < ApplicationController
   
     def quest_params
       # whitelist params
-      params.permit(:party_key, :user_key, :title, :quest_description, :status, :mentor_id)
+      params.permit(:party_id, :user_id, :title, :quest_description, :status, :mentor_id, :node)
     end
 
     def node_params

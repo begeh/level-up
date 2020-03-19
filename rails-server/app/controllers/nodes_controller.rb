@@ -14,6 +14,7 @@ class NodesController < ApplicationController
     
       # GET /nodes/:id
       def show
+        set_node()
         json_response(@node)
       end
 

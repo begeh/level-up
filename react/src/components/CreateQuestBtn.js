@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { TextField, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Form, Field } from 'react-final-form'
+import { Form } from 'react-final-form'
 
 import axios from 'axios';
 
@@ -51,48 +51,48 @@ export default function CreateQuestBtn(props) {
   console.log(props.props.email)
 
   async function handleQuestSubmit(event) {
+    event.preventDefault()
 
 
     console.log("function is called")
 
-    let quest_package = {
-      quest: {
-        title: questTitle,
-        quest_description: questDesc,
-        status: "underway",
-        party_id: props.props.party_id,
-        user_id: props.props.id
+
+    let quest = {
+      title: questTitle,
+      quest_description: questDesc,
+      status: "underway",
+      party_id: props.props.party_id,
+      user_id: props.props.id
+    }
+    let nodes = {
+      node1: {
+        title: node1Title,
+        description: node1Desc,
+        complete_by: node1CompletionDate,
       },
-      nodes: {
-        node1: {
-          title: node1Title,
-          description: node1Desc,
-          complete_by: node1CompletionDate,
-        },
-        node2: {
-          title: node2Title,
-          description: node2Desc,
-          complete_by: node2CompletionDate,
-        },
-        node3: {
-          title: node3Title,
-          description: node3Desc,
-          complete_by: node3CompletionDate,
-        },
-        node4: {
-          title: node4Title,
-          description: node4Desc,
-          complete_by: node4CompletionDate,
-        },
-        node5: {
-          title: node5Title,
-          description: node5Desc,
-          complete_by: node5CompletionDate,
-        }
+      node2: {
+        title: node2Title,
+        description: node2Desc,
+        complete_by: node2CompletionDate,
+      },
+      node3: {
+        title: node3Title,
+        description: node3Desc,
+        complete_by: node3CompletionDate,
+      },
+      node4: {
+        title: node4Title,
+        description: node4Desc,
+        complete_by: node4CompletionDate,
+      },
+      node5: {
+        title: node5Title,
+        description: node5Desc,
+        complete_by: node5CompletionDate,
       }
     }
 
-    let quest_info = await axios.post("/create_quest/package", { quest_package })
+    let quest_info = await axios.post("/create_quest", { quest, nodes })
       .then((res) => res.data)
 
     console.log(quest_info)
@@ -100,16 +100,18 @@ export default function CreateQuestBtn(props) {
   }
 
   const MyForm = () => (
+
+
     <Form
       onSubmit={handleQuestSubmit}
-      render={({ handleSubmit }) => (
+      render={({ handleSubmit }) =>
+
         <Modal show={show} onHide={handleClose}>
-          <form noValidate onSubmit={handleSubmit} className={classes.form}>
+          <form noValidate onSubmit={handleQuestSubmit} className={classes.form} >
             <Modal.Header closeButton>
               <Modal.Title>Create Quest</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Field name="QuestTitle">
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -122,7 +124,6 @@ export default function CreateQuestBtn(props) {
                 value={questTitle}
                 autoFocus
               />
-              </Field>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -375,18 +376,22 @@ export default function CreateQuestBtn(props) {
                   className={classes.submit}
                 >
                   Submit Quest
-        </Button>
+          </Button>
               </Modal.Footer>
             </Modal.Body>
 
           </form>
         </Modal>
-      )}
-    />
-  )
 
+      }
+    />
+
+
+
+  );
 
   return (
+
     <>
       <Button variant="primary" onClick={handleShow}>
         Create Quest
@@ -396,5 +401,5 @@ export default function CreateQuestBtn(props) {
 
 
     </>
-  );
+  )
 }
