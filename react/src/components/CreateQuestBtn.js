@@ -96,7 +96,7 @@ export default function CreateQuestBtn(props) {
     let quest_info = await axios.post("/create_quest/:package", { quest_package })
       .then((res) => res.data)
 
-    console.log(quest_info)
+    console.log(quest_info)Form
 
   }
 
@@ -108,7 +108,7 @@ export default function CreateQuestBtn(props) {
 
       <Form
       onSubmit={onSubmit}
-      
+
 
       <form noValidate onSubmit={handleQuestSubmit} className={classes.form} >
         <Modal show={show} onHide={handleClose}>
