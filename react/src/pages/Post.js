@@ -1,9 +1,11 @@
 import React from 'react';
-import { Grid, TextField, Avatar } from '@material-ui/core';
+import { Grid, TextField, Avatar, Hidden } from '@material-ui/core';
 import NavForApp from '../components/NavForApp';
 import { useHistory } from "react-router-dom";
 import ReactPlayer from 'react-player'
 import './Post.scss'
+import QuestInfoBtn from "../components/QuestInfoBtn";
+import scroll from '../images/scroll.png' 
 
 export default function Post(props) {
   let history=useHistory();
@@ -16,6 +18,7 @@ export default function Post(props) {
   let party_info = {}
   let post = {};
   let comments = {};
+  let quest= null;
   if(props.location.state)
   {
     state = props.location.state.global;
@@ -27,6 +30,7 @@ export default function Post(props) {
     party_info = props.location.state.party_info;
     post = props.location.state.post;
     comments = props.location.state.comments;
+    quest= props.location.state.quest;
   } else{
     history.push('/');
   }
@@ -121,9 +125,18 @@ export default function Post(props) {
     <>
     <NavForApp nav_title='POST' state={state} quests={quests} party_quests={party_quests} party_info={party_info}/>
     <Grid container >
-      <Grid className='container-left' item sm={5}>
-        <p>Hello</p>
-      </Grid>
+    <Hidden xsDown>
+        <Grid className='container-left quest-info' item sm={5}>
+          <img src={scroll} alt='scroll' />
+          <h3>{quest.quest.title}</h3>
+          <p>Mentor: {mentor_name}</p>
+          <p>Apprentice: {user_name}</p>
+          <p>Finish Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
+          <div className='quest-button'>
+          <QuestInfoBtn quest={quest} mentor_name={mentor_name} user_name={user_name}/>
+          </div>
+        </Grid>
+      </Hidden>
 
       <Grid className='container-right' item xs={12} sm={7} >
         <PostView post={post} />
