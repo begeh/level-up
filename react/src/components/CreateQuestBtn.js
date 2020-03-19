@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { TextField, Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { Form } from 'react-final-form'
+
 import axios from 'axios';
 
 import 'date-fns';
@@ -10,11 +13,22 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
+const useStyles = makeStyles(theme => ({
 
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
 
 
 export default function CreateQuestBtn(props) {
+  const classes = useStyles();
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -37,6 +51,8 @@ export default function CreateQuestBtn(props) {
   console.log(props.props.email)
 
   async function handleQuestSubmit(event) {
+    event.preventDefault()
+
 
     console.log("function is called")
 
@@ -84,18 +100,22 @@ export default function CreateQuestBtn(props) {
 
   }
 
-  return (
+  const MyForm = () => (
     <>
       <Button variant="primary" onClick={handleShow}>
         Create Quest
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Create Quest</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form noValidate onSubmit={handleQuestSubmit}>
+      <Form
+      onSubmit={onSubmit}
+      
+
+      <form noValidate onSubmit={handleQuestSubmit} className={classes.form} >
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Create Quest</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
             <TextField
               variant="outlined"
               margin="normal"
@@ -357,14 +377,17 @@ export default function CreateQuestBtn(props) {
               <Button
                 type="submit"
                 variant="primary"
+                className={classes.submit}
               >
                 Submit Quest
           </Button>
             </Modal.Footer>
-          </form>
-        </Modal.Body>
+          </Modal.Body>
 
-      </Modal>
+        </Modal>
+      </form>
     </>
   );
+
+  return (MyForm)
 }
