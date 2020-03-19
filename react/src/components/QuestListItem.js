@@ -10,13 +10,23 @@ export default function QuestListItem({title, created_at, symbol, id, handleClic
 
   const comment_count= comments.flat().filter(comment=> post.id === comment.post_id).length
 
+  let post_symbol = null;
+
+  if(symbol === "sword"){
+    post_symbol = sword;
+  } else if(symbol === "question"){
+    post_symbol = question;
+  } else{
+    post_symbol = book;
+  }
+
   return (
     <Link onClick={(event)=> {
       event.preventDefault();
       return handleClick(id, post)}}>
     <Grid className='post-container' container>
       <Grid item xs={4} sm={4} md={3} lg={2} >
-      <img src={sword} alt={title} width="120" height="120"/>
+      <img src={post_symbol} alt={title} width="120" height="120"/>
       </Grid>
       <Grid item className='post-detail' xs={8} sm={8} md={9} lg={10}>
       <h3>{title}</h3>
