@@ -21,6 +21,8 @@ export default function NavForApp(props){
   let quest = {};
   let mentor_name = null;
   let user_name = null;
+  let quest_id = null;
+  let quest_completed = null;
   if(props.state)
   {
     state = props.state;
@@ -30,6 +32,8 @@ export default function NavForApp(props){
     mentor_name = props.mentor_name;
     user_name = props.user_name;
     quest = props.quest;
+    quest_id = props.quest_id;
+    quest_completed = props.quest_completed;
     console.log(`This is party_quests ${JSON.stringify(party_quests)}`)
   } else{
     history.push('/');
@@ -47,7 +51,7 @@ export default function NavForApp(props){
         </Navbar.Brand>
       </Hidden>
       {props.nav_title === 'HALL' ? <PartyBtn party_info={party_info}/> : <></>}
-      {props.nav_title === 'QUEST' ? <Hidden smUp ><QuestInfoBtn quest={quest} mentor_name={mentor_name} user_name={user_name}/></Hidden> : <></>}
+      {props.nav_title === 'QUEST' ? <Hidden smUp ><QuestInfoBtn state={state} quest={quest} mentor_name={mentor_name} user_name={user_name} party_info={party_info} quests={quests} party_quests={party_quests} quest_id={quest_id} quest_completed={quest_completed}/></Hidden> : <></>}
       <Navbar.Brand >{props.nav_title }</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
