@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Stepper, Step, StepLabel, Hidden, Tooltip } from '@material-ui/core';
+import { Grid, Hidden } from '@material-ui/core';
 import {useHistory, Link} from "react-router-dom"
 import NavForApp from '../components/NavForApp';
 import CreatePostBtn from '../components/CreatePostBtn'
@@ -13,6 +13,7 @@ import QuestList from "../components/QuestList";
 import NodeBar from "../components/NodeBar";
 import scroll from '../images/scroll.png'
 import axios from 'axios';
+import QuestFinish from '../components/QuestFinish'
 
 export default function Quest(props) {
   let history=useHistory();
@@ -72,8 +73,10 @@ export default function Quest(props) {
     history.push({pathname:`/quest/${quest_id}/post/${id}`, state: {global:state, quest_id: quest_id, quests:quests, quest: quest, party_quests: party_quests, mentor_name:mentor_name, user_name:user_name, party_info: party_info, post:post, comments:comments}})
   }
 
+
   return (
     <>
+    {/* <QuestFinish /> */}
     <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests} party_info={party_info} quest={quest} mentor_name={mentor_name} user_name={user_name}/>
     <Grid container className='full'>
       <Hidden xsDown>
