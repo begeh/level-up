@@ -26,8 +26,10 @@ class NodesController < ApplicationController
     
       # PUT /nodes/:id
       def update
+        set_node()
         @node.update(node_params)
-        head :no_content
+        @json_response("Node updated succesfully!")
+        # head :no_content
       end
     
       # DELETE /nodes/:id
@@ -40,7 +42,7 @@ class NodesController < ApplicationController
     
       def node_params
         # whitelist params
-        params.permit(:title, :description, :quest_id, :is_complete?, :date_finished)
+        params.permit(:title, :description, :quest_id, :is_complete?, :date_finished, :id, :node)
       end
     
       def set_node

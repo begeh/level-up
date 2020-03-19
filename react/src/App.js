@@ -48,11 +48,11 @@ export default function App() {
           <Route path="/signup" 
           component={(props)=> <SignUp {...props}/>}
           />
+          <Route path="/quest/:id/post/:id"
+          component={(props)=><Post {...props}/>}
+          />
           <Route path="/quest/:id"
           component={(props)=><Quest {...props}/>}
-          />
-          <Route path="/post/:id"
-          component={(props)=><Post {...props}/>}
           />
         </Switch>
       </div>

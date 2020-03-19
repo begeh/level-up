@@ -160,81 +160,81 @@ Node.destroy_all
 node1 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
-  is_complete?: Faker::Boolean.boolean,
+  is_complete?: false,
   quest_id: quest1.id,
-  date_finished: Faker::Time.between(from: DateTime.now, to: quest1.date_finished)
+  date_finished: nil
 })
 
 node2 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
-  is_complete?: Faker::Boolean.boolean,
+  is_complete?: false,
   quest_id: quest1.id,
-  date_finished: Faker::Time.between(from: DateTime.now, to: quest1.date_finished)
+  date_finished: nil
 })
 
 node3 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
-  is_complete?: Faker::Boolean.boolean,
+  is_complete?: false,
   quest_id: quest1.id,
-  date_finished: Faker::Time.between(from: DateTime.now, to: quest1.date_finished)
+  date_finished: nil
 })
 
 node4 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
-  is_complete?: Faker::Boolean.boolean,
+  is_complete?: false,
   quest_id: quest1.id,
-  date_finished: Faker::Time.between(from: DateTime.now, to: quest1.date_finished)
+  date_finished: nil
 })
 
 node5 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
-  is_complete?: Faker::Boolean.boolean,
+  is_complete?: false,
   quest_id: quest1.id,
-  date_finished: Faker::Time.between(from: DateTime.now, to: quest1.date_finished)
+  date_finished: nil
 })
 
 node6 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
-  is_complete?: Faker::Boolean.boolean,
+  is_complete?: false,
   quest_id: quest2.id,
-  date_finished: Faker::Time.between(from: DateTime.now, to: quest2.date_finished)
+  date_finished: nil
 })
 
 node7 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
-  is_complete?: Faker::Boolean.boolean,
+  is_complete?: false,
   quest_id: quest2.id,
-  date_finished: Faker::Time.between(from: DateTime.now, to: quest2.date_finished)
+  date_finished: nil
 })
 
 node8 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
-  is_complete?: Faker::Boolean.boolean,
+  is_complete?: false,
   quest_id: quest2.id,
-  date_finished: Faker::Time.between(from: DateTime.now, to: quest2.date_finished)
+  date_finished: nil
 })
 
 node9 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
-  is_complete?: Faker::Boolean.boolean,
+  is_complete?: false,
   quest_id: quest2.id,
-  date_finished: Faker::Time.between(from: DateTime.now, to: quest2.date_finished)
+  date_finished: nil
 })
 
 node10 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
-  is_complete?: Faker::Boolean.boolean,
+  is_complete?: false,
   quest_id: quest2.id,
-  date_finished: Faker::Time.between(from: DateTime.now, to: quest2.date_finished)
+  date_finished: nil
 })
 
 Post.destroy_all

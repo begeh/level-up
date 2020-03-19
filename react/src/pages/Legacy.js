@@ -2,30 +2,14 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
 import NavForApp from "../components/NavForApp";
-
+import shield from '../images/shield.png'
 import axios from 'axios';
+import './Legacy.scss'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    height: '100vh',
-  },
-  paper: {
-    margin: theme.spacing(8, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    width: theme.spacing(50),
-    height: theme.spacing(50),
-  }
-}));
 
 export default function Legacy(props) {
-  const classes = useStyles();
   let history=useHistory();
   let state = {};
   let quests={};
@@ -56,30 +40,30 @@ export default function Legacy(props) {
   return (
     <>
     <NavForApp nav_title="LEGACY" state={state} quests={quests} party_quests={party_quests} party_info={party_info}/>
-    <Grid container component="main" className={classes.root}>
-      <Grid item xs={12} sm={6} md={6}>
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar} src="https://img.favpng.com/2/14/7/accelerated-mobile-pages-one-call-away-responsive-web-design-non-governmental-organisation-png-favpng-kpXLYqN4PqkrrtxZxiZa8FLCW.jpg"/>
-        <Typography component="h1" variant="h4">
-          Your Legacy
-        </Typography>
-        <Typography component="h1" variant="h6">
-          Your Name: {state.name}
-        </Typography>
-        <Typography component="h1" variant="h6">
-         TITLE: {state.title}
-        </Typography>
-      </div>
+    <Grid container component="main" className='full'>
+      <Grid item sm={5} className='container-left party-container'>
+        <img src={shield}/>
+        <h3>Your Legacy</h3>
+        <div className='party-member'>
+          <p>{state.name}</p>
+          <p className='party-title'>~ {state.title} ~</p>
+        </div>
    </Grid>
-   <Grid item xs={false} sm={6} md={6}>
+   <Grid item sm={7} className='container-right'>
       {
-      quests.map((achievement, index) => (
-      <button onClick={()=>loadQuest(achievement.quest.id)}>
-        <p>{achievement.quest.title}</p>
-        <p>{(new Date(achievement.quest.created_at)).toLocaleDateString()}-{(new Date(achievement.quest.updated_at)).toLocaleDateString()}</p>
-        <p>{achievement.quest.status}</p>
-      </button>
-    ))}
+        quests.map((achievement, index) => (
+        <Grid className='legacy-list' container onClick={()=>loadQuest(achievement.quest.id)}>
+
+          <Grid item xs={4} sm={4} md={3} lg={2} >
+            <img src={shield} alt='win display' />
+          </Grid>
+          <Grid className='legacy-right' item xs={8} sm={8} md={9} lg={10}>
+            <h3>{achievement.quest.title}</h3>
+            <p>{(new Date(achievement.quest.created_at)).toLocaleDateString()}-{(new Date(achievement.quest.updated_at)).toLocaleDateString()}</p>
+            <p>{achievement.quest.status}</p>
+          </Grid>
+        </Grid>
+      ))}
     </Grid>
    </Grid>
    </>

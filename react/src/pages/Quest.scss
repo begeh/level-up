@@ -1,16 +1,25 @@
 .post-container {
-  background-color: #ceb57f;
+  background-color: #EFD784;
   border: 4px solid #59301A;
   border-radius: 15px;
   margin-bottom: 5px;
 
   &:hover {
-    background-color: #b9a271;
+    background-color: rgb(201, 180, 105);
   }
 }
 
 .post-detail {
   padding-top: 17px;
+
+}
+
+.delete-post {
+  position: absolute;
+  width: 100%;
+  text-align: right;
+  padding-right: 21px;
+  padding-top: 5px;
 }
 
 .comment-container {
@@ -21,4 +30,39 @@
   p {
     margin-right: 5px;
   }
+}
+
+.quest-info {
+  padding-top: 20px;
+  text-align: center;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  img {
+    max-width: 35%;
+  }
+
+  .quest-button {
+    margin-top: 10px;
+  }
+}
+
+.MuiGridList-root {
+  height: 400px;
+  margin-bottom: 10px !important;
+  background-color: #D7A95F;
+  padding: 5px !important;
+  border: solid #59301A;
+}
+
+.node-desc {
+
+  text-align: left;
+  padding-left: 20px;
+}
+
+.finish-image {
+  max-width: 60%;
 }
