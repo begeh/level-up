@@ -14,6 +14,7 @@ class NodesController < ApplicationController
     
       # GET /nodes/:id
       def show
+        set_node()
         json_response(@node)
       end
 
@@ -27,8 +28,8 @@ class NodesController < ApplicationController
       def update
         set_node()
         @node.update(node_params)
-        @json_response("Node updated succesfully!")
-        # head :no_content
+        # @json_response("Node updated succesfully!")
+        # # head :no_content
       end
     
       # DELETE /nodes/:id
