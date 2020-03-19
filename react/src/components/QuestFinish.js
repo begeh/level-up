@@ -6,17 +6,12 @@ import shield from '../images/shield.png'
 export default function PartyBtn(props) {
   const [show, setShow] = useState(true);
 
-  const handleClose = () => setShow(true);
+  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
 
   return (
     <div className='finish-modal'>
-      <Hidden>
-      <Button  variant="primary" onClick={handleShow}>
-        Complete
-      </Button>
-      </Hidden>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header>

@@ -25,6 +25,7 @@ export default function Quest(props) {
   let user_name = null;
   let party_info = {}
   let node_posts = null;
+  let quest_completed = false;
   if(props.location.state)
   {
     state = props.location.state.global;
@@ -35,11 +36,13 @@ export default function Quest(props) {
     user_name = props.location.state.user_name;
     party_info = props.location.state.party_info;
     node_posts = props.location.state.node_posts;
+    quest_completed = props.location.state.quest_completed;
     console.log(props);
   } else{
     history.push('/');
   }
 
+  console.log(`Quest is completed ${quest_completed}`)
   let quest = party_quests.filter(quest => quest.quest.id === quest_id)[0];
 
   let posts = null;
@@ -76,7 +79,7 @@ export default function Quest(props) {
 
   return (
     <>
-    {/* <QuestFinish /> */}
+    { quest_completed ? <QuestFinish /> : null }
     <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests} party_info={party_info} quest={quest} mentor_name={mentor_name} user_name={user_name}/>
     <Grid container className='full'>
       <Hidden xsDown>
@@ -87,7 +90,7 @@ export default function Quest(props) {
           <p>Apprentice: {user_name}</p>
           <p>Finish Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
           <div className='quest-button'>
-          <QuestInfoBtn quest={quest} mentor_name={mentor_name} user_name={user_name}/>
+          <QuestInfoBtn state={state} quest={quest} mentor_name={mentor_name} user_name={user_name} party_info={party_info} quests={quests} party_quests={party_quests} quest_id={quest_id} quest_completed={quest_completed}/>
           </div>
         </Grid>
       </Hidden>
