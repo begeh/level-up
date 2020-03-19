@@ -64,7 +64,7 @@ export default function Quest(props) {
           <h3>{quest.quest.title}</h3>
           <p>Mentor: {mentor_name}</p>
           <p>Apprentice: {user_name}</p>
-          <p>Full Quest End Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
+          <p>Finish Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
           <div className='quest-button'>
           </div>
         </Grid>

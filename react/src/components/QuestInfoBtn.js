@@ -47,12 +47,13 @@ export default function QuestInfoBtn(props) {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{quest.quest.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Quest Title: {quest.quest.title}</p>
-          <p>Quest Desc: {quest.quest.description}</p>
-          <p>Expected Quest Finish Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
+          <h3>{quest.quest.title}</h3>
+          <h6>{quest.quest.description}</h6>
+          <h6>Mentor: {mentor_name}</h6>
+          <h6>Apprentice: {user_name}</h6>
+          <h6>Finish Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</h6>
           <List>
           {
             quest.nodes.map((node, index)=>(
@@ -65,12 +66,10 @@ export default function QuestInfoBtn(props) {
                   </ListItemAvatar>
                   <ListItemText primary={`Node ${node.id}: ${node.title}`} secondary={(new Date(node.date_finished)).toLocaleDateString()} />
                 </ListItem>
-                <p>Node {node.id} Desc: {node.description}</p>
+                <p className='node-desc'>{node.description}</p>
               </div>
             ))
           }
-          <p>Quester Name: {user_name}</p>
-          <p>Mentor Name: {mentor_name}</p>
           </List>
         </Modal.Body>
         <Modal.Footer>
