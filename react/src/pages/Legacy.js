@@ -2,7 +2,6 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
 import NavForApp from "../components/NavForApp";
 import shield from '../images/shield.png'
@@ -42,17 +41,13 @@ export default function Legacy(props) {
     <>
     <NavForApp nav_title="LEGACY" state={state} quests={quests} party_quests={party_quests} party_info={party_info}/>
     <Grid container component="main" className='full'>
-      <Grid item sm={5} className='container-left'>
-        <Avatar src="https://img.favpng.com/2/14/7/accelerated-mobile-pages-one-call-away-responsive-web-design-non-governmental-organisation-png-favpng-kpXLYqN4PqkrrtxZxiZa8FLCW.jpg"/>
-        <Typography component="h1" variant="h4">
-          Your Legacy
-        </Typography>
-        <Typography component="h1" variant="h6">
-          Your Name: {state.name}
-        </Typography>
-        <Typography component="h1" variant="h6">
-         TITLE: {state.title}
-        </Typography>
+      <Grid item sm={5} className='container-left party-container'>
+        <img src={shield}/>
+        <h3>Your Legacy</h3>
+        <div className='party-member'>
+          <p>{state.name}</p>
+          <p className='party-title'>~ {state.title} ~</p>
+        </div>
    </Grid>
    <Grid item sm={7} className='container-right'>
       {
