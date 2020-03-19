@@ -11,7 +11,7 @@ export default function QuestInfoBtn(props) {
   const mentor_name = props.mentor_name;
   const user_name = props.user_name;
   const quest = props.quest
-
+  
   const quest_info = {
     title: 'The Great Novigrad Heist',
     description: 'Free the witches',

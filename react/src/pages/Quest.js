@@ -23,6 +23,7 @@ export default function Quest(props) {
   let mentor_name = null;
   let user_name = null;
   let party_info = {}
+
   if(props.location.state)
   {
     state = props.location.state.global;
@@ -41,10 +42,8 @@ export default function Quest(props) {
   let posts = quest.posts.flat();
   let nodes = quest.nodes;
   let comments = quest.comments.flat();
+  
   console.log(`Posts is ${JSON.stringify(quest)}`);
-
-  console.log(props);
-  console.log(`Quest State is ${state}`);
   
   async function handleClick(id, post){
 

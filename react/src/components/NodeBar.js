@@ -10,7 +10,7 @@ export default function NodeBar({nodes}) {
           return (
             <Tooltip title={node.title} arrow placement="bottom">
               <Step key={index} >
-                <StepLabel className={node.isComplete ? 'completed-node' : 'uncompleted-node'} />
+                <StepLabel className={node["is_complete?"] ? 'completed-node' : 'uncompleted-node'} />
               </Step>
             </Tooltip>
           );

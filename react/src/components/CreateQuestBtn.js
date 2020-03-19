@@ -13,7 +13,7 @@ import {
 
 
 
-export default function QuestInfoBtn() {
+export default function CreateQuestBtn() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
