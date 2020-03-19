@@ -23,7 +23,7 @@ export default function Quest(props) {
   let mentor_name = null;
   let user_name = null;
   let party_info = {}
-
+  let node_posts = null;
   if(props.location.state)
   {
     state = props.location.state.global;
@@ -33,18 +33,37 @@ export default function Quest(props) {
     mentor_name= props.location.state.mentor_name;
     user_name = props.location.state.user_name;
     party_info = props.location.state.party_info;
+    node_posts = props.location.state.node_posts;
     console.log(props);
   } else{
     history.push('/');
   }
 
   let quest = party_quests.filter(quest => quest.quest.id === quest_id)[0];
-  let posts = quest.posts.flat();
+
+  let posts = null;
+  if(!node_posts){
+    posts = quest.posts.flat();
+  } else{
+    posts = node_posts;
+  }
+
+  console.log(`This is posts ${JSON.stringify(posts)}`);
+
   let nodes = quest.nodes;
   let comments = quest.comments.flat();
   
-  console.log(`Posts is ${JSON.stringify(quest)}`);
-  
+  //renders quest page with only posts associated with the node that is click on nodebar in quest page
+  function handleNode(id){
+    if(node_posts){
+      posts = quest.posts.flat();
+    }
+    node_posts = posts.filter(post=> post.node_id === id);
+
+    history.push({pathname:`/quest/${quest_id}`, state: {global:state, quest_id:quest_id, quests:quests, party_quests: party_quests, mentor_name:mentor_name, user_name:user_name, party_info:party_info, node_posts: node_posts}})
+  }
+
+  //redirects to post page when a post is clicked on quest page
   async function handleClick(id, post){
 
     let comments = await axios.get(`/post/${id}/comments`).then((response)=> response.data);
@@ -73,7 +92,7 @@ export default function Quest(props) {
         <Grid className='back-button' item xs={12}>
         <button className='btn btn-primary' onClick={()=>history.push({pathname:"/hall", state: {global:state, quests:quests, party_quests: party_quests, quest_id: quest_id, party_info:party_info}})}>Go Back</button>
         </Grid>
-        <NodeBar nodes={nodes} />
+        <NodeBar nodes={nodes} handleNode={handleNode}/>
         <QuestList posts={posts} comments={comments} handleClick={handleClick}/>
         
       </Grid>
