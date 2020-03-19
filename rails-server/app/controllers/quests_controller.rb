@@ -52,7 +52,14 @@ class QuestsController < ApplicationController
     # POST /quests
     def create
       @quest = Quest.create!(quest_params)
-      
+      json_response(@quest, :created)
+    end
+
+    # POST /create_quest/:package
+    def create_quest
+      @quest = Quest.create!(params[:package])
+    end
+
       json_response(@quest, :created)
     end
   

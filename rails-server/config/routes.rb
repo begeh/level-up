@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users
 
   post "/user", to: "users#return_user"
-  post "/create_quest", to: "quests#create_quest"
+  post "/create_quest/:package", to: "quests#create_quest"
 
   resources :parties
   

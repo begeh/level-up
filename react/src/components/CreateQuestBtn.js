@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { TextField, Grid } from '@material-ui/core';
+import axios from 'axios';
 
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
@@ -13,7 +14,7 @@ import {
 
 
 
-export default function CreateQuestBtn() {
+export default function CreateQuestBtn(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -35,26 +36,51 @@ export default function CreateQuestBtn() {
   console.log(props)
   console.log(props.props.email)
 
-  function handleQuestSubmit(props) {
+  async function handleQuestSubmit(event) {
+
+    console.log("function is called")
 
     let quest_package = {
-      quest = {
+      quest: {
         title: questTitle,
         quest_description: questDesc,
         status: "underway",
         party_id: props.props.party_id,
         user_id: props.props.id
       },
-      nodes = [
-        node1 = {
-          
+      nodes: {
+        node1: {
+          title: node1Title,
+          description: node1Desc,
+          complete_by: node1CompletionDate,
+        },
+        node2: {
+          title: node2Title,
+          description: node2Desc,
+          complete_by: node2CompletionDate,
+        },
+        node3: {
+          title: node3Title,
+          description: node3Desc,
+          complete_by: node3CompletionDate,
+        },
+        node4: {
+          title: node4Title,
+          description: node4Desc,
+          complete_by: node4CompletionDate,
+        },
+        node5: {
+          title: node5Title,
+          description: node5Desc,
+          complete_by: node5CompletionDate,
         }
-      ]
+      }
     }
 
-    console.log(quest_package)
+    let quest_info = await axios.post("/create_quest/:package", { quest_package })
+      .then((res) => res.data)
 
-
+    console.log(quest_info)
 
   }
 
@@ -327,13 +353,17 @@ export default function CreateQuestBtn() {
               id="Date"
               autoComplete="Date"
             />
+            <Modal.Footer>
+              <Button
+                type="submit"
+                variant="primary"
+              >
+                Submit Quest
+          </Button>
+            </Modal.Footer>
           </form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            Submit Quest
-          </Button>
-        </Modal.Footer>
+
       </Modal>
     </>
   );
