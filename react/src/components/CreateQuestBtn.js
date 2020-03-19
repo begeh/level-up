@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { TextField, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Form } from 'react-final-form'
+import { Form, Field } from 'react-final-form'
 
 import axios from 'axios';
 
@@ -51,7 +51,6 @@ export default function CreateQuestBtn(props) {
   console.log(props.props.email)
 
   async function handleQuestSubmit(event) {
-    event.preventDefault()
 
 
     console.log("function is called")
@@ -93,301 +92,309 @@ export default function CreateQuestBtn(props) {
       }
     }
 
-    let quest_info = await axios.post("/create_quest/:package", { quest_package })
+    let quest_info = await axios.post("/create_quest/package", { quest_package })
       .then((res) => res.data)
 
-    console.log(quest_info)Form
+    console.log(quest_info)
 
   }
 
   const MyForm = () => (
+    <Form
+      onSubmit={handleQuestSubmit}
+      render={({ handleSubmit }) => (
+        <Modal show={show} onHide={handleClose}>
+          <form noValidate onSubmit={handleSubmit} className={classes.form}>
+            <Modal.Header closeButton>
+              <Modal.Title>Create Quest</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Field name="QuestTitle">
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="quest-title"
+                label="Quest Title"
+                name="quest-title"
+                autoComplete="Quest Title"
+                value={questTitle}
+                autoFocus
+              />
+              </Field>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="description"
+                label="Quest Description"
+                id="description"
+                autoComplete="Description"
+                value={questDesc}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="node1"
+                label="Node 1"
+                id="node1"
+                autoComplete="Node 1"
+                value={node1Title}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="node1"
+                label="Node 1 Description"
+                id="node1"
+                autoComplete="Node 1"
+                value={node1Desc}
+              />
+
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid container justify="space-around">
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    id="date-picker-inline"
+                    label="Date picker inline"
+                    value={node1CompletionDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
+                </Grid>
+              </MuiPickersUtilsProvider>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="node2"
+                label="Node 2"
+                id="node1"
+                autoComplete="Node 2"
+                value={node2Title}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="node2"
+                label="Node 2 Description"
+                id="node1"
+                autoComplete="Node 2"
+                value={node2Desc}
+              />
+
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid container justify="space-around">
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    id="date-picker-inline"
+                    label="Date picker inline"
+                    value={node2CompletionDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
+                </Grid>
+              </MuiPickersUtilsProvider>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="node3"
+                label="Node 3"
+                id="node1"
+                autoComplete="Node 3"
+                value={node3Title}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="node3"
+                label="Node 3 Description"
+                id="node1"
+                autoComplete="Node 3"
+                value={node3Desc}
+              />
+
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid container justify="space-around">
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    id="date-picker-inline"
+                    label="Date picker inline"
+                    value={node3CompletionDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
+                </Grid>
+              </MuiPickersUtilsProvider>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="node4"
+                label="Node 4"
+                id="node1"
+                autoComplete="Node 4"
+                value={node4Title}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="node4"
+                label="Node 4 Description"
+                id="node1"
+                autoComplete="Node 4"
+                value={node4Desc}
+              />
+
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid container justify="space-around">
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    id="date-picker-inline"
+                    label="Date picker inline"
+                    value={node4CompletionDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
+                </Grid>
+              </MuiPickersUtilsProvider>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="node5"
+                label="Node 5"
+                id="node1"
+                autoComplete="Node 5"
+                value={node5Title}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="node5"
+                label="Node 5 Description"
+                id="node1"
+                autoComplete="Node 5"
+                value={node5Desc}
+              />
+
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid container justify="space-around">
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    id="date-picker-inline"
+                    label="Date picker inline"
+                    value={node5CompletionDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
+                </Grid>
+              </MuiPickersUtilsProvider>
+
+
+              <div class="form-group">
+                <label for="Mentor">Mentor</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="Date"
+                label="Date"
+                id="Date"
+                autoComplete="Date"
+              />
+              <Modal.Footer>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className={classes.submit}
+                >
+                  Submit Quest
+        </Button>
+              </Modal.Footer>
+            </Modal.Body>
+
+          </form>
+        </Modal>
+      )}
+    />
+  )
+
+
+  return (
     <>
       <Button variant="primary" onClick={handleShow}>
         Create Quest
       </Button>
 
-      <Form
-      onSubmit={onSubmit}
+      <MyForm />
 
 
-      <form noValidate onSubmit={handleQuestSubmit} className={classes.form} >
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Create Quest</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="quest-title"
-              label="Quest Title"
-              name="quest-title"
-              autoComplete="Quest Title"
-              value={questTitle}
-              autoFocus
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="description"
-              label="Quest Description"
-              id="description"
-              autoComplete="Description"
-              value={questDesc}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="node1"
-              label="Node 1"
-              id="node1"
-              autoComplete="Node 1"
-              value={node1Title}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="node1"
-              label="Node 1 Description"
-              id="node1"
-              autoComplete="Node 1"
-              value={node1Desc}
-            />
-
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container justify="space-around">
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
-                  value={node1CompletionDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-              </Grid>
-            </MuiPickersUtilsProvider>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="node2"
-              label="Node 2"
-              id="node1"
-              autoComplete="Node 2"
-              value={node2Title}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="node2"
-              label="Node 2 Description"
-              id="node1"
-              autoComplete="Node 2"
-              value={node2Desc}
-            />
-
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container justify="space-around">
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
-                  value={node2CompletionDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-              </Grid>
-            </MuiPickersUtilsProvider>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="node3"
-              label="Node 3"
-              id="node1"
-              autoComplete="Node 3"
-              value={node3Title}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="node3"
-              label="Node 3 Description"
-              id="node1"
-              autoComplete="Node 3"
-              value={node3Desc}
-            />
-
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container justify="space-around">
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
-                  value={node3CompletionDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-              </Grid>
-            </MuiPickersUtilsProvider>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="node4"
-              label="Node 4"
-              id="node1"
-              autoComplete="Node 4"
-              value={node4Title}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="node4"
-              label="Node 4 Description"
-              id="node1"
-              autoComplete="Node 4"
-              value={node4Desc}
-            />
-
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container justify="space-around">
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
-                  value={node4CompletionDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-              </Grid>
-            </MuiPickersUtilsProvider>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="node5"
-              label="Node 5"
-              id="node1"
-              autoComplete="Node 5"
-              value={node5Title}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="node5"
-              label="Node 5 Description"
-              id="node1"
-              autoComplete="Node 5"
-              value={node5Desc}
-            />
-
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container justify="space-around">
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
-                  value={node5CompletionDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-              </Grid>
-            </MuiPickersUtilsProvider>
-
-
-            <div class="form-group">
-              <label for="Mentor">Mentor</label>
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="Date"
-              label="Date"
-              id="Date"
-              autoComplete="Date"
-            />
-            <Modal.Footer>
-              <Button
-                type="submit"
-                variant="primary"
-                className={classes.submit}
-              >
-                Submit Quest
-          </Button>
-            </Modal.Footer>
-          </Modal.Body>
-
-        </Modal>
-      </form>
     </>
   );
-
-  return (MyForm)
 }

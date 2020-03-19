@@ -57,9 +57,18 @@ class QuestsController < ApplicationController
 
     # POST /create_quest/:package
     def create_quest
-      @quest = Quest.create!(params[:package])
-    end
+      quest_data = params[:quest_package][:quest]
+      node_data = params[:quest_package][:nodes]
+      puts quest_data
+      puts "Space"
+      puts node_data
+      @quest = Quest.create!(
+        party_id: quest_data.party_id,
+        user_id: quest_data.user_id,
+        mentor_id: quest_data.user_id,
+        
 
+      )
       json_response(@quest, :created)
     end
   
