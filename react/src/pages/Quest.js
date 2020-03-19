@@ -69,7 +69,7 @@ export default function Quest(props) {
     let comments = await axios.get(`/post/${id}/comments`).then((response)=> response.data);
     console.log(`Comments are ${JSON.stringify(comments)}`);
 
-    history.push({pathname:`/post/${id}`, state: {global:state, quest_id: quest_id, quests:quests, party_quests: party_quests, mentor_name:mentor_name, user_name:user_name, party_info: party_info, post:post, comments:comments}})
+    history.push({pathname:`/quest/${quest_id}/post/${id}`, state: {global:state, quest_id: quest_id, quests:quests, party_quests: party_quests, mentor_name:mentor_name, user_name:user_name, party_info: party_info, post:post, comments:comments}})
   }
 
   return (
