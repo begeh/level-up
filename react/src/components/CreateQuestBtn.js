@@ -50,11 +50,11 @@ export default function CreateQuestBtn(props) {
   const [node4Desc, setNode4Desc] = useState("")
   const [node5Desc, setNode5Desc] = useState("")
 
-  const [node1CompletionDate, setNode1CompletionDate] = useState(new Date('2014-08-18T21:11:54')) 
-  const [node2CompletionDate, setNode2CompletionDate] = useState(new Date('2014-08-18T21:11:54')) 
-  const [node3CompletionDate, setNode3CompletionDate] = useState(new Date('2014-08-18T21:11:54')) 
-  const [node4CompletionDate, setNode4CompletionDate] = useState(new Date('2014-08-18T21:11:54')) 
-  const [node5CompletionDate, setNode5CompletionDate] = useState(new Date('2014-08-18T21:11:54')) 
+  const [node1CompletionDate, setNode1CompletionDate] = useState(new Date('2014-08-18T21:11:54'))
+  const [node2CompletionDate, setNode2CompletionDate] = useState(new Date('2014-08-18T21:11:54'))
+  const [node3CompletionDate, setNode3CompletionDate] = useState(new Date('2014-08-18T21:11:54'))
+  const [node4CompletionDate, setNode4CompletionDate] = useState(new Date('2014-08-18T21:11:54'))
+  const [node5CompletionDate, setNode5CompletionDate] = useState(new Date('2014-08-18T21:11:54'))
 
 
 
@@ -87,33 +87,33 @@ export default function CreateQuestBtn(props) {
       party_id: props.props.party_id,
       user_id: props.props.id
     }
-    let nodes = {
-      node1: {
+    let nodes = [
+      {
         title: node1Title,
         description: node1Desc,
         complete_by: node1CompletionDate,
       },
-      node2: {
+      {
         title: node2Title,
         description: node2Desc,
         complete_by: node2CompletionDate,
       },
-      node3: {
+      {
         title: node3Title,
         description: node3Desc,
         complete_by: node3CompletionDate,
       },
-      node4: {
+      {
         title: node4Title,
         description: node4Desc,
         complete_by: node4CompletionDate,
       },
-      node5: {
+      {
         title: node5Title,
         description: node5Desc,
         complete_by: node5CompletionDate,
       }
-    }
+    ]
 
     console.log(quest)
 

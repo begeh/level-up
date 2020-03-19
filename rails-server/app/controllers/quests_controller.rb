@@ -58,10 +58,10 @@ class QuestsController < ApplicationController
     # POST /create_quest/:package
     def create_quest
       quest = params[:quest]
-      node_data = params[:nodes]
+      nodes = params[:nodes]
       puts quest
       puts "Space"
-      puts node_data
+      puts nodes
       @quest = Quest.create!(
         party_id: quest[:party_id],
         user_id: quest[:user_id],
@@ -70,6 +70,17 @@ class QuestsController < ApplicationController
         description: quest[:description],
         title: quest[:title]
       )
+      nodes.each do |n|
+        puts "n = #{n}"
+      Node.create!(
+        title: n[:title],
+        description: n[:description],
+        is_complete?: false,
+        quest_id: @quest.id,
+        complete_by: n[:complete_by]
+      )
+      end
+
       json_response(@quest, :created)
     end
   
