@@ -12,11 +12,6 @@ export default function PartyBtn(props) {
 
   return (
     <div className='finish-modal'>
-      <Hidden>
-      <Button  variant="primary" onClick={handleShow}>
-        Complete
-      </Button>
-      </Hidden>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header>
