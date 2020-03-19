@@ -121,6 +121,7 @@ export default function Post(props) {
   const CommentListItem = ({ username, avatar, created_at, text }) => {
     return (
       <Grid container className='comment-post' >
+        <p className='delete-comment'>x</p>
         <Grid item xs={4} sm={4} md={3} lg={2} >
           <Avatar src="https://ih0.redbubble.net/image.539207575.3366/flat,128x128,075,t-pad,128x128,f8f8f8.u2.jpg" alt='User Avatar' />
         </Grid>
