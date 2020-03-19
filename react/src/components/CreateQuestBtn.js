@@ -82,7 +82,7 @@ export default function CreateQuestBtn(props) {
 
     let quest = {
       title: questTitle,
-      quest_description: questDesc,
+      description: questDesc,
       status: "underway",
       party_id: props.props.party_id,
       user_id: props.props.id
@@ -120,6 +120,7 @@ export default function CreateQuestBtn(props) {
     let quest_info = await axios.post("/create_quest", { quest, nodes })
       .then((res) => res.data)
 
+    console.log("Succesful write to database!")
     console.log(quest_info)
 
   }
@@ -222,6 +223,7 @@ export default function CreateQuestBtn(props) {
               id="node1"
               autoComplete="Node 2"
               value={node2Title}
+              onChange={e => setNode2Title(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -234,6 +236,7 @@ export default function CreateQuestBtn(props) {
               id="node1"
               autoComplete="Node 2"
               value={node2Desc}
+              onChange={e => setNode2Desc(e.target.value)}
             />
 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -246,7 +249,7 @@ export default function CreateQuestBtn(props) {
                   id="date-picker-inline"
                   label="Date picker inline"
                   value={node2CompletionDate}
-                  onChange={handleDateChange}
+                  onChange={e => setNode2CompletionDate(e.target.value)}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
                   }}
@@ -264,6 +267,8 @@ export default function CreateQuestBtn(props) {
               id="node1"
               autoComplete="Node 3"
               value={node3Title}
+              onChange={e => setNode3Title(e.target.value)}
+
             />
             <TextField
               variant="outlined"
@@ -276,6 +281,8 @@ export default function CreateQuestBtn(props) {
               id="node1"
               autoComplete="Node 3"
               value={node3Desc}
+              onChange={e => setNode3Desc(e.target.value)}
+
             />
 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -288,7 +295,7 @@ export default function CreateQuestBtn(props) {
                   id="date-picker-inline"
                   label="Date picker inline"
                   value={node3CompletionDate}
-                  onChange={handleDateChange}
+                  onChange={e => setNode3CompletionDate(e.target.value)}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
                   }}
@@ -306,6 +313,7 @@ export default function CreateQuestBtn(props) {
               id="node1"
               autoComplete="Node 4"
               value={node4Title}
+              onChange={e => setNode4Title(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -318,6 +326,8 @@ export default function CreateQuestBtn(props) {
               id="node1"
               autoComplete="Node 4"
               value={node4Desc}
+              onChange={e => setNode4Desc(e.target.value)}
+
             />
 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -330,7 +340,7 @@ export default function CreateQuestBtn(props) {
                   id="date-picker-inline"
                   label="Date picker inline"
                   value={node4CompletionDate}
-                  onChange={handleDateChange}
+                  onChange={e => setNode4CompletionDate(e.target.value)}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
                   }}
@@ -348,6 +358,7 @@ export default function CreateQuestBtn(props) {
               id="node1"
               autoComplete="Node 5"
               value={node5Title}
+              onChange={e => setNode5Title(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -360,6 +371,8 @@ export default function CreateQuestBtn(props) {
               id="node1"
               autoComplete="Node 5"
               value={node5Desc}
+              onChange={e => setNode5Desc(e.target.value)}
+
             />
 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -372,7 +385,7 @@ export default function CreateQuestBtn(props) {
                   id="date-picker-inline"
                   label="Date picker inline"
                   value={node5CompletionDate}
-                  onChange={handleDateChange}
+                  onChange={e => setNode5CompletionDate(e.target.value)}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
                   }}
