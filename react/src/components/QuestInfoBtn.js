@@ -3,6 +3,7 @@ import {Button, Modal} from 'react-bootstrap';
 import {Hidden, List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@material-ui/core';
 import {useHistory} from "react-router-dom";
 import axios from 'axios';
+import QuestFinish from "./QuestFinish";
 
 export default function QuestInfoBtn(props) {
   let history = useHistory();
@@ -18,12 +19,20 @@ export default function QuestInfoBtn(props) {
   const nodes = props.quest.nodes;
   const party_info = props.party_info;
   const quest_id = props.quest_id;
+  let quest_completed = props.quest_completed;
+
 
   async function handleLevel(nodes) {
     let node = nodes.find(node=> node["is_complete?"] === false);
-    console.log(`Node not completed is ${node.id}`);
-    
-    await axios.put(`/nodes/${node.id}`, {"is_complete?": true}).catch(err => alert(err));
+    if(node){
+      console.log(`Node not completed is ${node.id}`);
+      await axios.put(`/nodes/${node.id}`, {"is_complete?": true}).catch(err => alert(err));
+      if(node.id === nodes[nodes.length-1].id){
+        quest_completed = true;
+      }
+    } else{
+      quest_completed = true;
+    }
 
     let quests = await axios.post(`/user_quests`, { user_id: state.id })
     .then((res) => {
@@ -65,7 +74,8 @@ export default function QuestInfoBtn(props) {
     await Promise.all(party_promises);
 
     handleClose();
-    history.push({pathname:`/quest/${quest_id}`,state:{global: state, quests: full_quests, party_quests:party_full_quests, quest_id: quest_id, mentor_name:mentor_name, user_name:user_name, party_info: party_info}})
+
+    history.push({pathname:`/quest/${quest_id}`,state:{global: state, quests: full_quests, party_quests:party_full_quests, quest_id: quest_id, mentor_name:mentor_name, user_name:user_name, party_info: party_info, quest_completed: quest_completed}})
 
   }
 
