@@ -22,19 +22,25 @@ export default function QuestInfoBtn(props) {
   let quest_completed = props.quest_completed;
 
 
-  async function handleLevel(nodes) {
-    let node = nodes.find(node=> node["is_complete?"] === false);
-    if(node){
-      console.log(`Node not completed is ${node.id}`);
-      await axios.put(`/nodes/${node.id}`, {"is_complete?": true}).catch(err => alert(err));
-      if(node.id === nodes[nodes.length-1].id){
-        await axios.put(`/quests/${quest_id}`,{"status": "finished"}).catch(err=> alert(err));
-        quest_completed = true;
+  async function handleLevel(nodes, status) {
+    console.log(`Status is ${status}`);
+    if(status === "failed"){
+      await axios.put(`/quests/${quest_id}`,{"status": "FAILED"}).catch(err=> alert(err));
+          quest_completed = "failed";
+    }else{
+      let node = nodes.find(node=> node["is_complete?"] === false);
+      if(node){
+        console.log(`Node not completed is ${node.id}`);
+        await axios.put(`/nodes/${node.id}`, {"is_complete?": true}).catch(err => alert(err));
+        if(node.id === nodes[nodes.length-1].id){
+          await axios.put(`/quests/${quest_id}`,{"status": "SUCCESS"}).catch(err=> alert(err));
+          quest_completed = "success";
+        }
+      } else{
+        quest_completed = "success";
       }
-    } else{
-      quest_completed = true;
     }
-
+    
     let quests = await axios.post(`/user_quests`, { user_id: state.id })
     .then((res) => {
       return res.data;
@@ -91,6 +97,7 @@ export default function QuestInfoBtn(props) {
         </Modal.Header>
         <Modal.Body>
           <h3>{quest.quest.title}</h3>
+          <h5>Quest Status: {quest.quest.status}</h5>
           <h6>{quest.quest.description}</h6>
           <h6>Mentor: {mentor_name}</h6>
           <h6>Apprentice: {user_name}</h6>
@@ -115,15 +122,21 @@ export default function QuestInfoBtn(props) {
         </Modal.Body>
         <Modal.Footer>
           { 
-          quest.quest.status === "finished" ? null : <>
+          quest.quest.status === "SUCCESS" || quest.quest.status === "FAILED" ? null : <>
           <Button variant="primary" onClick={(event)=>{
             event.preventDefault();
-            return handleLevel(nodes);
+            const status = "success";
+            return handleLevel(nodes, status);
           }
             }>
             Level-Up!
           </Button>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={(event)=>{
+            event.preventDefault();
+            const status = "failed";
+            return handleLevel(nodes, status);
+          }
+            }>
             Abandon Quest
           </Button>
           </>

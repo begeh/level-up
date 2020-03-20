@@ -9,7 +9,8 @@ import QuestList from "../components/QuestList";
 import NodeBar from "../components/NodeBar";
 import scroll from '../images/scroll.png'
 import axios from 'axios';
-import QuestFinish from '../components/QuestFinish'
+import QuestFinish from '../components/QuestFinish';
+import QuestFail from '../components/QuestFail';
 
 export default function Quest(props) {
   let history=useHistory();
@@ -75,13 +76,15 @@ export default function Quest(props) {
 
   return (
     <>
-    { quest_completed ? <QuestFinish /> : null }
+    { quest_completed === "success" ? <QuestFinish /> : null }
+    { quest_completed === "failed" ? <QuestFail /> : null }
     <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests} party_info={party_info} quest={quest} mentor_name={mentor_name} user_name={user_name} quest_id={quest_id} quest_completed={quest_completed}/>
     <Grid container className='full'>
       <Hidden xsDown>
         <Grid className='container-left quest-info' item sm={5}>
           <img src={scroll} alt='scroll' />
           <h3>{quest.quest.title}</h3>
+          <p>Quest Status: {quest.quest.status}</p>
           <p>Mentor: {mentor_name}</p>
           <p>Apprentice: {user_name}</p>
           <p>Finish Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
