@@ -68,6 +68,7 @@ export default function CreatePostButton(props) {
               onChange={e => setPostTitle(e.target.value)}
               autoFocus
             />
+            <h6>Post Description:</h6>
             <TextField
               variant="outlined"
               margin="normal"
@@ -81,6 +82,7 @@ export default function CreatePostButton(props) {
               value={postDescription}
               onChange={e => setPostDescription(e.target.value)}
             />
+            <h6>Post Type:</h6>
             <div class="form-group">
               <label for="Mentor">Type</label>
               <select value={postType} onChange={e => setPostType(e.target.value)}
@@ -90,6 +92,7 @@ export default function CreatePostButton(props) {
                 <option value="book">Question</option>
               </select>
             </div>
+            <h6>Video Url:</h6>
             <TextField
               variant="outlined"
               margin="normal"
@@ -103,6 +106,7 @@ export default function CreatePostButton(props) {
               value={videoURL}
               onChange={e => setVideoURL(e.target.value)}
             />
+            <h6>Image Url:</h6>
             <TextField
               variant="outlined"
               margin="normal"

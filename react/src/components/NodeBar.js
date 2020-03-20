@@ -1,10 +1,10 @@
 import React from 'react';
-import { Grid, Stepper, Step, StepLabel, Hidden, Tooltip } from '@material-ui/core';
+import { Grid, Stepper, Step, StepLabel, Tooltip } from '@material-ui/core';
 
 export default function NodeBar({ nodes, handleNode }) {
   return (
     <Grid item xs={12}>
-      <Stepper >
+      <Stepper id='stepper-design'>
         {nodes.map((node, index) => {
 
           return (

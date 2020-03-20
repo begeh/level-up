@@ -72,7 +72,7 @@ export default function Hall(props) {
         <Grid className='container-right' item xs={12} sm={7} >
           <HallList quests={party_quests} handleClick={handleClick} />
           <CreateQuestBtn
-            props={state}
+            state={state} quests={quests} party_quests={party_quests} party_info={party_info}
           />
         </Grid>
       </Grid>
