@@ -1,9 +1,17 @@
-import React, {useState} from 'react';
-import {Button, Modal} from 'react-bootstrap';
-import {TextField} from '@material-ui/core'
+import React, { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import { TextField } from '@material-ui/core'
 
 export default function CreatePostButton() {
   const [show, setShow] = useState(false);
+
+  const [postTitle, setPostTitle] = useState("");
+  const [postDescription, setPostDescription] = useState("")
+  const [postType, setPostType] = useState("sword");
+  const [videoURL, setVideoURL] = useState("");
+  const [imageURL, setImageURL] = useState("");
+
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -15,11 +23,11 @@ export default function CreatePostButton() {
       </Button>
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Create Quest</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
         <form noValidate>
+          <Modal.Header closeButton>
+            <Modal.Title>Create Post</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
             <TextField
               variant="outlined"
               margin="normal"
@@ -29,6 +37,8 @@ export default function CreatePostButton() {
               label="Post Title"
               name="quest-title"
               autoComplete="Quest Title"
+              value={postTitle}
+              onChange={e => setPostTitle(e.target.value)}
               autoFocus
             />
             <TextField
@@ -41,13 +51,16 @@ export default function CreatePostButton() {
               label="Post Description"
               id="description"
               autoComplete="Description"
+              value={postDescription}
+              onChange={e => setPostDescription(e.target.value)}
             />
             <div class="form-group">
               <label for="Mentor">Type</label>
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Action</option>
-                <option>Research</option>
-                <option>Question</option>
+              <select value={postType} onChange={e => setPostType(e.target.value)}
+                class="form-control" id="exampleFormControlSelect1">
+                <option selected value="sword">Action</option>
+                <option value="question">Research</option>
+                <option value="book">Question</option>
               </select>
             </div>
             <TextField
@@ -60,6 +73,8 @@ export default function CreatePostButton() {
               label="Video URL"
               id="Date"
               autoComplete="Date"
+              value={videoURL}
+              onChange={e => setVideoURL(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -71,14 +86,16 @@ export default function CreatePostButton() {
               label="Image URL"
               id="Date"
               autoComplete="Date"
+              value={imageURL}
+              onChange={e => setImageURL(e.target.value)}
             />
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            Submit Post
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={handleClose}>
+              Submit Post
           </Button>
-        </Modal.Footer>
+          </Modal.Footer>
+        </form>
       </Modal>
     </>
   );
