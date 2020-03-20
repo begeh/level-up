@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
-import {Button, Modal} from 'react-bootstrap';
-import {TextField} from '@material-ui/core'
+import React, { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import { TextField } from '@material-ui/core';
 
 export default function QuestInfoBtn() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
 
   return (
     <>
@@ -18,8 +19,9 @@ export default function QuestInfoBtn() {
         <Modal.Header closeButton>
           <Modal.Title>Create Quest</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body id='create-modal'>
         <form noValidate>
+            <h6>Post Title:</h6>
             <TextField
               variant="outlined"
               margin="normal"
@@ -31,6 +33,7 @@ export default function QuestInfoBtn() {
               autoComplete="Quest Title"
               autoFocus
             />
+            <h6>Post Description:</h6>
             <TextField
               variant="outlined"
               margin="normal"
@@ -42,14 +45,15 @@ export default function QuestInfoBtn() {
               id="description"
               autoComplete="Description"
             />
+            <h6>Post Type:</h6>
             <div class="form-group">
-              <label for="Mentor">Type</label>
               <select class="form-control" id="exampleFormControlSelect1">
                 <option>Action</option>
                 <option>Research</option>
                 <option>Question</option>
               </select>
             </div>
+            <h6>Video Url:</h6>
             <TextField
               variant="outlined"
               margin="normal"
@@ -61,6 +65,7 @@ export default function QuestInfoBtn() {
               id="Date"
               autoComplete="Date"
             />
+            <h6>Image Url:</h6>
             <TextField
               variant="outlined"
               margin="normal"
