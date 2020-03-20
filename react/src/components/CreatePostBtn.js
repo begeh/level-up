@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
 import {TextField} from '@material-ui/core'
 
-export default function QuestInfoBtn() {
+export default function CreatePostButton() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
