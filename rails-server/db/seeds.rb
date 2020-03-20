@@ -8,6 +8,7 @@
 
 require "securerandom"
 require "faker"
+require "date"
 
 quest_status = ["completed", "failed", "abandoned", "underway"]
 
@@ -137,7 +138,7 @@ quest1 = Quest.find_or_create_by!({
   mentor_id: user1.id,
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
-  status: quest_status.sample,
+  status: "underway",
   date_finished: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
 })
 
@@ -147,7 +148,7 @@ quest2 = Quest.find_or_create_by!({
   mentor_id: user2.id,
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
-  status: quest_status.sample,
+  status: "underway",
   date_finished: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
 })
 
@@ -157,6 +158,26 @@ puts "Creating Nodes ..."
 
 Node.destroy_all
 
+def finished_decider(quest)
+  date_finished = Faker::Time.between(from: DateTime.now, to: quest.date_finished)
+  complete_by = Faker::Time.between(from: DateTime.now, to: quest.date_finished)
+  if date_finished - complete_by <= 0
+    {
+      :is_complete? => true,
+      :date_finished => date_finished,
+      :complete_by => complete_by
+    } 
+  else
+    {
+      :is_complete? => false,
+      :date_finished => nil,
+      :complete_by => complete_by
+    } 
+  end
+end
+
+isFinished = finished_decider(quest1)
+
 node1 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
@@ -164,6 +185,8 @@ node1 = Node.find_or_create_by!({
   quest_id: quest1.id,
   date_finished: nil
 })
+
+isFinished = finished_decider(quest1)
 
 node2 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
@@ -173,6 +196,8 @@ node2 = Node.find_or_create_by!({
   date_finished: nil
 })
 
+isFinished = finished_decider(quest1)
+
 node3 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
@@ -180,6 +205,8 @@ node3 = Node.find_or_create_by!({
   quest_id: quest1.id,
   date_finished: nil
 })
+
+isFinished = finished_decider(quest1)
 
 node4 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
@@ -189,6 +216,8 @@ node4 = Node.find_or_create_by!({
   date_finished: nil
 })
 
+isFinished = finished_decider(quest1)
+
 node5 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
@@ -196,6 +225,8 @@ node5 = Node.find_or_create_by!({
   quest_id: quest1.id,
   date_finished: nil
 })
+
+isFinished = finished_decider(quest2)
 
 node6 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
@@ -205,6 +236,8 @@ node6 = Node.find_or_create_by!({
   date_finished: nil
 })
 
+isFinished = finished_decider(quest2)
+
 node7 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
@@ -212,6 +245,8 @@ node7 = Node.find_or_create_by!({
   quest_id: quest2.id,
   date_finished: nil
 })
+
+isFinished = finished_decider(quest2)
 
 node8 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
@@ -221,6 +256,8 @@ node8 = Node.find_or_create_by!({
   date_finished: nil
 })
 
+isFinished = finished_decider(quest2)
+
 node9 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
@@ -228,6 +265,8 @@ node9 = Node.find_or_create_by!({
   quest_id: quest2.id,
   date_finished: nil
 })
+
+isFinished = finished_decider(quest2)
 
 node10 = Node.find_or_create_by!({
   title: Faker::Lorem.word,
