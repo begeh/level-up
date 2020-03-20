@@ -127,11 +127,11 @@ export default function CreateQuestBtn(props) {
 
 
       <Modal show={show} onHide={handleClose}>
-        <form className={classes.form} noValidate onSubmit={handleQuestSubmit} >
         <Modal.Header closeButton>
           <Modal.Title>Create Quest</Modal.Title>
         </Modal.Header>
         <Modal.Body id='create-modal'>
+        <form className={classes.form} noValidate onSubmit={handleQuestSubmit} >
             <h6>Quest Title:</h6>
             <TextField
               variant="outlined"
@@ -425,16 +425,15 @@ export default function CreateQuestBtn(props) {
                 />
               </Grid>
             </MuiPickersUtilsProvider>
-
           
+        </form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleClose}>
             Submit Quest
           </Button>
-            </Modal.Footer>
+        </Modal.Footer>
 
-        </form>
       </Modal>
     </div>
   );
