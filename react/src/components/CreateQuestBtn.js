@@ -3,6 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import { Grid, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Form, Field } from 'react-final-form'
+import { useHistory } from "react-router-dom"
 // import { TextField } from 'mui-rff';
 
 import axios from 'axios';
@@ -30,6 +31,11 @@ const useStyles = makeStyles(theme => ({
 export default function CreateQuestBtn(props) {
   const classes = useStyles();
 
+  let history = useHistory();
+  let state = props.state;
+  let party_info = props.party_info;
+
+  
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -75,8 +81,8 @@ export default function CreateQuestBtn(props) {
       title: questTitle,
       description: questDesc,
       status: "underway",
-      party_id: props.props.party_id,
-      user_id: props.props.id
+      party_id: state.party_id,
+      user_id: state.id
     }
     let nodes = [
       {
@@ -113,6 +119,49 @@ export default function CreateQuestBtn(props) {
 
     console.log("Succesful write to database!")
     console.log(quest_info)
+    
+    let quests = await axios.post(`/user_quests`, { user_id: state.id })
+    .then((res) => {
+      return res.data;
+    })
+    
+    let full_quests = [];
+    let promises = [];
+    quests.forEach((quest) => {
+      promises.push(axios.get(`/quest_object/${quest.id}`)
+        .then((response) => {
+          full_quests.push(response.data);
+        })
+        .catch((err)=> alert(err))
+      )
+    }
+    );
+
+    await Promise.all(promises);
+
+    console.log(`Full Quests is ${JSON.stringify(full_quests)}`);
+
+    let party_quests = await axios.post("/party_quests", { party_id: state.party_id })
+      .then((res) => {
+        return res.data
+      })
+
+    let party_full_quests = [];
+    let party_promises = [];
+    party_quests.forEach((quest) => {
+      party_promises.push(axios.get(`/quest_object/${quest.id}`)
+        .then((response) => {
+          party_full_quests.push(response.data);
+        })
+      )
+    }
+    );
+
+    await Promise.all(party_promises);
+
+    handleClose();
+
+    history.push({pathname:"/hall", state: {global:state, quests: full_quests, party_quests: party_full_quests, party_info:party_info}})
 
   }
 
