@@ -16,6 +16,21 @@ export default function CreatePostButton() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  async function handlePostSubmit(event) {
+    event.preventDefault();
+    console.log("function called")
+    let post = {
+      title: postTitle,
+      content: postDescription,
+      symbol_ref: postType,
+      video_url: videoURL,
+      image_url:imageURL
+    }
+
+    console.log(post)
+
+  }
+
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
@@ -23,7 +38,7 @@ export default function CreatePostButton() {
       </Button>
 
       <Modal show={show} onHide={handleClose}>
-        <form noValidate>
+        <form noValidate onSubmit={handlePostSubmit}>
           <Modal.Header closeButton>
             <Modal.Title>Create Post</Modal.Title>
           </Modal.Header>
@@ -91,7 +106,7 @@ export default function CreatePostButton() {
             />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={handleClose}>
+            <Button variant="primary" onClick={handleClose} type="submit">
               Submit Post
           </Button>
           </Modal.Footer>
