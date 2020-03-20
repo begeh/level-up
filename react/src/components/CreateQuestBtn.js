@@ -120,8 +120,7 @@ export default function CreateQuestBtn(props) {
 
 
   return (
-
-    <>
+    <div>
       <Button variant="primary" onClick={handleShow}>
         Create Quest
       </Button>
@@ -129,10 +128,11 @@ export default function CreateQuestBtn(props) {
 
       <Modal show={show} onHide={handleClose}>
         <form className={classes.form} noValidate onSubmit={handleQuestSubmit} >
-          <Modal.Header closeButton>
-            <Modal.Title>Create Quest</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+        <Modal.Header closeButton>
+          <Modal.Title>Create Quest</Modal.Title>
+        </Modal.Header>
+        <Modal.Body id='create-modal'>
+            <h6>Quest Title:</h6>
             <TextField
               variant="outlined"
               margin="normal"
@@ -146,12 +146,15 @@ export default function CreateQuestBtn(props) {
               onChange={e => setQuestTitle(e.target.value)}
               autoFocus
             />
+
+            <h6>Quest Description:</h6>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
               multiline
+              rows="4"
               name="description"
               label="Quest Description"
               id="description"
@@ -159,33 +162,38 @@ export default function CreateQuestBtn(props) {
               value={questDesc}
               onChange={e => setQuestDesc(e.target.value)}
             />
+
+            <h6>Level 1 Objective:</h6>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
               multiline
-              name="node1"
-              label="Node 1"
-              id="node1"
-              autoComplete="Node 1"
+              name="level-1"
+              label="Level 1"
+              id="level-1"
+              autoComplete="Level 1"
               value={node1Title}
               onChange={e => setNode1Title(e.target.value)}
             />
+
+            <h6>Level 1 Description:</h6>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
               multiline
-              name="node1"
-              label="Node 1 Description"
-              id="node1"
-              autoComplete="Node 1"
+              name="level-1-desc"
+              label="Level 1 Description"
+              id="level-1-desc"
+              autoComplete="Level 1 Description"
               value={node1Desc}
               onChange={e => setNode1Desc(e.target.value)}
             />
 
+            <h6>Level 1 Completion Date:</h6>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify="space-around">
                 <KeyboardDatePicker
@@ -193,8 +201,7 @@ export default function CreateQuestBtn(props) {
                   variant="inline"
                   format="MM/dd/yyyy"
                   margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
+                  id="level-1-date"
                   value={node1CompletionDate}
                   onChange={e => setNode1CompletionDate(e.target.value)}
                   KeyboardButtonProps={{
@@ -203,33 +210,36 @@ export default function CreateQuestBtn(props) {
                 />
               </Grid>
             </MuiPickersUtilsProvider>
+
+            <h6>Level 2 Objective:</h6>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
               multiline
-              name="node2"
-              label="Node 2"
-              id="node1"
-              autoComplete="Node 2"
+              name="level-2"
+              label="Level 2"
+              id="level-2"
+              autoComplete="Level 2"
               value={node2Title}
               onChange={e => setNode2Title(e.target.value)}
             />
+            <h6>Level 2 Description:</h6>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
               multiline
-              name="node2"
-              label="Node 2 Description"
-              id="node1"
-              autoComplete="Node 2"
+              name="level-2-desc"
+              label="Level 2 Description"
+              id="level-2-desc"
+              autoComplete="Level 2 Description"
               value={node2Desc}
               onChange={e => setNode2Desc(e.target.value)}
             />
-
+            <h6>Level 2 Completion Date:</h6>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify="space-around">
                 <KeyboardDatePicker
@@ -237,8 +247,7 @@ export default function CreateQuestBtn(props) {
                   variant="inline"
                   format="MM/dd/yyyy"
                   margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
+                  id="level-2-date"
                   value={node2CompletionDate}
                   onChange={e => setNode2CompletionDate(e.target.value)}
                   KeyboardButtonProps={{
@@ -247,35 +256,36 @@ export default function CreateQuestBtn(props) {
                 />
               </Grid>
             </MuiPickersUtilsProvider>
+
+            <h6>Level 3 Objective:</h6>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
               multiline
-              name="node3"
-              label="Node 3"
-              id="node1"
-              autoComplete="Node 3"
+              name="level-3"
+              label="Level 3"
+              id="level-3"
+              autoComplete="Level 3"
               value={node3Title}
               onChange={e => setNode3Title(e.target.value)}
-
             />
+            <h6>Level 3 Description:</h6>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
               multiline
-              name="node3"
-              label="Node 3 Description"
-              id="node1"
-              autoComplete="Node 3"
+              name="level-3-desc"
+              label="Level 3 Description"
+              id="level-3-desc"
+              autoComplete="Level 3 Description"
               value={node3Desc}
               onChange={e => setNode3Desc(e.target.value)}
-
             />
-
+            <h6>Level 3 Completion Date:</h6>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify="space-around">
                 <KeyboardDatePicker
@@ -283,8 +293,7 @@ export default function CreateQuestBtn(props) {
                   variant="inline"
                   format="MM/dd/yyyy"
                   margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
+                  id="level-3-date"
                   value={node3CompletionDate}
                   onChange={e => setNode3CompletionDate(e.target.value)}
                   KeyboardButtonProps={{
@@ -293,34 +302,36 @@ export default function CreateQuestBtn(props) {
                 />
               </Grid>
             </MuiPickersUtilsProvider>
+
+            <h6>Level 4 Objective:</h6>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
               multiline
-              name="node4"
-              label="Node 4"
-              id="node1"
-              autoComplete="Node 4"
+              name="level-4"
+              label="Level 4"
+              id="level-4"
+              autoComplete="Level 4"
               value={node4Title}
               onChange={e => setNode4Title(e.target.value)}
             />
+            <h6>Level 4 Description:</h6>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
               multiline
-              name="node4"
-              label="Node 4 Description"
-              id="node1"
-              autoComplete="Node 4"
+              name="level-4-desc"
+              label="Level 4 Description"
+              id="level-4-desc"
+              autoComplete="Level 4 Description"
               value={node4Desc}
               onChange={e => setNode4Desc(e.target.value)}
-
             />
-
+            <h6>Level 4 Completion Date:</h6>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify="space-around">
                 <KeyboardDatePicker
@@ -328,8 +339,7 @@ export default function CreateQuestBtn(props) {
                   variant="inline"
                   format="MM/dd/yyyy"
                   margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
+                  id="level-4-date"
                   value={node4CompletionDate}
                   onChange={e => setNode4CompletionDate(e.target.value)}
                   KeyboardButtonProps={{
@@ -338,34 +348,36 @@ export default function CreateQuestBtn(props) {
                 />
               </Grid>
             </MuiPickersUtilsProvider>
+
+            <h6>Level 5 Objective:</h6>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
               multiline
-              name="node5"
-              label="Node 5"
-              id="node1"
-              autoComplete="Node 5"
+              name="level-5"
+              label="Level 5"
+              id="level-5"
+              autoComplete="Level 5"
               value={node5Title}
               onChange={e => setNode5Title(e.target.value)}
             />
+            <h6>Level 5 Description:</h6>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
               multiline
-              name="node5"
-              label="Node 5 Description"
-              id="node1"
-              autoComplete="Node 5"
+              name="level-5-desc"
+              label="Level 5 Description"
+              id="level-5-desc"
+              autoComplete="Level 5 Description"
               value={node5Desc}
               onChange={e => setNode5Desc(e.target.value)}
-
             />
-
+            <h6>Level 5 Completion Date:</h6>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify="space-around">
                 <KeyboardDatePicker
@@ -373,8 +385,7 @@ export default function CreateQuestBtn(props) {
                   variant="inline"
                   format="MM/dd/yyyy"
                   margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
+                  id="level-5-date"
                   value={node5CompletionDate}
                   onChange={e => setNode5CompletionDate(e.target.value)}
                   KeyboardButtonProps={{
@@ -383,10 +394,11 @@ export default function CreateQuestBtn(props) {
                 />
               </Grid>
             </MuiPickersUtilsProvider>
+            
 
 
             <div class="form-group">
-              <label for="Mentor">Mentor</label>
+              <label for="Mentor">Mentor:</label>
               <select class="form-control" id="exampleFormControlSelect1">
                 <option>1</option>
                 <option>2</option>
@@ -395,34 +407,35 @@ export default function CreateQuestBtn(props) {
                 <option>5</option>
               </select>
             </div>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="Date"
-              label="Date"
-              id="Date"
-              autoComplete="Date"
-            />
-            <Modal.Footer>
-              <Button
-                type="submit"
-                variant="primary"
-                className={classes.submit}
-              >
-                Submit Quest
+
+            <h6>Quest Completion Date:</h6>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Grid container justify="space-around">
+                <KeyboardDatePicker
+                  disableToolbar
+                  variant="inline"
+                  format="MM/dd/yyyy"
+                  margin="normal"
+                  id="quest-complete-date"
+                  value={selectedDate}
+                  onChange={handleDateChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date',
+                  }}
+                />
+              </Grid>
+            </MuiPickersUtilsProvider>
+
+          
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            Submit Quest
           </Button>
             </Modal.Footer>
-          </Modal.Body>
 
         </form>
       </Modal>
-
-
-
-
-    </>
-  )
+    </div>
+  );
 }

@@ -83,3 +83,22 @@ a {
     text-align: center;
   }
 }
+
+#create-modal {
+  text-align: left;
+
+  h6 {
+    margin: 20px 0 0;
+  }
+
+  .MuiGrid-justify-xs-space-around {
+    justify-content: flex-start;
+  }
+
+  .form-control {
+    margin-top: 15px;
+    img {
+      width: 100%;
+    }
+  }
+}
