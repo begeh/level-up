@@ -80,7 +80,7 @@ export default function Quest(props) {
   return (
     <>
     { quest_completed ? <QuestFinish /> : null }
-    <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests} party_info={party_info} quest={quest} mentor_name={mentor_name} user_name={user_name}/>
+    <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests} party_info={party_info} quest={quest} mentor_name={mentor_name} user_name={user_name} quest_id={quest_id} quest_completed={quest_completed}/>
     <Grid container className='full'>
       <Hidden xsDown>
         <Grid className='container-left quest-info' item sm={5}>

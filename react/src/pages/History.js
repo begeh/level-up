@@ -1,31 +1,15 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Avatar, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 import { useHistory, useParams } from "react-router-dom";
+import shield from '../images/shield.png'
+import './History.scss'
+
 
 import NavForApp from "../components/NavForApp";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    height: '100vh',
-  },
-  paper: {
-    margin: theme.spacing(8, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    width: theme.spacing(50),
-    height: theme.spacing(50),
-  }
-}));
 
 export default function History(props){
   console.log(props);
-  const classes = useStyles();
   let history = useHistory();
   let {id} = useParams();
   
@@ -52,37 +36,35 @@ export default function History(props){
   return(
     <>
     <NavForApp nav_title="LEGACY" state={state} quests={quests} party_quests={party_quests} party_info={party_info}/>
-    <Grid container component="main" className={classes.root}>
-      <Grid item xs={12} sm={6} md={6}>
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar} src="https://img.favpng.com/2/14/7/accelerated-mobile-pages-one-call-away-responsive-web-design-non-governmental-organisation-png-favpng-kpXLYqN4PqkrrtxZxiZa8FLCW.jpg"/>
-        <Typography component="h1" variant="h4">
-          Your Legacy
-        </Typography>
-        <Typography component="h1" variant="h6">
-          Your Name: {state.name}
-        </Typography>
-        <Typography component="h1" variant="h6">
-         TITLE: {state.title}
-        </Typography>
-      </div>
-   </Grid>
-   <Grid item xs={false} sm={6} md={6}>
-    <div>
-    <button onClick={()=>history.push({pathname:"/legacy", state: {global:state, quests:quests, party_quests: party_quests, party_info: party_info}})}>Go Back</button>
-    <h1>Quest Title: {quest.title}</h1>
-    <h3>Status: {quest.status}</h3>
-    {
-      nodes.map(node =>(
-      <div>
-        <h4>Node Title: {node.title}</h4>
-        <p>Node Description: {node.description}</p>
-        <p>Date Finished: {Date(node.date_finished)}</p>
-      </div>
-      ))
-    }
-    </div>
+    <Grid container component="main" className='full'>
+      <Grid item sm={5} className='container-left party-container'>
+        <img src={shield}/>
+        <h3>Your Legacy</h3>
+        <div className='party-member'>
+          <p>{state.name}</p>
+          <p className='party-title'>~ {state.title} ~</p>
+        </div>
     </Grid>
+      <Grid item sm={7} className='container-right'>
+        <button className='btn btn-primary' onClick={()=>history.push({pathname:"/legacy", state: {global:state, quests:quests, party_quests: party_quests, party_info: party_info}})}>Go Back</button>
+        <h3>{quest.title}</h3>
+        <p>Status: {quest.status}</p>
+        {
+          nodes.map(node =>(
+          <div class='history-node'>
+            <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <img src="https://www.pinclipart.com/picdir/middle/379-3797946_software-developer-computer-servers-web-others-web-developer.png" alt="Quest Button" />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={node.title} secondary={Date(node.date_finished)} />
+                </ListItem>
+                <p className='node-desc'>{node.description}</p>
+          </div>
+          ))
+        }
+      </Grid>
     </Grid>
   </>
   )
