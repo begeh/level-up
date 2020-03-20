@@ -107,7 +107,7 @@ class QuestsController < ApplicationController
   
     def quest_params
       # whitelist params
-      params.permit(:party_id, :user_id, :title, :quest_description, :status, :mentor_id, :node)
+      params.permit(:party_id, :user_id, :title, :quest_description, :status, :mentor_id, :node, :story)
     end
 
     def node_params

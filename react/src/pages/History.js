@@ -64,6 +64,8 @@ export default function History(props){
           </div>
           ))
         }
+        <h6>Story</h6>
+        <p>{quest.story}</p>
       </Grid>
     </Grid>
   </>
