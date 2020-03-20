@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
 import {Hidden, List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@material-ui/core';
 import {useHistory} from "react-router-dom";
@@ -28,6 +28,7 @@ export default function QuestInfoBtn(props) {
       console.log(`Node not completed is ${node.id}`);
       await axios.put(`/nodes/${node.id}`, {"is_complete?": true}).catch(err => alert(err));
       if(node.id === nodes[nodes.length-1].id){
+        await axios.put(`/quests/${quest_id}`,{"status": "finished"}).catch(err=> alert(err));
         quest_completed = true;
       }
     } else{
@@ -113,6 +114,8 @@ export default function QuestInfoBtn(props) {
           </List>
         </Modal.Body>
         <Modal.Footer>
+          { 
+          quest.quest.status === "finished" ? null : <>
           <Button variant="primary" onClick={(event)=>{
             event.preventDefault();
             return handleLevel(nodes);
@@ -123,6 +126,8 @@ export default function QuestInfoBtn(props) {
           <Button variant="secondary" onClick={handleClose}>
             Abandon Quest
           </Button>
+          </>
+          }
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
