@@ -15,21 +15,10 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
-const useStyles = makeStyles(theme => ({
-
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
 
 
 
 export default function CreateQuestBtn(props) {
-  const classes = useStyles();
 
   let history = useHistory();
   let state = props.state;
@@ -176,11 +165,11 @@ export default function CreateQuestBtn(props) {
 
 
       <Modal show={show} onHide={handleClose}>
+        <form noValidate onSubmit={handleQuestSubmit} >
         <Modal.Header closeButton>
           <Modal.Title>Create Quest</Modal.Title>
         </Modal.Header>
         <Modal.Body id='create-modal'>
-        <form className={classes.form} noValidate onSubmit={handleQuestSubmit} >
             <h6>Quest Title:</h6>
             <TextField
               variant="outlined"
@@ -475,14 +464,14 @@ export default function CreateQuestBtn(props) {
               </Grid>
             </MuiPickersUtilsProvider>
           
-        </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+          <Button type="submit" variant="primary" onClick={handleClose}>
             Submit Quest
           </Button>
         </Modal.Footer>
 
+        </form>
       </Modal>
     </div>
   );
