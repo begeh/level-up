@@ -177,7 +177,7 @@ export default function CreateQuestBtn(props) {
               required
               fullWidth
               id="quest-title"
-              label="Quest Title"
+              label="Learn..."
               name="quest-title"
               autoComplete="Quest Title"
               value={questTitle}
@@ -194,7 +194,7 @@ export default function CreateQuestBtn(props) {
               multiline
               rows="4"
               name="description"
-              label="Quest Description"
+              label="I want to learn... because..."
               id="description"
               autoComplete="Description"
               value={questDesc}
@@ -209,7 +209,7 @@ export default function CreateQuestBtn(props) {
               fullWidth
               multiline
               name="level-1"
-              label="Level 1"
+              label="Learn..."
               id="level-1"
               autoComplete="Level 1"
               value={node1Title}
@@ -224,7 +224,7 @@ export default function CreateQuestBtn(props) {
               fullWidth
               multiline
               name="level-1-desc"
-              label="Level 1 Description"
+              label="I am starting with... so I can..."
               id="level-1-desc"
               autoComplete="Level 1 Description"
               value={node1Desc}
@@ -257,7 +257,7 @@ export default function CreateQuestBtn(props) {
               fullWidth
               multiline
               name="level-2"
-              label="Level 2"
+              label="Learn..."
               id="level-2"
               autoComplete="Level 2"
               value={node2Title}
@@ -271,7 +271,7 @@ export default function CreateQuestBtn(props) {
               fullWidth
               multiline
               name="level-2-desc"
-              label="Level 2 Description"
+              label="I am learning... next so..."
               id="level-2-desc"
               autoComplete="Level 2 Description"
               value={node2Desc}
@@ -303,7 +303,7 @@ export default function CreateQuestBtn(props) {
               fullWidth
               multiline
               name="level-3"
-              label="Level 3"
+              label="Learn..."
               id="level-3"
               autoComplete="Level 3"
               value={node3Title}
@@ -317,7 +317,7 @@ export default function CreateQuestBtn(props) {
               fullWidth
               multiline
               name="level-3-desc"
-              label="Level 3 Description"
+              label="...is next on my list because..."
               id="level-3-desc"
               autoComplete="Level 3 Description"
               value={node3Desc}
@@ -349,7 +349,7 @@ export default function CreateQuestBtn(props) {
               fullWidth
               multiline
               name="level-4"
-              label="Level 4"
+              label="Learn..."
               id="level-4"
               autoComplete="Level 4"
               value={node4Title}
@@ -363,7 +363,7 @@ export default function CreateQuestBtn(props) {
               fullWidth
               multiline
               name="level-4-desc"
-              label="Level 4 Description"
+              label="...is important because..."
               id="level-4-desc"
               autoComplete="Level 4 Description"
               value={node4Desc}
@@ -395,7 +395,7 @@ export default function CreateQuestBtn(props) {
               fullWidth
               multiline
               name="level-5"
-              label="Level 5"
+              label="Learn..."
               id="level-5"
               autoComplete="Level 5"
               value={node5Title}
@@ -409,7 +409,7 @@ export default function CreateQuestBtn(props) {
               fullWidth
               multiline
               name="level-5-desc"
-              label="Level 5 Description"
+              label="Finally, I will learn... so..."
               id="level-5-desc"
               autoComplete="Level 5 Description"
               value={node5Desc}

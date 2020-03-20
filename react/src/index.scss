@@ -102,3 +102,28 @@ a {
     }
   }
 }
+
+.MuiStepper-root {
+  box-shadow: none !important;
+
+
+  .completed-node {
+    svg {
+      color: green !important
+    }
+  }
+  
+  .incompleted-node svg {
+    color: #59301A;
+  }
+
+  .MuiStepIcon-text {
+    display: none;
+  }
+
+  .MuiStepConnector-line {
+    border-color: #59301A !important;
+    border-top-width: 5px;
+  }
+
+}
