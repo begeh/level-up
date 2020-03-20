@@ -65,15 +65,6 @@ export default function CreateQuestBtn(props) {
     setSelectedDate(date);
   };
 
-  // let questDesc, node1Title, node1Desc, node1CompletionDate,
-  //   node2Title, node2Desc, node2CompletionDate,
-  //   node3Title, node3Desc, node3CompletionDate,
-  //   node4Title, node4Desc, node4CompletionDate,
-  //   node5Title, node5Desc, node5CompletionDate = null
-
-  console.log(props)
-  console.log(questTitle)
-
   async function handleQuestSubmit(event) {
     event.preventDefault();
     console.log("function is called")

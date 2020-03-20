@@ -4,11 +4,24 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  resources :parties
+
+  resources :quests do
+    resources :nodes
+  end
+  
+  resources :nodes do
+    resources :posts
+  end
+  
+  resources :posts do
+    resources :comments
+  end
 
   post "/user", to: "users#return_user"
   post "/create_quest", to: "quests#create_quest"
 
-  resources :parties
+
   
   # Old way of routing, lots of nested routes
   # resources :quests do
@@ -21,17 +34,7 @@ Rails.application.routes.draw do
 
 # New way of routing, routes are only nested 1 level
 # Should make each table more accesscible without changing functionality
-resources :quests do
-  resources :nodes
-end
 
-resources :nodes do
-  resources :posts
-end
-
-resources :posts do
-  resources :comments
-end
 
   get "/quest/:quest_id/nodes", to: "nodes#quest_nodes"
   get "/node/:node_id/posts", to: "posts#node_posts"

@@ -19,6 +19,7 @@ class PartiesController < ApplicationController
 
   # GET /parties/:id
   def show
+    set_party()
     json_response(@party)
   end
 

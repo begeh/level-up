@@ -98,10 +98,9 @@ export default function Lobby(props) {
     console.log(`Party full quests ${JSON.stringify(party_full_quests)}`);
 
     let party_id = full_quests[0].quest.party_id;
-    let party_name = await axios.get('/parties')
+    let party_name = await axios.get(`/parties/${lobbyCode}`)
       .then((response) => {
-        const party_name = response.data.filter(party => party.id === party_id)[0].party_name
-        return party_name
+        return response.party_name
       });
 
     let party_members = await axios.get("/users")
@@ -135,7 +134,7 @@ export default function Lobby(props) {
     // If making Lobby
     state.lobbyName = lobbyName
 
-    // Returns all the quests that contain the relevant user id
+    // Creates a party and returns the a party object
     let party = await axios.post(`/parties`,
       {
         mentor_id: state.id,
@@ -146,6 +145,7 @@ export default function Lobby(props) {
       .then((res) => {
         return res.data;
       })
+    console.log(party)
 
     let full_quests = [];
     let promises = [];
@@ -175,7 +175,12 @@ export default function Lobby(props) {
     const party_info = {
       id: party_id,
       name: party_name,
-      members: party_members
+      members: [
+        {
+          name: state.name,
+          title: state.title
+        }
+      ]
     }
 
     history.push({ pathname: "/hall", state: { global: state, quests: full_quests, party_quests: party_full_quests, party_info: party_info } });
