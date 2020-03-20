@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import { Hidden } from '@material-ui/core'
-import shield from '../images/shield.png'
+import brokenShield from '../images/broken-shield.png'
 
-export default function QuestFinish(props) {
+export default function QuestFail(props) {
   const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
@@ -17,8 +16,8 @@ export default function QuestFinish(props) {
         <Modal.Header>
         </Modal.Header>
         <Modal.Body>
-          <h3>Quest Complete</h3>
-          <img src={shield} alt='win image' className='finish-image' />
+          <h3>Quest Failed</h3>
+          <img src={brokenShield} alt='win image' className='finish-image' />
         </Modal.Body>
         <Modal.Footer>
           <Button className='btn btn-primary' onClick={handleClose}>
