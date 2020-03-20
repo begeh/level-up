@@ -54,6 +54,35 @@ class QuestsController < ApplicationController
       @quest = Quest.create!(quest_params)
       json_response(@quest, :created)
     end
+
+    # POST /create_quest/:package
+    def create_quest
+      quest = params[:quest]
+      nodes = params[:nodes]
+      puts quest
+      puts "Space"
+      puts nodes
+      @quest = Quest.create!(
+        party_id: quest[:party_id],
+        user_id: quest[:user_id],
+        mentor_id: quest[:user_id],
+        status: quest[:status],
+        description: quest[:description],
+        title: quest[:title]
+      )
+      nodes.each do |n|
+        puts "n = #{n}"
+      Node.create!(
+        title: n[:title],
+        description: n[:description],
+        is_complete?: false,
+        quest_id: @quest.id,
+        complete_by: n[:complete_by]
+      )
+      end
+
+      json_response(@quest, :created)
+    end
   
     # GET /quests/:id
     def show
@@ -76,7 +105,18 @@ class QuestsController < ApplicationController
   
     def quest_params
       # whitelist params
-      params.permit(:party_key, :user_key, :title, :quest_description, :status, :mentor_id)
+      params.permit(:party_id, :user_id, :title, :quest_description, :status, :mentor_id, :node)
+    end
+
+    def node_params
+      # whitelist params
+      params.permit(
+  :node1Title, :node1Desc, :node1CompletionDate,
+  :node2Title, :node2Desc, :node2CompletionDate,
+  :node3Title, :node3Desc, :node3CompletionDate,
+  :node4Title, :node4Desc, :node4CompletionDate,
+  :node5Title, :node5Desc, :node5CompletionDate
+      )
     end
   
     def set_quest
