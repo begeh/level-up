@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { TextField } from '@material-ui/core'
+import axios from "axios"
 
-export default function CreatePostButton() {
+export default function CreatePostButton(props) {
   const [show, setShow] = useState(false);
 
   const [postTitle, setPostTitle] = useState("");
@@ -19,15 +20,26 @@ export default function CreatePostButton() {
   async function handlePostSubmit(event) {
     event.preventDefault();
     console.log("function called")
-    let post = {
+    let post_package = {
       title: postTitle,
       content: postDescription,
       symbol_ref: postType,
       video_url: videoURL,
-      image_url:imageURL
+      image_url: imageURL,
+      node_id: props.node_id
     }
 
-    console.log(post)
+    console.log(post_package)
+
+    let post = await axios.post("/posts", {
+      title: postTitle,
+      content: postDescription,
+      symbol_ref: postType,
+      video_url: videoURL,
+      image_url: imageURL,
+      node_id: props.node_id
+    }
+    ).then((res) => res.data);
 
   }
 

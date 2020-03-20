@@ -18,7 +18,6 @@ export default function QuestList({posts, comments, handleClick}){
       }
       </GridList>
 
-      <CreatePostBtn />
 
     </div>
   )
