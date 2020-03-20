@@ -5,10 +5,6 @@ import NavForApp from '../components/NavForApp';
 import CreatePostBtn from '../components/CreatePostBtn'
 import QuestInfoBtn from '../components/QuestInfoBtn'
 import './Quest.scss'
-import sword from '../images/sword.png'
-import book from '../images/book.png'
-import question from '../images/question.png'
-import comment from '../images/comment.png'
 import QuestList from "../components/QuestList";
 import NodeBar from "../components/NodeBar";
 import scroll from '../images/scroll.png'
