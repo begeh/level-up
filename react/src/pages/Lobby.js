@@ -99,7 +99,7 @@ export default function Lobby(props) {
 
     console.log(`Party full quests ${party_full_quests}`);
 
-    let party_id = full_quests[0].quest.party_id;
+    let party_id = state.party_id;
     let party_name = await axios.get(`/parties/${lobbyCode}`)
       .then((response) => {
         return response.party_name
