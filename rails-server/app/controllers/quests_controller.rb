@@ -57,11 +57,13 @@ class QuestsController < ApplicationController
   
     # GET /quests/:id
     def show
+      set_quest()
       json_response(@quest)
     end
   
     # PUT /quests/:id
     def update
+      set_quest()
       @quest.update(quest_params)
       head :no_content
     end
