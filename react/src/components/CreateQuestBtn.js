@@ -470,10 +470,6 @@ export default function CreateQuestBtn(props) {
             Submit Quest
           </Button>
         </Modal.Footer>
-<<<<<<< HEAD
-
-=======
->>>>>>> master
         </form>
       </Modal>
     </div>
