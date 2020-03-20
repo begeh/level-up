@@ -82,6 +82,8 @@ export default function Lobby(props) {
         return res.data
       })
 
+      console.log(`This is party quests ${JSON.stringify(full_quests)}`)
+
     let party_full_quests = [];
     let party_promises = [];
     party_quests.forEach((quest) => {
@@ -95,7 +97,7 @@ export default function Lobby(props) {
 
     await Promise.all(party_promises);
 
-    console.log(`Party full quests ${JSON.stringify(party_full_quests)}`);
+    console.log(`Party full quests ${party_full_quests}`);
 
     let party_id = full_quests[0].quest.party_id;
     let party_name = await axios.get(`/parties/${lobbyCode}`)
