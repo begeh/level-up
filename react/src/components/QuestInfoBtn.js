@@ -4,6 +4,7 @@ import {Hidden, List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@mater
 import {useHistory} from "react-router-dom";
 import axios from 'axios';
 import QuestFinish from "./QuestFinish";
+import Success from '../helpers/success';
 
 export default function QuestInfoBtn(props) {
   let history = useHistory();
@@ -33,7 +34,22 @@ export default function QuestInfoBtn(props) {
         console.log(`Node not completed is ${node.id}`);
         await axios.put(`/nodes/${node.id}`, {"is_complete?": true}).catch(err => alert(err));
         if(node.id === nodes[nodes.length-1].id){
-          await axios.put(`/quests/${quest_id}`,{"status": "SUCCESS"}).catch(err=> alert(err));
+          const story_params ={
+            apprentice: user_name,
+            mentor: mentor_name,
+            questTitle: quest.quest.title,
+            node1: nodes[0].title,
+            node2: nodes[1].title,
+            node3: nodes[2].title,
+            node4: nodes[3].title,
+            node5: nodes[4].title
+          }
+
+          const story = Success(story_params);
+          console.log(`Story is ${story}`)
+          await axios.put(`/quests/${quest_id}`,{"story": story, "status": "SUCCESS"}).catch(err=> alert(err));
+
+          // await axios.put(`/quests/${quest_id}`,{"status": "SUCCESS"}).catch(err=> alert(err));
           quest_completed = "success";
         }
       } else{
