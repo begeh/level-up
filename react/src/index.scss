@@ -104,14 +104,12 @@ a {
 }
 
 // Node Design
-.MuiPaper-root {
-  background-color: #dcc165 !important;
-  margin: 30px 24px 50px 0 !important;
-  border-radius: 50px;
-  padding: 10px !important;
-}
 .MuiStepper-root {
   box-shadow: 3px 4px 4px #bba042 !important;
+  background-color: #dcc165 !important;
+    margin: 30px 24px 50px 0 !important;
+    border-radius: 50px;
+    padding: 10px !important;
 
 
   .MuiSvgIcon-root {
