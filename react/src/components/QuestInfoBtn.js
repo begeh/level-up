@@ -43,7 +43,7 @@ export default function QuestInfoBtn(props) {
     let full_quests = [];
     let promises = [];
     quests.forEach((quest) => {
-      promises.push(axios.get(`/quest_object/${quest_id}`)
+      promises.push(axios.get(`/quest_object/${quest.id}`)
         .then((response) => {
           full_quests.push(response.data);
         })
