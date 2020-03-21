@@ -4,7 +4,8 @@ import {Hidden, List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@mater
 import {useHistory} from "react-router-dom";
 import axios from 'axios';
 import QuestFinish from "./QuestFinish";
-import Success from '../helpers/success';
+import success from '../helpers/success';
+import fail from '../helpers/fail';
 
 export default function QuestInfoBtn(props) {
   let history = useHistory();
@@ -22,34 +23,40 @@ export default function QuestInfoBtn(props) {
   const quest_id = props.quest_id;
   let quest_completed = props.quest_completed;
 
+  const story_params ={
+    apprentice: user_name,
+    mentor: mentor_name,
+    questTitle: quest.quest.title,
+    node1: nodes[0].title,
+    node2: nodes[1].title,
+    node3: nodes[2].title,
+    node4: nodes[3].title,
+    node5: nodes[4].title,
+    dateEnd: Date.now(),
+    dateStart: quest.quest.created_at
+  }
 
   async function handleLevel(nodes, status) {
     console.log(`Status is ${status}`);
     if(status === "failed"){
-      await axios.put(`/quests/${quest_id}`,{"status": "FAILED"}).catch(err=> alert(err));
-          quest_completed = "failed";
+      const num_completed_nodes = nodes.filter(node=> node["is_complete?"] === true).length;
+
+      const story = fail(story_params, num_completed_nodes);
+
+      await axios.put(`/quests/${quest_id}`,{"story":story,"status": "FAILED"}).catch(err=> alert(err));
+      
+      quest_completed = "failed";
     }else{
       let node = nodes.find(node=> node["is_complete?"] === false);
       if(node){
         console.log(`Node not completed is ${node.id}`);
         await axios.put(`/nodes/${node.id}`, {"is_complete?": true}).catch(err => alert(err));
         if(node.id === nodes[nodes.length-1].id){
-          const story_params ={
-            apprentice: user_name,
-            mentor: mentor_name,
-            questTitle: quest.quest.title,
-            node1: nodes[0].title,
-            node2: nodes[1].title,
-            node3: nodes[2].title,
-            node4: nodes[3].title,
-            node5: nodes[4].title
-          }
 
-          const story = Success(story_params);
-          console.log(`Story is ${story}`)
+          const story = success(story_params);
+  
           await axios.put(`/quests/${quest_id}`,{"story": story, "status": "SUCCESS"}).catch(err=> alert(err));
 
-          // await axios.put(`/quests/${quest_id}`,{"status": "SUCCESS"}).catch(err=> alert(err));
           quest_completed = "success";
         }
       } else{

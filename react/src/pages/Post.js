@@ -49,34 +49,6 @@ export default function Post(props) {
     post_symbol = book;
   }
 
-  // const post = {
-  //   title: 'quest',
-  //   date: Date(Date.now()).toString(),
-  //   description: "This is my progress",
-  //   symbol: "https://cdn4.iconfinder.com/data/icons/must-have-outline/100/objects-29-512.png", 
-  //   attachment: "https://cdn.theatlantic.com/thumbor/ZAWCcyd-MwxmwvkTGp9VtFjb-h0=/900x673/media/img/photo/2018/11/photos-companionable-capybaras/c02_142762210/original.jpg",
-  //   comments: [
-  //     {
-  //       username: "Bash",
-  //       avatar: "https://ih0.redbubble.net/image.539207575.3366/flat,128x128,075,t-pad,128x128,f8f8f8.u2.jpg",
-  //       date: Date(Date.now()).toString(),
-  //       text: "Capybaras are awesome"
-  //     },
-  //     {
-  //       username: "Bash",
-  //       avatar: "https://ih0.redbubble.net/image.539207575.3366/flat,128x128,075,t-pad,128x128,f8f8f8.u2.jpg",
-  //       date: Date(Date.now()).toString(),
-  //       text: "Capybaras are awesome"
-  //     },
-  //     {
-  //       username: "Bash",
-  //       avatar: "https://ih0.redbubble.net/image.539207575.3366/flat,128x128,075,t-pad,128x128,f8f8f8.u2.jpg",
-  //       date: Date(Date.now()).toString(),
-  //       text: "Capybaras are awesome"
-  //     }
-  //   ]
-  // }
-
   const PostView = ({post}) => {
     return (
       <Grid className='post-view' container>
@@ -109,7 +81,7 @@ export default function Post(props) {
     )
   }
 
-  const CommentList = ({post}) => {
+  const CommentList = ({comments}) => {
 
     return (
       comments.map((comment, index) => (
@@ -144,6 +116,7 @@ export default function Post(props) {
         <Grid className='container-left quest-info' item sm={5}>
           <img src={scroll} alt='scroll' />
           <h3>{quest.quest.title}</h3>
+          <p>Quest Status: {quest.quest.status}</p>
           <p>Mentor: {mentor_name}</p>
           <p>Apprentice: {user_name}</p>
           <p>Finish Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
@@ -155,7 +128,7 @@ export default function Post(props) {
 
       <Grid className='container-right' item xs={12} sm={7} >
         <PostView post={post} />
-        <CommentList post={post} />
+        <CommentList comments={comments} />
       </Grid>
     </Grid>
     </>
