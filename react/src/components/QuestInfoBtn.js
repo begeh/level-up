@@ -105,7 +105,7 @@ export default function QuestInfoBtn(props) {
 
     handleClose();
 
-    history.push({pathname:`/quest/${quest_id}`,state:{global: state, quests: full_quests, party_quests:party_full_quests, quest_id: quest_id, mentor_name:mentor_name, user_name:user_name, party_info: party_info, quest_completed: quest_completed}})
+    history.push({pathname:`/quest/${quest_id}`,state:{global: state, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), party_quests:party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), quest_id: quest_id, mentor_name:mentor_name, user_name:user_name, party_info: party_info, quest_completed: quest_completed}})
 
   }
 
