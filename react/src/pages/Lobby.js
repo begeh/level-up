@@ -123,7 +123,7 @@ export default function Lobby(props) {
       members: party_members
     }
 
-    history.push({ pathname: "/hall", state: { global: state, quests: full_quests, party_quests: party_full_quests, party_info: party_info } });
+    history.push({ pathname: "/hall", state: { global: state, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), party_info: party_info } });
 
 
   }
@@ -216,7 +216,7 @@ export default function Lobby(props) {
    members: party_members
  }
 
- history.push({ pathname: "/hall", state: { global: state, quests: full_quests, party_quests: party_full_quests, party_info: party_info } });
+ history.push({ pathname: "/hall", state: { global: state, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), party_info: party_info } });
 
   }
 
