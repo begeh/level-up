@@ -5,10 +5,13 @@ import { useHistory } from "react-router-dom";
 import ReactPlayer from 'react-player'
 import './Post.scss'
 import QuestInfoBtn from "../components/QuestInfoBtn";
+import CommentList from "../components/CommentList";
+
 import scroll from '../images/scroll.png'
 import sword from '../images/sword.png'
 import book from '../images/book.png'
 import question from '../images/question.png'
+
 import axios from "axios"
 
 export default function Post(props) {
@@ -41,6 +44,7 @@ export default function Post(props) {
   const symbol = post.symbol_ref;
   let post_symbol = null;
 
+  //sets symbol for post to an image based on symbol_ref value of post
   if (symbol === "sword") {
     post_symbol = sword;
   } else if (symbol === "question") {
@@ -52,6 +56,8 @@ export default function Post(props) {
   const [comment, setComment] = useState("")
   console.log(comment)
   console.log(post)
+
+  //submits a comment to the database and rerenders page through useHistory
   async function handleCommentSubmit(event) {
     event.preventDefault();
     console.log("function called")
@@ -123,34 +129,7 @@ export default function Post(props) {
       </Grid>
     )
   }
-
-  const CommentList = ({ post }) => {
-
-    return (
-      comments.map((comment, index) => (
-        <CommentListItem key={index} username={comment.username} avatar={comment.avatar} created_at={comment.created_at} text={comment.text} />
-      ))
-    )
-  }
-
-  const CommentListItem = ({ username, avatar, created_at, text }) => {
-    return (
-      <Grid container className='comment-post' >
-        <p className='delete-comment'>X</p>
-        <Grid item xs={4} sm={4} md={3} lg={2} >
-          <Avatar src="https://ih0.redbubble.net/image.539207575.3366/flat,128x128,075,t-pad,128x128,f8f8f8.u2.jpg" alt='User Avatar' />
-        </Grid>
-        <Grid item xs={8} sm={8} md={9} lg={10} className='comment-right'>
-          <p>UserName: {username}</p>
-          <p>Date Posted: {(new Date(created_at)).toLocaleDateString()}</p>
-          <p className='comment-description'>Comment: {text}</p>
-        </Grid>
-      </Grid>
-    )
-  }
-
-
-
+  
   return (
     <>
       <NavForApp nav_title='POST' state={state} quests={quests} party_quests={party_quests} party_info={party_info} />
@@ -184,7 +163,7 @@ export default function Post(props) {
             />
             <button className='btn btn-primary' type="submit">Submit</button>
           </form>
-          <CommentList post={post} />
+          <CommentList comments={comments} />
         </Grid>
       </Grid>
     </>
