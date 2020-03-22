@@ -43,6 +43,7 @@ export default function Quest(props) {
   console.log(`Quest is completed ${quest_completed}`)
   let quest = party_quests.filter(quest => quest.quest.id === quest_id)[0];
 
+  //sets posts variable to all posts if no node is selected, or to posts specific to a selected node (node_post) if a node is clicked
   let posts = null;
   if (!node_posts) {
     posts = quest.posts.flat();
