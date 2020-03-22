@@ -45,17 +45,17 @@ export default function CreateQuestBtn(props) {
   const [node4Desc, setNode4Desc] = useState("")
   const [node5Desc, setNode5Desc] = useState("")
 
-  const [node1CompletionDate, setNode1CompletionDate] = useState(new Date('2014-08-18T21:11:54'))
-  const [node2CompletionDate, setNode2CompletionDate] = useState(new Date('2014-08-18T21:11:54'))
-  const [node3CompletionDate, setNode3CompletionDate] = useState(new Date('2014-08-18T21:11:54'))
-  const [node4CompletionDate, setNode4CompletionDate] = useState(new Date('2014-08-18T21:11:54'))
-  const [node5CompletionDate, setNode5CompletionDate] = useState(new Date('2014-08-18T21:11:54'))
+  const [node1CompletionDate, setNode1CompletionDate] = useState(new Date(Date.now()))
+  const [node2CompletionDate, setNode2CompletionDate] = useState(new Date(Date.now()))
+  const [node3CompletionDate, setNode3CompletionDate] = useState(new Date(Date.now()))
+  const [node4CompletionDate, setNode4CompletionDate] = useState(new Date(Date.now()))
+  const [node5CompletionDate, setNode5CompletionDate] = useState(new Date(Date.now()))
 
 
 
 
   // Date Handlers
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [selectedDate, setSelectedDate] = React.useState(new Date(Date.now()));
   const handleDateChange = date => {
     setSelectedDate(date);
   };
@@ -241,7 +241,7 @@ export default function CreateQuestBtn(props) {
                   margin="normal"
                   id="level-1-date"
                   value={node1CompletionDate}
-                  onChange={e => setNode1CompletionDate(e.target.value)}
+                  onChange={e => setNode1CompletionDate(e)}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
                   }}
@@ -287,7 +287,7 @@ export default function CreateQuestBtn(props) {
                   margin="normal"
                   id="level-2-date"
                   value={node2CompletionDate}
-                  onChange={e => setNode2CompletionDate(e.target.value)}
+                  onChange={e => setNode2CompletionDate(e)}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
                   }}
@@ -333,7 +333,7 @@ export default function CreateQuestBtn(props) {
                   margin="normal"
                   id="level-3-date"
                   value={node3CompletionDate}
-                  onChange={e => setNode3CompletionDate(e.target.value)}
+                  onChange={e => setNode3CompletionDate(e)}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
                   }}
@@ -379,7 +379,7 @@ export default function CreateQuestBtn(props) {
                   margin="normal"
                   id="level-4-date"
                   value={node4CompletionDate}
-                  onChange={e => setNode4CompletionDate(e.target.value)}
+                  onChange={e => setNode4CompletionDate(e)}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
                   }}
@@ -425,7 +425,7 @@ export default function CreateQuestBtn(props) {
                   margin="normal"
                   id="level-5-date"
                   value={node5CompletionDate}
-                  onChange={e => setNode5CompletionDate(e.target.value)}
+                  onChange={e => setNode5CompletionDate(e)}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
                   }}
