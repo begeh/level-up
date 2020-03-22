@@ -34,11 +34,7 @@ export default function Quest(props) {
     party_info = props.location.state.party_info;
     node_posts = props.location.state.node_posts;
     quest_completed = props.location.state.quest_completed;
-    if (props.location.state.node_id) {
-      node_id = props.location.state.node_id
-    } else {
-      node_id = 1
-    }
+    node_id = props.location.state.node_id
     console.log(props);
   } else {
     history.push('/');
@@ -104,9 +100,9 @@ export default function Quest(props) {
             <button className='btn btn-primary' onClick={() => history.push({ pathname: "/hall", state: { global: state, quests: quests, party_quests: party_quests, quest_id: quest_id, party_info: party_info } })}>Go Back</button>
           </Grid>
           <NodeBar nodes={nodes} handleNode={handleNode} />
-          <QuestList posts={posts} comments={comments} quest={quest} handleClick={handleClick} />
-          { quest.quest.status === 'underway' ?
-            <CreatePostBtn node_id={node_id} /> : null
+          <QuestList posts={posts} comments={comments} handleClick={handleClick} />
+          { quest.quest.status === 'underway' && node_id ?
+            <CreatePostBtn node_id={node_id} /> : "Click a Node to Create a Post"
           }
         </Grid>
       </Grid>
