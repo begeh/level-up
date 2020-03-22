@@ -105,7 +105,9 @@ export default function Quest(props) {
           </Grid>
           <NodeBar nodes={nodes} handleNode={handleNode} />
           <QuestList posts={posts} comments={comments} quest={quest} handleClick={handleClick} />
-          <CreatePostBtn node_id={node_id} />
+          { quest.quest.status === 'underway' ?
+            <CreatePostBtn node_id={node_id} /> : null
+          }
         </Grid>
       </Grid>
     </>
