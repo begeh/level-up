@@ -50,7 +50,7 @@ export default function QuestInfoBtn(props) {
       let node = nodes.find(node=> node["is_complete?"] === false);
       if(node){
         console.log(`Node not completed is ${node.id}`);
-        await axios.put(`/nodes/${node.id}`, {"is_complete?": true}).catch(err => alert(err));
+        await axios.put(`/nodes/${node.id}`, {"is_complete?": true,"date_finished": new Date(Date.now())}).catch(err => alert(err));
         if(node.id === nodes[nodes.length-1].id){
 
           const story = success(story_params);
@@ -135,7 +135,7 @@ export default function QuestInfoBtn(props) {
                       <img src="https://www.pinclipart.com/picdir/middle/379-3797946_software-developer-computer-servers-web-others-web-developer.png" alt="Quest Button" />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary={`Node ${node.id}: ${node.title}`} secondary={(new Date(node.date_finished)).toLocaleDateString()} />
+                  <ListItemText primary={`Node ${node.id}: ${node.title}`} secondary={node.date_finished ? (new Date(node.date_finished)).toLocaleDateString() : "Incomplete"} />
                 </ListItem>
                 <p className='node-desc'>{node.description}</p>
               </div>
