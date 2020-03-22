@@ -104,10 +104,9 @@ export default function Quest(props) {
             <button className='btn btn-primary' onClick={() => history.push({ pathname: "/hall", state: { global: state, quests: quests, party_quests: party_quests, quest_id: quest_id, party_info: party_info } })}>Go Back</button>
           </Grid>
           <NodeBar nodes={nodes} handleNode={handleNode} />
-          <QuestList posts={posts} comments={comments} handleClick={handleClick} />
+          <QuestList posts={posts} comments={comments} quest={quest} handleClick={handleClick} />
           <CreatePostBtn node_id={node_id} />
-
-        </Grid >
+        </Grid>
       </Grid>
     </>
   );

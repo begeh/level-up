@@ -58,12 +58,14 @@ export default function History(props){
                       <img src="https://www.pinclipart.com/picdir/middle/379-3797946_software-developer-computer-servers-web-others-web-developer.png" alt="Quest Button" />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary={node.title} secondary={Date(node.date_finished)} />
+                  <ListItemText primary={node.title} secondary={`Date Finished: ${node.date_finished ? (new Date(node.date_finished)).toLocaleDateString() : "Incomplete"}`} />
                 </ListItem>
                 <p className='node-desc'>{node.description}</p>
           </div>
           ))
         }
+        <h5>Story</h5>
+        <p>{quest.story ? quest.story : "Yet to be told..."}</p>
       </Grid>
     </Grid>
   </>

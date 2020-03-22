@@ -5,7 +5,7 @@ import { GridList, GridListTile } from '@material-ui/core';
 
 
 
-export default function QuestList({posts, comments, handleClick}){
+export default function QuestList({quest, posts, comments, handleClick}){
   return (
     <div>
       <GridList cellHeight={160} cols={3}>
@@ -17,8 +17,9 @@ export default function QuestList({posts, comments, handleClick}){
         ))
       }
       </GridList>
-
-
+      { quest.quest.status === 'underway' ?
+      <CreatePostBtn /> : null
+      }
     </div>
   )
 }
