@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, TextField, Avatar, Hidden } from '@material-ui/core';
 import NavForApp from '../components/NavForApp';
 import { useHistory } from "react-router-dom";
@@ -8,10 +8,11 @@ import QuestInfoBtn from "../components/QuestInfoBtn";
 import scroll from '../images/scroll.png'
 import sword from '../images/sword.png'
 import book from '../images/book.png'
-import question from '../images/question.png' 
+import question from '../images/question.png'
+import axios from "axios"
 
 export default function Post(props) {
-  let history=useHistory();
+  let history = useHistory();
   let state = {};
   let quests = {};
   let party_quests = {};
@@ -21,9 +22,8 @@ export default function Post(props) {
   let party_info = {}
   let post = {};
   let comments = {};
-  let quest= null;
-  if(props.location.state)
-  {
+  let quest = null;
+  if (props.location.state) {
     state = props.location.state.global;
     quests = props.location.state.quests;
     party_quests = props.location.state.party_quests;
@@ -33,20 +33,44 @@ export default function Post(props) {
     party_info = props.location.state.party_info;
     post = props.location.state.post;
     comments = props.location.state.comments;
-    quest= props.location.state.quest;
-  } else{
+    quest = props.location.state.quest;
+  } else {
     history.push('/');
   }
 
   const symbol = post.symbol_ref;
   let post_symbol = null;
 
-  if(symbol === "sword"){
+  if (symbol === "sword") {
     post_symbol = sword;
-  } else if(symbol === "question"){
+  } else if (symbol === "question") {
     post_symbol = question;
-  } else{
+  } else {
     post_symbol = book;
+  }
+
+  const [comment, setComment] = useState("")
+  console.log(comment)
+  console.log(post)
+  async function handleCommentSubmit(event) {
+    event.preventDefault();
+    console.log("function called")
+    let comment_package = {
+      text: comment,
+      username: user_name,
+      post_id: post.id
+    }
+    console.log(comment_package)
+
+    let sent_comment = await axios.post(`/posts/${post.id}/comments`, {
+      text: comment,
+      username: user_name,
+      post_id: post.id
+    }
+    ).then((res) => res.data)
+
+    //Needs the proper redirection code
+
   }
 
   // const post = {
@@ -77,14 +101,14 @@ export default function Post(props) {
   //   ]
   // }
 
-  const PostView = ({post}) => {
+  const PostView = ({ post }) => {
     return (
       <Grid className='post-view' container>
         <Grid className='back-button' item xs={12}>
-          <button className='btn btn-primary' onClick={()=>history.push({pathname:`/quest/${quest_id}`, state: {global:state, quest_id:quest_id, quests:quests, party_quests: party_quests, mentor_name:mentor_name, user_name:user_name, party_info:party_info}})}>Go Back</button>
+          <button className='btn btn-primary' onClick={() => history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: quests, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info } })}>Go Back</button>
         </Grid>
         <Grid item xs={4} sm={4} md={3} lg={2} >
-          <img src={post_symbol} alt={post.title} width="120" height="120"/>
+          <img src={post_symbol} alt={post.title} width="120" height="120" />
         </Grid>
         <Grid item className='post-detail' xs={8} sm={8} md={9} lg={10}>
           <h3>Post Title: {post.title}</h3>
@@ -94,22 +118,13 @@ export default function Post(props) {
           <img src="https://cdn.theatlantic.com/thumbor/ZAWCcyd-MwxmwvkTGp9VtFjb-h0=/900x673/media/img/photo/2018/11/photos-companionable-capybaras/c02_142762210/original.jpg" alt={post.title} />
           <ReactPlayer className='player' url='https://www.youtube.com/watch?v=6FAaOwNnHTA' />
           <p>Content: {post.content}</p>
-          <form className='comment-form'>
-            <TextField
-            className='text-field'
-            id="comment"
-            label='Type your comment here'
-            multiline
-            rowsMax="4"
-            />
-            <button className='btn btn-primary'>Submit</button>
-          </form>
+
         </Grid>
       </Grid>
     )
   }
 
-  const CommentList = ({post}) => {
+  const CommentList = ({ post }) => {
 
     return (
       comments.map((comment, index) => (
@@ -138,26 +153,40 @@ export default function Post(props) {
 
   return (
     <>
-    <NavForApp nav_title='POST' state={state} quests={quests} party_quests={party_quests} party_info={party_info}/>
-    <Grid container >
-    <Hidden xsDown>
-        <Grid className='container-left quest-info' item sm={5}>
-          <img src={scroll} alt='scroll' />
-          <h3>{quest.quest.title}</h3>
-          <p>Mentor: {mentor_name}</p>
-          <p>Apprentice: {user_name}</p>
-          <p>Finish Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
-          <div className='quest-button'>
-          <QuestInfoBtn quest={quest} mentor_name={mentor_name} user_name={user_name}/>
-          </div>
-        </Grid>
-      </Hidden>
+      <NavForApp nav_title='POST' state={state} quests={quests} party_quests={party_quests} party_info={party_info} />
+      <Grid container >
+        <Hidden xsDown>
+          <Grid className='container-left quest-info' item sm={5}>
+            <img src={scroll} alt='scroll' />
+            <h3>{quest.quest.title}</h3>
+            <p>Mentor: {mentor_name}</p>
+            <p>Apprentice: {user_name}</p>
+            <p>Finish Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
+            <div className='quest-button'>
+              <QuestInfoBtn quest={quest} mentor_name={mentor_name} user_name={user_name} />
+            </div>
+          </Grid>
+        </Hidden>
 
-      <Grid className='container-right' item xs={12} sm={7} >
-        <PostView post={post} />
-        <CommentList post={post} />
+        <Grid className='container-right' item xs={12} sm={7} >
+          <PostView post={post} />
+          <form className='comment-form' noValidate onSubmit={handleCommentSubmit}>
+            <TextField
+              required
+              fullWidth
+              className='text-field'
+              id="comment"
+              label='Type your comment here'
+              multiline
+              rowsMax="4"
+              value={comment}
+              onChange={e => setComment(e.target.value)}
+            />
+            <button className='btn btn-primary' type="submit">Submit</button>
+          </form>
+          <CommentList post={post} />
+        </Grid>
       </Grid>
-    </Grid>
     </>
   );
 }

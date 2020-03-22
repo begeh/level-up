@@ -41,6 +41,8 @@ export default function CreatePostButton(props) {
     }
     ).then((res) => res.data);
 
+    //Needs proper redirection code
+
   }
 
   return (
