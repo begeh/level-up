@@ -99,7 +99,7 @@ export default function Quest(props) {
         <button className='btn btn-primary' onClick={()=>history.push({pathname:"/hall", state: {global:state, quests:quests, party_quests: party_quests, quest_id: quest_id, party_info:party_info}})}>Go Back</button>
         </Grid>
         <NodeBar nodes={nodes.sort((a,b)=>a.id - b.id)} handleNode={handleNode}/>
-        <QuestList posts={posts} comments={comments} handleClick={handleClick}/>
+        <QuestList quest={quest} posts={posts} comments={comments} handleClick={handleClick}/>
         
       </Grid>
     </Grid>
