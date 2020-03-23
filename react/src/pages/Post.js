@@ -26,6 +26,7 @@ export default function Post(props) {
   let post = {};
   let comments = {};
   let quest = null;
+  let post_id = null;
   if (props.location.state) {
     state = props.location.state.global;
     quests = props.location.state.quests;
@@ -37,6 +38,7 @@ export default function Post(props) {
     post = props.location.state.post;
     comments = props.location.state.comments;
     quest = props.location.state.quest;
+    post_id = props.location.state.post_id;
   } else {
     history.push('/');
   }
@@ -75,7 +77,52 @@ export default function Post(props) {
     }
     ).then((res) => res.data)
 
-    //Needs the proper redirection code
+    comments = await axios.get(`/post/${post_id}/comments`).then((response) => response.data);
+    console.log(`Comments are ${JSON.stringify(comments)}`);
+
+  //   quests = await axios.post(`/user_quests`, { user_id: state.id })
+  //   .then((res) => {
+  //     return res.data;
+  //   })
+ 
+  // console.log(JSON.stringify(quests))
+ 
+  // let full_quests = [];
+  // let promises = [];
+  // quests.forEach((quest) => {
+  //   promises.push(axios.get(`quest_object/${quest.id}`)
+  //     .then((response) => {
+  //       full_quests.push(response.data);
+  //     })
+  //   )
+  // }
+  // );
+ 
+  // await Promise.all(promises);
+ 
+  // console.log(`Full quests ${JSON.stringify(full_quests)}`);
+ 
+  // party_quests = await axios.post("/party_quests", { party_id: state.party_id })
+  //   .then((res) => {
+  //     return res.data
+  //   })
+ 
+  // console.log(`This is party quests ${JSON.stringify(full_quests)}`)
+ 
+  // let party_full_quests = [];
+  // let party_promises = [];
+  // party_quests.forEach((quest) => {
+  //   party_promises.push(axios.get(`quest_object/${quest.id}`)
+  //     .then((response) => {
+  //       party_full_quests.push(response.data);
+  //     })
+  //   )
+  // }
+  // );
+ 
+  // await Promise.all(party_promises);
+
+    history.push({ pathname: `/quest/${quest_id}/post/${post_id}`, state: { global: state, quest_id: quest_id, quests: quests, quest: quest, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, post: post, comments: comments } })
 
   }
 
