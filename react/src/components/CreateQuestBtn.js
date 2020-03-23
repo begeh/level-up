@@ -69,7 +69,7 @@ export default function CreateQuestBtn(props) {
     let quest = {
       title: questTitle,
       description: questDesc,
-      status: "underway",
+      status: "IN PROGRESS",
       party_id: state.party_id,
       user_id: state.id
     }

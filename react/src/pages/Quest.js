@@ -103,8 +103,8 @@ export default function Quest(props) {
           </Grid>
           <NodeBar nodes={nodes} handleNode={handleNode} />
           <QuestList posts={posts} comments={comments} handleClick={handleClick} />
-          { quest.quest.status === 'underway' && node_id ?
-            <CreatePostBtn node_id={node_id} /> : (quest.quest.status === 'underway' ? "Click a Node to Create a Post": null)
+          { quest.quest.status === 'IN PROGRESS' && node_id ?
+            <CreatePostBtn node_id={node_id} /> : (quest.quest.status === 'IN PROGRESS' ? "Click a Node to Create a Post": null)
           }
         </Grid>
       </Grid>
