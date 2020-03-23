@@ -1,8 +1,15 @@
 import React from 'react';
 import { Stepper, Step, StepLabel, Tooltip, Link} from '@material-ui/core';
+const classNames = require('classnames');
+
 
 
 export default function HallListItem({title, id, nodes, handleClick, mentor_id, user_id, status}){
+  const statusClass = classNames('status', {
+    'status-progress' : status === 'IN PROGRESS',
+    'status-success' : status === 'SUCCESS',
+    'status-failed' : status === 'FAILED'
+  })
 
   return (
     <Link 
@@ -11,8 +18,8 @@ export default function HallListItem({title, id, nodes, handleClick, mentor_id, 
       return handleClick(id, mentor_id, user_id)}} href=""
     >
     <div>
-      <h3 className='hall-title'>Quest Title: {title}</h3>
-      <p>Status: {status}</p>
+      <h3 className='hall-title'>{title}</h3>
+      <div className={statusClass}>{status}</div>
       <Stepper >
         {nodes.map((node, index) => {
   
