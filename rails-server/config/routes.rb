@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   post "/user", to: "users#return_user"
+  post "/user_party_members", to: "users#return_party_members"
   post "/create_quest", to: "quests#create_quest"
 
 

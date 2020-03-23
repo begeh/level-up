@@ -16,6 +16,12 @@ class UsersController < ApplicationController
     json_response(@user, :created)
   end
 
+  # POST /user_party_members
+  def return_party_members
+    @party_members = User.where(party_id: params[:party_id])
+    json_response(@party_members)
+  end
+
   # GET /users/:id
   def show
     json_response(@user)

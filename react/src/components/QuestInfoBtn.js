@@ -43,7 +43,7 @@ export default function QuestInfoBtn(props) {
 
       const story = fail(story_params, num_completed_nodes);
 
-      await axios.put(`/quests/${quest_id}`,{"story":story,"status": "FAILED"}).catch(err=> alert(err));
+      await axios.put(`/quests/${quest_id}`,{"story": story,"status": "FAILED", "date_finished": new Date(Date.now())}).catch(err=> alert(err));
       
       quest_completed = "failed";
     }else{
@@ -55,7 +55,7 @@ export default function QuestInfoBtn(props) {
 
           const story = success(story_params);
   
-          await axios.put(`/quests/${quest_id}`,{"story": story, "status": "SUCCESS"}).catch(err=> alert(err));
+          await axios.put(`/quests/${quest_id}`,{"story": story, "status": "SUCCESS", "date_finished": new Date(Date.now())}).catch(err=> alert(err));
 
           quest_completed = "success";
         }
@@ -124,7 +124,7 @@ export default function QuestInfoBtn(props) {
           <h6>{quest.quest.description}</h6>
           <h6>Mentor: {mentor_name}</h6>
           <h6>Apprentice: {user_name}</h6>
-          <h6>Finish Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</h6>
+          <h6>Finish Date: {quest.quest.date_finished ? (new Date(quest.quest.date_finished)).toLocaleDateString() : "In Progress"}</h6>
           <List>
           {
             quest.nodes.map((node, index)=>(
@@ -135,7 +135,7 @@ export default function QuestInfoBtn(props) {
                       <img src="https://www.pinclipart.com/picdir/middle/379-3797946_software-developer-computer-servers-web-others-web-developer.png" alt="Quest Button" />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary={`Node ${node.id}: ${node.title}`} secondary={`Date Finished: ${node.date_finished ? (new Date(node.date_finished)).toLocaleDateString() : "Incomplete"}`} />
+                  <ListItemText primary={`${node.title}  (${(new Date(node.complete_by)).toLocaleDateString()})`} secondary={`Date Finished: ${node.date_finished ? (new Date(node.date_finished)).toLocaleDateString() : "Incomplete"}`} />
                 </ListItem>
                 <p className='node-desc'>{node.description}</p>
               </div>
