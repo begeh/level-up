@@ -12,7 +12,6 @@ require "date"
 
 quest_status = ["completed", "failed", "abandoned", "underway"]
 
-puts "Seeding Data ..."
 
 # Only run on development (local) instances not on production, etc.
 unless Rails.env.development?
@@ -34,6 +33,9 @@ ActiveRecord::Base.connection.tables.each do |table|
     "Parties uses UUIDs for it's index, skipping"
   end
 end
+
+puts "Seeding Data ..."
+
 
 ## USERS
 
@@ -315,7 +317,6 @@ posts = []
 
 post_list.each do |node_id|
   posts.append(Post.find_or_create_by!(
-    id: count,
     title: Faker::Lorem.word,
     content: Faker::Lorem.sentence,
     node_id: node_id,
@@ -323,7 +324,6 @@ post_list.each do |node_id|
     ))
   count += 1
   posts.append(Post.find_or_create_by!(
-    id: count,
     title: Faker::Lorem.word,
     content: Faker::Lorem.sentence,
     node_id: node_id,
