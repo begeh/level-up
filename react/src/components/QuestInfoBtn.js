@@ -55,7 +55,7 @@ export default function QuestInfoBtn(props) {
 
           const story = success(story_params);
   
-          await axios.put(`/quests/${quest_id}`,{"story": story, "status": "SUCCESS"}).catch(err=> alert(err));
+          await axios.put(`/quests/${quest_id}`,{"story": story, "status": "SUCCESS", "date_finished": new Date(Date.now())}).catch(err=> alert(err));
 
           quest_completed = "success";
         }
