@@ -20,6 +20,21 @@ unless Rails.env.development?
   exit 0
 end
 
+# FIX DATABASE
+
+puts "Reseting the primary key count"
+
+ActiveRecord::Base.connection.tables.each do |table|
+  if table != "parties"
+    result = ActiveRecord::Base.connection.execute("SELECT id FROM #{table} ORDER BY id DESC LIMIT 1") rescue ( puts "Warning: not procesing table #{table}. Id is missing?" ; next )
+    ai_val = result.any? ? result.first['id'].to_i + 1 : 1
+    puts "Resetting auto increment ID for #{table} to #{ai_val}"
+    ActiveRecord::Base.connection.execute("ALTER SEQUENCE #{table}_id_seq RESTART WITH #{ai_val}")
+  else
+    "Parties uses UUIDs for it's index, skipping"
+  end
+end
+
 ## USERS
 
 puts "Generating User Names ..."
