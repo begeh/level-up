@@ -77,82 +77,56 @@ export default function Post(props) {
     }
     ).then((res) => res.data)
 
-    // comments = await axios.get(`/post/${post_id}/comments`).then((response) => response.data);
-    // console.log(`Comments are ${JSON.stringify(comments)}`);
+    comments = await axios.get(`/post/${post_id}/comments`).then((response) => response.data);
+    console.log(`Comments are ${JSON.stringify(comments)}`);
 
     quests = await axios.post(`/user_quests`, { user_id: state.id })
     .then((res) => {
       return res.data;
     })
  
-  console.log(JSON.stringify(quests))
- 
-  let full_quests = [];
-  let promises = [];
-  quests.forEach((quest) => {
-    promises.push(axios.get(`quest_object/${quest.id}`)
-      .then((response) => {
-        full_quests.push(response.data);
+    console.log(JSON.stringify(quests))
+  
+    let full_quests = [];
+    let promises = [];
+    quests.forEach((quest) => {
+      promises.push(axios.get(`/quest_object/${quest.id}`)
+        .then((response) => {
+          full_quests.push(response.data);
+        })
+      )
+    }
+    );
+  
+    await Promise.all(promises);
+  
+    console.log(`Full quests ${JSON.stringify(full_quests)}`);
+  
+    party_quests = await axios.post("/party_quests", { party_id: state.party_id })
+      .then((res) => {
+        return res.data
       })
-    )
-  }
-  );
- 
-  await Promise.all(promises);
- 
-  console.log(`Full quests ${JSON.stringify(full_quests)}`);
- 
-  party_quests = await axios.post("/party_quests", { party_id: state.party_id })
-    .then((res) => {
-      return res.data
-    })
- 
-  console.log(`This is party quests ${JSON.stringify(full_quests)}`)
- 
-  let party_full_quests = [];
-  let party_promises = [];
-  party_quests.forEach((quest) => {
-    party_promises.push(axios.get(`quest_object/${quest.id}`)
-      .then((response) => {
-        party_full_quests.push(response.data);
-      })
-    )
-  }
-  );
- 
-  await Promise.all(party_promises);
+  
+    console.log(`This is party quests ${JSON.stringify(full_quests)}`)
+  
+    let party_full_quests = [];
+    let party_promises = [];
+    party_quests.forEach((quest) => {
+      party_promises.push(axios.get(`/quest_object/${quest.id}`)
+        .then((response) => {
+          party_full_quests.push(response.data);
+        })
+      )
+    }
+    );
+  
+    await Promise.all(party_promises);
 
-    history.push({ pathname: `/quest/${quest_id}/post/${post_id}`, state: { global: state, quest_id: quest_id, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), quest: quest, party_quests: party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), mentor_name: mentor_name, user_name: user_name, party_info: party_info, post: post, comments: comments } })
+    setComment("");
+    
+    history.push({ pathname: `/quest/${quest_id}/post/${post_id}`, state: { global: state, quest_id: quest_id, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), quest: quest, party_quests: party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), mentor_name: mentor_name, user_name: user_name, party_info: party_info, post: post, comments: comments, post_id: post_id } })
 
   }
-
-  // const post = {
-  //   title: 'quest',
-  //   date: Date(Date.now()).toString(),
-  //   description: "This is my progress",
-  //   symbol: "https://cdn4.iconfinder.com/data/icons/must-have-outline/100/objects-29-512.png", 
-  //   attachment: "https://cdn.theatlantic.com/thumbor/ZAWCcyd-MwxmwvkTGp9VtFjb-h0=/900x673/media/img/photo/2018/11/photos-companionable-capybaras/c02_142762210/original.jpg",
-  //   comments: [
-  //     {
-  //       username: "Bash",
-  //       avatar: "https://ih0.redbubble.net/image.539207575.3366/flat,128x128,075,t-pad,128x128,f8f8f8.u2.jpg",
-  //       date: Date(Date.now()).toString(),
-  //       text: "Capybaras are awesome"
-  //     },
-  //     {
-  //       username: "Bash",
-  //       avatar: "https://ih0.redbubble.net/image.539207575.3366/flat,128x128,075,t-pad,128x128,f8f8f8.u2.jpg",
-  //       date: Date(Date.now()).toString(),
-  //       text: "Capybaras are awesome"
-  //     },
-  //     {
-  //       username: "Bash",
-  //       avatar: "https://ih0.redbubble.net/image.539207575.3366/flat,128x128,075,t-pad,128x128,f8f8f8.u2.jpg",
-  //       date: Date(Date.now()).toString(),
-  //       text: "Capybaras are awesome"
-  //     }
-  //   ]
-  // }
 
   const PostView = ({ post }) => {
     return (
