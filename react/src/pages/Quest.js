@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid, Hidden } from '@material-ui/core';
 import { useHistory, Link } from "react-router-dom"
 import NavForApp from '../components/NavForApp';
-import CreatePostBtn from '../components/CreatePostBtn'
-import QuestInfoBtn from '../components/QuestInfoBtn'
-import './Quest.scss'
+import CreatePostBtn from '../components/CreatePostBtn';
+import QuestInfoBtn from '../components/QuestInfoBtn';
+import './Quest.scss';
 import QuestList from "../components/QuestList";
 import NodeBar from "../components/NodeBar";
-import scroll from '../images/scroll.png'
+import scroll from '../images/scroll.png';
 import axios from 'axios';
 import QuestFinish from '../components/QuestFinish';
 import QuestFail from '../components/QuestFail';
@@ -23,7 +23,8 @@ export default function Quest(props) {
   let party_info = {}
   let node_posts = null;
   let quest_completed = false;
-  let node_id = null
+  let node_id = null;
+  
   if (props.location.state) {
     state = props.location.state.global;
     quests = props.location.state.quests;
@@ -72,7 +73,7 @@ export default function Quest(props) {
     let comments = await axios.get(`/post/${id}/comments`).then((response) => response.data);
     console.log(`Comments are ${JSON.stringify(comments)}`);
 
-    history.push({ pathname: `/quest/${quest_id}/post/${id}`, state: { global: state, quest_id: quest_id, quests: quests, quest: quest, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, post: post, comments: comments } })
+    history.push({ pathname: `/quest/${quest_id}/post/${id}`, state: { global: state, quest_id: quest_id, quests: quests, quest: quest, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, post: post, comments: comments, post_id:id } })
   }
 
   console.log(`This is node_id: ${node_id}`)

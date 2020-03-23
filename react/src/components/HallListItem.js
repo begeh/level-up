@@ -2,7 +2,7 @@ import React from 'react';
 import { Stepper, Step, StepLabel, Tooltip, Link} from '@material-ui/core';
 
 
-export default function HallListItem({title, id, nodes, handleClick, mentor_id, user_id}){
+export default function HallListItem({title, id, nodes, handleClick, mentor_id, user_id, status}){
 
   return (
     <Link 
@@ -12,6 +12,7 @@ export default function HallListItem({title, id, nodes, handleClick, mentor_id, 
     >
     <div>
       <h3 className='hall-title'>Quest Title: {title}</h3>
+      <p>Status: {status}</p>
       <Stepper >
         {nodes.map((node, index) => {
   
