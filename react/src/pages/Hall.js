@@ -71,10 +71,10 @@ export default function Hall(props) {
 
         <Grid className='container-right' item xs={12} sm={7} >
           <HallList quests={party_quests} handleClick={handleClick} />
-          { party_quests.filter(quest=> quest.quest.status === 'underway').length < 5 ?
+          { party_quests.filter(quest=> quest.quest.status === 'IN PROGRESS').length < 5 ?
           <CreateQuestBtn
             state={state} quests={quests} party_quests={party_quests} party_info={party_info}
-          /> : <h6>*** Maximum of 5 quests can be "underway" in a party ***</h6>
+          /> : <h6>*** Maximum of 5 quests can be "IN PROGRESS" in a party ***</h6>
           }
         </Grid>
       </Grid>
