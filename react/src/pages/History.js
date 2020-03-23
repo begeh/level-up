@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Avatar, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
+import { Grid, Avatar, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 import { useHistory, useParams } from "react-router-dom";
 import shield from '../images/shield.png'
 import './History.scss'
@@ -51,21 +51,21 @@ export default function History(props){
         <p>Status: {quest.status}</p>
         <h5>Story</h5>
         <p>{quest.story ? quest.story : "Yet to be told..."}</p>
+        <List className='quest-node-list'>
         {
           nodes.map(node =>(
           <div class='history-node'>
             <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <img src="https://www.pinclipart.com/picdir/middle/379-3797946_software-developer-computer-servers-web-others-web-developer.png" alt="Quest Button" />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText primary={node.title} secondary={`Date Finished: ${node.date_finished ? (new Date(node.date_finished)).toLocaleDateString() : "Incomplete"}`} />
-                </ListItem>
-                <p className='node-desc'>{node.description}</p>
+              <svg class="bi bi-circle-fill" viewBox="0 0 16 16" fill={node.date_finished ? "#798A0D" : "#88773F"} xmlns="http://www.w3.org/2000/svg">
+                <circle cx="8" cy="8" r="8"/>
+              </svg>
+              <ListItemText primary={node.title} secondary={`Date Finished: ${node.date_finished ? (new Date(node.date_finished)).toLocaleDateString() : "Incomplete"}`} />
+            </ListItem>
+            <p className='node-desc'>{node.description}</p>
           </div>
           ))
         }
+        </List>
       </Grid>
     </Grid>
   </>
