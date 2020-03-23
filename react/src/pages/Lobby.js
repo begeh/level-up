@@ -50,6 +50,7 @@ let returnPartyQuests = async (party_id) => {
 let returnPartyMembers = async (party_id) => {
   return await axios.post("/user_party_members", { party_id })
     .then((response) => {
+      console.log(response)
       let list = [];
       response.data.forEach(user => {
         list.push({ name: user.name, title: user.title });
@@ -143,17 +144,20 @@ export default function Lobby(props) {
 
       console.log(`Party full quests ${party_full_quests}`);
 
-      let party_id = state.party_id;
+      // Set party_id to user defined lobbyCode
+      let party_id = lobbyCode;
+
+      console.log("Party id is: ", party_id)
 
       let party_members = await returnPartyMembers(party_id)
-
-      console.log(`Party Id: ${party_id}, Party Name: ${party_name}, Party Members: ${JSON.stringify(party_members)}`);
-
+      
       const party_info = {
         id: party_id,
         name: party_name,
         members: party_members
       }
+      console.log(`Party Id: ${party_id}, Party Name: ${party_name}, Party Members: ${JSON.stringify(party_members)}`);
+
 
       history.push({ pathname: "/hall", state: { global: state, quests: full_quests.sort((a, b) => b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a, b) => b.quest.id - a.quest.id), party_info: party_info } });
     }
@@ -249,7 +253,6 @@ export default function Lobby(props) {
     }
 
     history.push({ pathname: "/hall", state: { global: state, quests: full_quests.sort((a, b) => b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a, b) => b.quest.id - a.quest.id), party_info: party_info } });
-
   }
 
   return (
