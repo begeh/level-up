@@ -10,7 +10,7 @@ require "securerandom"
 require "faker"
 require "date"
 
-quest_status = ["completed", "failed", "abandoned", "underway"]
+quest_status = ["SUCCESS", "FAILED", "IN PROGRESS"]
 
 
 # Only run on development (local) instances not on production, etc.
@@ -155,7 +155,7 @@ quest1 = Quest.find_or_create_by!({
   mentor_id: user1.id,
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
-  status: "underway",
+  status: "IN PROGRESS",
   date_finished: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
 })
 
@@ -165,7 +165,7 @@ quest2 = Quest.find_or_create_by!({
   mentor_id: user2.id,
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
-  status: "underway",
+  status: "IN PROGRESS",
   date_finished: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
 })
 
