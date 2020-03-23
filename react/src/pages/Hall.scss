@@ -1,9 +1,18 @@
-.hall-title {
-  transition: transform 0.5s ease, text-shadow 0.5s ease;
+.hall-quest {
 
-  &:hover {
-    transform: scale(1.01);
-    text-shadow: 2px 2px rgb(175, 156, 87);
+  .hall-border {
+    padding-bottom: 35px;
+    margin-bottom: 30px;
+    border-bottom: solid 4px #59301A;
+  }
+
+  .hall-title {
+    transition: transform 0.5s ease, text-shadow 0.5s ease;
+  }
+
+  &:hover .hall-title {
+    transform: translate(3px, -3px);
+    text-shadow: -2px 2px rgb(175, 156, 87);
   }
 }
 

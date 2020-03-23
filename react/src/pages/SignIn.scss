@@ -26,8 +26,18 @@
 
   form {
     margin-top: 20px;
-    button {
-      margin-top: 15px;
+
+    .MuiGrid-container {
+      padding-bottom: 15px;
     }
+
+    .MuiButton-containedPrimary {
+      background-color: #59301A;
+
+      &:hover {
+        background-color: #381d0e;
+      }
+    }
+    
   }
 }
