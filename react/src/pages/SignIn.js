@@ -37,7 +37,7 @@ export default function SignIn(props) {
   }
 
   return (
-    <Container component="main">
+    <Container component="main" className='page'>
         <Card className='sign'>
           <img src={logo} alt='logo' />
           <Typography component="h1" variant="h5">
