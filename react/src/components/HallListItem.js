@@ -15,9 +15,11 @@ export default function HallListItem({title, id, nodes, handleClick, mentor_id, 
     <Link 
     onClick={(event)=> {
       event.preventDefault();
-      return handleClick(id, mentor_id, user_id)}} href=""
+      return handleClick(id, mentor_id, user_id)}} 
+      href=""
+      className='hall-quest'
     >
-    <div>
+    <div className='hall-border'>
       <h3 className='hall-title'>{title}</h3>
       <div className={statusClass}>{status}</div>
       <Stepper >

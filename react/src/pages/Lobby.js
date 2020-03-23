@@ -2,34 +2,13 @@ import React, { useState, Fragment } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+import { Typography, Card} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory } from "react-router-dom";
-
+import logo from  '../images/logo.png'
 import axios from 'axios';
 
-import NavEmpty from '../components/NavEmpty';
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
 
 // Returns all the quests that contain the relevant user id
 let returnUserQuests = async (id) => {
@@ -64,7 +43,6 @@ export default function Lobby(props) {
   console.log(`New State: ${state}`)
   console.log(`Received email: ${props.location.state.email} and password: ${props.location.state.password}`);
 
-  const classes = useStyles();
   let history = useHistory();
   const [lobbyName, setLobbyName] = useState(null); //Create lobby
   const [lobbyCode, setLobbyCode] = useState(null); //Join Lobby
@@ -256,23 +234,20 @@ export default function Lobby(props) {
   }
 
   return (
-    <>
-      <NavEmpty />
-      <Container component="main" maxWidth="xs">
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-          </Avatar>
+      <Container className='page' component="main">
+        <Card className='sign'>
+          <img src={logo} alt='logo' />
           <Typography component="h1" variant="h5">
             Join a Lobby
         </Typography>
-          <form className={classes.form} onSubmit={handleJoinSubmit} validate="true">
+          <form onSubmit={handleJoinSubmit} validate="true">
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
               id="join-lobby"
-              label="Lobby Code"
+              label="Enter Party ID here"
               name="lobbyCode"
               value={lobbyCode}
               onChange={(e) => setLobbyCode(e.target.value)}
@@ -284,12 +259,11 @@ export default function Lobby(props) {
               fullWidth
               variant="contained"
               color="primary"
-              className={classes.submit}
             >
-              Join Lobby
+              Join Party
           </Button>
           </form>
-          <form className={classes.form} onSubmit={handleCreateSubmit} validate="true">
+          <form onSubmit={handleCreateSubmit} validate="true">
             <TextField
               variant="outlined"
               margin="normal"
@@ -298,7 +272,7 @@ export default function Lobby(props) {
               name="lobbyName"
               value={lobbyName}
               onChange={(e) => setLobbyName(e.target.value)}
-              label="Lobby Name"
+              label="Party Name"
               type="create-lobby"
               id="create-lobby"
               autoComplete="new-lobby"
@@ -308,13 +282,11 @@ export default function Lobby(props) {
               fullWidth
               variant="contained"
               color="primary"
-              className={classes.submit}
             >
-              Create New Lobby
+              Create New Party
           </Button>
           </form>
-        </div>
+        </Card>
       </Container>
-    </>
   );
 }
