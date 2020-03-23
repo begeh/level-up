@@ -164,9 +164,10 @@ export default function Post(props) {
           <Grid className='container-left quest-info' item sm={5}>
             <img src={scroll} alt='scroll' />
             <h3>{quest.quest.title}</h3>
+            <p>Quest Status: {quest.quest.status}</p>
             <p>Mentor: {mentor_name}</p>
             <p>Apprentice: {user_name}</p>
-            <p>Finish Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
+            <p>Finish Date: {quest.quest.date_finished ? (new Date(quest.quest.date_finished)).toLocaleDateString() : "In Progress"}</p>
             <div className='quest-button'>
               <QuestInfoBtn quest={quest} mentor_name={mentor_name} user_name={user_name} />
             </div>
