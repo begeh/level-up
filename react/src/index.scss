@@ -111,9 +111,13 @@ a {
   border-radius: 50px;
   padding: 10px !important;
 
-
   .MuiSvgIcon-root {
     font-size: 1.8rem;
+    transition: transform 0.5s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   .completed-node {
