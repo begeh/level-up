@@ -64,6 +64,7 @@ export default function Quest(props) {
       posts = quest.posts.flat();
     }
     node_posts = posts.filter(post => post.node_id === id);
+
     history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: quests, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, node_posts: node_posts, node_id: id } })
   }
 
@@ -91,7 +92,7 @@ export default function Quest(props) {
             <p>Quest Status: {quest.quest.status}</p>
             <p>Mentor: {mentor_name}</p>
             <p>Apprentice: {user_name}</p>
-            <p>Finish Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
+            <p>Finish Date: {quest.quest.date_finished ? (new Date(quest.quest.date_finished)).toLocaleDateString() : "In Progress"}</p>
             <div className='quest-button'>
               <QuestInfoBtn state={state} quest={quest} mentor_name={mentor_name} user_name={user_name} party_info={party_info} quests={quests} party_quests={party_quests} quest_id={quest_id} quest_completed={quest_completed} />
             </div>
@@ -104,7 +105,7 @@ export default function Quest(props) {
           <NodeBar nodes={nodes} handleNode={handleNode} />
           <QuestList posts={posts} comments={comments} handleClick={handleClick} />
           { quest.quest.status === 'IN PROGRESS' && node_id ?
-            <CreatePostBtn node_id={node_id} /> : (quest.quest.status === 'IN PROGRESS' ? "Click a Node to Create a Post": null)
+            <CreatePostBtn state={state} quest_id={quest_id} quests={quests} party_quests={party_quests} mentor_name={mentor_name} user_name={user_name} party_info={party_info} node_id={node_id} /> : (quest.quest.status === 'IN PROGRESS' ? "Click a Node to Create a Post": null)
           }
         </Grid>
       </Grid>

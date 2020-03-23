@@ -1,52 +1,12 @@
 import React, {useState} from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { Card, Typography, Container, Link, Checkbox, FormControlLabel, TextField, Button, Grid } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
-
+import logo from  '../images/logo.png'
 import axios from 'axios';
+import './SignIn.scss'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    height: '100vh',
-  },
-  image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
-  paper: {
-    margin: theme.spacing(8, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
 
 export default function SignIn(props) {
-  const classes = useStyles();
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -77,21 +37,13 @@ export default function SignIn(props) {
   }
 
   return (
-    <Grid container component="main" className={classes.root}>
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
-          <Typography component="h1" variant="h2">
-            LEVEL-UP
-          </Typography>
-          {/* Add in LEVEL-UP logo to replace LockedIn component   */}
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
+    <Container component="main" className='page'>
+        <Card className='sign'>
+          <img src={logo} alt='logo' />
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate onSubmit={handleSubmit}>
+          <form noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -127,7 +79,6 @@ export default function SignIn(props) {
               fullWidth
               variant="contained"
               color="primary"
-              className={classes.submit}
             >
               Sign In
             </Button>
@@ -139,8 +90,7 @@ export default function SignIn(props) {
               </Grid>
             </Grid>
           </form>
-        </div>
-      </Grid>
-    </Grid>
+        </Card>
+    </Container>
   );
 }

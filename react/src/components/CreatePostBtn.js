@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { TextField } from '@material-ui/core'
 import axios from "axios"
+import { useHistory } from "react-router-dom"
 
 export default function CreatePostButton(props) {
   const [show, setShow] = useState(false);
@@ -12,10 +13,19 @@ export default function CreatePostButton(props) {
   const [videoURL, setVideoURL] = useState("");
   const [imageURL, setImageURL] = useState("");
 
-
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  let history = useHistory();
+
+  const state = props.state;
+  const mentor_name = props.mentor_name;
+  const user_name = props.user_name;
+  const quest_id = props.quest_id;
+  let quests = props.quests;
+  let party_quests = props.party_quests;
+  const node_id = props.node_id;
+  const party_info = props.party_info;
 
   async function handlePostSubmit(event) {
     event.preventDefault();
@@ -26,9 +36,8 @@ export default function CreatePostButton(props) {
       symbol_ref: postType,
       video_url: videoURL,
       image_url: imageURL,
-      node_id: props.node_id
+      node_id: node_id
     }
-
     console.log(post_package)
 
     let post = await axios.post("/posts", {
@@ -37,11 +46,59 @@ export default function CreatePostButton(props) {
       symbol_ref: postType,
       video_url: videoURL,
       image_url: imageURL,
-      node_id: props.node_id
+      node_id: node_id
     }
     ).then((res) => res.data);
 
-    //Needs proper redirection code
+    quests = await axios.post(`/user_quests`, { user_id: state.id })
+    .then((res) => {
+      return res.data;
+    })
+ 
+    console.log(JSON.stringify(quests))
+  
+    let full_quests = [];
+    let promises = [];
+    quests.forEach((quest) => {
+      promises.push(axios.get(`/quest_object/${quest.id}`)
+        .then((response) => {
+          full_quests.push(response.data);
+        })
+      )
+    }
+    );
+  
+    await Promise.all(promises);
+  
+    console.log(`Full quests ${JSON.stringify(full_quests)}`);
+  
+    party_quests = await axios.post("/party_quests", { party_id: state.party_id })
+      .then((res) => {
+        return res.data
+      })
+  
+    console.log(`This is party quests ${JSON.stringify(full_quests)}`)
+  
+    let party_full_quests = [];
+    let party_promises = [];
+    party_quests.forEach((quest) => {
+      party_promises.push(axios.get(`/quest_object/${quest.id}`)
+        .then((response) => {
+          party_full_quests.push(response.data);
+        })
+      )
+    }
+    );
+  
+    await Promise.all(party_promises);
+
+    const quest = party_full_quests.filter(quest => quest.quest.id === quest_id)[0];
+
+    const posts = quest.posts.flat();
+
+    const node_posts = posts.filter(post => post.node_id === node_id);
+    
+    history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), mentor_name: mentor_name, user_name: user_name, party_info: party_info, node_posts: node_posts, node_id: node_id } })
 
   }
 

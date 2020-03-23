@@ -1,0 +1,33 @@
+.page {
+  height: 100vh;
+  background-color:#59301A;
+  display: flex;
+}
+
+.sign {
+  display: inline-table;
+  width: 450px;
+  min-width: 450px;
+  margin: 20px auto;
+  padding: 20px 30px 40px;
+  border-radius: 20px !important;
+  background-color: #EFD784 !important;
+
+  img {
+    display: block;
+    margin: auto;
+    max-width: 50%;
+  }
+
+  h1 {
+    font-family: 'Alfa Slab One', cursive !important;
+    text-align: center;
+  }
+
+  form {
+    margin-top: 20px;
+    button {
+      margin-top: 15px;
+    }
+  }
+}

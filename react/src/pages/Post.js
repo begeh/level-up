@@ -142,8 +142,13 @@ export default function Post(props) {
           <p>Post Date: {(new Date(post.created_at)).toLocaleDateString()}</p>
         </Grid>
         <Grid item xs={12}>
-          <img src="https://cdn.theatlantic.com/thumbor/ZAWCcyd-MwxmwvkTGp9VtFjb-h0=/900x673/media/img/photo/2018/11/photos-companionable-capybaras/c02_142762210/original.jpg" alt={post.title} />
-          <ReactPlayer className='player' url='https://www.youtube.com/watch?v=6FAaOwNnHTA' />
+          { post.image_url ?
+            <img src={post.image_url} alt={post.title} /> : null
+          }
+          { post.video_url ?
+            <ReactPlayer className='player' url={post.video_url} /> : null
+          }
+          
           <p>Content: {post.content}</p>
 
         </Grid>
@@ -159,9 +164,10 @@ export default function Post(props) {
           <Grid className='container-left quest-info' item sm={5}>
             <img src={scroll} alt='scroll' />
             <h3>{quest.quest.title}</h3>
+            <p>Quest Status: {quest.quest.status}</p>
             <p>Mentor: {mentor_name}</p>
             <p>Apprentice: {user_name}</p>
-            <p>Finish Date: {(new Date(quest.quest.date_finished)).toLocaleDateString()}</p>
+            <p>Finish Date: {quest.quest.date_finished ? (new Date(quest.quest.date_finished)).toLocaleDateString() : "In Progress"}</p>
             <div className='quest-button'>
               <QuestInfoBtn quest={quest} mentor_name={mentor_name} user_name={user_name} />
             </div>
