@@ -52,3 +52,29 @@
   color: #EFD784;
 }
 
+.status {
+  display: inline-block;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+
+  &-progress {
+    color: #94552a;
+    background-color: #512A15;
+    border: solid 3px #94552a;
+  }
+
+  &-success {
+    color: #92A514;
+    background-color: #66730d;
+    border: solid 3px #92A514;
+  }
+
+  &-failed {
+    color: #DA2C38;
+    background-color: #8c161e;
+    border: solid 3px #DA2C38;
+  }
+}
