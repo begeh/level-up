@@ -155,7 +155,6 @@ export default function CreatePostButton(props) {
             <TextField
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               multiline
               name="Date"
@@ -169,7 +168,6 @@ export default function CreatePostButton(props) {
             <TextField
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               multiline
               name="Date"
