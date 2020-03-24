@@ -19,11 +19,11 @@ Rails.application.routes.draw do
   end
 
   post "/user", to: "users#return_user"
-  put "/user_parties" to: "users#update_parties"
   post "/user_party_members", to: "users#return_party_members"
   post "/create_quest", to: "quests#create_quest"
-
-
+  
+  put "/user_parties", to: "users#update_parties"
+  
   
   # Old way of routing, lots of nested routes
   # resources :quests do
