@@ -41,7 +41,7 @@ export default function QuestInfoBtn(props) {
     if(status === "failed"){
       const num_completed_nodes = nodes.filter(node=> node["is_complete?"] === true).length;
 
-      const story = fail(story_params, num_completed_nodes);
+      const story = fail(story_params, num_completed_nodes, quest.quest.user_id, quest.quest.mentor_id);
 
       await axios.put(`/quests/${quest_id}`,{"story": story,"status": "FAILED", "date_finished": new Date(Date.now())}).catch(err=> alert(err));
       
@@ -53,7 +53,7 @@ export default function QuestInfoBtn(props) {
         await axios.put(`/nodes/${node.id}`, {"is_complete?": true,"date_finished": new Date(Date.now())}).catch(err => alert(err));
         if(node.id === nodes[nodes.length-1].id){
 
-          const story = success(story_params);
+          const story = success(story_params, quest.quest.user_id, quest.quest.mentor_id);
   
           await axios.put(`/quests/${quest_id}`,{"story": story, "status": "SUCCESS", "date_finished": new Date(Date.now())}).catch(err=> alert(err));
 
