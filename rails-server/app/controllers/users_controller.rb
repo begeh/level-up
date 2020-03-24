@@ -35,6 +35,16 @@ class UsersController < ApplicationController
     head :no_content
   end
 
+  # PUT /user_parties
+  def update_parties
+    set_user()
+    temp = @user.party_id
+    temp.append(params[:party_id])
+    @user.update(
+      party_id: temp
+    )
+  end
+
   # DELETE /users/:id
   def destroy
     @user.destroy

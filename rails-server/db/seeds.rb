@@ -79,7 +79,7 @@ user1 = User.find_or_create_by!({
   name: user_names[0],
   email: Faker::Internet.email(name: user_names[0].strip),
   title: Faker::Job.title,
-  party_id: party_uuids[0],
+  party_id: [party_uuids[0]],
   password: 123
 })
 
@@ -87,7 +87,7 @@ user2 = User.find_or_create_by!({
   name: user_names[1],
   email: Faker::Internet.email(name: user_names[1].strip),
   title: Faker::Job.title,
-  party_id: party_uuids[1],
+  party_id: [party_uuids[1]],
   password: 123
 })
 
@@ -95,7 +95,7 @@ user3 = User.find_or_create_by!({
   name: user_names[2],
   email: Faker::Internet.email(name: user_names[2].strip),
   title: Faker::Job.title,
-  party_id: party_uuids[0],
+  party_id: [party_uuids[0]],
   password: 123
 })
 
@@ -103,7 +103,7 @@ user4 = User.find_or_create_by!({
   name: user_names[3],
   email: Faker::Internet.email(name: user_names[3].strip),
   title: Faker::Job.title,
-  party_id: party_uuids[1],
+  party_id: [party_uuids[1]],
   password: 123
 })
 
@@ -111,7 +111,7 @@ user5 = User.find_or_create_by!({
   name: user_names[4],
   email: Faker::Internet.email(name: user_names[4].strip),
   title: Faker::Job.title,
-  party_id: party_uuids[0],
+  party_id: [party_uuids[0]],
   password: 123
 })
 
@@ -119,7 +119,7 @@ user6 = User.find_or_create_by!({
   name: user_names[5],
   email: Faker::Internet.email(name: user_names[5].strip),
   title: Faker::Job.title,
-  party_id: party_uuids[1],
+  party_id: [party_uuids[1]],
   password: 123
 })
 

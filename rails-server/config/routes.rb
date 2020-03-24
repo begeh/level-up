@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   post "/user", to: "users#return_user"
+  put "/user_parties" to: "users#update_parties"
   post "/user_party_members", to: "users#return_party_members"
   post "/create_quest", to: "quests#create_quest"
 
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
   get "/quest/:quest_id/nodes", to: "nodes#quest_nodes"
   get "/node/:node_id/posts", to: "posts#node_posts"
   get "/post/:post_id/comments", to: "comments#post_comments"
+
 
   post "/user_quests", to: "quests#user_quests"
   post "/party_quests", to: "quests#party_quests"

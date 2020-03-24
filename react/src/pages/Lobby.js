@@ -24,7 +24,11 @@ let returnPartyQuests = async (party_id) => {
 // Returns the party members of the current party
 let returnPartyMembers = async (party_id, state_party_id, user_id) => {
   if (party_id !== state_party_id) {
-    await axios.put(`/users/${current_user.id}`, { "party_id": party_id });
+    await axios.put(`/users/parties`, {
+      party_id: party_id,
+      id: user_id
+    }
+    );
   }
   return await axios.post("/user_party_members", { party_id })
     .then((response) => {

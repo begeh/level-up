@@ -11,15 +11,18 @@ class PartiesController < ApplicationController
 
   # POST /parties
   def create
-    # if Party.new(party_params).valid? === true
-      @party = Party.create!(party_params)
+    @party = Party.create!(party_params)
+    if Party.new(party_params).valid? === true
       @user = User.where(id: params[:user_id])
+      p "User is #{@user}"
+      temp = [@party.id]
+      p "Temp is now #{temp}"
+      temp.append(@user.party_id)
+      p "Temp is now #{temp}"
       @user[0].update(party_id: @party.id)
-      json_response(@party, :created)
-    # else
-    #   @response = "That party name is already taken"
-    #   json_response(@response)
-    # end
+    end
+    json_response(@party, :created)
+
   end
 
   # GET /parties/:id
@@ -44,7 +47,7 @@ class PartiesController < ApplicationController
 
   def party_params
     # whitelist params
-    params.permit(:number_of_members, :mentor_id, :party_name, :party)
+    params.permit(:number_of_members, :mentor_id, :party_name, :party_id)
   end
 
   def user_params
