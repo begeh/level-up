@@ -8,12 +8,12 @@ export default function fail({apprentice, mentor, questTitle, node1, node2, node
     , 
     `“${node3}?” ${apprentice} gushed. “That’s my breakfast routine”.“Take this as an opportunity to catch your breath and plan ahead because your next task is to ${node4}.”`
     ,
-    `Heeding ${mentor}’s wise words, ${apprentice} used the extra time he had to prepare for the next task, which was no easy task, but like before, not an impossible one.`
+    `Heeding ${mentor}’s wise words, ${apprentice} used the extra time they had to prepare for the next task, which was no easy task, but like before, not an impossible one.`
     ,
     `At long last, the two reached the final phase of their arduous quest, which was to ${node5}. Days turned into weeks and weeks turned into days.`
   ];
 
-  let story = [ `In a distant land, far beyond yonder, a noble adventure who goes by the name of ${apprentice} sets off on a journey to ${questTitle}. With his trusted mentor, ${mentor} by his side, the odds were in their favour.`];
+  let story = [ `In a distant land, far beyond yonder, a noble adventure who goes by the name of ${apprentice} sets off on a journey to ${questTitle}. With their trusted mentor, ${mentor} by their side, the odds were in their favour.`];
 
   //cycles through story_parts and adds stories for the nodes that were completed prior to abandonging mission
   for(let i = 0; i < num_completed_nodes; i++){
