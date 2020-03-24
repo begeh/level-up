@@ -176,7 +176,7 @@ export default function Post(props) {
 
         <Grid className='container-right' item xs={12} sm={7} >
           <PostView post={post} />
-          <form className='comment-form' noValidate onSubmit={handleCommentSubmit}>
+          <form validate="true" className='comment-form' onSubmit={handleCommentSubmit}>
             <TextField
               required
               fullWidth

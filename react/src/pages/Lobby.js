@@ -175,12 +175,6 @@ export default function Lobby(props) {
 
       let quests = await returnUserQuests(state.id)
 
-      // Returns all the quests that contain the relevant user id
-      // let quests = await axios.post(`/user_quests`, { user_id: state.id })
-      //   .then((res) => {
-      //     return res.data;
-      //   })
-
       console.log(JSON.stringify(quests))
 
       let full_quests = [];
@@ -221,15 +215,8 @@ export default function Lobby(props) {
       let party_id = party.id
       let party_name = party.party_name
 
-      let party_members = await axios.get("/users")
-        .then((response) => {
-          let members = response.data.filter(user => user.party_id === party_id);
-          let list = [];
-          members.forEach(user => {
-            list.push({ name: user.name, title: user.title });
-          })
-          return list;
-        })
+      // Uses the party_id returned when making a party
+      let party_members = await returnPartyMembers(party_id)
 
       console.log(`Party Id: ${party_id}, Party Name: ${party_name}, Party Members: ${JSON.stringify(party_members)}`);
 
@@ -250,7 +237,7 @@ export default function Lobby(props) {
         <Typography component="h1" variant="h5">
           Join a Lobby
         </Typography>
-        <form onSubmit={handleJoinSubmit} validate="true">
+        <form validate="true" onSubmit={handleJoinSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -273,7 +260,7 @@ export default function Lobby(props) {
             Join Party
           </Button>
         </form>
-        <form onSubmit={handleCreateSubmit} validate="true">
+        <form validate="true" onSubmit={handleCreateSubmit} >
           <TextField
             variant="outlined"
             margin="normal"
