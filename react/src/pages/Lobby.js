@@ -10,6 +10,7 @@ import logo from '../images/logo.png'
 import axios from 'axios';
 
 
+
 // Returns all the quests that contain the relevant user id
 let returnUserQuests = async (id) => {
   return await axios.post(`/user_quests`, { user_id: id })
@@ -27,8 +28,8 @@ let returnPartyQuests = async (party_id) => {
 }
 // Returns the party members of the current party
 let returnPartyMembers = async (party_id, state_party_id, user_id) => {
-  if(party_id !== state_party_id){
-    await axios.put(`/users/${user_id}`,{"party_id": party_id});
+  if (party_id !== state_party_id) {
+    await axios.put(`/users/${current_user.id}`, { "party_id": party_id });
   }
   return await axios.post("/user_party_members", { party_id })
     .then((response) => {
@@ -41,8 +42,11 @@ let returnPartyMembers = async (party_id, state_party_id, user_id) => {
     })
 }
 
+let current_user = null
+
 export default function Lobby(props) {
   const state = props.location.state;
+  current_user = state
   console.log(`New State: ${JSON.stringify(state)}`)
   console.log(`Received email: ${props.location.state.email} and password: ${props.location.state.password}`);
 
