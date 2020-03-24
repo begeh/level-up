@@ -24,11 +24,13 @@ class UsersController < ApplicationController
 
   # GET /users/:id
   def show
+    set_user()
     json_response(@user)
   end
 
   # PUT /users/:id
   def update
+    set_user()
     @user.update(user_params)
     head :no_content
   end
