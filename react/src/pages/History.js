@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Avatar, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
+import { Grid, List, ListItem, ListItemText } from '@material-ui/core';
 import { useHistory, useParams } from "react-router-dom";
 import shield from '../images/shield.png'
 import './History.scss'
@@ -38,7 +38,7 @@ export default function History(props){
     <NavForApp nav_title="LEGACY" state={state} quests={quests} party_quests={party_quests} party_info={party_info}/>
     <Grid container component="main" className='full'>
       <Grid item sm={5} className='container-left party-container'>
-        <img src={shield}/>
+        <img src={shield} alt='Shield'/>
         <h3>Your Legacy</h3>
         <div className='party-member'>
           <p>{state.name}</p>

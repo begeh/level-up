@@ -1,9 +1,8 @@
-import React, {Fragment, useState} from 'react';
+import React, { useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import {Hidden, List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@material-ui/core';
+import { List, ListItem,ListItemText} from '@material-ui/core';
 import {useHistory} from "react-router-dom";
 import axios from 'axios';
-import QuestFinish from "./QuestFinish";
 import success from '../helpers/success';
 import fail from '../helpers/fail';
 
