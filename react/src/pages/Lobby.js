@@ -2,11 +2,11 @@ import React, { useState, Fragment } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { Typography, Card} from '@material-ui/core';
+import { Typography, Card } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory } from "react-router-dom";
-import logo from  '../images/logo.png'
+import logo from '../images/logo.png'
 import axios from 'axios';
 
 
@@ -128,7 +128,7 @@ export default function Lobby(props) {
       console.log("Party id is: ", party_id)
 
       let party_members = await returnPartyMembers(party_id)
-      
+
       const party_info = {
         id: party_id,
         name: party_name,
@@ -157,136 +157,133 @@ export default function Lobby(props) {
         number_of_members: 1,
         party_name: lobbyName,
         user_id: state.id
-      })
-      .then((res) => {
+      }).then((res) => {
         return res.data;
-      })
-    console.log(party)
+      }).catch((err) => {
+        if (err.response.request.status === 422) {
+          alert("That party name is already taken")
+        } else if (err.response.request.status === 500) {
+          alert("An error occurred, please contact the site administrator")
+        }
+        console.log(err.response)
+        return null
+      });
+    console.log("party value is: ", party)
 
-    // Returns all the quests that contain the relevant user id
-    let quests = await axios.post(`/user_quests`, { user_id: state.id })
-      .then((res) => {
-        return res.data;
-      })
+    // If a party was created (and therefore returned)
+    if (party) {
 
-    console.log(JSON.stringify(quests))
+      let quests = await returnUserQuests(state.id)
 
-    let full_quests = [];
-    let promises = [];
-    quests.forEach((quest) => {
-      promises.push(axios.get(`quest_object/${quest.id}`)
-        .then((response) => {
-          full_quests.push(response.data);
-        })
-      )
+      console.log(JSON.stringify(quests))
+
+      let full_quests = [];
+      let promises = [];
+      quests.forEach((quest) => {
+        promises.push(axios.get(`quest_object/${quest.id}`)
+          .then((response) => {
+            full_quests.push(response.data);
+          })
+        )
+      }
+      );
+
+      await Promise.all(promises);
+
+      console.log(`Full quests ${JSON.stringify(full_quests)}`);
+
+      let party_quests = await returnPartyQuests(state.party_id)
+
+      console.log(`This is party quests ${JSON.stringify(full_quests)}`)
+
+      let party_full_quests = [];
+      let party_promises = [];
+      party_quests.forEach((quest) => {
+        party_promises.push(axios.get(`quest_object/${quest.id}`)
+          .then((response) => {
+            party_full_quests.push(response.data);
+          })
+        )
+      }
+      );
+
+      await Promise.all(party_promises);
+
+      console.log(`Party full quests ${party_full_quests}`);
+
+      //Use the returned party ID
+      let party_id = party.id
+      let party_name = party.party_name
+
+      // Uses the party_id returned when making a party
+      let party_members = await returnPartyMembers(party_id)
+
+      console.log(`Party Id: ${party_id}, Party Name: ${party_name}, Party Members: ${JSON.stringify(party_members)}`);
+
+      const party_info = {
+        id: party_id,
+        name: party_name,
+        members: party_members
+      }
+
+      history.push({ pathname: "/hall", state: { global: state, quests: full_quests.sort((a, b) => b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a, b) => b.quest.id - a.quest.id), party_info: party_info } });
     }
-    );
-
-    await Promise.all(promises);
-
-    console.log(`Full quests ${JSON.stringify(full_quests)}`);
-
-    let party_quests = await axios.post("/party_quests", { party_id: state.party_id })
-      .then((res) => {
-        return res.data
-      })
-
-    console.log(`This is party quests ${JSON.stringify(full_quests)}`)
-
-    let party_full_quests = [];
-    let party_promises = [];
-    party_quests.forEach((quest) => {
-      party_promises.push(axios.get(`quest_object/${quest.id}`)
-        .then((response) => {
-          party_full_quests.push(response.data);
-        })
-      )
-    }
-    );
-
-    await Promise.all(party_promises);
-
-    console.log(`Party full quests ${party_full_quests}`);
-
-    //Use the returned party ID
-    let party_id = party.id
-    let party_name = party.party_name
-
-    let party_members = await axios.get("/users")
-      .then((response) => {
-        let members = response.data.filter(user => user.party_id === party_id);
-        let list = [];
-        members.forEach(user => {
-          list.push({ name: user.name, title: user.title });
-        })
-        return list;
-      })
-
-    console.log(`Party Id: ${party_id}, Party Name: ${party_name}, Party Members: ${JSON.stringify(party_members)}`);
-
-    const party_info = {
-      id: party_id,
-      name: party_name,
-      members: party_members
-    }
-
-    history.push({ pathname: "/hall", state: { global: state, quests: full_quests.sort((a, b) => b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a, b) => b.quest.id - a.quest.id), party_info: party_info } });
   }
 
   return (
-      <Container className='page' component="main">
-        <Card className='sign'>
-          <img src={logo} alt='logo' />
-          <Typography component="h1" variant="h5">
-            Join a Lobby
+    <Container className='page' component="main">
+      <Card className='sign'>
+        <img src={logo} alt='logo' />
+        <Typography component="h1" variant="h5">
+          Join a Lobby
         </Typography>
-          <form onSubmit={handleJoinSubmit} validate="true">
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="join-lobby"
-              label="Enter Party ID here"
-              name="lobbyCode"
-              value={lobbyCode}
-              onChange={(e) => setLobbyCode(e.target.value)}
-              autoComplete="123"
-              autoFocus
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-            >
-              Join Party
+        <form validate="true" onSubmit={handleJoinSubmit}>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="join-lobby"
+            label="Enter Party ID here"
+            name="lobbyCode"
+            value={lobbyCode}
+            onChange={(e) => setLobbyCode(e.target.value)}
+            autoComplete="123"
+            autoFocus
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+          >
+            Join Party
           </Button>
-          </form>
-          <form onSubmit={handleCreateSubmit} validate="true">
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="lobbyName"
-              value={lobbyName}
-              onChange={(e) => setLobbyName(e.target.value)}
-              label="Party Name"
-              type="create-lobby"
-              id="create-lobby"
-              autoComplete="new-lobby"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-            >
-              Create New Party
+        </form>
+        <form validate="true" onSubmit={handleCreateSubmit} >
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="lobbyName"
+            value={lobbyName}
+            onChange={(e) => setLobbyName(e.target.value)}
+            label="Party Name"
+            type="create-lobby"
+            id="create-lobby"
+            autoComplete="new-lobby"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+          >
+            Create New Party
           </Button>
-          </form>
-        </Card>
-      </Container>
+        </form>
+      </Card>
+    </Container>
   );
 }

@@ -161,7 +161,7 @@ export default function CreateQuestBtn(props) {
 
 
       <Modal show={show} onHide={handleClose}>
-        <form noValidate onSubmit={handleQuestSubmit} >
+        <form validate="true" onSubmit={handleQuestSubmit} >
         <Modal.Header closeButton>
           <Modal.Title>Create Quest</Modal.Title>
         </Modal.Header>

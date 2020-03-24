@@ -109,7 +109,7 @@ export default function CreatePostButton(props) {
       </Button>
 
       <Modal show={show} onHide={handleClose}>
-        <form noValidate onSubmit={handlePostSubmit}>
+        <form validate="true" onSubmit={handlePostSubmit}>
           <Modal.Header closeButton>
             <Modal.Title>Create Post</Modal.Title>
           </Modal.Header>
