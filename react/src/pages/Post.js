@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Grid, TextField, Avatar, Hidden } from '@material-ui/core';
 import NavForApp from '../components/NavForApp';
 import { useHistory } from "react-router-dom";
@@ -27,6 +27,10 @@ export default function Post(props) {
   let comments = {};
   let quest = null;
   let post_id = null;
+
+  //useRef used instead of useState to prevent onChange rerenders from text field input for comment line
+  const commentRef = useRef(null);
+
   if (props.location.state) {
     state = props.location.state.global;
     quests = props.location.state.quests;
@@ -55,14 +59,20 @@ export default function Post(props) {
     post_symbol = book;
   }
 
-  const [comment, setComment] = useState("")
+  // const [comment, setComment] = useState("")
+  let comment = "";
   console.log(comment)
   console.log(post)
 
   //submits a comment to the database and rerenders page through useHistory
   async function handleCommentSubmit(event) {
     event.preventDefault();
-    console.log("function called")
+    console.log(`Comment Ref is ${  commentRef.current.value}`)
+    comment = commentRef.current.value;
+    commentRef.current.value = null;
+
+    console.log(`Comment is ${comment}`);
+    
     let comment_package = {
       text: comment,
       username: user_name,
@@ -121,8 +131,6 @@ export default function Post(props) {
     );
   
     await Promise.all(party_promises);
-
-    setComment("");
     
     history.push({ pathname: `/quest/${quest_id}/post/${post_id}`, state: { global: state, quest_id: quest_id, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), quest: quest, party_quests: party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), mentor_name: mentor_name, user_name: user_name, party_info: party_info, post: post, comments: comments, post_id: post_id } })
 
@@ -185,8 +193,7 @@ export default function Post(props) {
               label='Type your comment here'
               multiline
               rowsMax="4"
-              value={comment}
-              onChange={e => setComment(e.target.value)}
+              inputRef={commentRef}
             />
             <button className='btn btn-primary' type="submit">Submit</button>
           </form>

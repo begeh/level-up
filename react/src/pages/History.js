@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Avatar, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 import { useHistory, useParams } from "react-router-dom";
 import shield from '../images/shield.png'
-import './History.scss'
+import './History.scss';
 
 
 import NavForApp from "../components/NavForApp";
@@ -49,6 +49,8 @@ export default function History(props){
         <button className='btn btn-primary' onClick={()=>history.push({pathname:"/legacy", state: {global:state, quests:quests, party_quests: party_quests, party_info: party_info}})}>Go Back</button>
         <h3>{quest.title}</h3>
         <p>Status: {quest.status}</p>
+        <h5>Story</h5>
+        <p>{quest.story ? quest.story : "Yet to be told..."}</p>
         {
           nodes.map(node =>(
           <div class='history-node'>
@@ -64,8 +66,6 @@ export default function History(props){
           </div>
           ))
         }
-        <h5>Story</h5>
-        <p>{quest.story ? quest.story : "Yet to be told..."}</p>
       </Grid>
     </Grid>
   </>
