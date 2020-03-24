@@ -177,7 +177,7 @@ export default function Post(props) {
             <p>Apprentice: {user_name}</p>
             <p>Finish Date: {quest.quest.date_finished ? (new Date(quest.quest.date_finished)).toLocaleDateString() : "In Progress"}</p>
             <div className='quest-button'>
-              <QuestInfoBtn quest={quest} mentor_name={mentor_name} user_name={user_name} />
+              <QuestInfoBtn state={state} quest={quest} mentor_name={mentor_name} user_name={user_name} />
             </div>
           </Grid>
         </Hidden>
