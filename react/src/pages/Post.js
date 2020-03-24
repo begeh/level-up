@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Grid, TextField, Avatar, Hidden } from '@material-ui/core';
+import { Grid, TextField, Hidden } from '@material-ui/core';
 import NavForApp from '../components/NavForApp';
 import { useHistory } from "react-router-dom";
 import ReactPlayer from 'react-player'

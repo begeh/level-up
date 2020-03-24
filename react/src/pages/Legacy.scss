@@ -1,5 +1,11 @@
 .legacy-list {
   border-bottom: solid 2px;
+  cursor: pointer;
+
+  &:hover .legacy-right h3 {
+    transform: translate(3px, -3px);
+    text-shadow: -2px 2px rgb(175, 156, 87);
+  }
 
   img {
     width: 100%;
@@ -10,6 +16,7 @@
 
     h3 {
       margin-bottom: 0;
+      transition: transform 0.5s ease, text-shadow 0.5s ease;
     }
   }
 

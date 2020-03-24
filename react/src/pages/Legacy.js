@@ -1,12 +1,13 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { useHistory } from "react-router-dom";
 import NavForApp from "../components/NavForApp";
 import shield from '../images/shield.png'
 import axios from 'axios';
-import './Legacy.scss'
+import './Legacy.scss';
+
+
+
 
 
 export default function Legacy(props) {
@@ -15,6 +16,7 @@ export default function Legacy(props) {
   let quests={};
   let party_quests = {};
   let party_info = {};
+
 
   if(props.location.state)
   {
@@ -36,13 +38,14 @@ export default function Legacy(props) {
       history.push({pathname:`/legacy/history/${id}`,state:{global: state, quests: quests, quest: res, party_quests: party_quests, party_info:party_info}})
     });
   }
+  
 
   return (
     <>
     <NavForApp nav_title="LEGACY" state={state} quests={quests} party_quests={party_quests} party_info={party_info}/>
     <Grid container component="main" className='full'>
       <Grid item sm={5} className='container-left party-container'>
-        <img src={shield}/>
+        <img src={shield} alt='Shield'/>
         <h3>Your Legacy</h3>
         <div className='party-member'>
           <p>{state.name}</p>
@@ -60,7 +63,13 @@ export default function Legacy(props) {
           <Grid className='legacy-right' item xs={8} sm={8} md={9} lg={10}>
             <h3>{achievement.quest.title}</h3>
             <p>{(new Date(achievement.quest.created_at)).toLocaleDateString()}-{(new Date(achievement.quest.updated_at)).toLocaleDateString()}</p>
-            <p>{achievement.quest.status}</p>
+            <div className={
+              achievement.quest.status === 'IN PROGRESS' ? 'status status-progress'
+              : achievement.quest.status === 'SUCCESS' ?  'status status-success'
+              : achievement.quest.status === 'FAILED' ? 'status status-failed'
+              : null
+
+            }>{achievement.quest.status}</div>
           </Grid>
         </Grid>
       ))}
