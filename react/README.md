@@ -1,5 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Level-Up
+
+**Level-Up** is peer-based mentor-based skill-learning application. Our application aims to teach 
+
+Within **Level-Up**, you can:
+- Form a Party of 6 passionate learners/teachers that have a skill to share with other members of the Party. 
+- Create a Quest to learn a skill where you break down your skill into 5 stages, each with a detailed description of what you want to achieve and a deadline. 
+- Assign a Mentor or yourself to control your progress. 
+- Within your Quest, 
+
 ## Available Scripts
 
 In the project directory, you can run:
