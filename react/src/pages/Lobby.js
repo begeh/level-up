@@ -21,7 +21,10 @@ let returnPartyQuests = async (party_id) => {
     })
 }
 // Returns the party members of the current party
-let returnPartyMembers = async (party_id) => {
+let returnPartyMembers = async (party_id, state_party_id, user_id) => {
+  if(party_id !== state_party_id){
+    await axios.put(`/users/${user_id}`,{"party_id": party_id});
+  }
   return await axios.post("/user_party_members", { party_id })
     .then((response) => {
       console.log(response)
@@ -35,7 +38,7 @@ let returnPartyMembers = async (party_id) => {
 
 export default function Lobby(props) {
   const state = props.location.state;
-  console.log(`New State: ${state}`)
+  console.log(`New State: ${JSON.stringify(state)}`)
   console.log(`Received email: ${props.location.state.email} and password: ${props.location.state.password}`);
 
   let history = useHistory();
@@ -84,6 +87,7 @@ export default function Lobby(props) {
       console.log(JSON.stringify(quests))
 
       let full_quests = [];
+
       let promises = [];
       quests.forEach((quest) => {
         promises.push(axios.get(`quest_object/${quest.id}`)
@@ -122,7 +126,7 @@ export default function Lobby(props) {
 
       console.log("Party id is: ", party_id)
 
-      let party_members = await returnPartyMembers(party_id)
+      let party_members = await returnPartyMembers(party_id, state.party_id, state.id)
 
       const party_info = {
         id: party_id,
