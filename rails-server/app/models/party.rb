@@ -4,6 +4,7 @@ class Party < ApplicationRecord
   
   validates :number_of_members, numericality: {less_than_or_equal_to: 6}
   validates :party_name, :mentor_id, presence: true
+  validates :party_name, uniqueness: true
 
 
 end
