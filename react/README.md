@@ -1,4 +1,4 @@
-## Level-Up
+# Level-Up
 
 **Level-Up** is peer-based mentor-based skill-learning application. Our application aims to teach users the value of:
 - Community skill learning
@@ -23,6 +23,7 @@ Front-end:
 
 Back-end:
 - [Ruby on Rails](https://rubyonrails.org/): Runs on a separate folder as our server where we make API calls to
+- [React Router Dom](https://www.npmjs.com/package/react-router-dom): Package that allows us to route our react pages
 - [PostgreSQL](https://www.postgresql.org/): For databasing
 - [Axios](https://github.com/axios/axios): For us to make API calls from our front to our back
 
@@ -44,6 +45,11 @@ npm start
 ```
 
 ## Screenshots
+
+!['Hall Page'](https://github.com/begeh/level-up/blob/master/react/public/images/Hall%20Page.png?raw=true)
+!['Quest Page'](https://github.com/begeh/level-up/blob/master/react/public/images/Quest%20Page.png?raw=true)
+!['Post Page'](https://github.com/begeh/level-up/blob/master/react/public/images/Post%20Page.png?raw=true)
+
 
 
 
