@@ -46,7 +46,7 @@ export default function History(props){
         </div>
     </Grid>
       <Grid item sm={7} className='container-right'>
-        <button className='btn btn-primary' onClick={()=>history.push({pathname:"/legacy", state: {global:state, quests:quests, party_quests: party_quests, party_info: party_info}})}>Go Back</button>
+        <button className='btn btn-primary' onClick={()=>history.push({pathname:"/legacy", state: {global:state, quests:quests, party_quests: party_quests, party_info: party_info}})}>Go To Legacy</button>
         <h3>{quest.title}</h3>
         <p>Status: {quest.status}</p>
         <h5>Story</h5>
