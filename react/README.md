@@ -23,6 +23,7 @@ Front-end:
 
 Back-end:
 - [Ruby on Rails](https://rubyonrails.org/): Runs on a separate folder as our server where we make API calls to
+- [React Router Dom](https://www.npmjs.com/package/react-router-dom): Package that allows us to route our react pages
 - [PostgreSQL](https://www.postgresql.org/): For databasing
 - [Axios](https://github.com/axios/axios): For us to make API calls from our front to our back
 
