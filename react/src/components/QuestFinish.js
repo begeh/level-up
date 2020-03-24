@@ -24,7 +24,7 @@ export default function QuestFinish(props) {
         </Modal.Header>
         <Modal.Body>
           <h3>Quest Complete</h3>
-          <img src={shield} alt='win image' className='finish-image' />
+          <img src={shield} alt='Win Shield' className='finish-image' />
         </Modal.Body>
         <Modal.Footer>
           <Button className='btn btn-primary' onClick={()=>{

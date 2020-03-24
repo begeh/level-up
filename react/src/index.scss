@@ -18,7 +18,7 @@ code {
 
 }
 
-.btn-primary{
+.btn-primary {
   background-color: #92A514 !important;
   border-color: #92A514 !important;
   text-shadow: 1.5px 1.5px rgb(123, 139, 18);
@@ -26,6 +26,23 @@ code {
     background-color: rgb(123, 139, 18) !important;
   }
 }
+
+.btn-secondary {
+  background-color: #74411E !important;
+  border-color: #74411E !important;
+  &:hover {
+    background-color: #502a10 !important;
+  }
+}
+
+.abandon {
+  background-color: #DA2C38 !important;
+  border-color: #DA2C38 !important;
+  &:hover {
+    background-color: #a71721 !important;
+  }
+}
+
 
 .container-left {
   background: #59301A;

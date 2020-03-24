@@ -1,9 +1,8 @@
-import React, {Fragment, useState} from 'react';
+import React, { useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import {Hidden, List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@material-ui/core';
+import { List, ListItem,ListItemText} from '@material-ui/core';
 import {useHistory} from "react-router-dom";
 import axios from 'axios';
-import QuestFinish from "./QuestFinish";
 import success from '../helpers/success';
 import fail from '../helpers/fail';
 
@@ -125,16 +124,14 @@ export default function QuestInfoBtn(props) {
           <h6>Mentor: {mentor_name}</h6>
           <h6>Apprentice: {user_name}</h6>
           <h6>Finish Date: {quest.quest.date_finished ? (new Date(quest.quest.date_finished)).toLocaleDateString() : "In Progress"}</h6>
-          <List>
+          <List className='quest-node-list'>
           {
             quest.nodes.map((node, index)=>(
               <div>
                 <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <img src="https://www.pinclipart.com/picdir/middle/379-3797946_software-developer-computer-servers-web-others-web-developer.png" alt="Quest Button" />
-                    </Avatar>
-                  </ListItemAvatar>
+                  <svg class="bi bi-circle-fill" viewBox="0 0 16 16" fill={node.date_finished ? "#798A0D" : "#88773F"} xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8" cy="8" r="8"/>
+                  </svg>
                   <ListItemText primary={`${node.title}  (${(new Date(node.complete_by)).toLocaleDateString()})`} secondary={`Date Finished: ${node.date_finished ? (new Date(node.date_finished)).toLocaleDateString() : "Incomplete"}`} />
                 </ListItem>
                 <p className='node-desc'>{node.description}</p>
@@ -154,7 +151,7 @@ export default function QuestInfoBtn(props) {
             }>
             Level-Up!
           </Button>
-          <Button variant="secondary" onClick={(event)=>{
+          <Button className='abandon' variant="secondary" onClick={(event)=>{
             event.preventDefault();
             const status = "failed";
             return handleLevel(nodes, status);
