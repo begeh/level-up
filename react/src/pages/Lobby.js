@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography, Card, Button, TextField, Container} from '@material-ui/core';
+import { Typography, Card, Button, TextField, Container } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import logo from '../images/logo.png'
 import axios from 'axios';
@@ -57,13 +57,9 @@ export default function Lobby(props) {
     console.log(`lobbyname is ${lobbyName}`); //Create lobby
     console.log(`lobbycode is ${lobbyCode}`); //Join Lobby
 
-    // If making Lobby
-    if (lobbyName && !lobbyCode) {
-      state.lobbyName = lobbyName
-      // If joining Lobby
-    } else if (lobbyCode && !lobbyName) {
-      state.lobbyCode = lobbyCode
-    }
+
+    // If joining Lobby
+    state.lobbyCode = lobbyCode
 
     console.log(lobbyCode)
 
@@ -154,7 +150,7 @@ export default function Lobby(props) {
     // If making Lobby
     state.lobbyName = lobbyName
 
-    // Creates a party and returns the a party object
+    // Creates a party and returns a party object
     let party = await axios.post(`/parties`,
       {
         mentor_id: state.id,
