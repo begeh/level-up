@@ -44,25 +44,34 @@ export default function Quest(props) {
   console.log(`Quest is completed ${quest_completed}`)
   let quest = party_quests.filter(quest => quest.quest.id === quest_id)[0];
 
+  let nodes = quest.nodes;
+  let comments = quest.comments.flat();
+
   //sets posts variable to all posts if no node is selected, or to posts specific to a selected node (node_post) if a node is clicked
   let posts = null;
   if (!node_posts) {
-    posts = quest.posts.flat();
+    let current_node = nodes.find(node=> node["is_complete?"] === false);
+
+    //if quest is complete, sets default node to the first node when quest is selected from the hall
+    if(quest.quest.status !== "IN PROGRESS"){
+      current_node = nodes[0];
+    }
+
+    node_id = current_node.id;
+    posts = quest.posts.flat().filter(post => post.node_id === node_id);
+    
   } else {
     posts = node_posts;
   }
 
   console.log(`This is posts ${JSON.stringify(posts)}`);
 
-  let nodes = quest.nodes;
-  let comments = quest.comments.flat();
-
   //renders quest page with only posts associated with the node that is click on nodebar in quest page
   function handleNode(id) {
 
-    if (node_posts) {
-      posts = quest.posts.flat();
-    }
+    // if (node_posts) {
+    posts = quest.posts.flat();
+    // }
     node_posts = posts.filter(post => post.node_id === id);
 
     history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: quests, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, node_posts: node_posts, node_id: id } })
@@ -104,8 +113,8 @@ export default function Quest(props) {
           </Grid>
           <NodeBar nodes={nodes} handleNode={handleNode} />
           <QuestList posts={posts} comments={comments} handleClick={handleClick} />
-          { quest.quest.status === 'IN PROGRESS' && node_id ?
-            <CreatePostBtn state={state} quest_id={quest_id} quests={quests} party_quests={party_quests} mentor_name={mentor_name} user_name={user_name} party_info={party_info} node_id={node_id} /> : (quest.quest.status === 'IN PROGRESS' ? "Click a Node to Create a Post": null)
+          { quest.quest.status === 'IN PROGRESS' ?
+            <CreatePostBtn state={state} quest_id={quest_id} quests={quests} party_quests={party_quests} mentor_name={mentor_name} user_name={user_name} party_info={party_info} node_id={node_id} /> : null
           }
         </Grid>
       </Grid>
