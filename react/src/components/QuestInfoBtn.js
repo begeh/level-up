@@ -151,7 +151,7 @@ export default function QuestInfoBtn(props) {
             }>
             Level-Up!
           </Button>
-          <Button variant="secondary" onClick={(event)=>{
+          <Button className='abandon' variant="secondary" onClick={(event)=>{
             event.preventDefault();
             const status = "failed";
             return handleLevel(nodes, status);
