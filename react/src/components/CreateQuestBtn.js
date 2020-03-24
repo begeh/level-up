@@ -22,8 +22,6 @@ export default function CreateQuestBtn(props) {
   let history = useHistory();
   let state = props.state;
   let party_info = props.party_info;
-  
-  const mentor_list = party_info.members.filter(member => member.name !== state.name);
 
   const [show, setShow] = useState(false);
 
@@ -436,7 +434,7 @@ export default function CreateQuestBtn(props) {
               <label for="Mentor">Mentor:</label>
               <select class="form-control" id="exampleFormControlSelect1">
                 {
-                  mentor_list.map(member=>(
+                  party_info.members.map(member=>(
                     <option>{member.name}</option>
                   ))
                 }

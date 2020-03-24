@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, List, ListItem, ListItemText } from '@material-ui/core';
 import { useHistory, useParams } from "react-router-dom";
 import shield from '../images/shield.png'
-import './History.scss'
+import './History.scss';
 
 
 import NavForApp from "../components/NavForApp";

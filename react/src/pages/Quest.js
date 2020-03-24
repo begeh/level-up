@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Hidden } from '@material-ui/core';
-import { useHistory, Link } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import NavForApp from '../components/NavForApp';
 import CreatePostBtn from '../components/CreatePostBtn';
 import QuestInfoBtn from '../components/QuestInfoBtn';
@@ -81,8 +81,8 @@ export default function Quest(props) {
 
   return (
     <>
-      {quest_completed === "success" ? <QuestFinish /> : null}
-      {quest_completed === "failed" ? <QuestFail /> : null}
+      {quest_completed === "success" ? <QuestFinish state={state} quests={quests} party_quests={party_quests} party_info={party_info}/> : null}
+      {quest_completed === "failed" ? <QuestFail state={state} quests={quests} party_quests={party_quests} party_info={party_info}/> : null}
       <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests} party_info={party_info} quest={quest} mentor_name={mentor_name} user_name={user_name} quest_id={quest_id} quest_completed={quest_completed} />
       <Grid container className='full'>
         <Hidden xsDown>
@@ -100,7 +100,7 @@ export default function Quest(props) {
         </Hidden>
         <Grid className='container-right' item xs={12} sm={7} >
           <Grid className='back-button' item xs={12}>
-            <button className='btn btn-primary' onClick={() => history.push({ pathname: "/hall", state: { global: state, quests: quests, party_quests: party_quests, quest_id: quest_id, party_info: party_info } })}>Go Back</button>
+            <button className='btn btn-primary' onClick={() => history.push({ pathname: "/hall", state: { global: state, quests: quests, party_quests: party_quests, party_info: party_info } })}>Go Back</button>
           </Grid>
           <NodeBar nodes={nodes} handleNode={handleNode} />
           <QuestList posts={posts} comments={comments} handleClick={handleClick} />
