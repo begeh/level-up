@@ -106,7 +106,8 @@ export default function Lobby(props) {
 
       console.log(`Full quests ${JSON.stringify(full_quests)}`);
 
-      let party_quests = await returnPartyQuests(state.party_id)
+      //Use the user provided lobbyCode to populate the party_quests
+      let party_quests = await returnPartyQuests(lobbyCode)
 
       console.log(`This is party quests ${JSON.stringify(full_quests)}`)
 

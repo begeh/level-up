@@ -34,7 +34,6 @@ class QuestsController < ApplicationController
     json_response(@response)
     end
   
-  
     # POST /user_quests
     # will return all quests with the given users ID
     def user_quests
