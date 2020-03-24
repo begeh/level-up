@@ -1,4 +1,4 @@
-## Level-Up
+# Level-Up
 
 **Level-Up** is peer-based mentor-based skill-learning application. Our application aims to teach users the value of:
 - Community skill learning
@@ -44,6 +44,11 @@ npm start
 ```
 
 ## Screenshots
+
+!['Hall Page'](https://github.com/begeh/level-up/blob/master/react/public/images/Hall%20Page.png?raw=true)
+!['Quest Page'](https://github.com/begeh/level-up/blob/master/react/public/images/Quest%20Page.png?raw=true)
+!['Post Page'](https://github.com/begeh/level-up/blob/master/react/public/images/Post%20Page.png?raw=true)
+
 
 
 
