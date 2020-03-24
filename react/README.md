@@ -1,3 +1,5 @@
+!['Banner'](https://github.com/begeh/level-up/blob/master/react/public/images/banner.png?raw=true)
+
 # Level-Up
 
 **Level-Up** is peer-based mentor-based skill-learning application. Our application aims to teach users the value of:
