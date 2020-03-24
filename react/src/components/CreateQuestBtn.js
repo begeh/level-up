@@ -31,6 +31,7 @@ export default function CreateQuestBtn(props) {
 
   const [questTitle, setQuestTitle] = useState("")
   const [questDesc, setQuestDesc] = useState("")
+  const [mentor, setMentor] = useState(state.name);
 
   const [node1Title, setNode1Title] = useState("")
   const [node2Title, setNode2Title] = useState("")
@@ -61,13 +62,20 @@ export default function CreateQuestBtn(props) {
 
   async function handleQuestSubmit(event) {
     event.preventDefault();
-  
+    console.log(`mentor name is ${mentor}`);
+    const mentor_id = await axios.get(`/users`)
+                  .then((res) => {
+                    return res.data.filter(user=> user.name === mentor)[0].id
+                    // console.log(`mentor is${JSON.stringify(res.data.filter(user=> user.name === mentor))}`)
+                  });
+
     let quest = {
       title: questTitle,
       description: questDesc,
       status: "IN PROGRESS",
       party_id: state.party_id,
-      user_id: state.id
+      user_id: state.id,
+      mentor_id: mentor_id
     }
     let nodes = [
       {
@@ -433,10 +441,11 @@ export default function CreateQuestBtn(props) {
 
             <div class="form-group">
               <label for="Mentor">Mentor:</label>
-              <select class="form-control" id="exampleFormControlSelect1">
+              <select defaultValue={state.name} class="form-control"
+              onChange={e => setMentor(e.target.value)}id="exampleFormControlSelect1">
                 {
                   party_info.members.map(member=>(
-                    <option>{member.name}</option>
+                    <option value={member.name}>{member.name}</option>
                   ))
                 }
               </select>

@@ -65,7 +65,7 @@ class QuestsController < ApplicationController
       @quest = Quest.create!(
         party_id: quest[:party_id],
         user_id: quest[:user_id],
-        mentor_id: quest[:user_id],
+        mentor_id: quest[:mentor_id],
         status: quest[:status],
         description: quest[:description],
         title: quest[:title]
