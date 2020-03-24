@@ -14,10 +14,14 @@ export default function CreatePostButton(props) {
   const [imageURL, setImageURL] = useState("");
 
   // Model only closes if postTitle and Post description contain valid input
-  const handleClose = () => {
-    if (postTitle.length !== 0 && postDescription !== 0) {
+  const handleSubmitClose = () => {
+    console.log(state)
+    if (postTitle.length !== 0 && postDescription.length !== 0) {
       setShow(false)
     }
+  };
+  const handleClose = () => {
+    setShow(false)
   };
   const handleShow = () => setShow(true);
 
@@ -44,14 +48,15 @@ export default function CreatePostButton(props) {
       node_id: node_id
     }
     console.log(post_package)
+    // setPostDescription, setPostTitle, setVideoURL, setImageURL
 
-    let post = await axios.post("/posts", {
-      title: postTitle,
-      content: postDescription,
-      symbol_ref: postType,
-      video_url: videoURL,
-      image_url: imageURL,
-      node_id: node_id
+    await axios.post("/posts", {
+      title: post_package.postTitle,
+      content: post_package.postDescription,
+      symbol_ref: post_package.postType,
+      video_url: post_package.videoURL,
+      image_url: post_package.imageURL,
+      node_id: post_package.node_id
     }
     ).then((res) => res.data);
 
@@ -184,7 +189,7 @@ export default function CreatePostButton(props) {
             />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={handleClose} type="submit">
+            <Button variant="primary" onClick={handleSubmitClose} type="submit">
               Submit Post
           </Button>
           </Modal.Footer>
