@@ -28,11 +28,11 @@ export default function QuestFail(props) {
           <img src={brokenShield} alt='win image' className='finish-image' />
         </Modal.Body>
         <Modal.Footer>
-          <Button className='btn btn-primary' onClick={()=>{
-              handleClose();
-              history.push({pathname:`/legacy/history/${quest.quest.id}`,state:{global: state, quests: quests, quest: quest, party_quests: party_quests, party_info:party_info}});
-              }}>
-              See Your Story
+        <Button className='btn btn-primary' onClick={()=>{
+            handleClose();
+            history.push({pathname:`/legacy/history/${quest.quest.id}`,state:{global: state, quests: quests, quest: quest, party_quests: party_quests, party_info:party_info}});
+            }}>
+            See Your Story
           </Button>
           <Button className='btn btn-primary' onClick={()=>{
             handleClose();

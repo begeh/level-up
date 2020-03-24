@@ -35,7 +35,6 @@ export default function QuestInfoBtn(props) {
     dateStart: quest.quest.created_at
   }
 
-  //'levels up' quest (i.e. progresses through nodes) when Level Up btn pressed. if quest is abandoned or completed successfully, redirects to quest page where appropriate modal is displayed and database is updated
   async function handleLevel(nodes, status) {
     console.log(`Status is ${status}`);
     if(status === "failed"){
@@ -143,30 +142,24 @@ export default function QuestInfoBtn(props) {
         </Modal.Body>
         <Modal.Footer>
           { 
-          quest.quest.status === "IN PROGRESS" && (state.id === quest.quest.mentor_id || state.id === quest.quest.user_id) ? 
-          <>
-          { state.id === quest.quest.mentor_id ?
-            <Button variant="primary" onClick={(event)=>{
-              event.preventDefault();
-              const status = "success";
-              return handleLevel(nodes, status);
-            }
-              }>
-              Level-Up!
-            </Button> : null
+          quest.quest.status === "SUCCESS" || quest.quest.status === "FAILED" ? null : <>
+          <Button variant="primary" onClick={(event)=>{
+            event.preventDefault();
+            const status = "success";
+            return handleLevel(nodes, status);
           }
-          { state.id === quest.quest.user_id ?
-            <Button className='abandon' variant="secondary" onClick={(event)=>{
-              event.preventDefault();
-              const status = "failed";
-              return handleLevel(nodes, status);
-              }
             }>
-              Abandon Quest
-            </Button> : null
+            Level-Up!
+          </Button>
+          <Button className='abandon' variant="secondary" onClick={(event)=>{
+            event.preventDefault();
+            const status = "failed";
+            return handleLevel(nodes, status);
           }
-          
-          </> : null
+            }>
+            Abandon Quest
+          </Button>
+          </>
           }
           <Button variant="secondary" onClick={handleClose}>
             Close
