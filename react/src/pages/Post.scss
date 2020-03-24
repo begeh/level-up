@@ -37,6 +37,11 @@
     height: 100%;
   }
 
+  img {
+    width: 100%;
+    padding-right: 10px;
+  }
+
   .comment-right {
     padding-left: 10px;
 
@@ -58,4 +63,5 @@
 
 .delete-comment {
   position: absolute;
+  right: 30px;
 }
