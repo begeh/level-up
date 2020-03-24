@@ -51,12 +51,12 @@ export default function CreatePostButton(props) {
     // setPostDescription, setPostTitle, setVideoURL, setImageURL
 
     await axios.post("/posts", {
-      title: post_package.postTitle,
-      content: post_package.postDescription,
-      symbol_ref: post_package.postType,
-      video_url: post_package.videoURL,
-      image_url: post_package.imageURL,
-      node_id: post_package.node_id
+      title: postTitle,
+      content: postDescription,
+      symbol_ref: postType,
+      video_url: videoURL,
+      image_url: imageURL,
+      node_id: node_id
     }
     ).then((res) => res.data);
 
