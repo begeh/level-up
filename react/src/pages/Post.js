@@ -167,7 +167,7 @@ export default function Post(props) {
   return (
     <>
       <NavForApp nav_title='POST' state={state} quests={quests} party_quests={party_quests} party_info={party_info} />
-      <Grid container >
+      <Grid container className='post-page' >
         <Hidden xsDown>
           <Grid className='container-left quest-info' item sm={5}>
             <img src={scroll} alt='scroll' />
