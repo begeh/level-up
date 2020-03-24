@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Typography, Card, Button, TextField, Container} from '@material-ui/core';
+import { Typography, Card, Button, TextField, Container } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import logo from '../images/logo.png'
 import axios from 'axios';
+
 
 
 // Returns all the quests that contain the relevant user id
@@ -22,8 +23,8 @@ let returnPartyQuests = async (party_id) => {
 }
 // Returns the party members of the current party
 let returnPartyMembers = async (party_id, state_party_id, user_id) => {
-  if(party_id !== state_party_id){
-    await axios.put(`/users/${user_id}`,{"party_id": party_id});
+  if (party_id !== state_party_id) {
+    await axios.put(`/users/${current_user.id}`, { "party_id": party_id });
   }
   return await axios.post("/user_party_members", { party_id })
     .then((response) => {
@@ -36,8 +37,11 @@ let returnPartyMembers = async (party_id, state_party_id, user_id) => {
     })
 }
 
+let current_user = null
+
 export default function Lobby(props) {
   const state = props.location.state;
+  current_user = state
   console.log(`New State: ${JSON.stringify(state)}`)
   console.log(`Received email: ${props.location.state.email} and password: ${props.location.state.password}`);
 
@@ -53,13 +57,9 @@ export default function Lobby(props) {
     console.log(`lobbyname is ${lobbyName}`); //Create lobby
     console.log(`lobbycode is ${lobbyCode}`); //Join Lobby
 
-    // If making Lobby
-    if (lobbyName && !lobbyCode) {
-      state.lobbyName = lobbyName
-      // If joining Lobby
-    } else if (lobbyCode && !lobbyName) {
-      state.lobbyCode = lobbyCode
-    }
+
+    // If joining Lobby
+    state.lobbyCode = lobbyCode
 
     console.log(lobbyCode)
 
@@ -102,7 +102,8 @@ export default function Lobby(props) {
 
       console.log(`Full quests ${JSON.stringify(full_quests)}`);
 
-      let party_quests = await returnPartyQuests(state.party_id)
+      //Use the user provided lobbyCode to populate the party_quests
+      let party_quests = await returnPartyQuests(lobbyCode)
 
       console.log(`This is party quests ${JSON.stringify(full_quests)}`)
 
@@ -149,7 +150,7 @@ export default function Lobby(props) {
     // If making Lobby
     state.lobbyName = lobbyName
 
-    // Creates a party and returns the a party object
+    // Creates a party and returns a party object
     let party = await axios.post(`/parties`,
       {
         mentor_id: state.id,

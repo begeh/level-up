@@ -13,7 +13,16 @@ export default function CreatePostButton(props) {
   const [videoURL, setVideoURL] = useState("");
   const [imageURL, setImageURL] = useState("");
 
-  const handleClose = () => setShow(false);
+  // Model only closes if postTitle and Post description contain valid input
+  const handleSubmitClose = () => {
+    console.log(state)
+    if (postTitle.length !== 0 && postDescription.length !== 0) {
+      setShow(false)
+    }
+  };
+  const handleClose = () => {
+    setShow(false)
+  };
   const handleShow = () => setShow(true);
 
   let history = useHistory();
@@ -39,24 +48,25 @@ export default function CreatePostButton(props) {
       node_id: node_id
     }
     console.log(post_package)
+    // setPostDescription, setPostTitle, setVideoURL, setImageURL
 
-    let post = await axios.post("/posts", {
-      title: postTitle,
-      content: postDescription,
-      symbol_ref: postType,
-      video_url: videoURL,
-      image_url: imageURL,
-      node_id: node_id
+    await axios.post("/posts", {
+      title: post_package.postTitle,
+      content: post_package.postDescription,
+      symbol_ref: post_package.postType,
+      video_url: post_package.videoURL,
+      image_url: post_package.imageURL,
+      node_id: post_package.node_id
     }
     ).then((res) => res.data);
 
     quests = await axios.post(`/user_quests`, { user_id: state.id })
-    .then((res) => {
-      return res.data;
-    })
- 
+      .then((res) => {
+        return res.data;
+      })
+
     console.log(JSON.stringify(quests))
-  
+
     let full_quests = [];
     let promises = [];
     quests.forEach((quest) => {
@@ -67,18 +77,18 @@ export default function CreatePostButton(props) {
       )
     }
     );
-  
+
     await Promise.all(promises);
-  
+
     console.log(`Full quests ${JSON.stringify(full_quests)}`);
-  
+
     party_quests = await axios.post("/party_quests", { party_id: state.party_id })
       .then((res) => {
         return res.data
       })
-  
+
     console.log(`This is party quests ${JSON.stringify(full_quests)}`)
-  
+
     let party_full_quests = [];
     let party_promises = [];
     party_quests.forEach((quest) => {
@@ -89,7 +99,7 @@ export default function CreatePostButton(props) {
       )
     }
     );
-  
+
     await Promise.all(party_promises);
 
     const quest = party_full_quests.filter(quest => quest.quest.id === quest_id)[0];
@@ -97,8 +107,8 @@ export default function CreatePostButton(props) {
     const posts = quest.posts.flat();
 
     const node_posts = posts.filter(post => post.node_id === node_id);
-    
-    history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), mentor_name: mentor_name, user_name: user_name, party_info: party_info, node_posts: node_posts, node_id: node_id } })
+
+    history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: full_quests.sort((a, b) => b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a, b) => b.quest.id - a.quest.id), mentor_name: mentor_name, user_name: user_name, party_info: party_info, node_posts: node_posts, node_id: node_id } })
 
   }
 
@@ -179,7 +189,7 @@ export default function CreatePostButton(props) {
             />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={handleClose} type="submit">
+            <Button variant="primary" onClick={handleSubmitClose} type="submit">
               Submit Post
           </Button>
           </Modal.Footer>

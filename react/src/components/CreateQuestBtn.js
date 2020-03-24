@@ -22,10 +22,36 @@ export default function CreateQuestBtn(props) {
   let history = useHistory();
   let state = props.state;
   let party_info = props.party_info;
-
+  console.log(state)
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
+
+  const handleSubmitClose = () => {
+    if (
+      questTitle !== "" &&
+      questDesc !== "" &&
+      mentor !== "" &&
+      node1Title !== "" &&
+      node2Title !== "" &&
+      node3Title !== "" &&
+      node4Title !== "" &&
+      node5Title !== "" &&
+      node1Desc !== "" &&
+      node2Desc !== "" &&
+      node3Desc !== "" &&
+      node4Desc !== "" &&
+      node5Desc !== "" &&
+      node1CompletionDate !== "" &&
+      node2CompletionDate !== "" &&
+      node3CompletionDate !== "" &&
+      node4CompletionDate !== "" &&
+      node5CompletionDate !== ""
+    ) {
+      setShow(false)
+    }
+  };
+
   const handleShow = () => setShow(true);
 
   const [questTitle, setQuestTitle] = useState("")
@@ -63,10 +89,10 @@ export default function CreateQuestBtn(props) {
     event.preventDefault();
     console.log(`mentor name is ${mentor}`);
     const mentor_id = await axios.get(`/users`)
-                  .then((res) => {
-                    return res.data.filter(user=> user.name === mentor)[0].id
-                    // console.log(`mentor is${JSON.stringify(res.data.filter(user=> user.name === mentor))}`)
-                  });
+      .then((res) => {
+        return res.data.filter(user => user.name === mentor)[0].id
+        // console.log(`mentor is${JSON.stringify(res.data.filter(user=> user.name === mentor))}`)
+      });
 
     let quest = {
       title: questTitle,
@@ -111,12 +137,12 @@ export default function CreateQuestBtn(props) {
 
     console.log("Succesful write to database!")
     console.log(quest_info)
-    
+
     let quests = await axios.post(`/user_quests`, { user_id: state.id })
-    .then((res) => {
-      return res.data;
-    })
-    
+      .then((res) => {
+        return res.data;
+      })
+
     let full_quests = [];
     let promises = [];
     quests.forEach((quest) => {
@@ -124,7 +150,7 @@ export default function CreateQuestBtn(props) {
         .then((response) => {
           full_quests.push(response.data);
         })
-        .catch((err)=> alert(err))
+        .catch((err) => alert(err))
       )
     }
     );
@@ -153,7 +179,7 @@ export default function CreateQuestBtn(props) {
 
     handleClose();
 
-    history.push({pathname:"/hall", state: {global:state, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), party_info:party_info}})
+    history.push({ pathname: "/hall", state: { global: state, quests: full_quests.sort((a, b) => b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a, b) => b.quest.id - a.quest.id), party_info: party_info } })
 
   }
 
@@ -169,10 +195,10 @@ export default function CreateQuestBtn(props) {
 
       <Modal show={show} onHide={handleClose}>
         <form validate="true" onSubmit={handleQuestSubmit} >
-        <Modal.Header closeButton>
-          <Modal.Title>Create Quest</Modal.Title>
-        </Modal.Header>
-        <Modal.Body id='create-modal'>
+          <Modal.Header closeButton>
+            <Modal.Title>Create Quest</Modal.Title>
+          </Modal.Header>
+          <Modal.Body id='create-modal'>
             <h6>Quest Title:</h6>
             <TextField
               variant="outlined"
@@ -435,15 +461,15 @@ export default function CreateQuestBtn(props) {
                 />
               </Grid>
             </MuiPickersUtilsProvider>
-            
+
 
 
             <div class="form-group">
               <label for="Mentor">Mentor:</label>
               <select defaultValue={state.name} class="form-control"
-              onChange={e => setMentor(e.target.value)}id="exampleFormControlSelect1">
+                onChange={e => setMentor(e.target.value)} id="exampleFormControlSelect1">
                 {
-                  party_info.members.map(member=>(
+                  party_info.members.map(member => (
                     <option value={member.name}>{member.name}</option>
                   ))
                 }
@@ -467,13 +493,13 @@ export default function CreateQuestBtn(props) {
                 />
               </Grid>
             </MuiPickersUtilsProvider>
-          
-        </Modal.Body>
-        <Modal.Footer>
-          <Button type="submit" variant="primary" onClick={handleClose}>
-            Submit Quest
+
+          </Modal.Body>
+          <Modal.Footer>
+            <Button type="submit" variant="primary" onClick={handleSubmitClose}>
+              Submit Quest
           </Button>
-        </Modal.Footer>
+          </Modal.Footer>
         </form>
       </Modal>
     </div>
