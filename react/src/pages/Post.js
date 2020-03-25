@@ -197,7 +197,7 @@ export default function Post(props) {
             />
             <button className='btn btn-primary' type="submit">Submit</button>
           </form>
-          <CommentList comments={comments} />
+          <CommentList comments={comments.sort((a,b)=> a.id - b.id)} />
         </Grid>
       </Grid>
     </>
