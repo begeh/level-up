@@ -47,17 +47,10 @@ export default function Quest(props) {
   let nodes = quest.nodes;
   let comments = quest.comments.flat();
 
-  //sets posts variable to all posts if no node is selected, or to posts specific to a selected node (node_post) if a node is clicked
+  //sets posts variable to all posts of the node selected on hall page, or for the node clicked on the nodebar of quest page (node_posts) when clicked
   let posts = null;
   if (!node_posts) {
-    let current_node = nodes.find(node=> node["is_complete?"] === false);
-
-    //if quest is complete, sets default node to the first node when quest is selected from the hall
-    if(quest.quest.status !== "IN PROGRESS"){
-      current_node = nodes[0];
-    }
-
-    node_id = current_node.id;
+  
     posts = quest.posts.flat().filter(post => post.node_id === node_id);
     
   } else {
