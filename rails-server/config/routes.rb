@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   post "/user_party_members", to: "users#return_party_members"
   post "/create_quest", to: "quests#create_quest"
 
-
+  # Routes for handling OAuth for Google Calendar
+  get '/redirect', to: 'calendar#redirect', as: 'redirect'
+  get '/callback', to: 'calendar#callback', as: 'callback'
   
   # Old way of routing, lots of nested routes
   # resources :quests do
