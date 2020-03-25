@@ -146,8 +146,8 @@ export default function Post(props) {
           <img src={post_symbol} alt={post.title} width="120" height="120" />
         </Grid>
         <Grid item className='post-detail' xs={8} sm={8} md={9} lg={10}>
-          <h3>Post Title: {post.title}</h3>
-          <p>Post Date: {(new Date(post.created_at)).toLocaleDateString()}</p>
+          <h3>{post.title}</h3>
+          <p>Posted on: {(new Date(post.created_at)).toLocaleDateString()}</p>
         </Grid>
         <Grid item xs={12}>
           { post.image_url ?
@@ -157,7 +157,7 @@ export default function Post(props) {
             <ReactPlayer className='player' url={post.video_url} /> : null
           }
           
-          <p>Content: {post.content}</p>
+          <p>{post.content}</p>
 
         </Grid>
       </Grid>
