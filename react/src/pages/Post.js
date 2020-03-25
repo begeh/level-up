@@ -157,7 +157,7 @@ export default function Post(props) {
             <ReactPlayer className='player' url={post.video_url} /> : null
           }
           
-          <p>Content: {post.content}</p>
+          <p>{post.content}</p>
 
         </Grid>
       </Grid>
