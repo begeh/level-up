@@ -1,6 +1,7 @@
 .legacy-list {
   border-bottom: solid 2px;
   cursor: pointer;
+  padding-bottom: 10px;
 
   &:hover .legacy-right h3 {
     transform: translate(3px, -3px);
