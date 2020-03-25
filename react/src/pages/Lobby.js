@@ -175,9 +175,11 @@ export default function Lobby(props) {
         return null
       });
     console.log("party value is: ", party)
-
+    
     // If a party was created (and therefore returned)
     if (party) {
+
+      state.party_id = party.id
 
       let quests = await returnUserQuests(state.id)
 
