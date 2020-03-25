@@ -32,14 +32,18 @@ Back-end:
 ## Setup
 
 ```sh
-# Run the below on your root folder where you see the two folders: rails-server and react
+# Run the below on your within react folder
 npm install
-
-# Within your rails-server folder (on a separate terminal), run the below to start your server:
-rails s
 
 # Within your react folder (on a separate terminal), run the below to start your app:
 npm start
+
+# Within your rails-server folder, migrate and seed the database with the commands below
+rake db:migrate
+rake db:seed
+
+# Within your rails-server folder (on a separate terminal), run the below to start your server:
+rails s
 
 # Afterwards, you can view your app on https://localhost:3000/
 # Enjoy!

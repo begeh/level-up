@@ -111,7 +111,7 @@ export default function Quest(props) {
           <Grid className='back-button' item xs={12}>
             <button className='btn btn-primary' onClick={() => history.push({ pathname: "/hall", state: { global: state, quests: quests, party_quests: party_quests, party_info: party_info } })}>Go Back</button>
           </Grid>
-          <NodeBar nodes={nodes} handleNode={handleNode} />
+          <NodeBar nodes={nodes.sort((a,b)=> a.id - b.id)} handleNode={handleNode} />
           <QuestList posts={posts} comments={comments} handleClick={handleClick} />
           { quest.quest.status === 'IN PROGRESS' && state.id === quest.quest.user_id   ?
             <CreatePostBtn state={state} quest_id={quest_id} quests={quests} party_quests={party_quests} mentor_name={mentor_name} user_name={user_name} party_info={party_info} node_id={node_id} /> : null
