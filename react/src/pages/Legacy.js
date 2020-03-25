@@ -9,13 +9,13 @@ import './Legacy.scss';
 
 
 
-
 export default function Legacy(props) {
   let history=useHistory();
   let state = {};
   let quests={};
   let party_quests = {};
   let party_info = {};
+
 
 
   if(props.location.state)
