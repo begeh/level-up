@@ -90,8 +90,9 @@ export default function CreateQuestBtn(props) {
     console.log(`mentor name is ${mentor}`);
     const mentor_id = await axios.get(`/users`)
       .then((res) => {
+
         return res.data.filter(user => user.name === mentor)[0].id
-        // console.log(`mentor is${JSON.stringify(res.data.filter(user=> user.name === mentor))}`)
+        
       });
 
     let quest = {
@@ -178,6 +179,27 @@ export default function CreateQuestBtn(props) {
     await Promise.all(party_promises);
 
     handleClose();
+
+    //resets state of all fields to their initial states after submission of form
+    setQuestTitle("");
+    setQuestDesc("");
+    setMentor(state.name);
+    setNode1Desc("");
+    setNode1Title("");
+    setNode1CompletionDate(new Date(Date.now()));
+    setNode2Desc("");
+    setNode2Title("");
+    setNode2CompletionDate(new Date(Date.now()));
+    setNode3Desc("");
+    setNode3Title("");
+    setNode3CompletionDate(new Date(Date.now()));
+    setNode4Desc("");
+    setNode4Title("");
+    setNode4CompletionDate(new Date(Date.now()));
+    setNode5Desc("");
+    setNode5Title("");
+    setNode5CompletionDate(new Date(Date.now()));
+    setSelectedDate(new Date(Date.now()));
 
     history.push({ pathname: "/hall", state: { global: state, quests: full_quests.sort((a, b) => b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a, b) => b.quest.id - a.quest.id), party_info: party_info } })
 
