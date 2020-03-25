@@ -30,7 +30,6 @@ export default function QuestListItem({title, created_at, symbol, id, handleClic
       <img src={post_symbol} alt={title} width="120" height="120"/>
       </Grid>
       <Grid item className='post-detail' xs={8} sm={8} md={9} lg={10}>
-      {/* <p className='delete-post'>x</p> */}
       <h3>{title}</h3>
       <p>Posted on: {(new Date(created_at)).toLocaleDateString()}</p>
         <Grid item className='comment-container'>
