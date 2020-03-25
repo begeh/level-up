@@ -108,6 +108,13 @@ export default function CreatePostButton(props) {
 
     const node_posts = posts.filter(post => post.node_id === node_id);
 
+    //resets fields to initial state when form submitted
+    setPostDescription("");
+    setPostTitle("");
+    setPostType("sword");
+    setVideoURL("");
+    setImageURL("");
+
     history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: full_quests.sort((a, b) => b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a, b) => b.quest.id - a.quest.id), mentor_name: mentor_name, user_name: user_name, party_info: party_info, node_posts: node_posts, node_id: node_id } })
 
   }
