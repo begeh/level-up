@@ -24,9 +24,7 @@ export default function HallListItem({title, id, nodes, handleClick, mentor_id, 
                 <Step onClick={(event)=> {
                       event.preventDefault();
                       return handleClick(id, mentor_id, user_id, node.id)
-                    }
-                    } 
-        href="" key={index} >
+                    }} key={index} >
                   <StepLabel className={node['is_complete?'] ? 'completed-node' : 'uncompleted-node'} />
                 </Step>
               </Tooltip>
