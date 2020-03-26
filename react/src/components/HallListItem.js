@@ -17,9 +17,11 @@ export default function HallListItem({title, id, nodes, handleClick, mentor_id, 
         <Link onClick={(event)=> {
                       event.preventDefault();
                       return handleClick(id, mentor_id, user_id)}} href= "">
-        <h3 className='hall-title'>{title}</h3>
+        <div>
+          <h3 className='hall-title'>{title}</h3>
+          <div className={statusClass}>{status}</div>
+        </div>
         </Link>
-        <div className={statusClass}>{status}</div>
         <Stepper >
           {nodes.map((node, index) => {
     
