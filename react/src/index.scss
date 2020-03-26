@@ -134,6 +134,12 @@ a {
     transition: border 0.5s ease;
   }
 
+  .selected-node-2 {
+    border: solid 5px #6B563A;
+    border-radius: 20px;
+    transition: border 0.5s ease;
+  }
+
   .MuiStepLabel-iconContainer {
     padding-right: 0px;
   }
