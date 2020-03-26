@@ -202,7 +202,7 @@ end
 isFinished = finished_decider(quest1)
 
 node1 = Node.find_or_create_by!({
-  title: "C Major",
+  title: "Learn C Major",
   description: "I'll research and practice the C Major scale",
   is_complete?: false,
   quest_id: quest1.id,
@@ -212,7 +212,7 @@ node1 = Node.find_or_create_by!({
 isFinished = finished_decider(quest1)
 
 node2 = Node.find_or_create_by!({
-  title: "C Minor",
+  title: "Learn C Minor",
   description: "I'll research and practice the C Minor scale",
   is_complete?: false,
   quest_id: quest1.id,
@@ -222,7 +222,7 @@ node2 = Node.find_or_create_by!({
 isFinished = finished_decider(quest1)
 
 node3 = Node.find_or_create_by!({
-  title: "C Diminished",
+  title: "Learn C Diminished",
   description: "I'll research and practice the C Diminished scale",
   is_complete?: false,
   quest_id: quest1.id,
@@ -232,7 +232,7 @@ node3 = Node.find_or_create_by!({
 isFinished = finished_decider(quest1)
 
 node4 = Node.find_or_create_by!({
-  title: "C Major Pentatonic",
+  title: "Learn C Major Pentatonic",
   description: "I'll research and practice the C Major Pentatonic scale",
   is_complete?: false,
   quest_id: quest1.id,
@@ -242,7 +242,7 @@ node4 = Node.find_or_create_by!({
 isFinished = finished_decider(quest1)
 
 node5 = Node.find_or_create_by!({
-  title: "C Minor Pentatonic",
+  title: "Learn C Minor Pentatonic",
   description: "I'll research and practice the C Minor Pentatonic scale",
   is_complete?: false,
   quest_id: quest1.id,
