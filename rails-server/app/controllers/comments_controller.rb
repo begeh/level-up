@@ -10,7 +10,13 @@ class CommentsController < ApplicationController
     
         # POST /comments
         def create
-          @comment = Comment.create!(comment_params)
+          @comment = Comment.create!({
+            text: params[:text],
+            username: params[:username],
+            post_id: params[:post_id],
+            user_id: params[:user_id],
+            user_profile_pic: params[:user_profile_pic]
+          })
           json_response(@comment, :created)
         end
       

@@ -34,7 +34,8 @@ export default function SignUp(props) {
       email,
       password,
       title,
-      name: `${firstName} ${lastName}`
+      name: `${firstName} ${lastName}`,
+      profile_pic_ref: "none"
     }).then((res) => res.data);
     console.log(user)
     if (user.id) {

@@ -255,6 +255,8 @@ export default function CreateQuestBtn(props) {
   const [submit5, setSubmit5] = useState(false)
 
   const showForm4 = () => {
+    setNode4Title("")
+    setNode4Desc("")
     setNode4CompletionDate(new Date(Date.now()))
     setSubmit4(true)
     setForm4(true)
@@ -263,6 +265,8 @@ export default function CreateQuestBtn(props) {
   }
 
   const showForm5 = () => {
+    setNode5Title("")
+    setNode5Desc("")
     setNode5CompletionDate(new Date(Date.now()))
     setSubmit5(true)
     setForm5(true)
