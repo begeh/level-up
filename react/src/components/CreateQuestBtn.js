@@ -205,23 +205,47 @@ export default function CreateQuestBtn(props) {
 
   }
 
+  // shows the form
   const [Form4, setForm4] = useState(false)
+  // shows the show button
   const [Show4, setShow4] = useState(true)
+  // shows the hide button
+  const [Hide4, setHide4] = useState(true)
 
   const [Form5, setForm5] = useState(false)
   const [Show5, setShow5] = useState(false)
+  const [Hide5, setHide5] = useState(true)
+
 
 
   const showForm4 = () => {
     setForm4(true)
     setShow4(false)
     setShow5(true)
+    setHide4(false)
   }
 
   const showForm5 = () => {
     setForm5(true)
     setShow5(false)
+    setHide5(false)
+    setHide4(true)
   }
+
+  const deleteForm4 = () => {
+    setHide4(true)
+    setForm4(false)
+    setShow4(true)
+    setShow5(false)
+  }
+
+  const deleteForm5 = () => {
+    setForm5(false)
+    setShow5(true)
+    setHide4(false)
+    setHide5(true)
+  }
+
 
 
 
@@ -461,6 +485,8 @@ export default function CreateQuestBtn(props) {
             </div>
 
             <div className={ Show5 ? 'btn btn-primary form-button' : 'hidden-form'} onClick={() => showForm5()}>Add Level</div>
+            
+            <div className={ Hide4 ? 'hidden-form' : 'btn btn-primary form-button'} onClick={() => deleteForm4()}>Delete Level 4</div>
 
             <div className={Form5 ? null : 'hidden-form'}>
 
@@ -511,7 +537,7 @@ export default function CreateQuestBtn(props) {
             </MuiPickersUtilsProvider>
             </div>
 
-
+            <div className={ Hide5 ? 'hidden-form' : 'btn btn-primary form-button'} onClick={() => deleteForm5()}>Delete Level 5</div>
 
 
             <div class="form-group">
