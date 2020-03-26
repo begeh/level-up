@@ -47,6 +47,8 @@ export default function Post(props) {
     history.push('/');
   }
 
+  console.log(state)
+
   const symbol = post.symbol_ref;
   let post_symbol = null;
 
@@ -76,14 +78,18 @@ export default function Post(props) {
     let comment_package = {
       text: comment,
       username: user_name,
-      post_id: post.id
+      post_id: post.id,
+      user_id: state.id,
+      user_profile_pic: state.profile_pic_ref
     }
     console.log(comment_package)
 
     let sent_comment = await axios.post(`/posts/${post.id}/comments`, {
       text: comment,
       username: user_name,
-      post_id: post.id
+      post_id: post.id,
+      user_id: state.id,
+      user_profile_pic: state.profile_pic_ref
     }
     ).then((res) => res.data)
 

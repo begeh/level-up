@@ -441,29 +441,31 @@ comments = []
 
 comment_list.each_with_index do |post_id|
   if post_id <= 10
+    user = [user3, user5].sample
     if post_id == 1
-      comments.append(Comment.find_or_create_by!(text: "That's a good reference pic", username: [user3.name, user5.name].sample, post_id: post_id))
+      comments.append(Comment.find_or_create_by!(text: "That's a good reference pic", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
     elsif post_id == 2
-      comments.append(Comment.find_or_create_by!(text: "Not too shabby! Looks and sounds good", username: [user3.name, user5.name].sample, post_id: post_id))
+      comments.append(Comment.find_or_create_by!(text: "Not too shabby! Looks and sounds good", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
     elsif post_id == 3
-      comments.append(Comment.find_or_create_by!(text: "Good find", username: [user3.name, user5.name].sample, post_id: post_id))
+      comments.append(Comment.find_or_create_by!(text: "Good find", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
     elsif post_id == 4
-      comments.append(Comment.find_or_create_by!(text: "Looks like you're making good progress", username: [user3.name, user5.name].sample, post_id: post_id))
+      comments.append(Comment.find_or_create_by!(text: "Looks like you're making good progress", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
     elsif post_id == 5
-      comments.append(Comment.find_or_create_by!(text: "Another great find", username: [user3.name, user5.name].sample, post_id: post_id))
+      comments.append(Comment.find_or_create_by!(text: "Another great find", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
     elsif post_id == 6
-      comments.append(Comment.find_or_create_by!(text: "Try going a bit slower if you're having trouble", username: [user3.name, user5.name].sample, post_id: post_id))
+      comments.append(Comment.find_or_create_by!(text: "Try going a bit slower if you're having trouble", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
     elsif post_id == 7
-      comments.append(Comment.find_or_create_by!(text: "Looks good, should be easy to learn after C Major", username: [user3.name, user5.name].sample, post_id: post_id))
+      comments.append(Comment.find_or_create_by!(text: "Looks good, should be easy to learn after C Major", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
     elsif post_id == 8
-      comments.append(Comment.find_or_create_by!(text: "Very nice!", username: [user3.name, user5.name].sample, post_id: post_id))
+      comments.append(Comment.find_or_create_by!(text: "Very nice!", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
     elsif post_id == 9
-      comments.append(Comment.find_or_create_by!(text: "Perfect, you're close to completing this quest", username: [user3.name, user5.name].sample, post_id: post_id))
+      comments.append(Comment.find_or_create_by!(text: "Perfect, you're close to completing this quest", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
     elsif post_id == 10
-      comments.append(Comment.find_or_create_by!(text: "Excellent work!", username: [user3.name, user5.name].sample, post_id: post_id))
+      comments.append(Comment.find_or_create_by!(text: "Excellent work!", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
     end
   else
-  comments.append(Comment.find_or_create_by!(text: Faker::Lorem.sentence, username: [user4.name, user6.name].sample, post_id: post_id))
-  comments.append(Comment.find_or_create_by!(text: Faker::Lorem.sentence, username: [user4.name, user6.name].sample, post_id: post_id))
+    user = [user4, user6].sample
+    comments.append(Comment.find_or_create_by!(text: Faker::Lorem.sentence, username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
+    comments.append(Comment.find_or_create_by!(text: Faker::Lorem.sentence, username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
   end
 end

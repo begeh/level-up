@@ -42,7 +42,7 @@ class CommentsController < ApplicationController
       
         def comment_params
           # whitelist params
-          params.permit(:text, :username, :post_id)
+          params.permit(:text, :username, :post_id, :user_id, :user_profile_pic)
         end
       
         def set_comment
