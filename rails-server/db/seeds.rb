@@ -133,7 +133,7 @@ party1 = Party.find_or_create_by!({
   id: party_uuids[0],
   number_of_members: 3,
   mentor_id: user1.id,
-  party_name: Faker::Cannabis.strain
+  party_name: "The Band of the Axe"
 })
 
 party2 = Party.find_or_create_by!({
@@ -153,8 +153,8 @@ quest1 = Quest.find_or_create_by!({
   party_id: party1.id,
   user_id: user1.id,
   mentor_id: user1.id,
-  title: Faker::Lorem.word,
-  description: Faker::Lorem.sentence,
+  title: "Learn C scales",
+  description: "Will learn and practice various C scales on guitar",
   status: "IN PROGRESS",
   date_finished: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
 })
@@ -196,8 +196,8 @@ end
 isFinished = finished_decider(quest1)
 
 node1 = Node.find_or_create_by!({
-  title: Faker::Lorem.word,
-  description: Faker::Lorem.sentence,
+  title: "C Major",
+  description: "I'll research and practice the C Major scale",
   is_complete?: false,
   quest_id: quest1.id,
   date_finished: nil
@@ -206,8 +206,8 @@ node1 = Node.find_or_create_by!({
 isFinished = finished_decider(quest1)
 
 node2 = Node.find_or_create_by!({
-  title: Faker::Lorem.word,
-  description: Faker::Lorem.sentence,
+  title: "C Minor",
+  description: "I'll research and practice the C Minor scale",
   is_complete?: false,
   quest_id: quest1.id,
   date_finished: nil
@@ -216,8 +216,8 @@ node2 = Node.find_or_create_by!({
 isFinished = finished_decider(quest1)
 
 node3 = Node.find_or_create_by!({
-  title: Faker::Lorem.word,
-  description: Faker::Lorem.sentence,
+  title: "C Diminished",
+  description: "I'll research and practice the C Diminished scale",
   is_complete?: false,
   quest_id: quest1.id,
   date_finished: nil
@@ -226,8 +226,8 @@ node3 = Node.find_or_create_by!({
 isFinished = finished_decider(quest1)
 
 node4 = Node.find_or_create_by!({
-  title: Faker::Lorem.word,
-  description: Faker::Lorem.sentence,
+  title: "C Major Pentatonic",
+  description: "I'll research and practice the C Major Pentatonic scale",
   is_complete?: false,
   quest_id: quest1.id,
   date_finished: nil
@@ -236,8 +236,8 @@ node4 = Node.find_or_create_by!({
 isFinished = finished_decider(quest1)
 
 node5 = Node.find_or_create_by!({
-  title: Faker::Lorem.word,
-  description: Faker::Lorem.sentence,
+  title: "C Minor Pentatonic",
+  description: "I'll research and practice the C Minor Pentatonic scale",
   is_complete?: false,
   quest_id: quest1.id,
   date_finished: nil
@@ -298,12 +298,15 @@ Post.destroy_all
 puts "Generating Posts ..."
 
 # The below code generates seed data for posts
-post_list = [
+post_list_quest_1 = [
   node1.id,
   node2.id,
   node3.id,
   node4.id,
-  node5.id,
+  node5.id
+]
+
+post_list_quest_2 = [
   node6.id,
   node7.id,
   node8.id,
@@ -315,21 +318,84 @@ count = 1
 
 posts = []
 
-post_list.each do |node_id|
+posts.append(Post.find_or_create_by!(
+  title: "I found the C Major scale!",
+  content: "I found this picture of the C Major scale, should be go to go!",
+  node_id: 1,
+  symbol_ref: "book" 
+  ))
+posts.append(Post.find_or_create_by!(
+  title: "Practicing the C Major Scale",
+  content: "In the linked video you can see me practicing the C Major Scale, let me know how I do!",
+  node_id: 1,
+  symbol_ref: "sword"
+  ))
+posts.append(Post.find_or_create_by!(
+  title: "I found the C Minor scale!",
+  content: "I found this picture of the C Minor scale, should be go to go!",
+  node_id: 2,
+  symbol_ref: "book" 
+  ))
+posts.append(Post.find_or_create_by!(
+  title: "Practicing the C Minor Scale",
+  content: "In the linked video you can see me practicing the C Minor Scale, let me know how I do!",
+  node_id: 2,
+  symbol_ref: "sword"
+  ))
+posts.append(Post.find_or_create_by!(
+  title: "I found the C Diminished scale!",
+  content: "I found this picture of the C Diminished scale, should be go to go!",
+  node_id: 3,
+  symbol_ref: "book" 
+  ))
+posts.append(Post.find_or_create_by!(
+  title: "Practicing the C Diminished Scale",
+  content: "In the linked video you can see me practicing the C Diminished Scale, let me know how I do!",
+  node_id: 3,
+  symbol_ref: "sword"
+  ))
+posts.append(Post.find_or_create_by!(
+  title: "I found the C Major Pentatonic scale!",
+  content: "I found this picture of the C Major Pentatonic scale, should be go to go!",
+  node_id: 4,
+  symbol_ref: "book" 
+  ))
+posts.append(Post.find_or_create_by!(
+  title: "Practicing the C Major Pentatonic Scale",
+  content: "In the linked video you can see me practicing the C Major Pentatonic Scale, let me know how I do!",
+  node_id: 4,
+  symbol_ref: "sword"
+  ))
+posts.append(Post.find_or_create_by!(
+  title: "I found the C Minor scale!",
+  content: "I found this picture of the C Minor scale, should be go to go!",
+  node_id: 5,
+  symbol_ref: "book" 
+  ))
+posts.append(Post.find_or_create_by!(
+  title: "Practicing the C Minor Pentatonic Scale",
+  content: "In the linked video you can see me practicing the C Minor Pentatonic Scale, let me know how I do!",
+  node_id: 5,
+  symbol_ref: "sword"
+  ))
+
+
+
+
+    
+post_list_quest_2.each do |node_id|
   posts.append(Post.find_or_create_by!(
     title: Faker::Lorem.word,
     content: Faker::Lorem.sentence,
     node_id: node_id,
     symbol_ref: symbol_refs.sample
     ))
-  count += 1
   posts.append(Post.find_or_create_by!(
     title: Faker::Lorem.word,
     content: Faker::Lorem.sentence,
     node_id: node_id,
     symbol_ref: symbol_refs.sample
     ))
-  count += 1
 end
 
 
