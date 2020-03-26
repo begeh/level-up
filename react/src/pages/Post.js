@@ -27,6 +27,8 @@ export default function Post(props) {
   let comments = {};
   let quest = null;
   let post_id = null;
+  let selected_node = null;
+  let node_id = null;
 
   //useRef used instead of useState to prevent onChange rerenders from text field input for comment line
   const commentRef = useRef(null);
@@ -43,6 +45,9 @@ export default function Post(props) {
     comments = props.location.state.comments;
     quest = props.location.state.quest;
     post_id = props.location.state.post_id;
+    selected_node = props.location.state.selected_node;
+    node_id = props.location.state.node_id;
+
   } else {
     history.push('/');
   }
@@ -138,7 +143,7 @@ export default function Post(props) {
   
     await Promise.all(party_promises);
     
-    history.push({ pathname: `/quest/${quest_id}/post/${post_id}`, state: { global: state, quest_id: quest_id, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), quest: quest, party_quests: party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), mentor_name: mentor_name, user_name: user_name, party_info: party_info, post: post, comments: comments, post_id: post_id } })
+    history.push({ pathname: `/quest/${quest_id}/post/${post_id}`, state: { global: state, quest_id: quest_id, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), quest: quest, party_quests: party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), mentor_name: mentor_name, user_name: user_name, party_info: party_info, post: post, comments: comments, post_id: post_id, selected_node: selected_node, node_id: node_id } })
 
   }
 
@@ -146,7 +151,7 @@ export default function Post(props) {
     return (
       <Grid className='post-view' container>
         <Grid className='back-button' item xs={12}>
-          <button className='btn btn-primary' onClick={() => history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: quests, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info } })}>Go Back</button>
+          <button className='btn btn-primary' onClick={() => history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: quests, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, selected_node: selected_node, node_id: node_id } })}>Go Back</button>
         </Grid>
         <Grid item xs={4} sm={4} md={3} lg={2} >
           <img src={post_symbol} alt={post.title} width="120" height="120" />

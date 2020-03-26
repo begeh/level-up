@@ -35,6 +35,7 @@ export default function CreatePostButton(props) {
   let party_quests = props.party_quests;
   const node_id = props.node_id;
   const party_info = props.party_info;
+  const selected_node = props.selected_node;
 
   async function handlePostSubmit(event) {
     event.preventDefault();
@@ -115,7 +116,7 @@ export default function CreatePostButton(props) {
     setVideoURL("");
     setImageURL("");
 
-    history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: full_quests.sort((a, b) => b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a, b) => b.quest.id - a.quest.id), mentor_name: mentor_name, user_name: user_name, party_info: party_info, node_posts: node_posts, node_id: node_id } })
+    history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: full_quests.sort((a, b) => b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a, b) => b.quest.id - a.quest.id), mentor_name: mentor_name, user_name: user_name, party_info: party_info, node_posts: node_posts, node_id: node_id, selected_node: selected_node } })
 
   }
 
