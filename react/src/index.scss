@@ -129,15 +129,21 @@ a {
   padding: 10px !important;
 
   .selected-node {
-    border: solid 5px #575f2b;
+    border: solid 6px #575f2b;
     border-radius: 20px;
-    transition: border 0.5s ease;
+
+    svg {
+      font-size: 1.3rem !important;
+    }
   }
 
   .selected-node-2 {
-    border: solid 5px #6B563A;
+    border: solid 6px #6B563A;
     border-radius: 20px;
-    transition: border 0.5s ease;
+
+    svg {
+      font-size: 1.3rem !important;
+    }
   }
 
   .MuiStepLabel-iconContainer {
