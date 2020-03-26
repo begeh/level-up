@@ -57,8 +57,10 @@ export default function Quest(props) {
       const current_node = nodes.find(node => node["is_complete?"] === false);
       if (current_node){
         node_id = current_node.id;
+        selected_node = nodes.findIndex(node => node["is_complete?"] === false);
       } else{
         node_id = nodes[nodes.length - 1].id
+        selected_node = 4;
       }
     }
 
@@ -107,7 +109,7 @@ export default function Quest(props) {
             <p>Apprentice: {user_name}</p>
             <p>Finish Date: {quest.quest.date_finished ? (new Date(quest.quest.date_finished)).toLocaleDateString() : "In Progress"}</p>
             <div className='quest-button'>
-              <QuestInfoBtn state={state} quest={quest} mentor_name={mentor_name} user_name={user_name} party_info={party_info} quests={quests} party_quests={party_quests} quest_id={quest_id} quest_completed={quest_completed} />
+              <QuestInfoBtn state={state} quest={quest} mentor_name={mentor_name} user_name={user_name} party_info={party_info} quests={quests} party_quests={party_quests} quest_id={quest_id} quest_completed={quest_completed} selected_node={selected_node} />
             </div>
           </Grid>
         </Hidden>
@@ -118,7 +120,7 @@ export default function Quest(props) {
           <NodeBar nodes={nodes.sort((a,b)=> a.id - b.id)} handleNode={handleNode} selected_node={selected_node} />
           <QuestList posts={posts.sort((a,b)=> b.id - a.id)} comments={comments} handleClick={handleClick} />
           { quest.quest.status === 'IN PROGRESS' && state.id === quest.quest.user_id   ?
-            <CreatePostBtn state={state} quest_id={quest_id} quests={quests} party_quests={party_quests} mentor_name={mentor_name} user_name={user_name} party_info={party_info} node_id={node_id} /> : null
+            <CreatePostBtn state={state} quest_id={quest_id} quests={quests} party_quests={party_quests} mentor_name={mentor_name} user_name={user_name} party_info={party_info} node_id={node_id} selected_node={selected_node}/> : null
           }
         </Grid>
       </Grid>
