@@ -79,6 +79,7 @@ user1 = User.find_or_create_by!({
   name: user_names[0],
   email: Faker::Internet.email(name: user_names[0].strip),
   title: Faker::Job.title,
+  profile_pic_ref: Faker::Avatar.image,
   party_id: party_uuids[0],
   password: 123
 })
@@ -87,6 +88,7 @@ user2 = User.find_or_create_by!({
   name: user_names[1],
   email: Faker::Internet.email(name: user_names[1].strip),
   title: Faker::Job.title,
+  profile_pic_ref: Faker::Avatar.image,
   party_id: party_uuids[1],
   password: 123
 })
@@ -95,6 +97,7 @@ user3 = User.find_or_create_by!({
   name: user_names[2],
   email: Faker::Internet.email(name: user_names[2].strip),
   title: Faker::Job.title,
+  profile_pic_ref: Faker::Avatar.image,
   party_id: party_uuids[0],
   password: 123
 })
@@ -103,6 +106,7 @@ user4 = User.find_or_create_by!({
   name: user_names[3],
   email: Faker::Internet.email(name: user_names[3].strip),
   title: Faker::Job.title,
+  profile_pic_ref: Faker::Avatar.image,
   party_id: party_uuids[1],
   password: 123
 })
@@ -111,6 +115,7 @@ user5 = User.find_or_create_by!({
   name: user_names[4],
   email: Faker::Internet.email(name: user_names[4].strip),
   title: Faker::Job.title,
+  profile_pic_ref: Faker::Avatar.image,
   party_id: party_uuids[0],
   password: 123
 })
@@ -119,6 +124,7 @@ user6 = User.find_or_create_by!({
   name: user_names[5],
   email: Faker::Internet.email(name: user_names[5].strip),
   title: Faker::Job.title,
+  profile_pic_ref: Faker::Avatar.image,
   party_id: party_uuids[1],
   password: 123
 })
@@ -321,6 +327,7 @@ posts = []
 posts.append(Post.find_or_create_by!(
   title: "I found the C Major scale!",
   content: "I found this picture of the C Major scale, should be go to go!",
+  image_url: "https://www.guitarcommand.com/wp-content/uploads/2019/08/C-Major-Scale-For-Guitar-TAB.png",
   node_id: 1,
   symbol_ref: "book" 
   ))
@@ -333,6 +340,7 @@ posts.append(Post.find_or_create_by!(
 posts.append(Post.find_or_create_by!(
   title: "I found the C Minor scale!",
   content: "I found this picture of the C Minor scale, should be go to go!",
+  image_url: "https://www.guitarcommand.com/wp-content/uploads/2019/08/C-Natural-Minor-Scale-Guitar-TAB-Pattern-3.png",
   node_id: 2,
   symbol_ref: "book" 
   ))
@@ -345,6 +353,7 @@ posts.append(Post.find_or_create_by!(
 posts.append(Post.find_or_create_by!(
   title: "I found the C Diminished scale!",
   content: "I found this picture of the C Diminished scale, should be go to go!",
+  image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPCkrjyEvLEWVRFwipAwECeqBYqBCPskSFUf07zyQeXV9Cijvu6w&s",
   node_id: 3,
   symbol_ref: "book" 
   ))
@@ -357,6 +366,7 @@ posts.append(Post.find_or_create_by!(
 posts.append(Post.find_or_create_by!(
   title: "I found the C Major Pentatonic scale!",
   content: "I found this picture of the C Major Pentatonic scale, should be go to go!",
+  image_url: "https://www.guitarcommand.com/wp-content/uploads/2019/11/C-Major-Pentatonic-Scale-Open-Position.png",
   node_id: 4,
   symbol_ref: "book" 
   ))
@@ -369,6 +379,7 @@ posts.append(Post.find_or_create_by!(
 posts.append(Post.find_or_create_by!(
   title: "I found the C Minor scale!",
   content: "I found this picture of the C Minor scale, should be go to go!",
+  image_url: "https://mk0onlineguitarx1huf.kinstacdn.com/wp-content/uploads/2012/01/MinorPentatonicScaleNotes_C_OpenPosition.jpg",
   node_id: 5,
   symbol_ref: "book" 
   ))
@@ -428,10 +439,29 @@ comment_list = [
 
 comments = []
 
-comment_list.each_with_index do |post_id, index|
-  if index >= 9
-  comments.append(Comment.find_or_create_by!(text: Faker::Lorem.sentence, username: [user3.name, user5.name].sample, post_id: post_id))
-  comments.append(Comment.find_or_create_by!(text: Faker::Lorem.sentence, username: [user3.name, user5.name].sample, post_id: post_id))
+comment_list.each_with_index do |post_id|
+  if post_id <= 10
+    if post_id == 1
+      comments.append(Comment.find_or_create_by!(text: "That's a good reference pic", username: [user3.name, user5.name].sample, post_id: post_id))
+    elsif post_id == 2
+      comments.append(Comment.find_or_create_by!(text: "Not too shabby! Looks and sounds good", username: [user3.name, user5.name].sample, post_id: post_id))
+    elsif post_id == 3
+      comments.append(Comment.find_or_create_by!(text: "Good find", username: [user3.name, user5.name].sample, post_id: post_id))
+    elsif post_id == 4
+      comments.append(Comment.find_or_create_by!(text: "Looks like you're making good progress", username: [user3.name, user5.name].sample, post_id: post_id))
+    elsif post_id == 5
+      comments.append(Comment.find_or_create_by!(text: "Another great find", username: [user3.name, user5.name].sample, post_id: post_id))
+    elsif post_id == 6
+      comments.append(Comment.find_or_create_by!(text: "Try going a bit slower if you're having trouble", username: [user3.name, user5.name].sample, post_id: post_id))
+    elsif post_id == 7
+      comments.append(Comment.find_or_create_by!(text: "Looks good, should be easy to learn after C Major", username: [user3.name, user5.name].sample, post_id: post_id))
+    elsif post_id == 8
+      comments.append(Comment.find_or_create_by!(text: "Very nice!", username: [user3.name, user5.name].sample, post_id: post_id))
+    elsif post_id == 9
+      comments.append(Comment.find_or_create_by!(text: "Perfect, you're close to completing this quest", username: [user3.name, user5.name].sample, post_id: post_id))
+    elsif post_id == 10
+      comments.append(Comment.find_or_create_by!(text: "Excellent work!", username: [user3.name, user5.name].sample, post_id: post_id))
+    end
   else
   comments.append(Comment.find_or_create_by!(text: Faker::Lorem.sentence, username: [user4.name, user6.name].sample, post_id: post_id))
   comments.append(Comment.find_or_create_by!(text: Faker::Lorem.sentence, username: [user4.name, user6.name].sample, post_id: post_id))
