@@ -21,6 +21,7 @@ export default function QuestInfoBtn(props) {
   const party_info = props.party_info;
   const quest_id = props.quest_id;
   let quest_completed = props.quest_completed;
+  let selected_node = props.selected_node;
 
   const story_params ={
     apprentice: user_name,
@@ -38,6 +39,12 @@ export default function QuestInfoBtn(props) {
   //'levels up' quest (i.e. progresses through nodes) when Level Up btn pressed. if quest is abandoned or completed successfully, redirects to quest page where appropriate modal is displayed and database is updated
   async function handleLevel(nodes, status) {
     console.log(`Status is ${status}`);
+    
+    //sets the selected node to the next node on the nodebar once level up btn is clicked
+    if(selected_node < 4 && status !== "failed"){
+      selected_node += 1;
+    }
+
     if(status === "failed"){
       const num_completed_nodes = nodes.filter(node=> node["is_complete?"] === true).length;
 
@@ -103,9 +110,20 @@ export default function QuestInfoBtn(props) {
 
     await Promise.all(party_promises);
 
+    const node_id = await axios.get(`/quest_object/${quest_id}`)
+                    .then(res =>{
+                      const node = res.data.nodes.find(node=> node["is_complete?"] === false);
+                      if(node){
+                        return node.id;
+                      } else{
+                        return res.data.nodes[nodes.length - 1].id;
+                      }
+                      
+                    });
+
     handleClose();
 
-    history.push({pathname:`/quest/${quest_id}`,state:{global: state, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), party_quests:party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), quest_id: quest_id, mentor_name:mentor_name, user_name:user_name, party_info: party_info, quest_completed: quest_completed}})
+    history.push({pathname:`/quest/${quest_id}`,state:{global: state, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), party_quests:party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), quest_id: quest_id, mentor_name:mentor_name, user_name:user_name, party_info: party_info, quest_completed: quest_completed, node_id: node_id, selected_node: selected_node}})
 
   }
 

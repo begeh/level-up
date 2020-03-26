@@ -33,20 +33,33 @@ Back-end:
 
 ```sh
 # Run the below on your within react folder
+
 npm install
 
 # Within your react folder (on a separate terminal), run the below to start your app:
+
 npm start
 
-# Within your rails-server folder, migrate and seed the database with the commands below
+# While in the rails-server folder, enter postgresql and run the following lines to create and connect to the database:
+
+CREATE DATABASE "levelUp-api_development";
+\c "levelUp-api_development";
+
+# Open another terminal. Within your rails-server folder, migrate and seed the database with the commands below:
+
 rake db:migrate
 rake db:seed
 
-# Within your rails-server folder (on a separate terminal), run the below to start your server:
+# Within your rails-server folder (on a separate terminal), run the line below to start your server:
+
 rails s
 
 # Afterwards, you can view your app on https://localhost:3000/
-# Enjoy!
+# And you are set! Enjoy!
+
+# Note: if you need to reset the database, run the line below in your rails-server folder:
+
+rails db:reset
 
 ```
 

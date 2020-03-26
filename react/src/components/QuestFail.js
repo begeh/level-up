@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
 import brokenShield from '../images/broken-shield.png';
 import { useHistory } from "react-router-dom";
+import Sound from 'react-sound';
+import fail_music from '../sounds/Fail-sound-effect-2.mp3';
 
 export default function QuestFail(props) {
   const [show, setShow] = useState(true);
@@ -19,7 +21,7 @@ export default function QuestFail(props) {
 
   return (
     <div className='finish-modal'>
-
+      <Sound url={fail_music} playStatus={Sound.status.PLAYING} />
       <Modal show={show} onHide={handleClose}>
         <Modal.Header>
         </Modal.Header>

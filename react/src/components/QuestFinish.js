@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
 import shield from '../images/shield.png';
 import { useHistory } from "react-router-dom";
+import Sound from 'react-sound';
+import win_music from '../sounds/Winning-sound-effect.mp3';
 
 export default function QuestFinish(props) {
   const [show, setShow] = useState(true);
@@ -19,7 +21,7 @@ export default function QuestFinish(props) {
 
   return (
     <div className='finish-modal'>
-
+      <Sound url={win_music} playStatus={Sound.status.PLAYING} />
       <Modal show={show} onHide={handleClose}>
         <Modal.Header>
         </Modal.Header>
