@@ -237,6 +237,9 @@ export default function CreateQuestBtn(props) {
     setForm4(false)
     setShow4(true)
     setShow5(false)
+    setNode4Desc("");
+    setNode4Title("");
+    setNode4CompletionDate(new Date(Date.now()));
   }
 
   const deleteForm5 = () => {
@@ -244,6 +247,9 @@ export default function CreateQuestBtn(props) {
     setShow5(true)
     setHide4(false)
     setHide5(true)
+    setNode5Desc("");
+    setNode5Title("");
+    setNode5CompletionDate(new Date(Date.now()));
   }
 
 
