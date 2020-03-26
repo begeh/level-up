@@ -80,14 +80,14 @@ export default function Post(props) {
     
     let comment_package = {
       text: comment,
-      username: user_name,
+      username: state.name,
       post_id: post.id
     }
     console.log(comment_package)
 
     let sent_comment = await axios.post(`/posts/${post.id}/comments`, {
       text: comment,
-      username: user_name,
+      username: state.name,
       post_id: post.id
     }
     ).then((res) => res.data)
