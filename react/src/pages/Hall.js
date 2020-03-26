@@ -14,7 +14,8 @@ export default function Hall(props) {
   let state = {};
   let quests = {};
   let party_quests = {};
-  let party_info = {}
+  let party_info = {};
+  let selected_node = null;
   if (props.location.state) {
     state = props.location.state.global;
     quests = props.location.state.quests;
@@ -27,7 +28,10 @@ export default function Hall(props) {
 
   console.log(`Hall State is ${JSON.stringify(state)}`);
 
-  async function handleClick(id, mentor_id, user_id, node_id) {
+  async function handleClick(id, mentor_id, user_id, node_id, index) {
+
+    selected_node = index;
+
     let users = await axios.get('users')
       .then((response) => {
         let users = {};
@@ -38,7 +42,7 @@ export default function Hall(props) {
         return users;
       });
 
-    history.push({ pathname: `/quest/${id}`, state: { global: state, quests: quests, party_quests: party_quests, quest_id: id, mentor_name: users.mentor_name, user_name: users.user_name, party_info: party_info, node_id: node_id } })
+    history.push({ pathname: `/quest/${id}`, state: { global: state, quests: quests, party_quests: party_quests, quest_id: id, mentor_name: users.mentor_name, user_name: users.user_name, party_info: party_info, node_id: node_id, selected_node: selected_node } })
 
 
   }

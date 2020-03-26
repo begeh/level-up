@@ -14,7 +14,11 @@ export default function HallListItem({title, id, nodes, handleClick, mentor_id, 
   return (
     <div className="hall-quest">
       <div className='hall-border'>
+        <Link onClick={(event)=> {
+                      event.preventDefault();
+                      return handleClick(id, mentor_id, user_id)}} href= "">
         <h3 className='hall-title'>{title}</h3>
+        </Link>
         <div className={statusClass}>{status}</div>
         <Stepper >
           {nodes.map((node, index) => {
@@ -23,7 +27,7 @@ export default function HallListItem({title, id, nodes, handleClick, mentor_id, 
               <Tooltip title={node.title} arrow placement="bottom">
                 <Step onClick={(event)=> {
                       event.preventDefault();
-                      return handleClick(id, mentor_id, user_id, node.id)
+                      return handleClick(id, mentor_id, user_id, node.id, index)
                     }} key={index} >
                   <StepLabel className={node['is_complete?'] ? 'completed-node' : 'uncompleted-node'} />
                 </Step>
