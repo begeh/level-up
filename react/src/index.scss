@@ -131,6 +131,7 @@ a {
   .selected-node {
     border: solid 5px #575f2b;
     border-radius: 20px;
+    transition: border 0.5s ease;
   }
 
   .MuiStepLabel-iconContainer {
