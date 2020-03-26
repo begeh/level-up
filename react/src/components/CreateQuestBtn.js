@@ -205,6 +205,24 @@ export default function CreateQuestBtn(props) {
 
   }
 
+  const [Form4, setForm4] = useState(false)
+  const [Show4, setShow4] = useState(true)
+
+  const [Form5, setForm5] = useState(false)
+  const [Show5, setShow5] = useState(false)
+
+
+  const showForm4 = () => {
+    setForm4(true)
+    setShow4(false)
+    setShow5(true)
+  }
+
+  const showForm5 = () => {
+    setForm5(true)
+    setShow5(false)
+  }
+
 
 
 
@@ -392,6 +410,9 @@ export default function CreateQuestBtn(props) {
               </Grid>
             </MuiPickersUtilsProvider>
 
+            <div className={ Show4 ? 'btn btn-primary form-button' : 'hidden-form'} onClick={() => showForm4()}>Add Level</div>
+
+            <div className={Form4 ? null : 'hidden-form'}>
             <h6>Level 4 Objective:</h6>
             <TextField
               variant="outlined"
@@ -437,6 +458,11 @@ export default function CreateQuestBtn(props) {
                 />
               </Grid>
             </MuiPickersUtilsProvider>
+            </div>
+
+            <div className={ Show5 ? 'btn btn-primary form-button' : 'hidden-form'} onClick={() => showForm5()}>Add Level</div>
+
+            <div className={Form5 ? null : 'hidden-form'}>
 
             <h6>Level 5 Objective:</h6>
             <TextField
@@ -483,6 +509,8 @@ export default function CreateQuestBtn(props) {
                 />
               </Grid>
             </MuiPickersUtilsProvider>
+            </div>
+
 
 
 
