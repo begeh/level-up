@@ -3,9 +3,9 @@ import { Grid, List, ListItem, ListItemText } from '@material-ui/core';
 import { useHistory, useParams } from "react-router-dom";
 import shield from '../images/shield.png'
 import './History.scss';
-
-
 import NavForApp from "../components/NavForApp";
+const classNames = require('classnames');
+
 
 
 export default function History(props){
@@ -33,6 +33,12 @@ export default function History(props){
     history.push('/');
   }
 
+  const statusClass = classNames('status', {
+    'status-progress' : quest.status === 'IN PROGRESS',
+    'status-success' : quest.status === 'SUCCESS',
+    'status-failed' : quest.status === 'FAILED'
+  })
+
   return(
     <>
     <NavForApp nav_title="LEGACY" state={state} quests={quests} party_quests={party_quests} party_info={party_info}/>
@@ -45,10 +51,10 @@ export default function History(props){
           <p className='party-title'>~ {state.title} ~</p>
         </div>
     </Grid>
-      <Grid item sm={7} className='container-right'>
+      <Grid item sm={7} className='container-right history-right'>
         <button className='btn btn-primary' onClick={()=>history.push({pathname:"/legacy", state: {global:state, quests:quests, party_quests: party_quests, party_info: party_info}})}>Go To Legacy</button>
         <h3>{quest.title}</h3>
-        <p>Status: {quest.status}</p>
+        <div className={statusClass}>{quest.status}</div>
         <h5>Story</h5>
         <p>{quest.story ? quest.story : "Yet to be told..."}</p>
         <List className='quest-node-list'>

@@ -21,6 +21,7 @@ export default function QuestInfoBtn(props) {
   const party_info = props.party_info;
   const quest_id = props.quest_id;
   let quest_completed = props.quest_completed;
+  let selected_node = props.selected_node;
 
   const story_params ={
     apprentice: user_name,
@@ -35,12 +36,19 @@ export default function QuestInfoBtn(props) {
     dateStart: quest.quest.created_at
   }
 
+  //'levels up' quest (i.e. progresses through nodes) when Level Up btn pressed. if quest is abandoned or completed successfully, redirects to quest page where appropriate modal is displayed and database is updated
   async function handleLevel(nodes, status) {
     console.log(`Status is ${status}`);
+    
+    //sets the selected node to the next node on the nodebar once level up btn is clicked
+    if(selected_node < 4 && status !== "failed"){
+      selected_node += 1;
+    }
+
     if(status === "failed"){
       const num_completed_nodes = nodes.filter(node=> node["is_complete?"] === true).length;
 
-      const story = fail(story_params, num_completed_nodes);
+      const story = fail(story_params, num_completed_nodes, quest.quest.user_id, quest.quest.mentor_id);
 
       await axios.put(`/quests/${quest_id}`,{"story": story,"status": "FAILED", "date_finished": new Date(Date.now())}).catch(err=> alert(err));
       
@@ -52,7 +60,7 @@ export default function QuestInfoBtn(props) {
         await axios.put(`/nodes/${node.id}`, {"is_complete?": true,"date_finished": new Date(Date.now())}).catch(err => alert(err));
         if(node.id === nodes[nodes.length-1].id){
 
-          const story = success(story_params);
+          const story = success(story_params, quest.quest.user_id, quest.quest.mentor_id);
   
           await axios.put(`/quests/${quest_id}`,{"story": story, "status": "SUCCESS", "date_finished": new Date(Date.now())}).catch(err=> alert(err));
 
@@ -102,9 +110,20 @@ export default function QuestInfoBtn(props) {
 
     await Promise.all(party_promises);
 
+    const node_id = await axios.get(`/quest_object/${quest_id}`)
+                    .then(res =>{
+                      const node = res.data.nodes.find(node=> node["is_complete?"] === false);
+                      if(node){
+                        return node.id;
+                      } else{
+                        return res.data.nodes[nodes.length - 1].id;
+                      }
+                      
+                    });
+
     handleClose();
 
-    history.push({pathname:`/quest/${quest_id}`,state:{global: state, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), party_quests:party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), quest_id: quest_id, mentor_name:mentor_name, user_name:user_name, party_info: party_info, quest_completed: quest_completed}})
+    history.push({pathname:`/quest/${quest_id}`,state:{global: state, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), party_quests:party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), quest_id: quest_id, mentor_name:mentor_name, user_name:user_name, party_info: party_info, quest_completed: quest_completed, node_id: node_id, selected_node: selected_node}})
 
   }
 
@@ -142,24 +161,30 @@ export default function QuestInfoBtn(props) {
         </Modal.Body>
         <Modal.Footer>
           { 
-          quest.quest.status === "SUCCESS" || quest.quest.status === "FAILED" ? null : <>
-          <Button variant="primary" onClick={(event)=>{
-            event.preventDefault();
-            const status = "success";
-            return handleLevel(nodes, status);
+          quest.quest.status === "IN PROGRESS" && (state.id === quest.quest.mentor_id || state.id === quest.quest.user_id) ? 
+          <>
+          { state.id === quest.quest.mentor_id ?
+            <Button variant="primary" onClick={(event)=>{
+              event.preventDefault();
+              const status = "success";
+              return handleLevel(nodes, status);
+            }
+              }>
+              Level-Up!
+            </Button> : null
           }
+          { state.id === quest.quest.user_id ?
+            <Button className='abandon' variant="secondary" onClick={(event)=>{
+              event.preventDefault();
+              const status = "failed";
+              return handleLevel(nodes, status);
+              }
             }>
-            Level-Up!
-          </Button>
-          <Button className='abandon' variant="secondary" onClick={(event)=>{
-            event.preventDefault();
-            const status = "failed";
-            return handleLevel(nodes, status);
+              Abandon Quest
+            </Button> : null
           }
-            }>
-            Abandon Quest
-          </Button>
-          </>
+          
+          </> : null
           }
           <Button variant="secondary" onClick={handleClose}>
             Close

@@ -24,7 +24,8 @@ export default function Quest(props) {
   let node_posts = null;
   let quest_completed = false;
   let node_id = null;
-  
+  let selected_node = null;
+
   if (props.location.state) {
     state = props.location.state.global;
     quests = props.location.state.quests;
@@ -36,6 +37,7 @@ export default function Quest(props) {
     node_posts = props.location.state.node_posts;
     quest_completed = props.location.state.quest_completed;
     node_id = props.location.state.node_id
+    selected_node = props.location.state.selected_node;
     console.log(props);
   } else {
     history.push('/');
@@ -47,17 +49,21 @@ export default function Quest(props) {
   let nodes = quest.nodes;
   let comments = quest.comments.flat();
 
-  //sets posts variable to all posts if no node is selected, or to posts specific to a selected node (node_post) if a node is clicked
+  //sets posts variable to all posts of the node selected on hall page, or for the node clicked on the nodebar of quest page (node_posts) when clicked
   let posts = null;
-  if (!node_posts) {
-    let current_node = nodes.find(node=> node["is_complete?"] === false);
 
-    //if quest is complete, sets default node to the first node when quest is selected from the hall
-    if(quest.quest.status !== "IN PROGRESS"){
-      current_node = nodes[0];
+  if (!node_posts) {
+    if(!node_id){
+      const current_node = nodes.find(node => node["is_complete?"] === false);
+      if (current_node){
+        node_id = current_node.id;
+        selected_node = nodes.findIndex(node => node["is_complete?"] === false);
+      } else{
+        node_id = nodes[nodes.length - 1].id
+        selected_node = 4;
+      }
     }
 
-    node_id = current_node.id;
     posts = quest.posts.flat().filter(post => post.node_id === node_id);
     
   } else {
@@ -67,14 +73,14 @@ export default function Quest(props) {
   console.log(`This is posts ${JSON.stringify(posts)}`);
 
   //renders quest page with only posts associated with the node that is click on nodebar in quest page
-  function handleNode(id) {
+  function handleNode(id, index) {
 
-    // if (node_posts) {
+    selected_node = index;
     posts = quest.posts.flat();
-    // }
+
     node_posts = posts.filter(post => post.node_id === id);
 
-    history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: quests, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, node_posts: node_posts, node_id: id } })
+    history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: quests, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, node_posts: node_posts, node_id: id, selected_node: selected_node } })
   }
 
   //redirects to post page when a post is clicked on quest page
@@ -83,7 +89,7 @@ export default function Quest(props) {
     let comments = await axios.get(`/post/${id}/comments`).then((response) => response.data);
     console.log(`Comments are ${JSON.stringify(comments)}`);
 
-    history.push({ pathname: `/quest/${quest_id}/post/${id}`, state: { global: state, quest_id: quest_id, quests: quests, quest: quest, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, post: post, comments: comments, post_id:id } })
+    history.push({ pathname: `/quest/${quest_id}/post/${id}`, state: { global: state, quest_id: quest_id, quests: quests, quest: quest, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, post: post, comments: comments, post_id:id, selected_node: selected_node, node_id: node_id } })
   }
 
   console.log(`This is node_id: ${node_id}`)
@@ -103,7 +109,7 @@ export default function Quest(props) {
             <p>Apprentice: {user_name}</p>
             <p>Finish Date: {quest.quest.date_finished ? (new Date(quest.quest.date_finished)).toLocaleDateString() : "In Progress"}</p>
             <div className='quest-button'>
-              <QuestInfoBtn state={state} quest={quest} mentor_name={mentor_name} user_name={user_name} party_info={party_info} quests={quests} party_quests={party_quests} quest_id={quest_id} quest_completed={quest_completed} />
+              <QuestInfoBtn state={state} quest={quest} mentor_name={mentor_name} user_name={user_name} party_info={party_info} quests={quests} party_quests={party_quests} quest_id={quest_id} quest_completed={quest_completed} selected_node={selected_node} />
             </div>
           </Grid>
         </Hidden>
@@ -111,10 +117,10 @@ export default function Quest(props) {
           <Grid className='back-button' item xs={12}>
             <button className='btn btn-primary' onClick={() => history.push({ pathname: "/hall", state: { global: state, quests: quests, party_quests: party_quests, party_info: party_info } })}>Go Back</button>
           </Grid>
-          <NodeBar nodes={nodes} handleNode={handleNode} />
-          <QuestList posts={posts} comments={comments} handleClick={handleClick} />
-          { quest.quest.status === 'IN PROGRESS' ?
-            <CreatePostBtn state={state} quest_id={quest_id} quests={quests} party_quests={party_quests} mentor_name={mentor_name} user_name={user_name} party_info={party_info} node_id={node_id} /> : null
+          <NodeBar nodes={nodes.sort((a,b)=> a.id - b.id)} handleNode={handleNode} selected_node={selected_node} />
+          <QuestList posts={posts.sort((a,b)=> b.id - a.id)} comments={comments} handleClick={handleClick} />
+          { quest.quest.status === 'IN PROGRESS' && state.id === quest.quest.user_id   ?
+            <CreatePostBtn state={state} quest_id={quest_id} quests={quests} party_quests={party_quests} mentor_name={mentor_name} user_name={user_name} party_info={party_info} node_id={node_id} selected_node={selected_node}/> : null
           }
         </Grid>
       </Grid>

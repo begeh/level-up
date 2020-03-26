@@ -64,9 +64,17 @@ export default function Lobby(props) {
     console.log(`lobbyname is ${lobbyName}`); //Create lobby
     console.log(`lobbycode is ${lobbyCode}`); //Join Lobby
 
+    //checks if user is already part of party when join lobby btn is pressed. if not, it resets their party_id in database to the lobbyCode entered and gives them access
+    if(state.party_id !== lobbyCode){
+      axios.put(`/users/${state.id}`,{"party_id": lobbyCode})
+    }
+
+    state.party_id = lobbyCode;
 
     // If joining Lobby
     state.lobbyCode = lobbyCode
+
+   
 
     console.log(lobbyCode)
 
@@ -134,7 +142,7 @@ export default function Lobby(props) {
 
       console.log("Party id is: ", party_id)
 
-      let party_members = await returnPartyMembers(party_id, state.party_id, state.id)
+      let party_members = await returnPartyMembers(party_id)
 
       const party_info = {
         id: party_id,
@@ -176,9 +184,11 @@ export default function Lobby(props) {
         return null
       });
     console.log("party value is: ", party)
-
+    
     // If a party was created (and therefore returned)
     if (party) {
+
+      state.party_id = party.id
 
       let quests = await returnUserQuests(state.id)
 
