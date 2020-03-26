@@ -128,6 +128,22 @@ a {
   border-radius: 50px;
   padding: 10px !important;
 
+  .selected-node {
+    border: solid 5px #575f2b;
+    border-radius: 20px;
+    transition: border 0.5s ease;
+  }
+
+  .selected-node-2 {
+    border: solid 5px #6B563A;
+    border-radius: 20px;
+    transition: border 0.5s ease;
+  }
+
+  .MuiStepLabel-iconContainer {
+    padding-right: 0px;
+  }
+
   .MuiSvgIcon-root {
     font-size: 1.8rem;
     transition: transform 0.5s ease;

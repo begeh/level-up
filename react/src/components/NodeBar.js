@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Stepper, Step, StepLabel, Tooltip } from '@material-ui/core';
 
+
 export default function NodeBar({ nodes, handleNode, selected_node }) {
 
   return (
@@ -11,12 +12,16 @@ export default function NodeBar({ nodes, handleNode, selected_node }) {
 
           return (
             <Tooltip title={nodeInfo} arrow placement="bottom">
-              <Step style={selected_node === index ? {backgroundColor:"yellow"} : null} onClick={(event) => {
+              <Step onClick={(event) => {
                 event.preventDefault()
                 return handleNode(node.id, index)
               }}
                 key={index} >
-                <StepLabel className={node["is_complete?"] ? 'completed-node' : 'uncompleted-node'} />
+                <StepLabel className={
+                  (selected_node === index && node["is_complete?"]) ? 'completed-node selected-node'
+                  : (selected_node === index && !node["is_complete?"]) ? 'selected-node-2'
+                  : node["is_complete?"] ? 'completed-node' 
+                  : 'uncompleted-node'} />
               </Step>
             </Tooltip>
           );
