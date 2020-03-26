@@ -22,17 +22,8 @@ let returnPartyQuests = async (party_id) => {
     })
 }
 // Returns the party members of the current party
-let returnPartyMembers = async (party_id, state_party_id, user_id) => {
-  console.log(party_id)
-  console.log(state_party_id)
-  console.log(user_id)
-  if (party_id !== state_party_id) {
-    await axios.put(`/users_parties`, {
-      party_id: party_id,
-      id: user_id
-    }
-    );
-  }
+let returnPartyMembers = async (party_id) => {
+
   return await axios.post("/user_party_members", { party_id })
     .then((response) => {
       console.log(response)
@@ -57,7 +48,6 @@ export default function Lobby(props) {
   const [lobbyCode, setLobbyCode] = useState(null); //Join Lobby
 
 
-
   // This can be split later on if we get our MVP done but it works fine for now
   async function handleJoinSubmit(event) {
     event.preventDefault();
@@ -65,16 +55,22 @@ export default function Lobby(props) {
     console.log(`lobbycode is ${lobbyCode}`); //Join Lobby
 
     //checks if user is already part of party when join lobby btn is pressed. if not, it resets their party_id in database to the lobbyCode entered and gives them access
-    if(state.party_id !== lobbyCode){
-      axios.put(`/users/${state.id}`,{"party_id": lobbyCode})
+    if (state.party_id.includes(lobbyCode) === false) {
+      console.log("The party id is not in the array, adding")
+      let newArr = state.party_id
+      newArr.push(lobbyCode)
+      axios.put(`/users/${state.id}`,
+        {
+          update_party_codes: true,
+          party_id: newArr
+        })
     }
-
     state.party_id = lobbyCode;
 
     // If joining Lobby
     state.lobbyCode = lobbyCode
 
-   
+
 
     console.log(lobbyCode)
 
@@ -184,7 +180,7 @@ export default function Lobby(props) {
         return null
       });
     console.log("party value is: ", party)
-    
+
     // If a party was created (and therefore returned)
     if (party) {
 
@@ -233,7 +229,7 @@ export default function Lobby(props) {
       let party_name = party.party_name
 
       // Uses the party_id returned when making a party
-      let party_members = await returnPartyMembers(party_id, state.party_id, state.id)
+      let party_members = await returnPartyMembers(party_id)
 
       console.log(`Party Id: ${party_id}, Party Name: ${party_name}, Party Members: ${JSON.stringify(party_members)}`);
 

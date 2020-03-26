@@ -57,8 +57,8 @@ puts "Generating Party UUIDs ..."
 party_uuids = []
 
 party_uuids = [
-  SecureRandom.uuid,
-  SecureRandom.uuid
+  [SecureRandom.uuid],
+  [SecureRandom.uuid]
 ]
 
 puts "Generating Post Symbol_Refs ..."
@@ -136,14 +136,14 @@ puts "Generating Parties ..."
 Party.destroy_all
 
 party1 = Party.find_or_create_by!({
-  id: party_uuids[0],
+  id: party_uuids[0][0],
   number_of_members: 3,
   mentor_id: user1.id,
   party_name: "The Band of the Axe"
 })
 
 party2 = Party.find_or_create_by!({
-  id: party_uuids[1],
+  id: party_uuids[1][0],
   number_of_members: 3,
   mentor_id: user2.id,
   party_name: Faker::Cannabis.strain

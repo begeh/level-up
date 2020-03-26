@@ -31,8 +31,20 @@ class UsersController < ApplicationController
   # PUT /users/:id
   def update
     set_user()
+    # if params[:update_party_codes] == true
+    #   temp = @user.party_id
+    #   temp.append[JSON.parse(:party_id)]
+    #   p "HERE"
+    #   p temp
+    #   p "HERE"
+    #   @user.update(
+    #     party_id: temp
+    #   )
+    #   head :no_content
+    # else
     @user.update(user_params)
     head :no_content
+    # end
   end
 
   # PUT /user_parties
@@ -65,7 +77,7 @@ class UsersController < ApplicationController
 
   def user_params
     # whitelist params
-    params.permit(:email, :name, :party_id, :title, :profile_pic_ref, :password)
+    params.permit(:email, :name, :party_id, :title, :profile_pic_ref, :password, :update_party_codes)
   end
 
   def set_user
