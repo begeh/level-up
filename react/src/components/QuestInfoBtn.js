@@ -42,7 +42,7 @@ export default function QuestInfoBtn(props) {
     
     //sets the selected node to the next node on the nodebar once level up btn is clicked
     if(selected_node < 4 && status !== "failed"){
-      selected_node += 1;
+      selected_node = nodes.findIndex(node => node["is_complete?"] === false) + 1;
     }
 
     if(status === "failed"){
