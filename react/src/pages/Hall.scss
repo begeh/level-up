@@ -22,7 +22,7 @@
   padding-top: 30px;
   text-align: center;
 
-  img {
+  .party-logo {
     max-width: 35%;
     display: block;
     margin: auto;
@@ -49,6 +49,20 @@
       font-family: 'Lato', sans-serif;
     }
   
+  }
+
+  .wizard {
+    img {
+      width: 250px;
+      position: fixed;
+      bottom: -140px;
+      left: 10px;
+      transition: bottom 0.5s ease;
+
+      &:hover {
+        bottom: -90px;
+      }
+    }
   }
 }
 
@@ -89,3 +103,4 @@
     border: solid 3px #DA2C38;
   }
 }
+

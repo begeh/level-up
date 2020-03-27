@@ -6,8 +6,8 @@ import './Hall.scss'
 import { useHistory } from "react-router-dom"
 import HallList from "../components/HallList"
 import shield from '../images/shield.png'
-
 import axios from 'axios';
+import wizard from '../images/wizard.png'
 
 export default function Hall(props) {
   let history = useHistory();
@@ -47,6 +47,16 @@ export default function Hall(props) {
 
   }
 
+  const Wizard = () => {
+    return (
+      <Hidden xsDown>
+      <div className='wizard'>
+        <img src={wizard} alt='wizards' />
+      </div>
+      </Hidden>
+    )
+  }
+
   return (
     <>
       <NavForApp nav_title='HALL' state={state} quests={quests} party_quests={party_quests} party_info={party_info} />
@@ -54,7 +64,7 @@ export default function Hall(props) {
         <Hidden xsDown>
           <Grid className='container-left party-container' item sm={5} >
             <h3>{party_info.name}</h3>
-            <img src={shield} alt='party-logo' />
+            <img src={shield} alt='party logo' className='party-logo' />
             <p className='party-code'>{party_info.id}</p>
             <div>
               <h5>Party Members</h5>
@@ -70,6 +80,7 @@ export default function Hall(props) {
               }
 
             </div>
+            <Wizard />
           </Grid>
         </Hidden>
 
