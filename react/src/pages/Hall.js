@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom"
 import HallList from "../components/HallList"
 import shield from '../images/shield.png'
 import axios from 'axios';
-import wizard from '../images/wizard.png'
+import Wizard from '../components/Wizard'
 
 export default function Hall(props) {
   let history = useHistory();
@@ -16,17 +16,33 @@ export default function Hall(props) {
   let party_quests = {};
   let party_info = {};
   let selected_node = null;
+  let hobby = null;
+
   if (props.location.state) {
     state = props.location.state.global;
     quests = props.location.state.quests;
     party_quests = props.location.state.party_quests;
     party_info = props.location.state.party_info;
+    hobby = props.location.state.hobby;
     console.log(`This is party_quests ${party_quests}`)
   } else {
     history.push('/');
   }
 
   console.log(`Hall State is ${JSON.stringify(state)}`);
+
+  async function clickWizard(){
+    const url = "https://en.wikipedia.org/w/api.php?action=query&format=json&pllimit=500&prop=links&titles=List+of+hobbies";
+
+    const hobbies = await axios.get(url).then(res => res.data.query.pages['31257416'].links);
+
+    const hobby_index = Math.round(Math.random() * (hobbies.length - 1))
+
+    hobby = hobbies[hobby_index].title.toLowerCase();
+
+    history.push({ pathname: "/hall", state: { global: state, quests: quests, party_quests: party_quests, party_info: party_info, hobby: hobby } });
+  }
+
 
   async function handleClick(id, mentor_id, user_id, node_id, index) {
 
@@ -47,15 +63,7 @@ export default function Hall(props) {
 
   }
 
-  const Wizard = () => {
-    return (
-      <Hidden xsDown>
-      <div className='wizard'>
-        <img src={wizard} alt='wizards' />
-      </div>
-      </Hidden>
-    )
-  }
+
 
   return (
     <>
@@ -80,7 +88,7 @@ export default function Hall(props) {
               }
 
             </div>
-            <Wizard />
+            <Wizard hobby={hobby} clickWizard={clickWizard}/>
           </Grid>
         </Hidden>
 

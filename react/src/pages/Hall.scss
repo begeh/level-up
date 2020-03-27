@@ -66,6 +66,22 @@
   }
 }
 
+.wizard-message {
+  display: inline-block;
+  background-color: #EED784;
+  border: solid 2px #EED784;
+  border-radius: 8px;
+  max-width: 200px;
+  padding: 2px 5px;
+  position: fixed;
+  left: 250px;
+  color: #574731;
+  box-shadow: -7px 6px #3e2111;
+  p {
+    margin-bottom: 0 !important;
+  }
+}
+
 .modal-code {
   background-color: #512A15;
   border: solid 2px #512A15;
