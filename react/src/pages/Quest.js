@@ -60,7 +60,7 @@ export default function Quest(props) {
         selected_node = nodes.findIndex(node => node["is_complete?"] === false);
       } else{
         node_id = nodes[nodes.length - 1].id
-        selected_node = 4;
+        selected_node = nodes.length - 1;
       }
     }
 
