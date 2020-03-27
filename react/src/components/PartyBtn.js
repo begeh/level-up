@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {Button, Modal} from 'react-bootstrap';
-import {Hidden,List, ListItem, ListItemAvatar,Avatar,ListItemText} from '@material-ui/core'
+import React, { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import { Hidden, List, ListItem, ListItemAvatar, Avatar, ListItemText } from '@material-ui/core'
 import userIcon from '../images/avatar.png'
 
 export default function PartyBtn(props) {
@@ -10,10 +10,9 @@ export default function PartyBtn(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
   return (
     <Hidden smUp >
-      <Button  variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={handleShow}>
         Party
       </Button>
 
@@ -24,14 +23,18 @@ export default function PartyBtn(props) {
         <Modal.Body>
           <p className='modal-code'>{party.id}</p>
           <List>
-          {
-            party.members.map((member, index)=>(
-              <ListItem>
-                <img src={userIcon} alt='avatar image' className='avatar' />
-                <ListItemText primary={member.name} secondary={member.title} />
-              </ListItem>
-            ))
-          }
+            {
+              party.members.map((member, index) => (
+                <ListItem>
+                  {/* Renders a default avatar if no user avatar is present */}
+                  {(member.avatar)
+                    ? <img src={member.avatar} alt='avatar image' className='avatar' />
+                    : <img src={userIcon} alt='avatar image' className='avatar' />
+                  }
+                  <ListItemText primary={member.name} secondary={member.title} />
+                </ListItem>
+              ))
+            }
           </List>
         </Modal.Body>
         <Modal.Footer>

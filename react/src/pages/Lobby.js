@@ -29,11 +29,17 @@ let returnPartyMembers = async (party_id) => {
       console.log(response)
       let list = [];
       response.data.forEach(user => {
-        list.push({ name: user.name, title: user.title });
+        list.push({
+          name: user.name,
+          title: user.title,
+          avatar: user.profile_pic_ref
+        });
       })
       return list;
     })
 }
+
+
 
 let current_user = null
 
@@ -56,8 +62,8 @@ export default function Lobby(props) {
     console.log(`lobbycode is ${lobbyCode}`); //Join Lobby
 
     //checks if user is already part of party when join lobby btn is pressed. if not, it resets their party_id in database to the lobbyCode entered and gives them access
-    if(state.party_id !== lobbyCode){
-      axios.put(`/users/${state.id}`,{"party_id": lobbyCode})
+    if (state.party_id !== lobbyCode) {
+      axios.put(`/users/${state.id}`, { "party_id": lobbyCode })
     }
 
     state.party_id = lobbyCode;
@@ -65,7 +71,7 @@ export default function Lobby(props) {
     // If joining Lobby
     state.lobbyCode = lobbyCode
 
-   
+
 
     console.log(lobbyCode)
 
@@ -175,7 +181,7 @@ export default function Lobby(props) {
         return null
       });
     console.log("party value is: ", party)
-    
+
     // If a party was created (and therefore returned)
     if (party) {
 
