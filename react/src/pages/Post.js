@@ -44,7 +44,7 @@ export default function Post(props) {
     post = props.location.state.post;
     comments = props.location.state.comments;
     quest = props.location.state.quest;
-    post_id = props.location.state.post_id;
+    post_id = props.location.state.post.id;
     selected_node = props.location.state.selected_node;
     node_id = props.location.state.node_id;
 
@@ -53,7 +53,7 @@ export default function Post(props) {
   }
 
   console.log(state)
-
+  console.log(post)
   const symbol = post.symbol_ref;
   let post_symbol = null;
 
@@ -73,24 +73,28 @@ export default function Post(props) {
 
   //submits a comment to the database and rerenders page through useHistory
   async function handleCommentSubmit(event) {
+
     event.preventDefault();
-    console.log(`Comment Ref is ${  commentRef.current.value}`)
+    console.log(`Comment Ref is ${commentRef.current.value}`)
     comment = commentRef.current.value;
     commentRef.current.value = null;
 
     console.log(`Comment is ${comment}`);
     
+
     let comment_package = {
       text: comment,
       username: user_name,
-      post_id: post.id,
+      post_id: post_id,
       user_id: state.id,
       user_profile_pic: state.profile_pic_ref
     }
     console.log(comment_package)
 
-    let sent_comment = await axios.post(`/posts/${post.id}/comments`, {
-      text: comment,
+    let text = comment;
+
+    let sent_comment = await axios.post(`/posts/${post.id}/comments/`, {
+      text: text,
       username: user_name,
       post_id: post.id,
       user_id: state.id,
@@ -102,12 +106,12 @@ export default function Post(props) {
     console.log(`Comments are ${JSON.stringify(comments)}`);
 
     quests = await axios.post(`/user_quests`, { user_id: state.id })
-    .then((res) => {
-      return res.data;
-    })
- 
+      .then((res) => {
+        return res.data;
+      })
+
     console.log(JSON.stringify(quests))
-  
+
     let full_quests = [];
     let promises = [];
     quests.forEach((quest) => {
@@ -118,18 +122,18 @@ export default function Post(props) {
       )
     }
     );
-  
+
     await Promise.all(promises);
-  
+
     console.log(`Full quests ${JSON.stringify(full_quests)}`);
-  
+
     party_quests = await axios.post("/party_quests", { party_id: state.party_id })
       .then((res) => {
         return res.data
       })
-  
+
     console.log(`This is party quests ${JSON.stringify(full_quests)}`)
-  
+
     let party_full_quests = [];
     let party_promises = [];
     party_quests.forEach((quest) => {
@@ -140,10 +144,10 @@ export default function Post(props) {
       )
     }
     );
-  
+
     await Promise.all(party_promises);
-    
-    history.push({ pathname: `/quest/${quest_id}/post/${post_id}`, state: { global: state, quest_id: quest_id, quests: full_quests.sort((a,b)=>b.quest.id - a.quest.id), quest: quest, party_quests: party_full_quests.sort((a,b)=>b.quest.id - a.quest.id), mentor_name: mentor_name, user_name: user_name, party_info: party_info, post: post, comments: comments, post_id: post_id, selected_node: selected_node, node_id: node_id } })
+
+    history.push({ pathname: `/quest/${quest_id}/post/${post_id}`, state: { global: state, quest_id: quest_id, quests: full_quests.sort((a, b) => b.quest.id - a.quest.id), quest: quest, party_quests: party_full_quests.sort((a, b) => b.quest.id - a.quest.id), mentor_name: mentor_name, user_name: user_name, party_info: party_info, post: post, comments: comments, post_id: post_id, selected_node: selected_node, node_id: node_id } })
 
   }
 
@@ -161,20 +165,20 @@ export default function Post(props) {
           <p>Posted on: {(new Date(post.created_at)).toLocaleDateString()}</p>
         </Grid>
         <Grid item xs={12}>
-          { post.image_url ?
+          {post.image_url ?
             <img src={post.image_url} alt={post.title} /> : null
           }
-          { post.video_url ?
+          {post.video_url ?
             <ReactPlayer className='player' url={post.video_url} /> : null
           }
-          
+
           <p>{post.content}</p>
 
         </Grid>
       </Grid>
     )
   }
-  
+
   return (
     <>
       <NavForApp nav_title='POST' state={state} quests={quests} party_quests={party_quests} party_info={party_info} />
@@ -208,7 +212,7 @@ export default function Post(props) {
             />
             <button className='btn btn-primary' type="submit">Submit</button>
           </form>
-          <CommentList comments={comments.sort((a,b)=> a.id - b.id)} />
+          <CommentList comments={comments.sort((a, b) => a.id - b.id)} />
         </Grid>
       </Grid>
     </>
