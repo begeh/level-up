@@ -77,6 +77,19 @@
   left: 250px;
   color: #574731;
   box-shadow: -7px 6px #3e2111;
+  animation: loadIn 0.5s ease;
+
+  @keyframes loadIn {
+    from {
+      opacity: 0;
+      transform: translate(0px, 30px)
+    }
+    to {
+      opacity: 1;
+      transform: translate(0px, 0px)
+    }
+  }
+
   p {
     margin-bottom: 0 !important;
   }
