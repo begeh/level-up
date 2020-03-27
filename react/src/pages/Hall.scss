@@ -52,6 +52,8 @@
   }
 
   .wizard {
+    cursor: pointer;
+
     img {
       width: 250px;
       position: fixed;
@@ -141,6 +143,6 @@
 #create-modal {
 
   .form-button {
-    margin: 10px 0 20px !important;
+    margin: 10px 15px 20px 0 !important;
   }
 }
