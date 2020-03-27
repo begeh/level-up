@@ -44,7 +44,7 @@ export default function History(props){
     <NavForApp nav_title="LEGACY" state={state} quests={quests} party_quests={party_quests} party_info={party_info}/>
     <Grid container component="main" className='full'>
       <Grid item sm={5} className='container-left party-container'>
-        <img src={shield} alt='Shield'/>
+        <img src={shield} alt='Shield' className='party-logo'/>
         <h3>Your Legacy</h3>
         <div className='party-member'>
           <p>{state.name}</p>
