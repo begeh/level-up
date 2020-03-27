@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom"
 import HallList from "../components/HallList"
 import shield from '../images/shield.png'
 import axios from 'axios';
-import wizard from '../images/wizard.png'
+import Wizard from '../components/Wizard'
 
 export default function Hall(props) {
   let history = useHistory();
@@ -47,15 +47,7 @@ export default function Hall(props) {
 
   }
 
-  const Wizard = () => {
-    return (
-      <Hidden xsDown>
-      <div className='wizard'>
-        <img src={wizard} alt='wizards' />
-      </div>
-      </Hidden>
-    )
-  }
+
 
   return (
     <>
