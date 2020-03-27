@@ -23,15 +23,13 @@ export default function QuestInfoBtn(props) {
   let quest_completed = props.quest_completed;
   let selected_node = props.selected_node;
 
+  console.log(nodes)
+
   const story_params ={
     apprentice: user_name,
     mentor: mentor_name,
     questTitle: quest.quest.title,
-    node1: nodes[0].title,
-    node2: nodes[1].title,
-    node3: nodes[2].title,
-    node4: nodes[3].title,
-    node5: nodes[4].title,
+    nodes: nodes,
     dateEnd: Date.now(),
     dateStart: quest.quest.created_at
   }
@@ -46,6 +44,7 @@ export default function QuestInfoBtn(props) {
     }
 
     if(status === "failed"){
+
       const num_completed_nodes = nodes.filter(node=> node["is_complete?"] === true).length;
 
       const story = fail(story_params, num_completed_nodes, quest.quest.user_id, quest.quest.mentor_id);

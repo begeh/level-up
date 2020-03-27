@@ -27,7 +27,7 @@ export default function CreateQuestBtn(props) {
 
   const handleClose = () => setShow(false);
 
-  const handleSubmitClose = () => {
+  const node123Checks = () => {
     if (
       questTitle !== "" &&
       questDesc !== "" &&
@@ -35,20 +35,53 @@ export default function CreateQuestBtn(props) {
       node1Title !== "" &&
       node2Title !== "" &&
       node3Title !== "" &&
-      node4Title !== "" &&
-      node5Title !== "" &&
       node1Desc !== "" &&
       node2Desc !== "" &&
       node3Desc !== "" &&
-      node4Desc !== "" &&
-      node5Desc !== "" &&
       node1CompletionDate !== "" &&
       node2CompletionDate !== "" &&
-      node3CompletionDate !== "" &&
-      node4CompletionDate !== "" &&
+      node3CompletionDate !== ""
+    ) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+  const node4Checks = () => {
+    if (node4Title !== "" &&
+      node4Desc !== "" &&
+      node4CompletionDate !== ""
+    ) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  const node5Checks = () => {
+    if (node5Title !== "" &&
+      node5Desc !== "" &&
       node5CompletionDate !== ""
     ) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  const handleSubmitClose = () => {
+    if (node123Checks === true && submit4 === false && submit5 === false) {
+
       setShow(false)
+    } else if (node123Checks === true && submit4 === true) {
+      if (node4Checks === true) {
+        setShow(false)
+      }
+    } else if (node123Checks === true && submit4 === true && node4Checks === true) {
+      if (node5Checks === true) {
+        setShow(false)
+      }
     }
   };
 
@@ -61,20 +94,20 @@ export default function CreateQuestBtn(props) {
   const [node1Title, setNode1Title] = useState("")
   const [node2Title, setNode2Title] = useState("")
   const [node3Title, setNode3Title] = useState("")
-  const [node4Title, setNode4Title] = useState("")
-  const [node5Title, setNode5Title] = useState("")
+  const [node4Title, setNode4Title] = useState(true)
+  const [node5Title, setNode5Title] = useState(true)
 
   const [node1Desc, setNode1Desc] = useState("")
   const [node2Desc, setNode2Desc] = useState("")
   const [node3Desc, setNode3Desc] = useState("")
-  const [node4Desc, setNode4Desc] = useState("")
-  const [node5Desc, setNode5Desc] = useState("")
+  const [node4Desc, setNode4Desc] = useState(true)
+  const [node5Desc, setNode5Desc] = useState(true)
 
   const [node1CompletionDate, setNode1CompletionDate] = useState(new Date(Date.now()))
   const [node2CompletionDate, setNode2CompletionDate] = useState(new Date(Date.now()))
   const [node3CompletionDate, setNode3CompletionDate] = useState(new Date(Date.now()))
-  const [node4CompletionDate, setNode4CompletionDate] = useState(new Date(Date.now()))
-  const [node5CompletionDate, setNode5CompletionDate] = useState(new Date(Date.now()))
+  const [node4CompletionDate, setNode4CompletionDate] = useState(true)
+  const [node5CompletionDate, setNode5CompletionDate] = useState(true)
 
 
 
@@ -92,7 +125,7 @@ export default function CreateQuestBtn(props) {
       .then((res) => {
 
         return res.data.filter(user => user.name === mentor)[0].id
-        
+
       });
 
     let quest = {
@@ -103,6 +136,7 @@ export default function CreateQuestBtn(props) {
       user_id: state.id,
       mentor_id: mentor_id
     }
+
     let nodes = [
       {
         title: node1Title,
@@ -118,19 +152,26 @@ export default function CreateQuestBtn(props) {
         title: node3Title,
         description: node3Desc,
         complete_by: node3CompletionDate,
-      },
-      {
-        title: node4Title,
-        description: node4Desc,
-        complete_by: node4CompletionDate,
-      },
-      {
-        title: node5Title,
-        description: node5Desc,
-        complete_by: node5CompletionDate,
       }
     ]
-
+    if (submit4) {
+      nodes.push(
+        {
+          title: node4Title,
+          description: node4Desc,
+          complete_by: node4CompletionDate
+        }
+      )
+    }
+    if (submit5) {
+      nodes.push(
+        {
+          title: node5Title,
+          description: node5Desc,
+          complete_by: node5CompletionDate
+        }
+      )
+    }
     console.log(quest)
 
     let quest_info = await axios.post("/create_quest", { quest, nodes })
@@ -204,6 +245,66 @@ export default function CreateQuestBtn(props) {
     history.push({ pathname: "/hall", state: { global: state, quests: full_quests.sort((a, b) => b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a, b) => b.quest.id - a.quest.id), party_info: party_info } })
 
   }
+
+  // shows the form
+  const [Form4, setForm4] = useState(false)
+  // shows the show button
+  const [Show4, setShow4] = useState(true)
+  const [submit4, setSubmit4] = useState(false)
+
+  const [Form5, setForm5] = useState(false)
+  const [Show5, setShow5] = useState(false)
+  const [submit5, setSubmit5] = useState(false)
+  // shows the hide button
+  const [Hide4, setHide4] = useState(true)
+  const [Hide5, setHide5] = useState(true)
+
+
+
+  const showForm4 = () => {
+    setNode4Title("")
+    setNode4Desc("")
+    setNode4CompletionDate(new Date(Date.now()))
+    setSubmit4(true)
+    setForm4(true)
+    setShow4(false)
+    setShow5(true)
+    setHide4(false)
+  }
+
+  const showForm5 = () => {
+    setNode5Title("")
+    setNode5Desc("")
+    setNode5CompletionDate(new Date(Date.now()))
+    setSubmit5(true)
+    setForm5(true)
+    setShow5(false)
+    setHide5(false)
+    setHide4(true)
+  }
+
+  const deleteForm4 = () => {
+    setHide4(true)
+    setForm4(false)
+    setShow4(true)
+    setShow5(false)
+    setNode4Desc(true);
+    setNode4Title(true);
+    setNode4CompletionDate(true);
+    setSubmit4(false)
+  }
+
+  const deleteForm5 = () => {
+    setForm5(false)
+    setShow5(true)
+    setHide4(false)
+    setHide5(true)
+    setNode5Desc(true);
+    setNode5Title(true);
+    setNode5CompletionDate(true);
+    setSubmit5(false)
+  }
+
 
 
 
@@ -392,98 +493,110 @@ export default function CreateQuestBtn(props) {
               </Grid>
             </MuiPickersUtilsProvider>
 
-            <h6>Level 4 Objective:</h6>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="level-4"
-              label="Learn..."
-              id="level-4"
-              autoComplete="Level 4"
-              value={node4Title}
-              onChange={e => setNode4Title(e.target.value)}
-            />
-            <h6>Level 4 Description:</h6>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="level-4-desc"
-              label="...is important because..."
-              id="level-4-desc"
-              autoComplete="Level 4 Description"
-              value={node4Desc}
-              onChange={e => setNode4Desc(e.target.value)}
-            />
-            <h6>Level 4 Completion Date:</h6>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container justify="space-around">
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="level-4-date"
-                  value={node4CompletionDate}
-                  onChange={e => setNode4CompletionDate(e)}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-              </Grid>
-            </MuiPickersUtilsProvider>
+            <div className={Show4 ? 'btn btn-primary form-button' : 'hidden-form'} onClick={() => showForm4()}>Add Level</div>
 
-            <h6>Level 5 Objective:</h6>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="level-5"
-              label="Learn..."
-              id="level-5"
-              autoComplete="Level 5"
-              value={node5Title}
-              onChange={e => setNode5Title(e.target.value)}
-            />
-            <h6>Level 5 Description:</h6>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              multiline
-              name="level-5-desc"
-              label="Finally, I will learn... so..."
-              id="level-5-desc"
-              autoComplete="Level 5 Description"
-              value={node5Desc}
-              onChange={e => setNode5Desc(e.target.value)}
-            />
-            <h6>Level 5 Completion Date:</h6>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container justify="space-around">
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="level-5-date"
-                  value={node5CompletionDate}
-                  onChange={e => setNode5CompletionDate(e)}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-              </Grid>
-            </MuiPickersUtilsProvider>
+            <div className={Form4 ? null : 'hidden-form'}>
+              <h6>Level 4 Objective:</h6>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="level-4"
+                label="Learn..."
+                id="level-4"
+                autoComplete="Level 4"
+                value={node4Title}
+                onChange={e => setNode4Title(e.target.value)}
+              />
+              <h6>Level 4 Description:</h6>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="level-4-desc"
+                label="...is important because..."
+                id="level-4-desc"
+                autoComplete="Level 4 Description"
+                value={node4Desc}
+                onChange={e => setNode4Desc(e.target.value)}
+              />
+              <h6>Level 4 Completion Date:</h6>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid container justify="space-around">
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    id="level-4-date"
+                    value={node4CompletionDate}
+                    onChange={e => setNode4CompletionDate(e)}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
+                </Grid>
+              </MuiPickersUtilsProvider>
+            </div>
 
+            <div className={ Show5 ? 'btn btn-primary form-button' : 'hidden-form'} onClick={() => showForm5()}>Add Level</div>
+            
+            <div className={ Hide4 ? 'hidden-form' : 'btn btn-primary form-button'} onClick={() => deleteForm4()}>Delete Level 4</div>
+
+            <div className={Form5 ? null : 'hidden-form'}>
+
+              <h6>Level 5 Objective:</h6>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="level-5"
+                label="Learn..."
+                id="level-5"
+                autoComplete="Level 5"
+                value={node5Title}
+                onChange={e => setNode5Title(e.target.value)}
+              />
+              <h6>Level 5 Description:</h6>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                multiline
+                name="level-5-desc"
+                label="Finally, I will learn... so..."
+                id="level-5-desc"
+                autoComplete="Level 5 Description"
+                value={node5Desc}
+                onChange={e => setNode5Desc(e.target.value)}
+              />
+              <h6>Level 5 Completion Date:</h6>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid container justify="space-around">
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    id="level-5-date"
+                    value={node5CompletionDate}
+                    onChange={e => setNode5CompletionDate(e)}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
+                </Grid>
+              </MuiPickersUtilsProvider>
+            </div>
+
+            <div className={ Hide5 ? 'hidden-form' : 'btn btn-primary form-button'} onClick={() => deleteForm5()}>Delete Level 5</div>
 
 
             <div class="form-group">
