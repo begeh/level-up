@@ -39,8 +39,13 @@ export default function QuestInfoBtn(props) {
     console.log(`Status is ${status}`);
     
     //sets the selected node to the next node on the nodebar once level up btn is clicked
-    if(selected_node < 4 && status !== "failed"){
+    const incomplete_node_index = nodes.findIndex(node => node["is_complete?"] === false);
+    if(selected_node < (nodes.length - 1) && incomplete_node_index === (nodes.length - 1)){
+      selected_node = nodes.length - 1;
+    } else if(selected_node < (nodes.length - 1) && status !== "failed"){
       selected_node = nodes.findIndex(node => node["is_complete?"] === false) + 1;
+    } else if (selected_node < (nodes.length - 1) && status === "failed"){
+      selected_node = nodes.findIndex(node => node["is_complete?"] === false);
     }
 
     if(status === "failed"){
