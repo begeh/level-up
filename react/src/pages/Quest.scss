@@ -56,6 +56,10 @@
   background-color: #D7A95F;
   padding: 5px !important;
   border: solid #59301A;
+
+  .MuiGridListTile-root {
+    height: auto !important;
+  }
 }
 
 .quest-node-list {
