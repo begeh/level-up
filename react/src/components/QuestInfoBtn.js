@@ -44,6 +44,7 @@ export default function QuestInfoBtn(props) {
     }
 
     if(status === "failed"){
+
       const num_completed_nodes = nodes.filter(node=> node["is_complete?"] === true).length;
 
       const story = fail(story_params, num_completed_nodes, quest.quest.user_id, quest.quest.mentor_id);
