@@ -56,6 +56,7 @@ export default function NavForApp(props){
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
+            <p>UserName: {state.name}</p>
             <Nav.Link onClick={()=>loadPage('legacy')}>Legacy</Nav.Link>
             <Nav.Link onClick={()=>loadPage('hall')}>Hall</Nav.Link>
             <Nav.Link onClick={()=>history.push("/")}
