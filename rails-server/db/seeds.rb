@@ -367,6 +367,7 @@ posts.append(Post.find_or_create_by!(
   title: "Practicing the C Major Scale",
   content: "In the linked video you can see me practicing the C Major Scale, let me know how I do!",
   node_id: 1,
+  video_url: "https://www.youtube.com/watch?v=SJW18e04zJ8&feature=youtu.be",
   symbol_ref: "sword"
   ))
 # posts.append(Post.find_or_create_by!(
