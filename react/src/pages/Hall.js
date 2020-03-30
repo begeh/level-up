@@ -49,26 +49,31 @@ export default function Hall(props) {
   }
 
 
-  async function handleClick(id, mentor_id, user_id, node_id, index) {
+  async function handleClick(id, mentor_id, user_id, node_id, index, nodes) {
+    
+     const quest = party_quests.filter(quest => quest.quest.id === id)[0];
 
-    selected_node = index;
+    if (index === 0 || nodes[index - 1]["is_complete?"]) {
+      selected_node = index;
 
-    let users = await axios.get('users')
-      .then((response) => {
-        let users = {};
-        let mentor = response.data.filter(user => user.id === mentor_id);
-        let user = response.data.filter(user => user.id === user_id);
-        users.user_name = user[0].name;
-        users.mentor_name = mentor[0].name;
-        return users;
-      });
+      let users = await axios.get('users')
+        .then((response) => {
+          let users = {};
+          let mentor = response.data.filter(user => user.id === mentor_id);
+          let user = response.data.filter(user => user.id === user_id);
+          users.user_name = user[0].name;
+          users.mentor_name = mentor[0].name;
+          return users;
+        });
 
-    history.push({ pathname: `/quest/${id}`, state: { global: state, quests: quests, party_quests: party_quests, quest_id: id, mentor_name: users.mentor_name, user_name: users.user_name, party_info: party_info, node_id: node_id, selected_node: selected_node } })
+      history.push({ pathname: `/quest/${id}`, state: { global: state, quests: quests, party_quests: party_quests, quest_id: id, mentor_name: users.mentor_name, user_name: users.user_name, party_info: party_info, node_id: node_id, selected_node: selected_node } })
 
-
+    } else if (quest.quest.status === "IN PROGRESS"){
+      alert("We know it's tempting to skip ahead, but you'll need finish the earlier nodes before moving on.")
+    } else{
+      alert("No more progress");
+    }
   }
-
-
 
   return (
     <>
