@@ -165,8 +165,8 @@ export default function CreatePostButton(props) {
               <select value={postType} onChange={e => setPostType(e.target.value)}
                 class="form-control" id="exampleFormControlSelect1">
                 <option selected value="sword">Action</option>
-                <option value="question">Research</option>
-                <option value="book">Question</option>
+                <option value="book">Research</option>
+                <option value="question">Question</option>
               </select>
             </div>
             <h6>Video Url:</h6>
