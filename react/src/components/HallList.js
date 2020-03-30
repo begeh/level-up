@@ -2,7 +2,7 @@ import React from 'react';
 import HallListItem from './HallListItem';
 
 export default function HallList(props){
-  // console.log(`Hall List props ${JSON.stringify(props.quests)}`)
+  
   return (
     <div>
       {
