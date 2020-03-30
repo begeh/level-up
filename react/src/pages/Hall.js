@@ -31,14 +31,19 @@ export default function Hall(props) {
 
   console.log(`Hall State is ${JSON.stringify(state)}`);
 
-  async function clickWizard(){
-    const url = "https://en.wikipedia.org/w/api.php?action=query&format=json&pllimit=500&prop=links&titles=List+of+hobbies";
+  function clickWizard() {
+    // const url = "https://en.wikipedia.org/w/api.php?action=query&format=json&pllimit=500&prop=links&titles=List+of+hobbies";
 
-    const hobbies = await axios.get(url).then(res => res.data.query.pages['31257416'].links);
+    // const hobbies = await axios.get(url).then(res => res.data.query.pages['31257416'].links);
+
+    const hobbies= ["3D printing", "Acrobatics", "Acting"
+  ,"Baking", "Baseball", "Basketball", "Blogging", "Canoeing", "Canyoning", "Dance", "Darts", "Embroidery", "Fencing", "Field hockey", "Glassblowing", "Gardening", "Herbalism", "Homebrewing", "Ice skating", "Insect collecting", "Jewelry making", "Juggling", "Kart racing", "Kitesurfing", "Lace making", "Leather crafting", "Mahjong", "Meditation", "Nail art"
+, "Origami", "Painting", "Parkour", "Poker", "Quilting", "Rafting", "Rock climbing", "Rowing", "Sailing", "Sculpting", "Shogi", "Stamp collecting", "Taxidermy", "Tennis", "Video editing", "Video game development", "Water polo", "Weaving"
+, "Weight training", "Welding"]
 
     const hobby_index = Math.round(Math.random() * (hobbies.length - 1))
 
-    hobby = hobbies[hobby_index].title.toLowerCase();
+    hobby = hobbies[hobby_index].toLowerCase();
 
     history.push({ pathname: "/hall", state: { global: state, quests: quests, party_quests: party_quests, party_info: party_info, hobby: hobby } });
   }
