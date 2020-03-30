@@ -175,6 +175,16 @@ quest2 = Quest.find_or_create_by!({
   date_finished: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
 })
 
+quest3 = Quest.find_or_create_by!({
+  party_id: party1.id,
+  user_id: user1.id,
+  mentor_id: user1.id,
+  title: "Learn Quantum Mechanics",
+  description: "Fully understand the modern theory of Quantum Mechanics",
+  status: "IN PROGRESS",
+  date_finished: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+})
+
 ## NODES
 
 puts "Creating Nodes ..."
@@ -296,6 +306,28 @@ node10 = Node.find_or_create_by!({
   description: Faker::Lorem.sentence,
   is_complete?: false,
   quest_id: quest2.id,
+  date_finished: nil
+})
+
+node11 = Node.find_or_create_by!({
+  title: "Learn the 6 simple machines",
+  description: "Research and learn the application of the 6 simple machines",
+  is_complete?: false,
+  quest_id: quest3.id,
+  date_finished: nil
+})
+node12 = Node.find_or_create_by!({
+  title: "Learn the basic types of energy",
+  description: "Research and define the basic types of energy",
+  is_complete?: false,
+  quest_id: quest3.id,
+  date_finished: nil
+})
+node13 = Node.find_or_create_by!({
+  title: "Learn the rest of Quantum Mechanics",
+  description: "Research and learn the modern theory of Quantum Mechanics",
+  is_complete?: false,
+  quest_id: quest3.id,
   date_finished: nil
 })
 
