@@ -83,7 +83,7 @@ export default function Quest(props) {
       node_posts = posts.filter(post => post.node_id === id);
 
       history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: quests, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, node_posts: node_posts, node_id: id, selected_node: selected_node } })
-    } else if (quest.quest.status === "IN PROGRESS"){
+    } else if (quest.quest.status === "IN PROGRESS" && quest.quest.user_id === state.id){
       alert("We know it's tempting to skip ahead, but you'll need finish the earlier nodes before moving on.")
     } else{
       alert("No more progress");

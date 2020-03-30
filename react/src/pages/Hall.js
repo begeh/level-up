@@ -68,7 +68,7 @@ export default function Hall(props) {
 
       history.push({ pathname: `/quest/${id}`, state: { global: state, quests: quests, party_quests: party_quests, quest_id: id, mentor_name: users.mentor_name, user_name: users.user_name, party_info: party_info, node_id: node_id, selected_node: selected_node } })
 
-    } else if (quest.quest.status === "IN PROGRESS"){
+    } else if (quest.quest.status === "IN PROGRESS" && quest.quest.user_id === state.id){
       alert("We know it's tempting to skip ahead, but you'll need finish the earlier nodes before moving on.")
     } else{
       alert("No more progress");
