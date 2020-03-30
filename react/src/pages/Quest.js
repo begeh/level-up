@@ -42,30 +42,30 @@ export default function Quest(props) {
   } else {
     history.push('/');
   }
-
   console.log(`Quest is completed ${quest_completed}`)
   let quest = party_quests.filter(quest => quest.quest.id === quest_id)[0];
 
   let nodes = quest.nodes;
   let comments = quest.comments.flat();
+  console.log("This is nodes: ", nodes)
 
   //sets posts variable to all posts of the node selected on hall page, or for the node clicked on the nodebar of quest page (node_posts) when clicked
   let posts = null;
 
   if (!node_posts) {
-    if(!node_id){
+    if (!node_id) {
       const current_node = nodes.find(node => node["is_complete?"] === false);
-      if (current_node){
+      if (current_node) {
         node_id = current_node.id;
         selected_node = nodes.findIndex(node => node["is_complete?"] === false);
-      } else{
+      } else {
         node_id = nodes[nodes.length - 1].id
         selected_node = nodes.length - 1;
       }
     }
 
     posts = quest.posts.flat().filter(post => post.node_id === node_id);
-    
+
   } else {
     posts = node_posts;
   }
@@ -74,13 +74,18 @@ export default function Quest(props) {
 
   //renders quest page with only posts associated with the node that is click on nodebar in quest page
   function handleNode(id, index) {
+    // Only allows the user to pick a node when the previous nodes are completed, or if it's the first node
+    if (index === 0 || nodes[index - 1]["is_complete?"]) {
 
-    selected_node = index;
-    posts = quest.posts.flat();
+      selected_node = index;
+      posts = quest.posts.flat();
 
-    node_posts = posts.filter(post => post.node_id === id);
+      node_posts = posts.filter(post => post.node_id === id);
 
-    history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: quests, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, node_posts: node_posts, node_id: id, selected_node: selected_node } })
+      history.push({ pathname: `/quest/${quest_id}`, state: { global: state, quest_id: quest_id, quests: quests, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, node_posts: node_posts, node_id: id, selected_node: selected_node } })
+    } else {
+      alert("We know it's tempting to skip ahead, but you'll need finish the earlier nodes before moving on.")
+    }
   }
 
   //redirects to post page when a post is clicked on quest page
@@ -89,15 +94,15 @@ export default function Quest(props) {
     let comments = await axios.get(`/post/${id}/comments`).then((response) => response.data);
     console.log(`Comments are ${JSON.stringify(comments)}`);
 
-    history.push({ pathname: `/quest/${quest_id}/post/${id}`, state: { global: state, quest_id: quest_id, quests: quests, quest: quest, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, post: post, comments: comments, post_id:id, selected_node: selected_node, node_id: node_id } })
+    history.push({ pathname: `/quest/${quest_id}/post/${id}`, state: { global: state, quest_id: quest_id, quests: quests, quest: quest, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, post: post, comments: comments, post_id: id, selected_node: selected_node, node_id: node_id } })
   }
 
   console.log(`This is node_id: ${node_id}`)
 
   return (
     <>
-      {quest_completed === "success" ? <QuestFinish state={state} quests={quests} party_quests={party_quests} party_info={party_info} quest={quest}/> : null}
-      {quest_completed === "failed" ? <QuestFail state={state} quests={quests} party_quests={party_quests} party_info={party_info} quest={quest}/> : null}
+      {quest_completed === "success" ? <QuestFinish state={state} quests={quests} party_quests={party_quests} party_info={party_info} quest={quest} /> : null}
+      {quest_completed === "failed" ? <QuestFail state={state} quests={quests} party_quests={party_quests} party_info={party_info} quest={quest} /> : null}
       <NavForApp nav_title='QUEST' state={state} quests={quests} party_quests={party_quests} party_info={party_info} quest={quest} mentor_name={mentor_name} user_name={user_name} quest_id={quest_id} quest_completed={quest_completed} />
       <Grid container className='full'>
         <Hidden xsDown>
@@ -117,10 +122,10 @@ export default function Quest(props) {
           <Grid className='back-button' item xs={12}>
             <button className='btn btn-primary' onClick={() => history.push({ pathname: "/hall", state: { global: state, quests: quests, party_quests: party_quests, party_info: party_info } })}>Go Back</button>
           </Grid>
-          <NodeBar nodes={nodes.sort((a,b)=> a.id - b.id)} handleNode={handleNode} selected_node={selected_node} />
-          <QuestList posts={posts.sort((a,b)=> b.id - a.id)} comments={comments} handleClick={handleClick} />
-          { quest.quest.status === 'IN PROGRESS' && state.id === quest.quest.user_id   ?
-            <CreatePostBtn state={state} quest_id={quest_id} quests={quests} party_quests={party_quests} mentor_name={mentor_name} user_name={user_name} party_info={party_info} node_id={node_id} selected_node={selected_node}/> : null
+          <NodeBar nodes={nodes.sort((a, b) => a.id - b.id)} handleNode={handleNode} selected_node={selected_node} />
+          <QuestList posts={posts.sort((a, b) => b.id - a.id)} comments={comments} handleClick={handleClick} />
+          {quest.quest.status === 'IN PROGRESS' && state.id === quest.quest.user_id ?
+            <CreatePostBtn state={state} quest_id={quest_id} quests={quests} party_quests={party_quests} mentor_name={mentor_name} user_name={user_name} party_info={party_info} node_id={node_id} selected_node={selected_node} /> : null
           }
         </Grid>
       </Grid>
