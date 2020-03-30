@@ -337,58 +337,58 @@ posts.append(Post.find_or_create_by!(
   node_id: 1,
   symbol_ref: "sword"
   ))
-posts.append(Post.find_or_create_by!(
-  title: "I found the C Minor scale!",
-  content: "I found this picture of the C Minor scale, should be go to go!",
-  image_url: "https://www.guitarcommand.com/wp-content/uploads/2019/08/C-Natural-Minor-Scale-Guitar-TAB-Pattern-3.png",
-  node_id: 2,
-  symbol_ref: "book" 
-  ))
-posts.append(Post.find_or_create_by!(
-  title: "Practicing the C Minor Scale",
-  content: "In the linked video you can see me practicing the C Minor Scale, let me know how I do!",
-  node_id: 2,
-  symbol_ref: "sword"
-  ))
-posts.append(Post.find_or_create_by!(
-  title: "I found the C Diminished scale!",
-  content: "I found this picture of the C Diminished scale, should be go to go!",
-  image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPCkrjyEvLEWVRFwipAwECeqBYqBCPskSFUf07zyQeXV9Cijvu6w&s",
-  node_id: 3,
-  symbol_ref: "book" 
-  ))
-posts.append(Post.find_or_create_by!(
-  title: "Practicing the C Diminished Scale",
-  content: "In the linked video you can see me practicing the C Diminished Scale, let me know how I do!",
-  node_id: 3,
-  symbol_ref: "sword"
-  ))
-posts.append(Post.find_or_create_by!(
-  title: "I found the C Major Pentatonic scale!",
-  content: "I found this picture of the C Major Pentatonic scale, should be go to go!",
-  image_url: "https://www.guitarcommand.com/wp-content/uploads/2019/11/C-Major-Pentatonic-Scale-Open-Position.png",
-  node_id: 4,
-  symbol_ref: "book" 
-  ))
-posts.append(Post.find_or_create_by!(
-  title: "Practicing the C Major Pentatonic Scale",
-  content: "In the linked video you can see me practicing the C Major Pentatonic Scale, let me know how I do!",
-  node_id: 4,
-  symbol_ref: "sword"
-  ))
-posts.append(Post.find_or_create_by!(
-  title: "I found the C Minor scale!",
-  content: "I found this picture of the C Minor scale, should be go to go!",
-  image_url: "https://mk0onlineguitarx1huf.kinstacdn.com/wp-content/uploads/2012/01/MinorPentatonicScaleNotes_C_OpenPosition.jpg",
-  node_id: 5,
-  symbol_ref: "book" 
-  ))
-posts.append(Post.find_or_create_by!(
-  title: "Practicing the C Minor Pentatonic Scale",
-  content: "In the linked video you can see me practicing the C Minor Pentatonic Scale, let me know how I do!",
-  node_id: 5,
-  symbol_ref: "sword"
-  ))
+# posts.append(Post.find_or_create_by!(
+#   title: "I found the C Minor scale!",
+#   content: "I found this picture of the C Minor scale, should be go to go!",
+#   image_url: "https://www.guitarcommand.com/wp-content/uploads/2019/08/C-Natural-Minor-Scale-Guitar-TAB-Pattern-3.png",
+#   node_id: 2,
+#   symbol_ref: "book" 
+#   ))
+# posts.append(Post.find_or_create_by!(
+#   title: "Practicing the C Minor Scale",
+#   content: "In the linked video you can see me practicing the C Minor Scale, let me know how I do!",
+#   node_id: 2,
+#   symbol_ref: "sword"
+#   ))
+# posts.append(Post.find_or_create_by!(
+#   title: "I found the C Diminished scale!",
+#   content: "I found this picture of the C Diminished scale, should be go to go!",
+#   image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPCkrjyEvLEWVRFwipAwECeqBYqBCPskSFUf07zyQeXV9Cijvu6w&s",
+#   node_id: 3,
+#   symbol_ref: "book" 
+#   ))
+# posts.append(Post.find_or_create_by!(
+#   title: "Practicing the C Diminished Scale",
+#   content: "In the linked video you can see me practicing the C Diminished Scale, let me know how I do!",
+#   node_id: 3,
+#   symbol_ref: "sword"
+#   ))
+# posts.append(Post.find_or_create_by!(
+#   title: "I found the C Major Pentatonic scale!",
+#   content: "I found this picture of the C Major Pentatonic scale, should be go to go!",
+#   image_url: "https://www.guitarcommand.com/wp-content/uploads/2019/11/C-Major-Pentatonic-Scale-Open-Position.png",
+#   node_id: 4,
+#   symbol_ref: "book" 
+#   ))
+# posts.append(Post.find_or_create_by!(
+#   title: "Practicing the C Major Pentatonic Scale",
+#   content: "In the linked video you can see me practicing the C Major Pentatonic Scale, let me know how I do!",
+#   node_id: 4,
+#   symbol_ref: "sword"
+#   ))
+# posts.append(Post.find_or_create_by!(
+#   title: "I found the C Minor scale!",
+#   content: "I found this picture of the C Minor scale, should be go to go!",
+#   image_url: "https://mk0onlineguitarx1huf.kinstacdn.com/wp-content/uploads/2012/01/MinorPentatonicScaleNotes_C_OpenPosition.jpg",
+#   node_id: 5,
+#   symbol_ref: "book" 
+#   ))
+# posts.append(Post.find_or_create_by!(
+#   title: "Practicing the C Minor Pentatonic Scale",
+#   content: "In the linked video you can see me practicing the C Minor Pentatonic Scale, let me know how I do!",
+#   node_id: 5,
+#   symbol_ref: "sword"
+#   ))
 
 
 
@@ -427,41 +427,41 @@ comment_list = [
   posts[9].id,
   posts[10].id,
   posts[11].id,
-  posts[12].id,
-  posts[13].id,
-  posts[14].id,
-  posts[15].id,
-  posts[16].id,
-  posts[17].id,
-  posts[18].id,
-  posts[19].id
+  # posts[12].id,
+  # posts[13].id,
+  # posts[14].id,
+  # posts[15].id,
+  # posts[16].id,
+  # posts[17].id,
+  # posts[18].id,
+  # posts[19].id
 ]
 
 comments = []
 
 comment_list.each_with_index do |post_id|
-  if post_id <= 10
+  if post_id <= 1
     user = [user3, user5].sample
     if post_id == 1
       comments.append(Comment.find_or_create_by!(text: "That's a good reference pic", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
     elsif post_id == 2
       comments.append(Comment.find_or_create_by!(text: "Not too shabby! Looks and sounds good", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
-    elsif post_id == 3
-      comments.append(Comment.find_or_create_by!(text: "Good find", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
-    elsif post_id == 4
-      comments.append(Comment.find_or_create_by!(text: "Looks like you're making good progress", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
-    elsif post_id == 5
-      comments.append(Comment.find_or_create_by!(text: "Another great find", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
-    elsif post_id == 6
-      comments.append(Comment.find_or_create_by!(text: "Try going a bit slower if you're having trouble", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
-    elsif post_id == 7
-      comments.append(Comment.find_or_create_by!(text: "Looks good, should be easy to learn after C Major", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
-    elsif post_id == 8
-      comments.append(Comment.find_or_create_by!(text: "Very nice!", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
-    elsif post_id == 9
-      comments.append(Comment.find_or_create_by!(text: "Perfect, you're close to completing this quest", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
-    elsif post_id == 10
-      comments.append(Comment.find_or_create_by!(text: "Excellent work!", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
+    # elsif post_id == 3
+    #   comments.append(Comment.find_or_create_by!(text: "Good find", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
+    # elsif post_id == 4
+    #   comments.append(Comment.find_or_create_by!(text: "Looks like you're making good progress", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
+    # elsif post_id == 5
+    #   comments.append(Comment.find_or_create_by!(text: "Another great find", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
+    # elsif post_id == 6
+    #   comments.append(Comment.find_or_create_by!(text: "Try going a bit slower if you're having trouble", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
+    # elsif post_id == 7
+    #   comments.append(Comment.find_or_create_by!(text: "Looks good, should be easy to learn after C Major", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
+    # elsif post_id == 8
+    #   comments.append(Comment.find_or_create_by!(text: "Very nice!", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
+    # elsif post_id == 9
+    #   comments.append(Comment.find_or_create_by!(text: "Perfect, you're close to completing this quest", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
+    # elsif post_id == 10
+    #   comments.append(Comment.find_or_create_by!(text: "Excellent work!", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
     end
   else
     user = [user4, user6].sample
