@@ -51,7 +51,7 @@ export default function NavForApp(props){
         </Navbar.Brand>
       </Hidden>
       {props.nav_title === 'HALL' ? <PartyBtn party_info={party_info}/> : <></>}
-      {props.nav_title === 'QUEST' ? <Hidden smUp ><QuestInfoBtn state={state} quest={quest} mentor_name={mentor_name} user_name={user_name} party_info={party_info} quests={quests} party_quests={party_quests} quest_id={quest_id} quest_completed={quest_completed}/></Hidden> : <></>}
+      {props.nav_title === 'QUEST' || props.nav_title === 'POST' ? <Hidden smUp ><QuestInfoBtn state={state} quest={quest} mentor_name={mentor_name} user_name={user_name} party_info={party_info} quests={quests} party_quests={party_quests} quest_id={quest_id} quest_completed={quest_completed}/></Hidden> : <></>}
       <Navbar.Brand >{props.nav_title }</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
