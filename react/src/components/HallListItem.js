@@ -5,6 +5,8 @@ const classNames = require('classnames');
 
 
 export default function HallListItem({title, id, nodes, handleClick, mentor_id, user_id, status}){
+
+  //changes css of quest status indicator based on quest status 
   const statusClass = classNames('status', {
     'status-progress' : status === 'IN PROGRESS',
     'status-success' : status === 'SUCCESS',

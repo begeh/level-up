@@ -22,7 +22,7 @@ export default function CreateQuestBtn(props) {
   let history = useHistory();
   let state = props.state;
   let party_info = props.party_info;
-  console.log(state)
+  // console.log(state)
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -118,6 +118,7 @@ export default function CreateQuestBtn(props) {
     setSelectedDate(date);
   };
 
+  //handles quest submission on hall page
   async function handleQuestSubmit(event) {
     event.preventDefault();
     console.log(`mentor name is ${mentor}`);
@@ -172,13 +173,13 @@ export default function CreateQuestBtn(props) {
         }
       )
     }
-    console.log(quest)
+    // console.log(quest)
 
     let quest_info = await axios.post("/create_quest", { quest, nodes })
       .then((res) => res.data)
 
-    console.log("Succesful write to database!")
-    console.log(quest_info)
+    // console.log("Succesful write to database!")
+    // console.log(quest_info)
 
     let quests = await axios.post(`/user_quests`, { user_id: state.id })
       .then((res) => {
@@ -199,7 +200,7 @@ export default function CreateQuestBtn(props) {
 
     await Promise.all(promises);
 
-    console.log(`Full Quests is ${JSON.stringify(full_quests)}`);
+    // console.log(`Full Quests is ${JSON.stringify(full_quests)}`);
 
     let party_quests = await axios.post("/party_quests", { party_id: state.party_id })
       .then((res) => {
@@ -304,10 +305,6 @@ export default function CreateQuestBtn(props) {
     setNode5CompletionDate(true);
     setSubmit5(false)
   }
-
-
-
-
 
   return (
     <div>

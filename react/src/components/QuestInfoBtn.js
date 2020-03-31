@@ -57,7 +57,7 @@ export default function QuestInfoBtn(props) {
       await axios.put(`/quests/${quest_id}`,{"story": story,"status": "FAILED", "date_finished": new Date(Date.now())}).catch(err=> alert(err));
       
       quest_completed = "failed";
-    }else{
+    } else {
       let node = nodes.find(node=> node["is_complete?"] === false);
       if(node){
         console.log(`Node not completed is ${node.id}`);
