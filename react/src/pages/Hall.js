@@ -36,11 +36,13 @@ export default function Hall(props) {
 
     // const hobbies = await axios.get(url).then(res => res.data.query.pages['31257416'].links);
 
+    //array of hobbies for wizard quote box
     const hobbies= ["3D printing", "Acrobatics", "Acting"
   ,"Baking", "Baseball", "Basketball", "Blogging", "Canoeing", "Canyoning", "Dance", "Darts", "Embroidery", "Fencing", "Field hockey", "Glassblowing", "Gardening", "Herbalism", "Homebrewing", "Ice skating", "Insect collecting", "Jewelry making", "Juggling", "Kart racing", "Kitesurfing", "Lace making", "Leather crafting", "Mahjong", "Meditation", "Nail art"
 , "Origami", "Painting", "Parkour", "Poker", "Quilting", "Rafting", "Rock climbing", "Rowing", "Sailing", "Sculpting", "Shogi", "Stamp collecting", "Taxidermy", "Tennis", "Video editing", "Video game development", "Water polo", "Weaving"
 , "Weight training", "Welding"]
 
+    //chooses index of random hobby from hobbies array and sets item at that hobby_index as hobby variable
     const hobby_index = Math.round(Math.random() * (hobbies.length - 1))
 
     hobby = hobbies[hobby_index].toLowerCase();
@@ -49,6 +51,7 @@ export default function Hall(props) {
   }
 
 
+  //handles click on nodes or quest titles on hall page and redirects to quest page at the selected node or, in case of quest title being clicked, to the current in progress node
   async function handleClick(id, mentor_id, user_id, node_id, index, nodes) {
     
      const quest = party_quests.filter(quest => quest.quest.id === id)[0];
