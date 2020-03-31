@@ -61,6 +61,14 @@ export default function Lobby(props) {
     console.log(`lobbyname is ${lobbyName}`); //Create lobby
     console.log(`lobbycode is ${lobbyCode}`); //Join Lobby
 
+    let is_party_full = null
+
+    is_party_full = await axios.put(`parties/${lobbyCode}`, {
+    }
+    ).then(res => {
+      return res.data
+    })
+
     //checks if user is already part of party when join lobby btn is pressed. if not, it resets their party_id in database to the lobbyCode entered and gives them access
     if (state.party_id !== lobbyCode) {
       axios.put(`/users/${state.id}`, { "party_id": lobbyCode })

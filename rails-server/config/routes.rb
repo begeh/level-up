@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     resources :items
   end
 
+  # New way of routing, routes are only nested 1 level
+# Should make each table more accesscible without changing functionality
   resources :users
   resources :parties
 
@@ -33,8 +35,7 @@ Rails.application.routes.draw do
   #   end
   # end
 
-# New way of routing, routes are only nested 1 level
-# Should make each table more accesscible without changing functionality
+
 
   resources :posts do
     resources :comments

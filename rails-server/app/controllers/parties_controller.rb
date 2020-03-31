@@ -30,8 +30,31 @@ class PartiesController < ApplicationController
 
   # PUT /parties/:id
   def update
-    @party.update(party_params)
-    head :no_content
+    p |
+    p |
+    p |
+    p |
+    p |
+    p |
+    p |
+    p |
+    set_party()
+    new_params = party_params
+    puts party_params
+    new_params.number_of_members += 1
+    @party.update(new_params)
+    set_party()
+    puts @party
+    p |
+    p |
+    p |
+    p |
+    p |
+    p |
+    p |
+    p |
+      json_response(@party)
+
   end
 
   # DELETE /parties/:id
