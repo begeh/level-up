@@ -162,7 +162,7 @@ quest1 = Quest.find_or_create_by!({
   title: "Learn C scales",
   description: "Will learn and practice various C scales on guitar",
   status: "IN PROGRESS",
-  date_finished: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  date_finished: Faker::Time.between(from: DateTime.now + 4, to: DateTime.now + 5)
 })
 
 quest2 = Quest.find_or_create_by!({
@@ -172,7 +172,7 @@ quest2 = Quest.find_or_create_by!({
   title: Faker::Lorem.word,
   description: Faker::Lorem.sentence,
   status: "IN PROGRESS",
-  date_finished: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  date_finished: Faker::Time.between(from: DateTime.now + 4, to: DateTime.now + 5)
 })
 
 quest3 = Quest.find_or_create_by!({
@@ -182,7 +182,7 @@ quest3 = Quest.find_or_create_by!({
   title: "Learn Quantum Mechanics",
   description: "Fully understand the modern theory of Quantum Mechanics",
   status: "IN PROGRESS",
-  date_finished: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  date_finished: Faker::Time.between(from: DateTime.now + 4, to: DateTime.now + 5)
 })
 
 ## NODES
@@ -217,7 +217,7 @@ node1 = Node.find_or_create_by!({
   is_complete?: false,
   quest_id: quest1.id,
   date_finished: nil,
-  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
 
 })
 
@@ -229,7 +229,7 @@ node2 = Node.find_or_create_by!({
   is_complete?: false,
   quest_id: quest1.id,
   date_finished: nil,
-  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
 
 })
 
@@ -241,7 +241,7 @@ node3 = Node.find_or_create_by!({
   is_complete?: false,
   quest_id: quest1.id,
   date_finished: nil,
-  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
 
 })
 
@@ -253,7 +253,7 @@ node4 = Node.find_or_create_by!({
   is_complete?: false,
   quest_id: quest1.id,
   date_finished: nil,
-  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
 
 })
 
@@ -265,7 +265,7 @@ node5 = Node.find_or_create_by!({
   is_complete?: false,
   quest_id: quest1.id,
   date_finished: nil,
-  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
 
 })
 
@@ -277,7 +277,7 @@ node6 = Node.find_or_create_by!({
   is_complete?: false,
   quest_id: quest2.id,
   date_finished: nil,
-  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
 
 })
 
@@ -289,7 +289,7 @@ node7 = Node.find_or_create_by!({
   is_complete?: false,
   quest_id: quest2.id,
   date_finished: nil,
-  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
 
 })
 
@@ -301,7 +301,7 @@ node8 = Node.find_or_create_by!({
   is_complete?: false,
   quest_id: quest2.id,
   date_finished: nil,
-  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
 
 })
 
@@ -313,7 +313,7 @@ node9 = Node.find_or_create_by!({
   is_complete?: false,
   quest_id: quest2.id,
   date_finished: nil,
-  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
 
 })
 
@@ -325,7 +325,7 @@ node10 = Node.find_or_create_by!({
   is_complete?: false,
   quest_id: quest2.id,
   date_finished: nil,
-  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
 
 })
 
@@ -335,7 +335,7 @@ node11 = Node.find_or_create_by!({
   is_complete?: false,
   quest_id: quest3.id,
   date_finished: nil,
-  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
 })
 node12 = Node.find_or_create_by!({
   title: "Learn the basic types of energy",
@@ -343,7 +343,7 @@ node12 = Node.find_or_create_by!({
   is_complete?: false,
   quest_id: quest3.id,
   date_finished: nil,
-  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
 
 })
 node13 = Node.find_or_create_by!({
@@ -352,7 +352,7 @@ node13 = Node.find_or_create_by!({
   is_complete?: false,
   quest_id: quest3.id,
   date_finished: nil,
-  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
 
 })
 
