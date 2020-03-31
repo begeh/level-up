@@ -178,7 +178,7 @@ quest2 = Quest.find_or_create_by!({
 quest3 = Quest.find_or_create_by!({
   party_id: party1.id,
   user_id: user1.id,
-  mentor_id: user1.id,
+  mentor_id: user3.id,
   title: "Learn Quantum Mechanics",
   description: "Fully understand the modern theory of Quantum Mechanics",
   status: "IN PROGRESS",
@@ -473,7 +473,7 @@ comment_list = [
 comments = []
 
 comment_list.each_with_index do |post_id|
-  if post_id <= 1
+  if post_id <= 2
     user = [user3, user5].sample
     if post_id == 1
       comments.append(Comment.find_or_create_by!(text: "That's a good reference pic", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
