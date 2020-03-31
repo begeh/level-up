@@ -216,7 +216,9 @@ node1 = Node.find_or_create_by!({
   description: "I'll research and practice the C Major scale",
   is_complete?: false,
   quest_id: quest1.id,
-  date_finished: nil
+  date_finished: nil,
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+
 })
 
 isFinished = finished_decider(quest1)
@@ -226,7 +228,9 @@ node2 = Node.find_or_create_by!({
   description: "I'll research and practice the C Minor scale",
   is_complete?: false,
   quest_id: quest1.id,
-  date_finished: nil
+  date_finished: nil,
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+
 })
 
 isFinished = finished_decider(quest1)
@@ -236,7 +240,9 @@ node3 = Node.find_or_create_by!({
   description: "I'll research and practice the C Diminished scale",
   is_complete?: false,
   quest_id: quest1.id,
-  date_finished: nil
+  date_finished: nil,
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+
 })
 
 isFinished = finished_decider(quest1)
@@ -246,7 +252,9 @@ node4 = Node.find_or_create_by!({
   description: "I'll research and practice the C Major Pentatonic scale",
   is_complete?: false,
   quest_id: quest1.id,
-  date_finished: nil
+  date_finished: nil,
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+
 })
 
 isFinished = finished_decider(quest1)
@@ -256,7 +264,9 @@ node5 = Node.find_or_create_by!({
   description: "I'll research and practice the C Minor Pentatonic scale",
   is_complete?: false,
   quest_id: quest1.id,
-  date_finished: nil
+  date_finished: nil,
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+
 })
 
 isFinished = finished_decider(quest2)
@@ -266,7 +276,9 @@ node6 = Node.find_or_create_by!({
   description: Faker::Lorem.sentence,
   is_complete?: false,
   quest_id: quest2.id,
-  date_finished: nil
+  date_finished: nil,
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+
 })
 
 isFinished = finished_decider(quest2)
@@ -276,7 +288,9 @@ node7 = Node.find_or_create_by!({
   description: Faker::Lorem.sentence,
   is_complete?: false,
   quest_id: quest2.id,
-  date_finished: nil
+  date_finished: nil,
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+
 })
 
 isFinished = finished_decider(quest2)
@@ -286,7 +300,9 @@ node8 = Node.find_or_create_by!({
   description: Faker::Lorem.sentence,
   is_complete?: false,
   quest_id: quest2.id,
-  date_finished: nil
+  date_finished: nil,
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+
 })
 
 isFinished = finished_decider(quest2)
@@ -296,7 +312,9 @@ node9 = Node.find_or_create_by!({
   description: Faker::Lorem.sentence,
   is_complete?: false,
   quest_id: quest2.id,
-  date_finished: nil
+  date_finished: nil,
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+
 })
 
 isFinished = finished_decider(quest2)
@@ -306,7 +324,9 @@ node10 = Node.find_or_create_by!({
   description: Faker::Lorem.sentence,
   is_complete?: false,
   quest_id: quest2.id,
-  date_finished: nil
+  date_finished: nil,
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+
 })
 
 node11 = Node.find_or_create_by!({
@@ -314,21 +334,26 @@ node11 = Node.find_or_create_by!({
   description: "Research and learn the application of the 6 simple machines",
   is_complete?: false,
   quest_id: quest3.id,
-  date_finished: nil
+  date_finished: nil,
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
 })
 node12 = Node.find_or_create_by!({
   title: "Learn the basic types of energy",
   description: "Research and define the basic types of energy",
   is_complete?: false,
   quest_id: quest3.id,
-  date_finished: nil
+  date_finished: nil,
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+
 })
 node13 = Node.find_or_create_by!({
   title: "Learn the rest of Quantum Mechanics",
   description: "Research and learn the modern theory of Quantum Mechanics",
   is_complete?: false,
   quest_id: quest3.id,
-  date_finished: nil
+  date_finished: nil,
+  complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 5)
+
 })
 
 Post.destroy_all
