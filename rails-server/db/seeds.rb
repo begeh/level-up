@@ -214,7 +214,7 @@ isFinished = finished_decider(quest1)
 node1 = Node.find_or_create_by!({
   title: "Learn C Major",
   description: "I'll research and practice the C Major scale",
-  is_complete?: false,
+  is_complete?: true,
   quest_id: quest1.id,
   date_finished: nil,
   complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
@@ -226,7 +226,7 @@ isFinished = finished_decider(quest1)
 node2 = Node.find_or_create_by!({
   title: "Learn C Minor",
   description: "I'll research and practice the C Minor scale",
-  is_complete?: false,
+  is_complete?: true,
   quest_id: quest1.id,
   date_finished: nil,
   complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
@@ -238,7 +238,7 @@ isFinished = finished_decider(quest1)
 node3 = Node.find_or_create_by!({
   title: "Learn C Diminished",
   description: "I'll research and practice the C Diminished scale",
-  is_complete?: false,
+  is_complete?: true,
   quest_id: quest1.id,
   date_finished: nil,
   complete_by: Faker::Time.between(from: DateTime.now, to: DateTime.now + 4)
