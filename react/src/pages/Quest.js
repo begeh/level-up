@@ -38,16 +38,15 @@ export default function Quest(props) {
     quest_completed = props.location.state.quest_completed;
     node_id = props.location.state.node_id
     selected_node = props.location.state.selected_node;
-    console.log(props);
+    
   } else {
     history.push('/');
   }
-  console.log(`Quest is completed ${quest_completed}`)
+
   let quest = party_quests.filter(quest => quest.quest.id === quest_id)[0];
 
   let nodes = quest.nodes;
   let comments = quest.comments.flat();
-  console.log("This is nodes: ", nodes)
 
   //sets posts variable to all posts of the node selected on hall page, or for the node clicked on the nodebar of quest page (node_posts) when clicked
   let posts = null;
@@ -69,8 +68,6 @@ export default function Quest(props) {
   } else {
     posts = node_posts;
   }
-
-  console.log(`This is posts ${JSON.stringify(posts)}`);
 
   //renders quest page with only posts associated with the node that is click on nodebar in quest page
   function handleNode(id, index) {
@@ -94,12 +91,9 @@ export default function Quest(props) {
   async function handleClick(id, post) {
 
     let comments = await axios.get(`/post/${id}/comments`).then((response) => response.data);
-    console.log(`Comments are ${JSON.stringify(comments)}`);
 
     history.push({ pathname: `/quest/${quest_id}/post/${id}`, state: { global: state, quest_id: quest_id, quests: quests, quest: quest, party_quests: party_quests, mentor_name: mentor_name, user_name: user_name, party_info: party_info, post: post, comments: comments, post_id: id, selected_node: selected_node, node_id: node_id } })
   }
-
-  console.log(`This is node_id: ${node_id}`)
 
   return (
     <>

@@ -24,7 +24,6 @@ export default function Legacy(props) {
     quests = props.location.state.quests;
     party_quests = props.location.state.party_quests;
     party_info = props.location.state.party_info;
-    console.log(props);
   } else{
     history.push('/');
   }

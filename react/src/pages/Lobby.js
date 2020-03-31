@@ -10,7 +10,6 @@ import axios from 'axios';
 let returnUserQuests = async (id) => {
   return await axios.post(`/user_quests`, { user_id: id })
     .then((res) => {
-      console.log(res.data)
       return res.data;
     })
 }
@@ -26,7 +25,6 @@ let returnPartyMembers = async (party_id) => {
 
   return await axios.post("/user_party_members", { party_id })
     .then((response) => {
-      console.log(response)
       let list = [];
       response.data.forEach(user => {
         list.push({
@@ -46,8 +44,6 @@ let current_user = null
 export default function Lobby(props) {
   const state = props.location.state;
   current_user = state
-  console.log(`New State: ${JSON.stringify(state)}`)
-  console.log(`Received email: ${props.location.state.email} and password: ${props.location.state.password}`);
 
   let history = useHistory();
   const [lobbyName, setLobbyName] = useState(null); //Create lobby
@@ -58,9 +54,7 @@ export default function Lobby(props) {
   // This can be split later on if we get our MVP done but it works fine for now
   async function handleJoinSubmit(event) {
     event.preventDefault();
-    console.log(`lobbyname is ${lobbyName}`); //Create lobby
-    console.log(`lobbycode is ${lobbyCode}`); //Join Lobby
-
+  
     //checks if user is already part of party when join lobby btn is pressed. if not, it resets their party_id in database to the lobbyCode entered and gives them access
     if (state.party_id !== lobbyCode) {
       axios.put(`/users/${state.id}`, { "party_id": lobbyCode })
@@ -71,32 +65,25 @@ export default function Lobby(props) {
     // If joining Lobby
     state.lobbyCode = lobbyCode
 
-
-
-    console.log(lobbyCode)
-
     let party_name = await axios.get(`/parties/${state.lobbyCode}`)
       .then((response) => {
-        console.log(response)
-        return response.data.party_name
+
+        return response.data.party_name;
+
       }).catch((err) => {
         if (err.response.request.status === 404) {
           alert("No lobby matching that code was found")
         } else if (err.response.request.status === 500) {
           alert("An error occurred, please contact the site administrator")
         }
-        console.log(err.response)
-        return null
-      });
 
-    console.log(party_name)
+        return null
+
+      });
 
     if (party_name) {
 
       let quests = await returnUserQuests(state.id)
-      console.log(quests)
-
-      console.log(JSON.stringify(quests))
 
       let full_quests = [];
 
@@ -112,12 +99,8 @@ export default function Lobby(props) {
 
       await Promise.all(promises);
 
-      console.log(`Full quests ${JSON.stringify(full_quests)}`);
-
       //Use the user provided lobbyCode to populate the party_quests
-      let party_quests = await returnPartyQuests(lobbyCode)
-
-      console.log(`This is party quests ${JSON.stringify(full_quests)}`)
+      let party_quests = await returnPartyQuests(lobbyCode);
 
       let party_full_quests = [];
       let party_promises = [];
@@ -132,12 +115,8 @@ export default function Lobby(props) {
 
       await Promise.all(party_promises);
 
-      console.log(`Party full quests ${party_full_quests}`);
-
       // Set party_id to user defined lobbyCode
       let party_id = lobbyCode;
-
-      console.log("Party id is: ", party_id)
 
       let party_members = await returnPartyMembers(party_id)
 
@@ -146,8 +125,6 @@ export default function Lobby(props) {
         name: party_name,
         members: party_members
       }
-      console.log(`Party Id: ${party_id}, Party Name: ${party_name}, Party Members: ${JSON.stringify(party_members)}`);
-
 
       history.push({ pathname: "/hall", state: { global: state, quests: full_quests.sort((a, b) => b.quest.id - a.quest.id), party_quests: party_full_quests.sort((a, b) => b.quest.id - a.quest.id), party_info: party_info } });
     }
@@ -156,8 +133,6 @@ export default function Lobby(props) {
 
   async function handleCreateSubmit(event) {
     event.preventDefault();
-    console.log(`lobbyname is ${lobbyName}`); //Create lobby
-    console.log(`lobbycode is ${lobbyCode}`); //Join Lobby
 
     // If making Lobby
     state.lobbyName = lobbyName
@@ -177,10 +152,8 @@ export default function Lobby(props) {
         } else if (err.response.request.status === 500) {
           alert("An error occurred, please contact the site administrator")
         }
-        console.log(err.response)
         return null
       });
-    console.log("party value is: ", party)
 
     // If a party was created (and therefore returned)
     if (party) {
@@ -188,8 +161,6 @@ export default function Lobby(props) {
       state.party_id = party.id
 
       let quests = await returnUserQuests(state.id)
-
-      console.log(JSON.stringify(quests))
 
       let full_quests = [];
       let promises = [];
@@ -204,11 +175,7 @@ export default function Lobby(props) {
 
       await Promise.all(promises);
 
-      console.log(`Full quests ${JSON.stringify(full_quests)}`);
-
-      let party_quests = await returnPartyQuests(state.party_id)
-
-      console.log(`This is party quests ${JSON.stringify(full_quests)}`)
+      let party_quests = await returnPartyQuests(state.party_id);
 
       let party_full_quests = [];
       let party_promises = [];
@@ -223,16 +190,12 @@ export default function Lobby(props) {
 
       await Promise.all(party_promises);
 
-      console.log(`Party full quests ${party_full_quests}`);
-
       //Use the returned party ID
       let party_id = party.id
       let party_name = party.party_name
 
       // Uses the party_id returned when making a party
       let party_members = await returnPartyMembers(party_id)
-
-      console.log(`Party Id: ${party_id}, Party Name: ${party_name}, Party Members: ${JSON.stringify(party_members)}`);
 
       const party_info = {
         id: party_id,

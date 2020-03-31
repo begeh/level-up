@@ -10,8 +10,6 @@ export default function fail({ apprentice, mentor, questTitle, nodes, dateStart,
 
   const date = (new Date(dateEnd)).getTime() - (new Date(dateStart)).getTime();
 
-  console.log("The number of completed is ", num_completed_nodes)
-
   //converts times spent on quest into readable time interval (e.g. seconds, minutes, days, years, etc.)
   const experience = convertDate(date);
   if (nodes.length === 5) {
@@ -134,17 +132,12 @@ export default function fail({ apprentice, mentor, questTitle, nodes, dateStart,
   }
   //cycles through story_parts and adds stories for the nodes that were completed prior to abandoning mission
   for (let i = 0; i < num_completed_nodes; i++) {
-    console.log("This is what i is ", i)
     story.push(story_parts[i]);
   };
-
-  console.log(`Number of nodes completed ${num_completed_nodes} and Days of experience ${experience}`);
 
   story.push(fail_line);
 
   story = story.join('\r\n');
-
-  console.log(`Fail Story is ${story}`);
 
   return story;
 

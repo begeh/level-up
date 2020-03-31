@@ -52,8 +52,6 @@ export default function Post(props) {
     history.push('/');
   }
 
-  console.log(state)
-  console.log(post)
   const symbol = post.symbol_ref;
   let post_symbol = null;
 
@@ -68,20 +66,14 @@ export default function Post(props) {
 
   // const [comment, setComment] = useState("")
   let comment = "";
-  console.log(comment)
-  console.log(post)
 
   //submits a comment to the database and rerenders page through useHistory
   async function handleCommentSubmit(event) {
 
     event.preventDefault();
-    console.log(`Comment Ref is ${commentRef.current.value}`)
     comment = commentRef.current.value;
     commentRef.current.value = null;
-
-    console.log(`Comment is ${comment}`);
     
-
     let comment_package = {
       text: comment,
       username: user_name,
@@ -89,7 +81,6 @@ export default function Post(props) {
       user_id: state.id,
       user_profile_pic: state.profile_pic_ref
     }
-    console.log(comment_package)
 
     let text = comment;
 
@@ -103,14 +94,11 @@ export default function Post(props) {
     ).then((res) => res.data)
 
     comments = await axios.get(`/post/${post_id}/comments`).then((response) => response.data);
-    console.log(`Comments are ${JSON.stringify(comments)}`);
 
     quests = await axios.post(`/user_quests`, { user_id: state.id })
       .then((res) => {
         return res.data;
       })
-
-    console.log(JSON.stringify(quests))
 
     let full_quests = [];
     let promises = [];
@@ -125,14 +113,10 @@ export default function Post(props) {
 
     await Promise.all(promises);
 
-    console.log(`Full quests ${JSON.stringify(full_quests)}`);
-
     party_quests = await axios.post("/party_quests", { party_id: state.party_id })
       .then((res) => {
         return res.data
       })
-
-    console.log(`This is party quests ${JSON.stringify(full_quests)}`)
 
     let party_full_quests = [];
     let party_promises = [];

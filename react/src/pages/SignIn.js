@@ -14,14 +14,12 @@ export default function SignIn(props) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log(`email is ${email}`);
-    console.log(`password is ${password}`);
+
     //Makes a post request to /user, with email and password sent in the body
     //The rails server will grab all the users with that email and return them (there should only be 1 if I set it up right)
     let users = await axios.post(`/user`, {email, password}).then((res)=> res.data);
     //If the email is not found, this line sets user to a falsey value, otherwise user is true
     let user = users[0]
-    console.log(`This is user ${user}`)
     
     if(user){
       state = user;

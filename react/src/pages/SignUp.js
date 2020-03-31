@@ -9,8 +9,6 @@ export default function SignUp(props) {
   let history = useHistory();
   let state = props.location.state;
 
-  console.log(state);
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [title, setTitle] = useState("");
@@ -19,14 +17,6 @@ export default function SignUp(props) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-
-
-    console.log(`email is ${email}`);
-    console.log(`password is ${password}`);
-    console.log(`title is ${title}`)
-    console.log(`firstname is ${firstName}`)
-    console.log(`lastname is ${lastName}`)
-
 
     //Makes a post request to /users with the signup information
     //The rails server will return a user object upon a successful user creation
@@ -37,7 +27,7 @@ export default function SignUp(props) {
       name: `${firstName} ${lastName}`,
       profile_pic_ref: "none"
     }).then((res) => res.data);
-    console.log(user)
+    
     if (user.id) {
       state = user;
       history.push({

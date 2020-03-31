@@ -15,7 +15,7 @@ export default function CreatePostButton(props) {
 
   // Modal only closes if postTitle and Post description contain valid input
   const handleSubmitClose = () => {
-    // console.log(state)
+    
     if (postTitle.length !== 0 && postDescription.length !== 0) {
       setShow(false)
     }
@@ -40,7 +40,7 @@ export default function CreatePostButton(props) {
   //handles post submission on post page
   async function handlePostSubmit(event) {
     event.preventDefault();
-    console.log("function called")
+    
     let post_package = {
       title: postTitle,
       content: postDescription,
@@ -65,7 +65,7 @@ export default function CreatePostButton(props) {
         return res.data;
       })
 
-    // console.log(JSON.stringify(quests))
+    
 
     let full_quests = [];
     let promises = [];
@@ -80,14 +80,11 @@ export default function CreatePostButton(props) {
 
     await Promise.all(promises);
 
-    // console.log(`Full quests ${JSON.stringify(full_quests)}`);
 
     party_quests = await axios.post("/party_quests", { party_id: state.party_id })
       .then((res) => {
         return res.data
       })
-
-    // console.log(`This is party quests ${JSON.stringify(full_quests)}`)
 
     let party_full_quests = [];
     let party_promises = [];

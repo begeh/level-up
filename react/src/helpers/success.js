@@ -1,5 +1,4 @@
 export default function success({ apprentice, mentor, questTitle, nodes }, user_id, mentor_id) {
-  console.log(nodes)
   // 5 node quest
   if (nodes.length === 5) {
 

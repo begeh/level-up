@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 import userIcon from '../images/avatar.png'
 
 export default function CommentListItem ({ username, avatar, created_at, text }) {
-  console.log(avatar)
+  
   if (!avatar) {
     avatar = userIcon
   }

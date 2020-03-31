@@ -23,8 +23,6 @@ export default function QuestInfoBtn(props) {
   let quest_completed = props.quest_completed;
   let selected_node = props.selected_node;
 
-  console.log(nodes)
-
   const story_params ={
     apprentice: user_name,
     mentor: mentor_name,
@@ -36,7 +34,6 @@ export default function QuestInfoBtn(props) {
 
   //'levels up' quest (i.e. progresses through nodes) when Level Up btn pressed. if quest is abandoned or completed successfully, redirects to quest page where appropriate modal is displayed and database is updated
   async function handleLevel(nodes, status) {
-    console.log(`Status is ${status}`);
     
     //sets the selected node to the next node on the nodebar once level up btn is clicked
     const incomplete_node_index = nodes.findIndex(node => node["is_complete?"] === false);
@@ -60,7 +57,7 @@ export default function QuestInfoBtn(props) {
     } else {
       let node = nodes.find(node=> node["is_complete?"] === false);
       if(node){
-        console.log(`Node not completed is ${node.id}`);
+        
         await axios.put(`/nodes/${node.id}`, {"is_complete?": true,"date_finished": new Date(Date.now())}).catch(err => alert(err));
         if(node.id === nodes[nodes.length-1].id){
 
@@ -93,8 +90,6 @@ export default function QuestInfoBtn(props) {
     );
 
     await Promise.all(promises);
-
-    console.log(`Full Quests is ${JSON.stringify(full_quests)}`);
 
     let party_quests = await axios.post("/party_quests", { party_id: state.party_id })
       .then((res) => {

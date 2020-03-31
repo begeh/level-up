@@ -34,7 +34,7 @@ export default function NavForApp(props){
     quest = props.quest;
     quest_id = props.quest_id;
     quest_completed = props.quest_completed;
-    // console.log(`This is party_quests ${JSON.stringify(party_quests)}`)
+   
   } else{
     history.push('/');
   }

@@ -9,7 +9,6 @@ const classNames = require('classnames');
 
 
 export default function History(props){
-  console.log(props);
   let history = useHistory();
   let {id} = useParams();
   
@@ -28,7 +27,6 @@ export default function History(props){
     nodes = props.location.state.quest.nodes;
     party_quests = props.location.state.party_quests;
     party_info = props.location.state.party_info;
-    console.log(props);
   } else{
     history.push('/');
   }

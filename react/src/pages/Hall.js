@@ -24,18 +24,12 @@ export default function Hall(props) {
     party_quests = props.location.state.party_quests;
     party_info = props.location.state.party_info;
     hobby = props.location.state.hobby;
-    console.log(`This is party_quests ${party_quests}`)
   } else {
     history.push('/');
   }
 
-  // console.log(`Hall State is ${JSON.stringify(state)}`);
-
   function clickWizard() {
-    // const url = "https://en.wikipedia.org/w/api.php?action=query&format=json&pllimit=500&prop=links&titles=List+of+hobbies";
-
-    // const hobbies = await axios.get(url).then(res => res.data.query.pages['31257416'].links);
-
+    
     //array of hobbies for wizard quote box
     const hobbies= ["3D printing", "Acrobatics", "Acting"
   ,"Baking", "Baseball", "Basketball", "Blogging", "Canoeing", "Canyoning", "Dance", "Darts", "Embroidery", "Fencing", "Field hockey", "Glassblowing", "Gardening", "Herbalism", "Homebrewing", "Ice skating", "Insect collecting", "Jewelry making", "Juggling", "Kart racing", "Kitesurfing", "Lace making", "Leather crafting", "Mahjong", "Meditation", "Nail art"
