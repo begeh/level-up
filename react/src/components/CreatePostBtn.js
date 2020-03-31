@@ -13,9 +13,9 @@ export default function CreatePostButton(props) {
   const [videoURL, setVideoURL] = useState("");
   const [imageURL, setImageURL] = useState("");
 
-  // Model only closes if postTitle and Post description contain valid input
+  // Modal only closes if postTitle and Post description contain valid input
   const handleSubmitClose = () => {
-    console.log(state)
+    // console.log(state)
     if (postTitle.length !== 0 && postDescription.length !== 0) {
       setShow(false)
     }
@@ -37,6 +37,7 @@ export default function CreatePostButton(props) {
   const party_info = props.party_info;
   const selected_node = props.selected_node;
 
+  //handles post submission on post page
   async function handlePostSubmit(event) {
     event.preventDefault();
     console.log("function called")
@@ -48,8 +49,6 @@ export default function CreatePostButton(props) {
       image_url: imageURL,
       node_id: node_id
     }
-    console.log(post_package)
-    // setPostDescription, setPostTitle, setVideoURL, setImageURL
 
     await axios.post("/posts", {
       title: postTitle,
@@ -66,7 +65,7 @@ export default function CreatePostButton(props) {
         return res.data;
       })
 
-    console.log(JSON.stringify(quests))
+    // console.log(JSON.stringify(quests))
 
     let full_quests = [];
     let promises = [];
@@ -81,14 +80,14 @@ export default function CreatePostButton(props) {
 
     await Promise.all(promises);
 
-    console.log(`Full quests ${JSON.stringify(full_quests)}`);
+    // console.log(`Full quests ${JSON.stringify(full_quests)}`);
 
     party_quests = await axios.post("/party_quests", { party_id: state.party_id })
       .then((res) => {
         return res.data
       })
 
-    console.log(`This is party quests ${JSON.stringify(full_quests)}`)
+    // console.log(`This is party quests ${JSON.stringify(full_quests)}`)
 
     let party_full_quests = [];
     let party_promises = [];

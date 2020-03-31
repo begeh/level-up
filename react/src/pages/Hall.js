@@ -29,7 +29,7 @@ export default function Hall(props) {
     history.push('/');
   }
 
-  console.log(`Hall State is ${JSON.stringify(state)}`);
+  // console.log(`Hall State is ${JSON.stringify(state)}`);
 
   function clickWizard() {
     // const url = "https://en.wikipedia.org/w/api.php?action=query&format=json&pllimit=500&prop=links&titles=List+of+hobbies";

@@ -29,6 +29,7 @@ export default function Legacy(props) {
     history.push('/');
   }
 
+  //redirects from legacy page to the history page for the particular quest that was clicked on
   function loadQuest(id){
     return axios.get(`/quest_object/${id}`)
     .then((res)=>
