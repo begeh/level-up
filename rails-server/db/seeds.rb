@@ -382,6 +382,12 @@ count = 1
 posts = []
 
 posts.append(Post.find_or_create_by!(
+  title: "What is a scale?",
+  content: "I've heard about musical scales before, but I'm not exactly sure what a 'scale' is!",
+  node_id: 1,
+  symbol_ref: "question"
+  ))
+posts.append(Post.find_or_create_by!(
   title: "I found the C Major scale!",
   content: "I found this picture of the C Major scale, should be go to go!",
   image_url: "https://www.guitarcommand.com/wp-content/uploads/2019/08/C-Major-Scale-For-Guitar-TAB.png",
@@ -394,12 +400,6 @@ posts.append(Post.find_or_create_by!(
   node_id: 1,
   video_url: "https://www.youtube.com/watch?v=SJW18e04zJ8&feature=youtu.be",
   symbol_ref: "sword"
-  ))
-posts.append(Post.find_or_create_by!(
-  title: "What is a scale?",
-  content: "I've heard about musical scales before, but I'm not exactly sure what a 'scale' is!",
-  node_id: 1,
-  symbol_ref: "question"
   ))
 posts.append(Post.find_or_create_by!(
   title: "I found the C Minor scale!",
@@ -507,8 +507,11 @@ comment_list.each_with_index do |post_id|
   if post_id <= 9
     user = [user3, user5].sample
     if post_id == 1
-      comments.append(Comment.find_or_create_by!(text: "That's a good reference pic", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
+      comments.append(Comment.find_or_create_by!(text: "Technical answer: 'A set of notes ordered by frequency or pitch.' Practical answer: 'A set of notes that, when played together, sound good'.", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
+      comments.append(Comment.find_or_create_by!(text: "Ah okay, thanks!", username: user1.name, user_id: user1.id, user_profile_pic: user1.profile_pic_ref, post_id: post_id))
     elsif post_id == 2
+      comments.append(Comment.find_or_create_by!(text: "That's a good reference pic", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
+    elsif post_id == 3
       comments.append(Comment.find_or_create_by!(text: "Not too shabby! Looks and sounds good", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
     elsif post_id == 4
       comments.append(Comment.find_or_create_by!(text: "Good find", username: user.name, user_id: user.id, user_profile_pic: user.profile_pic_ref, post_id: post_id))
