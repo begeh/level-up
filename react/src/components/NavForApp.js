@@ -7,11 +7,8 @@ import { useHistory } from "react-router-dom";
 import { Hidden } from '@material-ui/core';
 import './NavForApp.scss'
 import logo from "../images/nav-logo.png";
-import axios from 'axios';
 
 export default function NavForApp(props){
-  // let history = useHistory();
-  // const state = props.location.state
 
   let history=useHistory();
   let state = {};
@@ -57,7 +54,6 @@ export default function NavForApp(props){
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <Nav.Link className='username'>Logged In as: {state.name}</Nav.Link>
-            {/* <p>UserName: {state.name}</p> */}
             <Nav.Link onClick={()=>loadPage('legacy')}>Legacy</Nav.Link>
             <Nav.Link onClick={()=>loadPage('hall')}>Hall</Nav.Link>
             <Nav.Link onClick={()=>history.push("/")}
